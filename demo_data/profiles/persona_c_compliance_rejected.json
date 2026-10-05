@@ -1,0 +1,22 @@
+{
+  "demo_key": "WPDEMO-C",
+  "source": "synthetic_demo",
+  "persona": "C",
+  "demonstrates": "compliance_rejected",
+  "customer_name": "WealthPilot Demo — Compliance",
+  "owned_by_seed": true,
+  "purpose": "Demonstrates that the compliance gate is real, binding, and cannot be bypassed even for a customer with a full profile, questionnaire, and goals -- deliberately preserved WITHOUT financial inputs (Phase 28), so it continues to demonstrate the fail-closed REJECT path for genuinely missing data, its original and still-intended purpose. Its ACTUAL result is `rejected`, with the full rule breakdown available on the Recommendation page / via GET /api/analysis/{id}.",
+  "risk_data_link": {
+    "external_customer_id": "977880FDFA6713338EDC",
+    "selected_by": "backend/scripts/find_demo_risk_candidates.py",
+    "note": "predicted Conservative, confidence ~0.777, 6 months of trading history"
+  },
+  "profile": {
+    "age": 58,
+    "customer_type": "Professional",
+    "employment_status": "Full-time",
+    "income": 71000,
+    "investment_capacity": "CAP_80K_300K",
+    "name": "WealthPilot Demo — Compliance"
+  }
+}

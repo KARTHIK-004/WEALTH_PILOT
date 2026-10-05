@@ -1,0 +1,105 @@
+{
+  "dataset": "WealthPilot AI demo dataset",
+  "dataset_version": "1.0.0",
+  "source": "synthetic_demo",
+  "description": "Synthetic, deterministic demo data for demonstration, testing, presentation and viva: four individual personas and one family household, seeded through the real public API by backend/scripts/seed_demo_data.py. Every financial result is computed by the application, never stored here.",
+  "not_for_training": "This dataset is NOT a replacement for FAR-Trans or the Kaggle training dataset and MUST NOT be used as additional ML training data.",
+  "compatible_with": {
+    "alembic_head": "c3e8f2a9d154",
+    "api": "WealthPilot AI public API, Phases 21-36"
+  },
+  "transactions": {
+    "included": false,
+    "reason": "The application cannot consume synthetic transactions: risk and behaviour features are read only from the immutable FAR-Trans CSVs, never from the database transactions table, so synthetic rows would be inert. A persona's real risk input is its risk_data_link to an existing FAR-Trans customer."
+  },
+  "deterministic_identifier": "2c74033da66b3586b46bbe3061e91d8c4eea0133f1934829f08e8bef67ed4bfb",
+  "counts": {
+    "data_files": 30,
+    "individual_personas": 4,
+    "personas_owned_by_seed": 3,
+    "questionnaire_answer_sets": 4,
+    "questionnaire_answers": 100,
+    "financial_input_records_provided": 2,
+    "financial_input_records_not_provided": 2,
+    "individual_goals": 9,
+    "households": 1,
+    "household_members": 2,
+    "household_financial_records": {
+      "income": 5,
+      "expenses": 8,
+      "assets": 4,
+      "liabilities": 2
+    },
+    "household_goals": 4,
+    "scenarios": 5,
+    "scenarios_not_supported_by_the_contract": 4,
+    "expected_result_sets": 5,
+    "transactions": 0
+  },
+  "expected_outcomes": {
+    "WPDEMO-A": {
+      "analysis_status": "approved",
+      "recommendation_status": "approved"
+    },
+    "WPDEMO-B": {
+      "analysis_status": "approved",
+      "recommendation_status": "savings_first"
+    },
+    "WPDEMO-C": {
+      "analysis_status": "rejected",
+      "recommendation_status": null
+    },
+    "WPDEMO-D": {
+      "analysis_status": "pending_information",
+      "recommendation_status": null
+    },
+    "WPDEMO-FAM": {
+      "household_summary_available": true,
+      "member_count": 2
+    }
+  },
+  "files": {
+    "expected_results/demo_family.json": "a327b37a23e078d46118458dabb04ff37f6333f15d7c1889240ef9dd9c915db0",
+    "expected_results/persona_a_approved.json": "49e666acdad070971aaaa4dbc23437d3c63cbb8c221db8ef8907bb42ab41cbd6",
+    "expected_results/persona_b_savings_first.json": "138c9676abb651b5b5a1ad81afc3ff29251753dc0c45e63c3c2a87c35651f639",
+    "expected_results/persona_c_compliance_rejected.json": "c7f9fd10ccb887a2190dc7c820ed0ce7d4cee39bbc07f06f4f8e845965190b26",
+    "expected_results/persona_d_pending_information.json": "3dddf42436bf8ec6846a50ff7b623973045c6c3e11e83ac7df05e4fd1d590a15",
+    "financial_inputs/persona_a_approved.json": "55177d6352985be78945f825a940cac71bbd433cbaa6e8e1926e03a81f6c8035",
+    "financial_inputs/persona_b_savings_first.json": "cbb5aaced8703d5952b939302f78b5ddefe73dd51d758da2bd40323d7ba04a84",
+    "financial_inputs/persona_c_compliance_rejected.json": "e07a8eea81042d93c7835ae78376dad36ac711c61eda145394918794757c8e36",
+    "financial_inputs/persona_d_pending_information.json": "20e237884cfa8402489aa55d94dfb613bbe13b2160c46ac926b66ed8b81904fb",
+    "household/assets/demo_family.json": "130f107df708031dbb103eb8433eb99884f7d1434a6c778c41a19595ce891897",
+    "household/expenses/demo_family.json": "59861afb9e2f79cfb1e425dfdb92e8c655c958b5c882fb6cd8d10edd944cd1f6",
+    "household/goals/demo_family.json": "cb12d68d22a90cc56cd3396bddde4c34a9e01132fbd8362f826401adac5d3b46",
+    "household/households/demo_family.json": "d3c768be1fc12c9d6e36ccac6cf3009dd833f6a2a2362488aae523f1b58c62dd",
+    "household/income/demo_family.json": "6b00e48206423972fbff8b9a411d29ab0e94c4c03d43c3ae381b89d85b0b7877",
+    "household/liabilities/demo_family.json": "b807f96a33bb0800bfcf05b91f946480d5c28be42170d7a2a47d5721426149f7",
+    "household/members/demo_family.json": "087d63ab2b39b680e3b8a01bb04a005a7d7b180c2770739a46e7eb0534e82aac",
+    "individual_goals/persona_a_approved.json": "bbd037712a96c67418d3b40b06a097d842326c343c6ecb9e49f7f20643256c67",
+    "individual_goals/persona_b_savings_first.json": "ea61dfae0a20864d5def9a5ce9ff93d7fe89a45a51e9616261eec3da33cd04da",
+    "individual_goals/persona_c_compliance_rejected.json": "4081b4797baf60996cb31aa0570ef615feda5e6c318f2b14741f8fe8ddd038f6",
+    "individual_goals/persona_d_pending_information.json": "9c517aa8b10793529e29418db94d9d5da68415b91dae5624c9c63805ac5503cd",
+    "profiles/persona_a_approved.json": "ebb0788a6735c5ef91b947f03dd8fff0d084198dc9d2559841e13a5a73280f89",
+    "profiles/persona_b_savings_first.json": "b9fdedea4d2c0d064d9c6bbc7e2c970e1de7f8c8d15bc4219ca3473d5b24ae79",
+    "profiles/persona_c_compliance_rejected.json": "c827bcff6bd03237c7479974a0e619631d51891e64bd277ec451c60e33e4d075",
+    "profiles/persona_d_pending_information.json": "7f70ba31e5091f6d262d539dca9cc014e8c3c14d040525cab0ef257c7df2f2c3",
+    "questionnaire/persona_a_approved.json": "75c8393dc3312bf7d3c97626494f6d66d081ed038a1e2adebe32f7fc1b227072",
+    "questionnaire/persona_b_savings_first.json": "25db883ec6bbc01b7abf8ac477009eeba4a45ef8161cbb9669662682e83f54e7",
+    "questionnaire/persona_c_compliance_rejected.json": "45c5aa7e7ed2b10ef9869e5502df9331dea76236c363d461718e66db0638b91d",
+    "questionnaire/persona_d_pending_information.json": "f874a216df25279ef38d465dde3a7d598df2886c18cc17e365d09193cbfa568a",
+    "scenarios/strategy_comparisons.json": "7d0310c99573f4ed12c0151c02cfefb10bf1076bc0a8642f85b42912b7af3186",
+    "seed/seed_plan.json": "1095233c79bf61e7e1b0b4aff1cc303c8df52c8cad805a243750804048c74d82"
+  },
+  "training_data_guard": {
+    "datasets/raw/FAR-Trans/asset_information.csv": "33f9897b14087068fba53a0bc9e24a0031b096bd3ad3e977e534153f29b7a590",
+    "datasets/raw/FAR-Trans/close_prices.csv": "6ba1fe8390b31dfb3ab4e3e824910f9e8da4684cb6074cdb82eb6422a323656d",
+    "datasets/raw/FAR-Trans/customer_information.csv": "c4ad52ebca90e32bf3df5eb64f362b7a3437b77d978b22627cc46927fe7064af",
+    "datasets/raw/FAR-Trans/limit_prices.csv": "b5a9bc304e2a4a31f5e3d0959b22c5c6135b69f13ce6f92123fc7e1e92600c8f",
+    "datasets/raw/FAR-Trans/markets.csv": "009d5764b5eb59e979d8c22954482cf7bb8ed5fdb3382a6fb03f3c6cd1316960",
+    "datasets/raw/FAR-Trans/questionnaires.csv": "f4a902f7ac344f70708433a40d33163972da1652d6f91a42e3e280b17eedcea0",
+    "datasets/raw/FAR-Trans/README.txt": "5aa20b492c9fe18c8b5a147ad13fae99862c78aea59cbf542b734b5eef9ea072",
+    "datasets/raw/FAR-Trans/transactions.csv": "358871fa1311a802799df86e56c3d633513566965b01412d058e0f8fbe6cd54b",
+    "datasets/raw/kaggle/personal_finance_tracker_dataset.csv": "f15cd4f03db5070407957a8d206fa430907ea5caf896f0fa2609b9eb9304cb29",
+    "datasets/raw/kaggle/synthetic_personal_finance_dataset.csv": "b54172efe63e9c32bc0e1281ee22a79d9ae0def21786b1cc75ffb252539f7012"
+  }
+}

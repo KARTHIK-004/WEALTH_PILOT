@@ -1,0 +1,22 @@
+{
+  "demo_key": "WPDEMO-A",
+  "source": "synthetic_demo",
+  "persona": "A",
+  "demonstrates": "approved",
+  "customer_name": "WealthPilot Demo — Complete",
+  "owned_by_seed": true,
+  "purpose": "The most complete real demonstration this architecture can produce: highest available risk-model confidence, enough trading history for behaviour-drift detection to also produce a real result, a full questionnaire, two goals, and (Phase 28) a real, sufficient set of financial inputs. Its ACTUAL result is `approved`, with real MVO portfolio weights -- verified live, not forced (see `reports/phase28_financial_input_savings_first_report.md`).",
+  "risk_data_link": {
+    "external_customer_id": "4E6A7212289A2EA941BB",
+    "selected_by": "backend/scripts/find_demo_risk_candidates.py",
+    "note": "predicted Aggressive, confidence ~0.913, 21 months of trading history"
+  },
+  "profile": {
+    "age": 41,
+    "customer_type": "Premium",
+    "employment_status": "Full-time",
+    "income": 980000,
+    "investment_capacity": "CAP_80K_300K",
+    "name": "WealthPilot Demo — Complete"
+  }
+}

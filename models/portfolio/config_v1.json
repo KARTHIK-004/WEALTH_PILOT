@@ -1,0 +1,53 @@
+{
+  "model_version": "v1",
+  "trained_at": "2026-09-14T10:15:57.387618+00:00",
+  "retrieval_timestamp": "2026-09-14T10:15:57.387618+00:00",
+  "asset_universe": [
+    "QQQ",
+    "AGG",
+    "GLD"
+  ],
+  "date_range": [
+    "2022-01-04",
+    "2026-09-11"
+  ],
+  "n_observations": 1176,
+  "expected_return_methodology": "annualized historical mean of daily simple returns (never a Phase 6 forecast)",
+  "covariance_methodology": "Ledoit-Wolf shrinkage, annualized",
+  "optimization_objective": "maximize Sharpe ratio",
+  "risk_free_rate": 0.0,
+  "general_single_asset_cap": 0.7,
+  "risk_level_qqq_bands": {
+    "Conservative": [
+      0.1,
+      0.3
+    ],
+    "Income": [
+      0.2,
+      0.4
+    ],
+    "Balanced": [
+      0.35,
+      0.55
+    ],
+    "Aggressive": [
+      0.55,
+      0.8
+    ]
+  },
+  "hrp_methodology": "single-linkage clustering, quasi-diagonalization, recursive bisection (Lopez de Prado 2016)",
+  "backtest": {
+    "lookback_days": 504,
+    "rebalance_frequency_days": 63,
+    "transaction_cost_bps": 0.0,
+    "turnover_convention": "two-way, sum(|target - drifted_current|), first rebalance vs all-zero"
+  },
+  "random_state": 42,
+  "library_versions": {
+    "python": "3.11.9",
+    "numpy": "1.26.4",
+    "pandas": "2.2.3",
+    "scipy": "1.14.1",
+    "scikit-learn": "1.5.2"
+  }
+}

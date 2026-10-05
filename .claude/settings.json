@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(pytest:*)",
+      "Bash(npx tsc:*)",
+      "Bash(npx oxlint:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run generate-types:*)",
+      "Bash(git status:*)",
+      "Bash(git diff:*)",
+      "Bash(git log:*)"
+    ]
+  }
+}

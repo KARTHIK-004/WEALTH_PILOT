@@ -1,0 +1,6 @@
+{
+  "window": 20,
+  "volatility_percentile": 66,
+  "trend_percentile": 66,
+  "methodology": "training-window-only percentile thresholds, computed per walk-forward window"
+}

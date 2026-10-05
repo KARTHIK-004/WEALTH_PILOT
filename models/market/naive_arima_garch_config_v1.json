@@ -1,0 +1,11 @@
+{
+  "naive": {
+    "method": "constant return = 0"
+  },
+  "arima": {
+    "order_selection": "AIC grid search, training data only, per window"
+  },
+  "garch": {
+    "specification": "GARCH(1,1), zero mean, normal errors, returns scaled x100"
+  }
+}

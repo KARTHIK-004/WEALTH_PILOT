@@ -1,0 +1,6 @@
+{
+  "demo_key": "WPDEMO-D",
+  "source": "synthetic_demo",
+  "financial_inputs": null,
+  "financial_inputs_unavailable_reason": "Not provided: Phase 24's canonical demo customer never had financial inputs, and its analysis stops earlier, at pending_information (no risk label). Unknown is not zero."
+}

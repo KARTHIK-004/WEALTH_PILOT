@@ -1,0 +1,112 @@
+{
+  "demo_key": "WPDEMO-D",
+  "source": "synthetic_demo",
+  "definition": "Answers only. The questions and options are the application's own questionnaire (GET /api/questionnaire, read from datasets/raw/FAR-Trans/questionnaires.csv) and are never copied here.",
+  "selection_rule": {
+    "method": "position",
+    "answer_offset": 1,
+    "meaning": "the middle option of every question (index (n - 1) // 2)"
+  },
+  "answers": [
+    {
+      "question_number": 1,
+      "option_key": "c"
+    },
+    {
+      "question_number": 2,
+      "option_key": "a"
+    },
+    {
+      "question_number": 3,
+      "option_key": "b"
+    },
+    {
+      "question_number": 4,
+      "option_key": "c"
+    },
+    {
+      "question_number": 5,
+      "option_key": "c"
+    },
+    {
+      "question_number": 6,
+      "option_key": "b"
+    },
+    {
+      "question_number": 7,
+      "option_key": "b"
+    },
+    {
+      "question_number": 8,
+      "option_key": "b"
+    },
+    {
+      "question_number": 9,
+      "option_key": "c"
+    },
+    {
+      "question_number": 10,
+      "option_key": "c"
+    },
+    {
+      "question_number": 11,
+      "option_key": "c"
+    },
+    {
+      "question_number": 12,
+      "option_key": "b"
+    },
+    {
+      "question_number": 13,
+      "option_key": "c"
+    },
+    {
+      "question_number": 14,
+      "option_key": "c"
+    },
+    {
+      "question_number": 15,
+      "option_key": "c"
+    },
+    {
+      "question_number": 16,
+      "option_key": "c"
+    },
+    {
+      "question_number": 17,
+      "option_key": "c"
+    },
+    {
+      "question_number": 18,
+      "option_key": "c"
+    },
+    {
+      "question_number": 19,
+      "option_key": "c"
+    },
+    {
+      "question_number": 20,
+      "option_key": "b"
+    },
+    {
+      "question_number": 21,
+      "option_key": "b"
+    },
+    {
+      "question_number": 22,
+      "option_key": "c"
+    },
+    {
+      "question_number": 23,
+      "option_key": "c"
+    },
+    {
+      "question_number": 24,
+      "option_key": "c"
+    },
+    {
+      "question_number": 25,
+      "option_key": "c"
+    }
+  ]
+}

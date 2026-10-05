@@ -1,0 +1,22 @@
+{
+  "demo_key": "WPDEMO-B",
+  "source": "synthetic_demo",
+  "persona": "B",
+  "demonstrates": "savings_first",
+  "customer_name": "WealthPilot Demo — Savings",
+  "owned_by_seed": true,
+  "purpose": "Demonstrates the savings-first mechanism explicitly with a genuinely, knowingly insufficient emergency fund (Phase 28's financial inputs, not an unavailable/unknown status): `savings_first_node` -- not the MVO/HRP/1-N optimizer -- is the real node that runs, and (Phase 28's compliance fix) is correctly recognized as a legitimate proposal rather than an invalid portfolio. Its ACTUAL result is `approved`, with `recommendation.status == 'savings_first'` -- verified live.",
+  "risk_data_link": {
+    "external_customer_id": "71162EE533DC9878B32D",
+    "selected_by": "backend/scripts/find_demo_risk_candidates.py",
+    "note": "predicted Balanced, confidence ~0.764, 14 months of trading history"
+  },
+  "profile": {
+    "age": 29,
+    "customer_type": "Mass",
+    "employment_status": "Full-time",
+    "income": 52000,
+    "investment_capacity": "CAP_30K_80K",
+    "name": "WealthPilot Demo — Savings"
+  }
+}

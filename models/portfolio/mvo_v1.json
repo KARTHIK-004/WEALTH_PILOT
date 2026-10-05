@@ -1,0 +1,98 @@
+{
+  "Conservative": {
+    "weights": {
+      "QQQ": 0.3,
+      "AGG": 0.0,
+      "GLD": 0.7
+    },
+    "bounds": {
+      "QQQ": [
+        0.1,
+        0.3
+      ],
+      "AGG": [
+        0.0,
+        0.7
+      ],
+      "GLD": [
+        0.0,
+        0.7
+      ]
+    },
+    "expected_return": 0.18750860247396803,
+    "expected_volatility": 0.1599241350104898,
+    "sharpe_ratio": 1.1724847063369697
+  },
+  "Income": {
+    "weights": {
+      "QQQ": 0.29999999999999993,
+      "AGG": 5.551115123125783e-17,
+      "GLD": 0.7
+    },
+    "bounds": {
+      "QQQ": [
+        0.2,
+        0.4
+      ],
+      "AGG": [
+        0.0,
+        0.7
+      ],
+      "GLD": [
+        0.0,
+        0.7
+      ]
+    },
+    "expected_return": 0.187508602473968,
+    "expected_volatility": 0.1599241350104898,
+    "sharpe_ratio": 1.1724847063369694
+  },
+  "Balanced": {
+    "weights": {
+      "QQQ": 0.35,
+      "AGG": 0.0,
+      "GLD": 0.6500000000000004
+    },
+    "bounds": {
+      "QQQ": [
+        0.35,
+        0.55
+      ],
+      "AGG": [
+        0.0,
+        0.7
+      ],
+      "GLD": [
+        0.0,
+        0.7
+      ]
+    },
+    "expected_return": 0.18486968763004172,
+    "expected_volatility": 0.1583665281788892,
+    "sharpe_ratio": 1.1673532895866408
+  },
+  "Aggressive": {
+    "weights": {
+      "QQQ": 0.55,
+      "AGG": 1.6653345369377348e-16,
+      "GLD": 0.45000000000000007
+    },
+    "bounds": {
+      "QQQ": [
+        0.55,
+        0.7
+      ],
+      "AGG": [
+        0.0,
+        0.7
+      ],
+      "GLD": [
+        0.0,
+        0.7
+      ]
+    },
+    "expected_return": 0.17431402825433612,
+    "expected_volatility": 0.16412245651881158,
+    "sharpe_ratio": 1.062097362857571
+  }
+}

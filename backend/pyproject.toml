@@ -1,0 +1,83 @@
+[project]
+name = "wealthpilot"
+version = "0.1.0"
+description = "WealthPilot AI backend — agentic financial advisor prototype (M.Tech case study)."
+requires-python = ">=3.11,<3.12"
+# No `readme` field: hatchling's editable-install build requires it to live
+# inside this package directory, but the repo's actual README.md is at the
+# repo root (by design — it documents the whole project, not just backend/).
+# That root README is what anyone browsing the repo sees; this field is only
+# packaging metadata, irrelevant since this package is never published.
+
+# Approved stack, pinned per CLAUDE.md. Phase 0 installs and verifies only
+# the API-layer subset (fastapi, uvicorn, pydantic, pydantic-settings) — see
+# the Phase 0 completion report for exactly what was installed and tested.
+# The remaining pins are the target versions for the phases that need them
+# (db/Alembic in Phase 1, ML libraries in Phases 4-6, agents in Phases 10-14)
+# and will be verified when those phases actually install and exercise them.
+dependencies = [
+  "fastapi==0.115.5",
+  "uvicorn[standard]==0.32.1",
+  "pydantic==2.9.2",
+  "pydantic-settings==2.6.1",
+  "sqlalchemy==2.0.36",
+  "alembic==1.14.0",
+  "psycopg[binary]==3.2.3",
+  "langgraph==0.2.53",
+  "pyautogen==0.2.35",
+  "google-genai==0.3.0",
+  "scikit-learn==1.5.2",
+  "xgboost==2.1.2",
+  "tensorflow==2.17.0",
+  "statsmodels==0.14.4",
+  "arch==7.1.0",
+  "yfinance==0.2.66",  # bumped from 0.2.49 in Phase 6 (2026-09-14): 0.2.49's
+  # internal cookie/crumb bootstrap against Yahoo's API failed in this
+  # environment (confirmed via raw HTTP: the endpoint itself is reachable
+  # and returns valid data with normal headers — 0.2.49's auth handshake
+  # specifically was broken). 0.2.66 (the latest 0.2.x patch, not the newer
+  # 1.x major series) resolves it with no other code changes needed.
+  "shap==0.46.0",
+  "pandas==2.2.3",
+  "numpy==1.26.4",
+  "scipy==1.14.1",
+  "pyyaml==6.0.2",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest==8.3.3",
+  "httpx==0.27.2",
+  "pytest-asyncio==0.24.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["wealthpilot"]
+
+# pytest's `testpaths` ini option is only honored when the invocation
+# directory exactly equals the rootdir it resolves to (confirmed directly
+# from _pytest/config/__init__.py's _decide_args) — the root pytest.ini's
+# `testpaths = tests` therefore has no effect when `pytest` is run from
+# backend/ rather than the repo root: pytest silently falls back to
+# collecting from the invocation directory instead, which contains no
+# tests. This section gives `backend/` its own rootdir (this file, found by
+# pytest's upward search before it ever reaches the root pytest.ini) with
+# testpaths pointed back at the same shared tests/ directory, so `pytest`
+# also works when run from here. Running from the repo root is still the
+# primary, documented workflow (README.md, Makefile, scripts/test.sh); this
+# is a convenience for running it from backend/ directly, not a change to
+# that primary workflow.
+#
+# pythonpath adds the repo root so the top-level `training/` package
+# (Phase 4+ training scripts, not installed via pip like `wealthpilot` is)
+# is importable during test collection from here too.
+[tool.pytest.ini_options]
+testpaths = ["../tests"]
+pythonpath = [".."]
+# See the matching comment in the root pytest.ini for why this is needed
+# (duplicate test_artifacts.py basenames under tests/training/{expense,behaviour}/).
+addopts = "--import-mode=importlib"

@@ -1,0 +1,819 @@
+{
+  "dataset_name": "WealthPilot Synthetic Training Dataset",
+  "synthetic": true,
+  "training_eligible": true,
+  "data_source": "synthetic_generated",
+  "dataset_purpose": "ml_training",
+  "not_empirical": "This dataset is synthetic and must not be represented as empirical customer financial data.",
+  "currency": "INR throughout. The income bands are modelling choices for realistic variation, not claims about any real population. The application itself uses EUR; this dataset is not read by it. The kaggle_format copy keeps the Kaggle format's fixed `_usd` column names so the existing loader reads it, but its amounts are the same INR amounts -- no exchange conversion anywhere.",
+  "capacity_bands": "investment_capacity (CAP_LT30K / CAP_30K_80K / CAP_80K_300K / CAP_GT300K) is RANK-BASED: customers are ranked by investable wealth (portfolio + cash savings) and assigned to bands in FAR-Trans's own genuine class proportions (57% / 22% / 17.4% / 3.6%). The bands are NOT fixed INR wealth thresholds -- the EUR amounts in the band names are FAR-Trans labels and are not applied. A high-income customer with little investable wealth can therefore legitimately fall in a lower band. customer_type is likewise assigned by rank to FAR-Trans's shares.",
+  "random_seed": 42,
+  "generator": "scripts/generate_wealthpilot_synthetic_dataset.py",
+  "customer_rows": 100000,
+  "transaction_rows": 2570053,
+  "goal_rows": 315881,
+  "feature_counts": {
+    "wealthpilot_customer_training.csv": 80,
+    "wealthpilot_transactions_training.csv": 13,
+    "wealthpilot_goals_training.csv": 23,
+    "far_trans_format/customer_information.csv": 6,
+    "far_trans_format/asset_information.csv": 9,
+    "far_trans_format/transactions.csv": 9,
+    "far_trans_format/close_prices.csv": 3,
+    "kaggle_format/synthetic_personal_finance_dataset.csv": 20
+  },
+  "row_counts": {
+    "wealthpilot_customer_training.csv": 100000,
+    "wealthpilot_transactions_training.csv": 2570053,
+    "wealthpilot_goals_training.csv": 315881,
+    "far_trans_format/customer_information.csv": 100000,
+    "far_trans_format/asset_information.csv": 300,
+    "far_trans_format/transactions.csv": 2570053,
+    "far_trans_format/close_prices.csv": 469800,
+    "kaggle_format/synthetic_personal_finance_dataset.csv": 100000
+  },
+  "missing_value_rates": {
+    "wealthpilot_customer_training.csv": {
+      "employment_years": 0.03908,
+      "marital_status": 0.01976,
+      "education_level": 0.03015,
+      "income_growth_rate": 0.06055,
+      "income_stability_score": 0.02999,
+      "income_source_count": 0.021,
+      "credit_utilization": 0.51108,
+      "savings_stability": 0.04009,
+      "investment_experience": 0.05004,
+      "loss_tolerance": 0.02954,
+      "portfolio_turnover": 0.1034,
+      "average_transaction_value": 0.1034,
+      "behaviour_volatility": 0.1034,
+      "behavior_anomaly_month": 0.975
+    }
+  },
+  "missing_value_policy": "Empty CSV cells. Random missingness only in leaf columns nothing else is computed from. Structurally empty: credit_utilization without a credit card; portfolio_turnover / average_transaction_value / behaviour_volatility for customers with no trades before their cutoff (inactive investors); behavior_anomaly_month where behavior_anomaly = 0. A genuine zero (no debt, no insurance, no children's education) is written as 0; a missing value never is.",
+  "label_distributions": {
+    "risk_label": {
+      "Aggressive": 12000,
+      "Balanced": 33000,
+      "Conservative": 13000,
+      "Income": 42000
+    },
+    "expense_segment": {
+      "high-expense-low-leverage-lower-savings": 23031,
+      "low-expense-low-leverage-higher-savings": 30389,
+      "moderate-expense-high-leverage-lower-savings": 11750,
+      "moderate-expense-low-leverage-moderate-savings": 34830
+    },
+    "behavior_anomaly": {
+      "0": 97500,
+      "1": 2500
+    },
+    "goal_feasibility": {
+      "At Risk": 29830,
+      "Feasible": 60385,
+      "Not Feasible": 225666
+    }
+  },
+  "statistics": {
+    "statistics": {
+      "customers.annual_income": {
+        "min": 25000.0,
+        "max": 34088100.0,
+        "mean": 1082995.702,
+        "median": 762500.0,
+        "std": 1157586.9267027231,
+        "p5": 104900.0,
+        "p25": 404200.0,
+        "p50": 762500.0,
+        "p75": 1370925.0,
+        "p95": 3063800.0,
+        "p99": 5370509.999999994
+      },
+      "customers.monthly_income": {
+        "min": 2083.33,
+        "max": 2840675.0,
+        "mean": 90249.6418292,
+        "median": 63541.67,
+        "std": 96465.57722223713,
+        "p5": 8741.67,
+        "p25": 33683.33,
+        "p50": 63541.67,
+        "p75": 114243.7525,
+        "p95": 255316.67,
+        "p99": 447542.5032999996
+      },
+      "customers.monthly_expenses": {
+        "min": 1431.0,
+        "max": 1404681.11,
+        "mean": 55750.396450700006,
+        "median": 41237.85,
+        "std": 53495.59676012749,
+        "p5": 8184.330500000001,
+        "p25": 23559.785,
+        "p50": 41237.85,
+        "p75": 70629.7975,
+        "p95": 149114.66099999993,
+        "p99": 253507.98369999992
+      },
+      "customers.monthly_essential_expenses": {
+        "min": 1394.63,
+        "max": 1188168.14,
+        "mean": 42223.156713,
+        "median": 30543.47,
+        "std": 41415.4703765859,
+        "p5": 6670.3279999999995,
+        "p25": 17546.737500000003,
+        "p50": 30543.47,
+        "p75": 52958.649999999994,
+        "p95": 114958.14199999996,
+        "p99": 199342.45829999997
+      },
+      "customers.housing_expense": {
+        "min": 345.35,
+        "max": 702226.06,
+        "mean": 10334.7156682,
+        "median": 4471.75,
+        "std": 18710.63466477426,
+        "p5": 999.7540000000001,
+        "p25": 2123.205,
+        "p50": 4471.75,
+        "p75": 10196.845,
+        "p95": 39740.24299999993,
+        "p99": 87847.18689999996
+      },
+      "customers.monthly_emi": {
+        "min": 0.0,
+        "max": 1287600.0,
+        "mean": 13118.262463899999,
+        "median": 0.0,
+        "std": 29435.87532345392,
+        "p5": 0.0,
+        "p25": 0.0,
+        "p50": 0.0,
+        "p75": 14377.3475,
+        "p95": 61118.28149999992,
+        "p99": 135837.85829999935
+      },
+      "customers.total_debt": {
+        "min": 0.0,
+        "max": 103654051.66,
+        "mean": 733019.5591962,
+        "median": 0.0,
+        "std": 2048598.7933996574,
+        "p5": 0.0,
+        "p25": 0.0,
+        "p50": 0.0,
+        "p75": 481724.65,
+        "p95": 3959648.4629999986,
+        "p99": 9593197.278699983
+      },
+      "customers.cash_savings": {
+        "min": 500.0,
+        "max": 22514778.05,
+        "mean": 317372.5334787999,
+        "median": 161512.90999999997,
+        "std": 520341.3737941402,
+        "p5": 7475.369500000001,
+        "p25": 62243.22,
+        "p50": 161512.90999999997,
+        "p75": 367172.9875,
+        "p95": 1121781.3069999986,
+        "p99": 2391345.6690999935
+      },
+      "customers.monthly_savings": {
+        "min": -91734.49,
+        "max": 1254483.95,
+        "mean": 21380.9829146,
+        "median": 11896.985,
+        "std": 34830.436206240265,
+        "p5": -2510.051999999999,
+        "p25": 3359.345,
+        "p50": 11896.985,
+        "p75": 27037.8975,
+        "p95": 75847.79849999999,
+        "p99": 156788.53229999973
+      },
+      "customers.investment_contribution": {
+        "min": 0.0,
+        "max": 475335.11,
+        "mean": 7232.987600899999,
+        "median": 3594.11,
+        "std": 12226.029519318517,
+        "p5": 0.0,
+        "p25": 963.9475,
+        "p50": 3594.11,
+        "p75": 8717.137499999999,
+        "p95": 25897.963499999936,
+        "p99": 54496.46769999965
+      },
+      "customers.investment_portfolio_value": {
+        "min": 1100.52,
+        "max": 528892742.99,
+        "mean": 2283443.6335503,
+        "median": 488371.07,
+        "std": 5811215.332678231,
+        "p5": 17696.6855,
+        "p25": 121145.85,
+        "p50": 488371.07,
+        "p75": 2125183.59,
+        "p95": 10047011.837999994,
+        "p99": 24772351.451899983
+      },
+      "customers.liquid_assets": {
+        "min": 564.12,
+        "max": 41799906.45,
+        "mean": 622221.5529667,
+        "median": 254527.23,
+        "std": 1174243.346128152,
+        "p5": 11958.0035,
+        "p25": 90570.715,
+        "p50": 254527.23,
+        "p75": 669463.3,
+        "p95": 2411271.9729999974,
+        "p99": 5407573.845499994
+      },
+      "customers.emergency_fund_months": {
+        "min": 0.1008,
+        "max": 682.0639,
+        "mean": 15.588446986000003,
+        "median": 7.5282,
+        "std": 24.883189958921864,
+        "p5": 1.032295,
+        "p25": 3.523975,
+        "p50": 7.5282,
+        "p75": 15.923025,
+        "p95": 62.80335999999994,
+        "p99": 128.82591699999972
+      },
+      "customers.savings_rate": {
+        "min": -6.812031,
+        "max": 0.720741,
+        "mean": 0.19080175480999997,
+        "median": 0.2020705,
+        "std": 0.20145177244067125,
+        "p5": -0.10067329999999998,
+        "p25": 0.08850925000000001,
+        "p50": 0.2020705,
+        "p75": 0.31596625,
+        "p95": 0.46377329999999994,
+        "p99": 0.5558547799999995
+      },
+      "customers.debt_to_income_ratio": {
+        "min": 0.0,
+        "max": 68.791581,
+        "mean": 0.49850253477000006,
+        "median": 0.0,
+        "std": 1.0177399673345209,
+        "p5": 0.0,
+        "p25": 0.0,
+        "p50": 0.0,
+        "p75": 0.45686525,
+        "p95": 2.534740799999999,
+        "p99": 3.4195409199999953
+      },
+      "customers.equity_pct": {
+        "min": 1.4,
+        "max": 91.06,
+        "mean": 43.98846749999999,
+        "median": 43.89,
+        "std": 16.299434171773783,
+        "p5": 17.579500000000007,
+        "p25": 31.76,
+        "p50": 43.89,
+        "p75": 55.9,
+        "p95": 71.04,
+        "p99": 79.13
+      },
+      "customers.age": {
+        "min": 21.0,
+        "max": 78.0,
+        "mean": 39.12505,
+        "median": 37.0,
+        "std": 11.407205343152084,
+        "p5": 25.0,
+        "p25": 30.0,
+        "p50": 37.0,
+        "p75": 46.0,
+        "p95": 62.0,
+        "p99": 72.0
+      },
+      "customers.dependents": {
+        "min": 0.0,
+        "max": 7.0,
+        "mean": 1.3945,
+        "median": 1.0,
+        "std": 1.4642988737658433,
+        "p5": 0.0,
+        "p25": 0.0,
+        "p50": 1.0,
+        "p75": 2.0,
+        "p95": 4.0,
+        "p99": 5.0
+      },
+      "customers.trade_count": {
+        "min": 0.0,
+        "max": 367.0,
+        "mean": 13.80554,
+        "median": 4.0,
+        "std": 19.004878772635507,
+        "p5": 0.0,
+        "p25": 1.0,
+        "p50": 4.0,
+        "p75": 21.0,
+        "p95": 49.0,
+        "p99": 84.0
+      },
+      "transactions.transaction_value": {
+        "min": 83.62,
+        "max": 221029639.41,
+        "mean": 191760.45984626003,
+        "median": 19000.03,
+        "std": 771225.0948212331,
+        "p5": 500.02,
+        "p25": 2500.12,
+        "p50": 19000.03,
+        "p75": 135394.28,
+        "p95": 846342.8879999991,
+        "p99": 2532112.1679999973
+      },
+      "goals.target_amount": {
+        "min": 10000.0,
+        "max": 341374000.0,
+        "mean": 1888807.7720627075,
+        "median": 340000.0,
+        "std": 5144098.586846599,
+        "p5": 30000.0,
+        "p25": 105690.96,
+        "p50": 340000.0,
+        "p75": 1370000.0,
+        "p95": 8913000.0,
+        "p99": 22882400.000000022
+      },
+      "goals.monthly_contribution": {
+        "min": 0.0,
+        "max": 440600.0,
+        "mean": 4255.633292284119,
+        "median": 1600.0,
+        "std": 8918.891249291231,
+        "p5": 0.0,
+        "p25": 0.0,
+        "p50": 1600.0,
+        "p75": 4800.0,
+        "p95": 17000.0,
+        "p99": 38900.0
+      },
+      "goals.years_remaining": {
+        "min": 0.501,
+        "max": 41.347,
+        "mean": 8.339914099613463,
+        "median": 4.3012,
+        "std": 8.672835066584971,
+        "p5": 1.128,
+        "p25": 2.1903,
+        "p50": 4.3012,
+        "p75": 12.2683,
+        "p95": 28.7447,
+        "p99": 34.6557
+      }
+    },
+    "annual_income_bands": {
+      "0-2 lakh": 10320,
+      "2-4 lakh": 14349,
+      "4-8 lakh": 27490,
+      "8-15 lakh": 26101,
+      "15-30 lakh": 16437,
+      "30-75 lakh": 4944,
+      ">75 lakh": 359
+    },
+    "frequencies": {
+      "employment_status": {
+        "Employed": 68035,
+        "Self-employed": 19658,
+        "Retired": 5721,
+        "Unemployed": 4227,
+        "Student": 2359
+      },
+      "risk_label": {
+        "Income": 42000,
+        "Balanced": 33000,
+        "Conservative": 13000,
+        "Aggressive": 12000
+      },
+      "expense_segment": {
+        "moderate-expense-low-leverage-moderate-savings": 34830,
+        "low-expense-low-leverage-higher-savings": 30389,
+        "high-expense-low-leverage-lower-savings": 23031,
+        "moderate-expense-high-leverage-lower-savings": 11750
+      },
+      "behavior_anomaly": {
+        "0": 97500,
+        "1": 2500
+      },
+      "investor_type": {
+        "occasional": 48439,
+        "regular_sip": 28561,
+        "highly_active": 15000,
+        "inactive": 8000
+      },
+      "debt_profile": {
+        "debt-free": 51425,
+        "moderate": 20876,
+        "low": 17728,
+        "high": 9971
+      },
+      "housing_status": {
+        "Rented": 42087,
+        "Owned outright": 24441,
+        "Owned with mortgage": 20741,
+        "Living with family": 12731
+      },
+      "city_tier": {
+        "Tier 2": 41101,
+        "Tier 3": 31257,
+        "Tier 1": 27642
+      },
+      "goal_type": {
+        "Retirement": 57258,
+        "Emergency Fund": 47619,
+        "Wealth Creation": 44321,
+        "Travel": 42354,
+        "Vehicle": 38453,
+        "Other": 33166,
+        "Education": 26597,
+        "Home": 26113
+      },
+      "goal_feasibility": {
+        "Not Feasible": 225666,
+        "Feasible": 60385,
+        "At Risk": 29830
+      }
+    },
+    "spearman": {
+      "income ~ monthly_expenses": 0.962,
+      "income ~ monthly_savings": 0.731,
+      "income ~ total_debt (debtors)": 0.523,
+      "income ~ credit_card_limit (card holders)": 0.944,
+      "age ~ employment_years": 0.97,
+      "age ~ income (ages 21-55)": 0.299,
+      "dependents ~ essential expenses / income": 0.424,
+      "dependents ~ food_expense": 0.399,
+      "risk_label (ordinal) ~ equity_pct": 0.489,
+      "risk_label (ordinal) ~ cash_pct": -0.348,
+      "investment_capacity (ordinal) ~ trade_count": 0.426,
+      "investment_capacity (ordinal) ~ median transaction value": 0.414,
+      "goal target_amount ~ monthly_contribution (contributing goals)": 0.536,
+      "goal target_amount ~ years_remaining": 0.691
+    },
+    "median_income_by_age_band": {
+      "(20, 25]": 304000.0,
+      "(25, 30]": 610000.0,
+      "(30, 35]": 806000.0,
+      "(35, 45]": 960000.0,
+      "(45, 55]": 987000.0,
+      "(55, 60]": 815000.0,
+      "(60, 80]": 485000.0
+    },
+    "employment_by_age_band": {
+      "(20, 25]": {
+        "Employed": 0.532,
+        "Retired": 0.0,
+        "Self-employed": 0.144,
+        "Student": 0.269,
+        "Unemployed": 0.055
+      },
+      "(25, 35]": {
+        "Employed": 0.757,
+        "Retired": 0.0,
+        "Self-employed": 0.188,
+        "Student": 0.011,
+        "Unemployed": 0.044
+      },
+      "(35, 55]": {
+        "Employed": 0.724,
+        "Retired": 0.0,
+        "Self-employed": 0.233,
+        "Student": 0.0,
+        "Unemployed": 0.044
+      },
+      "(55, 60]": {
+        "Employed": 0.522,
+        "Retired": 0.253,
+        "Self-employed": 0.186,
+        "Student": 0.0,
+        "Unemployed": 0.038
+      },
+      "(60, 80]": {
+        "Employed": 0.141,
+        "Retired": 0.807,
+        "Self-employed": 0.046,
+        "Student": 0.0,
+        "Unemployed": 0.006
+      }
+    }
+  },
+  "date_ranges": {
+    "market_and_transactions": [
+      "2019-01-01",
+      "2024-12-31"
+    ],
+    "transaction_date": [
+      "2019-01-01",
+      "2024-12-31"
+    ],
+    "onboarding_date": [
+      "2019-01-01",
+      "2022-06-30"
+    ],
+    "feature_cutoff_date": [
+      "2019-12-20",
+      "2024-06-28"
+    ],
+    "goal_target_date": [
+      "2020-08-02",
+      "2065-07-25"
+    ]
+  },
+  "generation_method": "Life stage -> career -> income -> household -> housing & debt -> spending -> savings & wealth -> risk -> behaviour -> goals, each step derived from the previous ones plus independent noise (see the generator docstring and README). Income: log-normal around education x city tier x experience curve x background, re-drawn (not clipped) outside 0.25 lakh-5 crore. Debt: annuity instalments at sampled rates/tenures/elapsed time. risk_label = ordinal thresholds (shares 13/42/33/12%) on 0.45*tolerance + 0.25*capacity + 0.15*horizon + 0.10*stability + 0.05*experience + N(0, 0.5). expense_segment drawn from prudence / lifestyle / leverage before the spending, debt and savings it shapes. behavior_anomaly = the 2.5% most impulsive active investors, each with one injected burst of 10-30 large buys. goal_feasibility from the production goal engine (core/goals.py) at 500 Monte Carlo paths per goal (the application uses 10,000); emergency-fund requirement from the production assess_emergency_fund.",
+  "latent_variables": [
+    "socio_economic_background",
+    "prudence",
+    "risk_tolerance",
+    "leverage_propensity",
+    "lifestyle",
+    "stability",
+    "investing_experience",
+    "impulsivity"
+  ],
+  "target_side_columns": {
+    "wealthpilot_customer_training.csv": [
+      "risk_label",
+      "expense_segment",
+      "behavior_anomaly",
+      "behavior_anomaly_month"
+    ],
+    "wealthpilot_goals_training.csv": [
+      "monte_carlo_success_probability",
+      "goal_feasibility",
+      "inflation_adjusted_target_amount",
+      "required_monthly_contribution",
+      "contribution_gap",
+      "goal_status"
+    ]
+  },
+  "leakage_controls": [
+    "Every target is generated from latent variables, never from an observed column; each observed feature carries independent noise.",
+    "The validator requires that no single customer feature predicts risk_label with more than 70% accuracy (majority baseline 42%) and reports the strongest single features.",
+    "Customer behaviour features use only transactions on or before feature_cutoff_date (re-computed and checked by the validator).",
+    "Target-side columns and goal-engine outputs (inflation-adjusted target, required contribution, contribution gap, goal_status) must not be used as features.",
+    "No train/test files are produced; split customers by customer_id (grouped) and transactions by date (time-ordered), never by random row shuffling."
+  ],
+  "goal_engine": {
+    "module": "backend/wealthpilot/core/goals.py",
+    "monte_carlo_simulations": 500,
+    "application_monte_carlo_simulations": 10000,
+    "return_periods_available": 74
+  },
+  "exports": {
+    "far_trans_format": "customer_information, asset_information, transactions, close_prices in the FAR-Trans format (markets/limit_prices are not read by any loader and are not produced). investmentCapacity / customerType are assigned by wealth / standing rank to FAR-Trans's own shares; the EUR thresholds in the band names are not applied to INR amounts.",
+    "kaggle_format": "synthetic_personal_finance_dataset.csv in the Kaggle personal-finance format.",
+    "relationship": "All three shapes are views of ONE synthetic population. This is not a linkage of the real FAR-Trans and Kaggle datasets, which stay separate (ADR-010, ADR-039)."
+  },
+  "files": {
+    "wealthpilot_customer_training.csv": {
+      "rows": 100000,
+      "columns": 80,
+      "sha256": "2e338aa6307e1c31e5fca89649d02995ecaee6f945a5097e223685dc794997e1"
+    },
+    "wealthpilot_transactions_training.csv": {
+      "rows": 2570053,
+      "columns": 13,
+      "sha256": "5d95bcd3dddb319c198b49c6bb7e523379c17f48db159ff16f05febfd88a01ba"
+    },
+    "wealthpilot_goals_training.csv": {
+      "rows": 315881,
+      "columns": 23,
+      "sha256": "2dad0b7aef3fdd5ca39d918c50b502294af000b10a16a9413cd1006d48cb27a6"
+    },
+    "far_trans_format/customer_information.csv": {
+      "rows": 100000,
+      "columns": 6,
+      "sha256": "026869218f5efd008f14f28dd6349306d0912562373e7ddf023d0d83757c6894"
+    },
+    "far_trans_format/asset_information.csv": {
+      "rows": 300,
+      "columns": 9,
+      "sha256": "f696dc807b1a6499ec4c46c27def777bba14533802ffe619aa0b7c697708a69a"
+    },
+    "far_trans_format/transactions.csv": {
+      "rows": 2570053,
+      "columns": 9,
+      "sha256": "7ed171d7c1baf9a2027a915e1d932d7ccbf595c644af6dcf9fedbbd0533273f3"
+    },
+    "far_trans_format/close_prices.csv": {
+      "rows": 469800,
+      "columns": 3,
+      "sha256": "3818d9df023744bbdedd711880dcc46272bfbed41daebe6f1d76f9bca0b0f9d4"
+    },
+    "kaggle_format/synthetic_personal_finance_dataset.csv": {
+      "rows": 100000,
+      "columns": 20,
+      "sha256": "f409bcab6439ee6e8706d0460b19979c1894e530a479cca5fe82ca29f63f5b99"
+    }
+  },
+  "validation_status": "failed",
+  "validation_summary": {
+    "customer_consistency": {
+      "monthly_income = annual_income / 12": "ok",
+      "monthly_expenses = sum of its 9 components": "ok",
+      "monthly_essential_expenses = housing..insurance": "ok",
+      "monthly_savings = monthly_income - monthly_expenses - monthly_emi": "ok",
+      "total_debt = card + personal + home + auto": "ok",
+      "debt_to_income_ratio = total_debt / annual_income": "ok",
+      "emi_to_income_ratio = monthly_emi / monthly_income": "ok",
+      "savings_rate = monthly_savings / monthly_income": "ok",
+      "expense_to_income_ratio = monthly_expenses / monthly_income": "ok",
+      "savings_to_income_ratio = cash_savings / annual_income": "ok",
+      "liquidity_ratio = liquid_assets / monthly_expenses": "ok",
+      "discretionary_expense_ratio = discretionary / monthly_expenses": "ok",
+      "investment_ratio = investment_contribution / monthly_income": "ok",
+      "liquid_assets >= cash_savings": "ok",
+      "investment_contribution <= positive monthly savings": "ok",
+      "emergency_fund_required = 6 x essential expenses (production rule)": "ok",
+      "emergency_fund_target_months = production constant": "ok",
+      "emergency_fund_months = liquid_assets / essential expenses": "ok",
+      "emergency_fund_status matches liquid vs required": "ok",
+      "allocation totals 100%": "ok",
+      "allocation shares are 0..100": "ok",
+      "credit_utilization empty exactly when there is no card": "ok",
+      "credit_utilization = card debt / limit, within 0..1": "ok",
+      "onboarding_date <= feature_cutoff_date": "ok",
+      "behavior_anomaly_month present exactly when behavior_anomaly = 1": "ok",
+      "anomaly month inside the observation window": "ok",
+      "a mortgage exists exactly when housing_status is 'Owned with mortgage'": "ok",
+      "no dependents -> no education expense": "ok",
+      "debt_profile matches total_debt and the EMI-to-income bands": "ok",
+      "inactive investors have no trades before the cutoff": "ok",
+      "trade ratios empty exactly when there are no trades": "ok",
+      "annual_income within 0.25 lakh .. 5 crore": "ok"
+    },
+    "debt_edge_cases": {
+      "emi_above_income": 130,
+      "emi_above_income_by_status": {
+        "Unemployed": 73,
+        "Retired": 52,
+        "Self-employed": 4,
+        "Student": 1
+      },
+      "debt_above_8x_income": 61,
+      "debt_above_8x_income_by_status": {
+        "Unemployed": 60,
+        "Retired": 1
+      },
+      "why": "debt originated on an earlier, higher (career) income; income fell after unemployment or retirement"
+    },
+    "annual_income_most_common_value_share": 0.0002,
+    "purchase_cap": {
+      "violations_beyond_one_quantity_step": 0,
+      "strict_overshoot_within_rounding": 50,
+      "max_strict_overshoot_rupees": 4404.46,
+      "large_sells_over_50pct_current_wealth": 63,
+      "large_sells_note": "sells of lots whose price rose after purchase; the cap applies to purchases only"
+    },
+    "point_in_time_behaviour_features": {
+      "recomputed_from_pre_cutoff_transactions_match": true,
+      "customers_with_later_activity_excluded_from_features": 72750
+    },
+    "goal_engine_rerun": {
+      "sampled_goals": 300,
+      "mismatches": 0
+    },
+    "leakage": {
+      "risk_label": {
+        "majority_baseline_accuracy": 0.42,
+        "strongest_single_features": {
+          "risk_tolerance_score": 0.4788,
+          "equity_pct": 0.4779,
+          "loss_tolerance": 0.4599,
+          "cash_pct": 0.4493,
+          "bond_pct": 0.4457
+        },
+        "limit": 0.7
+      },
+      "behavior_anomaly": {
+        "strongest_single_feature_auc": {
+          "buy_value": 0.9029,
+          "investment_frequency": 0.8992,
+          "trade_count": 0.8955,
+          "sell_value": 0.8253,
+          "average_transaction_value": 0.7861
+        },
+        "limit": 0.995
+      },
+      "expense_segment": {
+        "strongest_single_features": {
+          "savings_stability": 0.445,
+          "investment_ratio": 0.4435,
+          "discretionary_expense_ratio": 0.4401,
+          "savings_rate": 0.434,
+          "discretionary_expense": 0.4316
+        },
+        "note": "segments are defined on these ratios by design (a segmentation target)"
+      },
+      "goal_feasibility": {
+        "strongest_single_inputs": {
+          "current_amount": 0.7156,
+          "years_remaining": 0.7144,
+          "target_amount": 0.7144,
+          "priority": 0.7144,
+          "periods_remaining": 0.7144
+        },
+        "excluded_engine_outputs": [
+          "inflation_adjusted_target_amount",
+          "required_monthly_contribution",
+          "contribution_gap",
+          "goal_status",
+          "monte_carlo_success_probability"
+        ]
+      }
+    },
+    "existing_pipelines": {
+      "risk: load_far_trans_tables + engineer_features": "89,660 labelled rows x 20 features (10,340 customers with no pre-cutoff trade dropped by its point-in-time rule)",
+      "behaviour: build_monthly_panel": "1,404,979 customer-months",
+      "expense: load_kaggle_primary + engineer_expense_features": "100,000 rows, 0 excluded"
+    },
+    "raw_datasets_unchanged": "10/10 files match recorded SHA-256",
+    "rows": {
+      "wealthpilot_customer_training.csv": 100000,
+      "wealthpilot_transactions_training.csv": 2570053,
+      "wealthpilot_goals_training.csv": 315881,
+      "far_trans_format/customer_information.csv": 100000,
+      "far_trans_format/asset_information.csv": 300,
+      "far_trans_format/transactions.csv": 2570053,
+      "far_trans_format/close_prices.csv": 469800,
+      "kaggle_format/synthetic_personal_finance_dataset.csv": 100000
+    },
+    "columns": {
+      "wealthpilot_customer_training.csv": 80,
+      "wealthpilot_goals_training.csv": 23
+    },
+    "duplicate_rows": {
+      "wealthpilot_customer_training.csv": 0,
+      "wealthpilot_goals_training.csv": 0
+    },
+    "customer_null_rates": {
+      "employment_years": 0.0391,
+      "marital_status": 0.0198,
+      "education_level": 0.0301,
+      "income_growth_rate": 0.0605,
+      "income_stability_score": 0.03,
+      "income_source_count": 0.021,
+      "credit_utilization": 0.5111,
+      "savings_stability": 0.0401,
+      "investment_experience": 0.05,
+      "loss_tolerance": 0.0295,
+      "portfolio_turnover": 0.1034,
+      "average_transaction_value": 0.1034,
+      "behaviour_volatility": 0.1034,
+      "behavior_anomaly_month": 0.975
+    },
+    "label_distributions": {
+      "risk_label": {
+        "Income": 42000,
+        "Balanced": 33000,
+        "Conservative": 13000,
+        "Aggressive": 12000
+      },
+      "expense_segment": {
+        "moderate-expense-low-leverage-moderate-savings": 34830,
+        "low-expense-low-leverage-higher-savings": 30389,
+        "high-expense-low-leverage-lower-savings": 23031,
+        "moderate-expense-high-leverage-lower-savings": 11750
+      },
+      "behavior_anomaly": {
+        "0": 97500,
+        "1": 2500
+      },
+      "goal_feasibility": {
+        "Not Feasible": 225666,
+        "Feasible": 60385,
+        "At Risk": 29830
+      }
+    },
+    "date_ranges": {
+      "onboarding_date": [
+        "2019-01-01",
+        "2022-06-30"
+      ],
+      "feature_cutoff_date": [
+        "2019-12-20",
+        "2024-06-28"
+      ],
+      "goal_target_date": [
+        "2020-08-02",
+        "2065-07-25"
+      ]
+    }
+  },
+  "generated_at": "2026-09-30T18:12:38+00:00",
+  "determinism_note": "Every CSV is byte-identical for the same seed and sizes; generated_at is the only field that changes between runs."
+}

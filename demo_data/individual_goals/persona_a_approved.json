@@ -1,0 +1,27 @@
+{
+  "demo_key": "WPDEMO-A",
+  "source": "synthetic_demo",
+  "goals": [
+    {
+      "current_savings": 120000,
+      "goal_type": "Emergency Fund",
+      "priority": 1,
+      "target_amount": 180000,
+      "target_date": "2027-06-01"
+    },
+    {
+      "current_savings": 350000,
+      "goal_type": "Retirement",
+      "priority": 2,
+      "target_amount": 4000000,
+      "target_date": "2050-01-01"
+    },
+    {
+      "current_savings": 200000,
+      "goal_type": "House Purchase",
+      "priority": 3,
+      "target_amount": 900000,
+      "target_date": "2031-06-01"
+    }
+  ]
+}

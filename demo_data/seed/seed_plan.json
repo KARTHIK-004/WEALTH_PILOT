@@ -1,0 +1,89 @@
+{
+  "source": "synthetic_demo",
+  "mechanism": "backend/scripts/seed_demo_data.py -- the existing seed, through the real public API. There is no parallel demo backend: the same application code validates, stores and analyses this data.",
+  "idempotency": "Every step first reads what exists and writes only what is missing: personas by exact name, questionnaire answers / goals / financial inputs only when the persona has none, the household only when the primary has none, each household record only when its idempotency key is absent. Nothing already stored is overwritten.",
+  "steps": [
+    {
+      "step": 1,
+      "command": "setup",
+      "reads": "profiles",
+      "calls": [
+        "GET /api/profiles/lookup (exact name) -- reuse the customer if found",
+        "POST /api/profiles -- only if not found",
+        "UPDATE customers.risk_inputs -- the one documented direct write, only for a customer just created and only when its risk_data_link is set"
+      ]
+    },
+    {
+      "step": 2,
+      "command": "setup",
+      "reads": "questionnaire",
+      "calls": [
+        "POST /api/profiles/{id}/questionnaire -- only when the persona has no answers"
+      ]
+    },
+    {
+      "step": 3,
+      "command": "setup",
+      "reads": "individual_goals",
+      "calls": [
+        "POST /api/profiles/{id}/goals -- only when the persona has no goals"
+      ]
+    },
+    {
+      "step": 4,
+      "command": "setup",
+      "reads": "financial_inputs",
+      "calls": [
+        "PUT /api/profiles/{id}/financial-inputs -- only when the file provides inputs and none are stored"
+      ]
+    },
+    {
+      "step": 5,
+      "command": "setup",
+      "reads": null,
+      "calls": [
+        "POST /api/analysis -- the application computes every result (cached when the profile is unchanged)"
+      ]
+    },
+    {
+      "step": 6,
+      "command": "setup-family",
+      "reads": "household/households",
+      "calls": [
+        "POST /api/households -- only when the primary persona has no household"
+      ]
+    },
+    {
+      "step": 7,
+      "command": "setup-family",
+      "reads": "household/members",
+      "calls": [
+        "POST /api/households/{household_id}/members -- only for a persona not yet a member"
+      ]
+    },
+    {
+      "step": 8,
+      "command": "setup-family",
+      "reads": [
+        "household/income",
+        "household/expenses",
+        "household/assets",
+        "household/liabilities",
+        "household/goals"
+      ],
+      "calls": [
+        "POST /api/households/{household_id}/{resource} -- only for a record whose idempotency key is absent"
+      ]
+    },
+    {
+      "step": 9,
+      "command": "verify / verify-family",
+      "reads": "expected_results",
+      "calls": [
+        "read-only checks of the stored data and the expected contract-level states"
+      ]
+    }
+  ],
+  "reset": "reset deletes only the personas with owned_by_seed true (exact names) and, first, the demo household; reset-family deletes only the household matched by its exact name AND its primary persona. Persona D (owned_by_seed false) and every other customer, household and record are never touched.",
+  "validate": "backend/scripts/validate_demo_data.py -- static checks, no database, exits non-zero on failure"
+}

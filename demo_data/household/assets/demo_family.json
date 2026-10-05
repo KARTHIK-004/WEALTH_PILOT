@@ -1,0 +1,34 @@
+{
+  "household_demo_key": "WPDEMO-FAM",
+  "source": "synthetic_demo",
+  "api": "POST /api/households/{household_id}/assets",
+  "idempotency_key": "name",
+  "demonstrates": "liquid and illiquid assets (the liquid ones are the emergency-fund balance)",
+  "records": [
+    {
+      "asset_type": "bank_account",
+      "current_value": 180000,
+      "is_liquid": true,
+      "name": "Joint current account"
+    },
+    {
+      "asset_type": "bank_account",
+      "current_value": 285000,
+      "is_liquid": true,
+      "name": "Emergency savings account"
+    },
+    {
+      "asset_type": "investment",
+      "current_value": 660000,
+      "description": "Long-term holding",
+      "is_liquid": false,
+      "name": "Index fund"
+    },
+    {
+      "asset_type": "vehicle",
+      "current_value": 360000,
+      "is_liquid": false,
+      "name": "Family car"
+    }
+  ]
+}

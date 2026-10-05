@@ -1,0 +1,19 @@
+{
+  "demo_key": "WPDEMO-B",
+  "source": "synthetic_demo",
+  "checked_by": "backend/scripts/seed_demo_data.py verify (the persona's default POST /api/analysis result)",
+  "expected": {
+    "analysis_status": "approved",
+    "risk_available": true,
+    "goal_results_returned": true,
+    "goal_feasibility_available": true,
+    "emergency_fund_sufficient": false,
+    "compliance_decision": "PASS",
+    "triggered_compliance_rules": [],
+    "recommendation_available": true,
+    "recommendation_status": "savings_first",
+    "portfolio_weights_available": false,
+    "explanation_available": true
+  },
+  "note": "The overall analysis status is `approved`; savings first is the recommendation's status (`recommendation.status`), not a separate overall status."
+}

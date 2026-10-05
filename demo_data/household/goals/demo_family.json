@@ -1,0 +1,36 @@
+{
+  "household_demo_key": "WPDEMO-FAM",
+  "source": "synthetic_demo",
+  "api": "POST /api/households/{household_id}/goals",
+  "idempotency_key": "name",
+  "demonstrates": "household goals as stored facts (no goal math), including one with no current amount recorded, across the short/medium/long-term spread a demo should show",
+  "records": [
+    {
+      "current_savings": 285000,
+      "goal_type": "emergency_fund",
+      "name": "Emergency fund",
+      "target_amount": 540000,
+      "target_date": "2027-12-31"
+    },
+    {
+      "current_savings": 180000,
+      "goal_type": "house",
+      "name": "Home deposit",
+      "target_amount": 1350000,
+      "target_date": "2030-06-30"
+    },
+    {
+      "goal_type": "travel",
+      "name": "Family holiday",
+      "target_amount": 120000,
+      "target_date": "2027-08-01"
+    },
+    {
+      "current_savings": 450000,
+      "goal_type": "retirement",
+      "name": "Family retirement fund",
+      "target_amount": 10500000,
+      "target_date": "2048-01-01"
+    }
+  ]
+}

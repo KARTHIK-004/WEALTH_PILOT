@@ -1,0 +1,65 @@
+{
+  "household_demo_key": "WPDEMO-FAM",
+  "source": "synthetic_demo",
+  "api": "POST /api/households/{household_id}/expenses",
+  "idempotency_key": "description",
+  "demonstrates": "essential and non-essential expenses (the essential ones are the emergency-fund basis), a yearly expense, and a one-time purchase kept out of the recurring view",
+  "records": [
+    {
+      "amount": 49500,
+      "category": "housing",
+      "description": "Rent",
+      "frequency": "monthly",
+      "is_essential": true
+    },
+    {
+      "amount": 22500,
+      "category": "food",
+      "description": "Groceries",
+      "frequency": "monthly",
+      "is_essential": true
+    },
+    {
+      "amount": 5700,
+      "category": "utilities",
+      "description": "Energy and water",
+      "frequency": "monthly",
+      "is_essential": true
+    },
+    {
+      "amount": 7800,
+      "category": "transportation",
+      "description": "Public transport and fuel",
+      "frequency": "monthly",
+      "is_essential": true
+    },
+    {
+      "amount": 43200,
+      "category": "insurance",
+      "description": "Home and car insurance",
+      "frequency": "yearly",
+      "is_essential": true
+    },
+    {
+      "amount": 10500,
+      "category": "entertainment",
+      "description": "Dining and leisure",
+      "frequency": "monthly",
+      "is_essential": false
+    },
+    {
+      "amount": 1350,
+      "category": "other",
+      "description": "Streaming subscriptions",
+      "frequency": "monthly",
+      "is_essential": false
+    },
+    {
+      "amount": 36000,
+      "category": "other",
+      "description": "New sofa",
+      "frequency": "one_time",
+      "is_essential": false
+    }
+  ]
+}

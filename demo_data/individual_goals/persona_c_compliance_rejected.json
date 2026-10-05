@@ -1,0 +1,20 @@
+{
+  "demo_key": "WPDEMO-C",
+  "source": "synthetic_demo",
+  "goals": [
+    {
+      "current_savings": 60000,
+      "goal_type": "Retirement",
+      "priority": 1,
+      "target_amount": 300000,
+      "target_date": "2038-01-01"
+    },
+    {
+      "current_savings": 10000,
+      "goal_type": "Education",
+      "priority": 2,
+      "target_amount": 40000,
+      "target_date": "2029-01-01"
+    }
+  ]
+}

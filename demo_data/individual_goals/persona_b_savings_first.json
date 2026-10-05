@@ -1,0 +1,20 @@
+{
+  "demo_key": "WPDEMO-B",
+  "source": "synthetic_demo",
+  "goals": [
+    {
+      "current_savings": 3000,
+      "goal_type": "Emergency Fund",
+      "priority": 1,
+      "target_amount": 15000,
+      "target_date": "2028-01-01"
+    },
+    {
+      "current_savings": 5000,
+      "goal_type": "Retirement",
+      "priority": 2,
+      "target_amount": 220000,
+      "target_date": "2055-01-01"
+    }
+  ]
+}

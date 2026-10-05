@@ -1,0 +1,83 @@
+# WealthPilot AI — compliance rule definitions.
+#
+# Phase 9. Every rule's condition reuses ONLY already-approved numbers from
+# prior phases — nothing here invents a new financial threshold:
+#   - qqq_within_risk_band / single_asset_cap read their bounds LIVE from
+#     wealthpilot.core.optimizer's approved Phase 8 constants
+#     (RISK_LEVEL_QQQ_BANDS, GENERAL_SINGLE_ASSET_CAP) rather than
+#     duplicating those numbers here, so the two can never drift apart.
+#   - emergency_fund_savings_first reuses Phase 7's own
+#     assess_emergency_fund()/savings_first_required() boolean output; it
+#     does not recompute or redefine emergency-fund logic.
+#   - weights_sum_to_one / no_negative_weights are pure numerical/structural
+#     invariants (portfolio math), not judgment calls.
+#
+# `condition` is a controlled identifier naming a specific, hand-written
+# Python check function in backend/wealthpilot/core/compliance.py's rule
+# registry (see `_RULE_REGISTRY`) — never an expression that gets eval()'d,
+# exec()'d, or otherwise dynamically executed from this file. Loading uses
+# `yaml.safe_load` exclusively. An unrecognized `condition` value fails
+# config validation at load time (RulesConfig raises), it is never silently
+# ignored.
+#
+# No WARN-severity rule exists yet (approved 2026-09-14) — none of the
+# project's authoritative documents specify a WARN threshold anywhere, and
+# inventing one would violate this phase's own "do not invent arbitrary
+# thresholds" rule. The engine's severity/aggregation logic fully supports
+# WARN; a future phase may add a WARN rule here without any code change,
+# once a genuine WARN condition is specified.
+#
+# Bumping `version` is required whenever a rule's condition, severity, or
+# meaning changes (never for silent behavioural drift) — every
+# ComplianceResult records the version that produced it.
+
+version: "v1"
+
+rules:
+  - id: weights_sum_to_one
+    description: >
+      Proposed portfolio weights must sum to 1.0 (within floating-point
+      tolerance) — a portfolio that doesn't fully allocate (or over-
+      allocates) capital is not a valid proposal.
+    severity: REJECT
+    condition: weights_sum_to_one
+    message: "Portfolio weights do not sum to 1."
+
+  - id: no_negative_weights
+    description: >
+      No short positions are permitted (Phase 8: "no short-selling unless
+      explicitly authorized" — not authorized).
+    severity: REJECT
+    condition: no_negative_weights
+    message: "Portfolio contains a negative (short) weight."
+
+  - id: qqq_within_risk_band
+    description: >
+      QQQ's weight must fall within the Phase-8-approved band for the
+      customer's risk category (RISK_LEVEL_QQQ_BANDS, intersected with the
+      general single-asset cap exactly as Phase 8's effective_bounds()
+      does).
+    severity: REJECT
+    condition: qqq_within_risk_band
+    message: "QQQ weight is outside the approved band for this risk category."
+
+  - id: single_asset_cap
+    description: >
+      No single asset may exceed the Phase-8-approved general single-asset
+      cap (GENERAL_SINGLE_ASSET_CAP, 70%).
+    severity: REJECT
+    condition: single_asset_cap
+    message: "An asset exceeds the approved single-asset concentration cap."
+
+  - id: emergency_fund_savings_first
+    description: >
+      If Phase 7's emergency-fund assessment is insufficient, the proposal
+      must itself be a savings-first recommendation, never a normal
+      investment allocation (PROJECT_PLAN.md 2.6 / MASTER_PROMPT.md
+      section 14: "Do not recommend aggressive investment allocation when
+      essential liquidity requirements are not satisfied").
+    severity: REJECT
+    condition: emergency_fund_savings_first
+    message: >
+      Emergency fund is insufficient but a normal investment allocation
+      was proposed instead of a savings-first recommendation.

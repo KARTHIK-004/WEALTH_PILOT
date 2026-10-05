@@ -1,0 +1,8 @@
+{
+  "demo_key": "WPDEMO-FAM",
+  "source": "synthetic_demo",
+  "household_name": "WealthPilot Demo Family",
+  "primary_demo_key": "WPDEMO-B",
+  "currency": "EUR",
+  "purpose": "The family demo (ADR-036): one household built from two existing personas through the real household API. Its records are stored source data and its goals are stored facts. The household summary is computed by the application (core/household_finance.py) and is never stored here, and no household figure reaches any individual analysis."
+}

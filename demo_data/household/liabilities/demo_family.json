@@ -1,0 +1,22 @@
+{
+  "household_demo_key": "WPDEMO-FAM",
+  "source": "synthetic_demo",
+  "api": "POST /api/households/{household_id}/liabilities",
+  "idempotency_key": "name",
+  "demonstrates": "a liability with a recorded monthly payment and interest rate, and one recorded at a genuine 0 with no monthly payment recorded -- a known zero beside an unknown, never conflated",
+  "records": [
+    {
+      "interest_rate": 0.059,
+      "liability_type": "vehicle_loan",
+      "monthly_payment": 9300,
+      "name": "Car loan",
+      "outstanding_amount": 234000
+    },
+    {
+      "liability_type": "credit_card",
+      "name": "Credit card",
+      "notes": "Paid in full each month",
+      "outstanding_amount": 0
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "demo_key": "WPDEMO-C",
+  "source": "synthetic_demo",
+  "financial_inputs": null,
+  "financial_inputs_unavailable_reason": "Deliberately not provided: this persona demonstrates the fail-closed compliance rejection when emergency-fund data is genuinely missing (Phase 28). Unknown is not zero."
+}

@@ -1,0 +1,21 @@
+{
+  "demo_key": "WPDEMO-C",
+  "source": "synthetic_demo",
+  "checked_by": "backend/scripts/seed_demo_data.py verify (the persona's default POST /api/analysis result)",
+  "expected": {
+    "analysis_status": "rejected",
+    "risk_available": true,
+    "goal_results_returned": true,
+    "goal_feasibility_available": false,
+    "emergency_fund_sufficient": null,
+    "compliance_decision": "REJECT",
+    "triggered_compliance_rules": [
+      "emergency_fund_savings_first"
+    ],
+    "recommendation_available": false,
+    "recommendation_status": null,
+    "portfolio_weights_available": false,
+    "explanation_available": false
+  },
+  "note": "The rejecting rule fails closed because the emergency-fund status is unknown (no financial inputs); emergency_fund_sufficient is null -- unknown, not false."
+}

@@ -1,0 +1,87 @@
+{
+  "source": "synthetic_demo",
+  "api": "POST /api/scenarios/compare",
+  "contract": "ScenarioCompareRequest: two sides, each {profile_id, portfolio_strategy}. portfolio_strategy is null (the application's default, risk-conditioned choice) or one of mvo, hrp, equal_weight -- the only parameter the simulator lets a client vary.",
+  "profile_id_resolution": "persona_demo_key -> the persona's customer id, found by exact name at run time (GET /api/profiles/lookup). No numeric id is stored here.",
+  "outputs": "Computed by the application for each side (the same analysis pipeline) -- never stored here. A strategy that has not been run for that persona before is computed and cached as a new analysis; the persona's default analysis is unchanged.",
+  "scenarios": [
+    {
+      "scenario_key": "S1",
+      "title": "Current assumptions: the default strategy beside MVO",
+      "persona_demo_key": "WPDEMO-A",
+      "scenario_a": {
+        "portfolio_strategy": null
+      },
+      "scenario_b": {
+        "portfolio_strategy": "mvo"
+      },
+      "shows": "The simulator's starting point: the application's default choice beside an explicit MVO run."
+    },
+    {
+      "scenario_key": "S2",
+      "title": "Two construction methods: MVO beside HRP",
+      "persona_demo_key": "WPDEMO-A",
+      "scenario_a": {
+        "portfolio_strategy": "mvo"
+      },
+      "scenario_b": {
+        "portfolio_strategy": "hrp"
+      },
+      "shows": "Mean-variance optimisation and hierarchical risk parity for the same customer."
+    },
+    {
+      "scenario_key": "S3",
+      "title": "A method beside the simple benchmark: HRP beside 1/N",
+      "persona_demo_key": "WPDEMO-A",
+      "scenario_a": {
+        "portfolio_strategy": "hrp"
+      },
+      "scenario_b": {
+        "portfolio_strategy": "equal_weight"
+      },
+      "shows": "Hierarchical risk parity beside the equal-weight (1/N) benchmark."
+    },
+    {
+      "scenario_key": "S4",
+      "title": "Savings first: the default strategy beside HRP",
+      "persona_demo_key": "WPDEMO-B",
+      "scenario_a": {
+        "portfolio_strategy": null
+      },
+      "scenario_b": {
+        "portfolio_strategy": "hrp"
+      },
+      "shows": "How the application treats a strategy choice when the emergency fund is insufficient -- the application decides, the scenario only asks."
+    },
+    {
+      "scenario_key": "S5",
+      "title": "Compliance: the default strategy beside MVO",
+      "persona_demo_key": "WPDEMO-C",
+      "scenario_a": {
+        "portfolio_strategy": null
+      },
+      "scenario_b": {
+        "portfolio_strategy": "mvo"
+      },
+      "shows": "Whether a strategy choice changes a compliance rejection -- the compliance gate decides, the scenario only asks."
+    }
+  ],
+  "not_supported_by_the_contract": [
+    {
+      "requested_scenario": "Lower monthly contribution",
+      "why": "contribution_amount is a stored financial input (PUT /api/profiles/{id}/financial-inputs), not a simulator parameter. A what-if would need a new API; changing it on a demo persona would change that persona's stored data."
+    },
+    {
+      "requested_scenario": "Higher monthly contribution",
+      "why": "The same as for a lower contribution."
+    },
+    {
+      "requested_scenario": "Increased expenses",
+      "why": "monthly_essential_expenses is a stored financial input, not a simulator parameter -- the same limitation."
+    },
+    {
+      "requested_scenario": "Changed goal date",
+      "why": "target_date is a stored goal field, not a simulator parameter; the simulator varies the portfolio strategy only."
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "z_score_alert_threshold": 2.0,
+  "rolling_window_months": 12,
+  "min_prior_months": 3,
+  "cusum_k": 0.5,
+  "cusum_h": 5.0,
+  "isolation_forest_contamination": 0.05
+}

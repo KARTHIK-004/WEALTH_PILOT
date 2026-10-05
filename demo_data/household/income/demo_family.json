@@ -1,0 +1,36 @@
+{
+  "household_demo_key": "WPDEMO-FAM",
+  "source": "synthetic_demo",
+  "api": "POST /api/households/{household_id}/income",
+  "idempotency_key": "source",
+  "demonstrates": "monthly and yearly income (yearly counts as amount / 12 per month), a one-time bonus kept out of the recurring view, and an inactive record that is stored but excluded from every aggregate",
+  "records": [
+    {
+      "amount": 84000,
+      "frequency": "monthly",
+      "source": "Primary salary (net)"
+    },
+    {
+      "amount": 93000,
+      "frequency": "monthly",
+      "source": "Spouse salary (net)"
+    },
+    {
+      "amount": 288000,
+      "frequency": "yearly",
+      "source": "Rental income"
+    },
+    {
+      "amount": 90000,
+      "frequency": "one_time",
+      "source": "Annual bonus"
+    },
+    {
+      "amount": 18000,
+      "frequency": "monthly",
+      "is_active": false,
+      "notes": "Ended; kept for the record",
+      "source": "Previous part-time job"
+    }
+  ]
+}
