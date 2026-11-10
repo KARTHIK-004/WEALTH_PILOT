@@ -1,0 +1,13 @@
+{
+  "household_demo_key": "WPDEMO-HHE",
+  "source": "synthetic_demo",
+  "checked_by": "backend/scripts/seed_demo_data.py verify-family",
+  "expected": {
+    "member_count": 2,
+    "primary_demo_key": "WPDEMO-E",
+    "every_dataset_record_present_exactly_once": true,
+    "household_summary_available": true,
+    "household_goals_available": true,
+    "non_members_denied": true
+  }
+}

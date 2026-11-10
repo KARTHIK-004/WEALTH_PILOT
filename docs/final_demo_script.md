@@ -2,7 +2,7 @@
 
 A practical, click-by-click script for the live demonstration, viva or guide
 review. Every number below was read from a real API response for the seeded
-demo persona **"WealthPilot Demo — Complete"** (id 29107 in this
+demo persona **"WealthPilot Demo — Complete"** (id 29110 in this
 environment; ids are environment-specific, the frontend never hard-codes
 one). Nothing here is aspirational. If a number on screen differs, the screen
 is right and this script is out of date — say so plainly rather than
@@ -68,15 +68,15 @@ evaluated, compliance **PASS**, recommendation **approved**.
 income, customer type, investment capacity, goals) and **Financial Inputs**.
 
 **Say:** "Financial inputs are what the user tells us: monthly essential
-expenses (€3,000), current liquid assets (€40,000), monthly contribution
-(€1,000), expected annual return (0.07) and inflation (0.03), contributions
+expenses (₹45,000), current liquid assets (₹3,60,000), monthly contribution
+(₹30,000), expected annual return (0.09) and inflation (0.04), contributions
 per year (12). They feed the emergency-fund and goal calculations. A blank
 field means *not provided* — it is stored as unknown, never as zero, and the
 analysis then honestly reports that result as unavailable."
 
 **Optional:** do not clear anything on the demo account. To show the honest
 "not provided" state, point at the placeholder text on any empty field and
-mention that the Compliance persona has none of these six values (section 16).
+mention that the Compliance persona has not provided two of these six values, its monthly essential expenses and liquid assets (section 16).
 
 ## 4. Questionnaire
 
@@ -96,21 +96,21 @@ step through to Goals and the Dashboard.
 
 **Click:** Goals in the sidebar.
 
-**Explain one card at a time (Retirement, then House Purchase):**
+**Explain one card at a time (Home Down Payment, Child Higher Education, then Retirement Corpus):**
 
-| | Retirement | House Purchase |
-|---|---|---|
-| Target amount | €400,000 | €90,000 |
-| Inflation-adjusted target | €796,059 | €103,400 |
-| Required contribution | €887 / month | €1,147 / month |
-| Contribution gap | −€113 | +€147 |
-| Simulated success probability | **94.1%** | **50.3%** |
-| Feasibility (from the backend) | **Feasible** | **At Risk** |
+| | Home Down Payment | Child Higher Education | Retirement Corpus |
+|---|---|---|---|
+| Target amount | ₹15,00,000 | ₹20,00,000 | ₹1,50,00,000 |
+| Inflation-adjusted target | ₹17,53,846 | ₹29,20,546 | ₹3,88,10,445 |
+| Required contribution | ₹19,292 / month | ₹12,648 / month | ₹30,565 / month |
+| Contribution gap | −₹10,708 | −₹17,352 | +₹565 |
+| Simulated success probability | **98.8%** | **100.0%** | **67.7%** |
+| Feasibility (from the backend) | **Feasible** | **Feasible** | **At Risk** |
 
-**Say:** "Inflation-adjusted target is the target grown at the assumed 3% to
+**Say:** "Inflation-adjusted target is the target grown at the assumed 4% to
 the deadline. Required contribution is the deterministic monthly amount that
-reaches it at the assumed 7% return. The **gap** is required minus what the plan contributes: negative means the
-€1,000 plan is *ahead* — the page says 'Contribution exceeds the calculated
+reaches it at the assumed 9% return. The **gap** is required minus what the plan contributes: negative means the
+₹30,000 plan is *ahead* — the page says 'Contribution exceeds the calculated
 requirement' — positive means it falls short. The probability is a Monte Carlo
 result: 10,000 simulated paths bootstrapped from historical returns. Feasible
 is 80% and above, At Risk 50–79%, Not Feasible below 50%; the label is the
@@ -148,12 +148,12 @@ information (that is the pending-information state)."
 
 **Click:** Financial Health.
 
-**Point at:** the emergency-fund chart — Required **€18,000** vs Current
-**€40,000**, shortfall **€0**, **sufficient**; the behaviour cards (no drift, no
+**Point at:** the emergency-fund chart — Required **₹2,70,000** vs Current
+**₹3,60,000**, shortfall **₹0**, **sufficient**; the behaviour cards (no drift, no
 anomaly); the *expense persona* shown as unavailable with its reason.
 
-**Say:** "Emergency fund = six months of essential expenses. €3,000 × 6 =
-€18,000 required; the customer holds €40,000, so the normal path continues.
+**Say:** "Emergency fund = six months of essential expenses. ₹45,000 × 6 =
+₹2,70,000 required; the customer holds ₹3,60,000, so the normal path continues.
 The shortfall is the backend's number, printed as text — the chart never
 computes it. Expense persona is unavailable on purpose: that model was trained
 on a separate Kaggle population and is never applied to a FAR-Trans customer
@@ -271,7 +271,7 @@ a what-if, not a defect. A missing metric is shown as unavailable, never zero."
 ## 15. Savings-first demo (API explorer)
 
 The authenticated app shows exactly one customer per session — there is no
-switcher, by design. **"WealthPilot Demo — Savings" (29108) is therefore
+switcher, by design. **"WealthPilot Demo — Savings" (29111) is therefore
 verifiable through the API but not reachable through the authenticated UI.**
 
 **Do:** in `http://localhost:8000/docs` call `GET
@@ -280,11 +280,11 @@ verifiable through the API but not reachable through the authenticated UI.**
 recomputed).
 
 **Show:** `status: approved`, `recommendation.status: savings_first`,
-`emergency_fund`: required 15,000, current 4,000, **shortfall 11,000**,
+`emergency_fund`: required 2,28,000, current 90,000, **shortfall 1,38,000**,
 `portfolio.weights: null`, `recommendation.selected_strategy: null`,
 compliance PASS.
 
-**Say:** "Same backend, inspected directly. The emergency fund is €11,000
+**Say:** "Same backend, inspected directly. The emergency fund is ₹1,38,000
 short, so the system does *not* optimise a portfolio — it says 'build
 liquidity before investing'. It is a safe, approved outcome, not an error, and
 no allocation exists to show. In the app this would appear as 'Savings-first:
@@ -294,7 +294,7 @@ portfolio allocation deferred' with the emergency-fund chart."
 
 Same rule as section 15 — reachable through the API, not the authenticated UI.
 
-**Do:** look up `WealthPilot Demo — Compliance` (29109), then `POST
+**Do:** look up `WealthPilot Demo — Compliance` (29112), then `POST
 /api/analysis`.
 
 **Show:** `status: rejected`; `compliance.decision: REJECT` with **exactly one
@@ -302,13 +302,14 @@ triggered rule, `emergency_fund_savings_first`**, reason "required data
 unavailable: emergency-fund status was not provided"; `recommendation: null`;
 `explanation: null`; portfolio `savings_first` with no weights.
 
-**Say:** "This customer never supplied expenses or liquid assets. The system
+**Say:** "This customer supplied an income and a savings plan, and the goals were
+computed, but never supplied monthly essential expenses or liquid assets. The system
 will not guess — the fail-closed rule triggers and the gate rejects. Nothing
 downstream ran: no recommendation, no Gemini call. The four weight rules
 correctly do not trigger, because a savings-first proposal has no weights by
 design."
 
-**Optional (one line):** "WealthPilot Demo Customer" (29096) has no FAR-Trans
+**Optional (one line):** "WealthPilot Demo Customer" (29113) has no FAR-Trans
 linkage, so risk cannot be classified → `pending_information` and every
 downstream section is unavailable — the honest 'need more information' state.
 A brand-new user created through **Create your profile** behaves the same way.
@@ -332,21 +333,21 @@ recommendation."
    *Members* 2. The Members tab shows the spouse by name, relationship and role
    only. "Membership is not account access — I cannot see the spouse's own
    profile, analysis or finances from here."
-2. **Financial summary:** recurring monthly income **€6,700**, recurring
-   monthly expenses **€3,365** (essential €2,970, other €395), monthly cash
-   flow **€3,335**, net position **€41,700**.
-3. **Income tab:** the yearly rental income (€9,600) counts as €800 a month;
-   the €3,000 bonus is one-time and shown separately; the ended part-time job
+2. **Financial summary:** recurring monthly income **₹1,60,000**, recurring
+   monthly expenses **₹99,200** (essential ₹86,000, other ₹13,200), monthly cash
+   flow **₹60,800**, net position **₹18,20,000**.
+3. **Income tab:** the yearly interest income (₹36,000) counts as ₹3,000 a month;
+   the ₹1,20,000 bonus is one-time and shown separately; the ended part-time job
    is stored but inactive, so it is not counted.
-4. **Liabilities tab:** the credit card is recorded at **€0** outstanding with
+4. **Liabilities tab:** the credit card is recorded at **₹0** outstanding with
    its monthly payment **Not provided** — "a known zero next to an unknown; the
    system never turns one into the other."
-5. **Emergency fund:** required **€17,820** (6 months of €2,970 essential
-   expenses), current liquid assets **€15,500**, shortfall **€2,320**,
+5. **Emergency fund:** required **₹5,16,000** (6 months of ₹86,000 essential
+   expenses), current liquid assets **₹3,60,000**, shortfall **₹1,56,000**,
    **Insufficient** — the same rule as the individual engine.
-6. **Goals tab:** three household goals. The emergency-fund goal's own €18,000
+6. **Goals tab:** five household goals. The emergency-fund goal's own ₹5,50,000
    target is the family's stated target; the line above the table restates the
-   *calculated* €17,820 requirement — "one calculated figure, never two".
+   *calculated* ₹5,16,000 requirement — "one calculated figure, never two".
 
 **Verify on screen:** badge **Family Demo**; the Household section open on
 arrival; the figures above.
@@ -377,14 +378,15 @@ authentication, and it is not financial advice."
   is not invoked by any API route.
 - That Gemini "made" or "checked" any number.
 
-## Numbers cheat-sheet (demo 29107)
+## Numbers cheat-sheet (demo 29110)
 
 | Item | Value |
 |---|---|
 | Risk | Aggressive, 91.3% (Balanced 7.2%, Income 1.5%, Conservative 0.1%) |
-| Emergency fund | required €18,000 (6 × €3,000), current €40,000, shortfall €0 |
-| Retirement | €400,000 → €796,059; €887/mo required; gap −€113; 94.1%, Feasible |
-| House Purchase | €90,000 → €103,400; €1,147/mo required; gap +€147; 50.3%, At Risk |
+| Emergency fund | required ₹2,70,000 (6 × ₹45,000), current ₹3,60,000, shortfall ₹0 |
+| Home Down Payment | ₹15,00,000 → ₹17,53,846; ₹19,292/mo required; gap −₹10,708; 98.8%, Feasible |
+| Child Higher Education | ₹20,00,000 → ₹29,20,546; ₹12,648/mo required; gap −₹17,352; 100.0%, Feasible |
+| Retirement Corpus | ₹1,50,00,000 → ₹3,88,10,445; ₹30,565/mo required; gap +₹565; 67.7%, At Risk |
 | Market regimes | ^IXIC Range-bound, ^NDX Volatile, QQQ Volatile, AGG Range-bound, GLD Volatile |
 | Portfolio | MVO — QQQ 55%, AGG ≈ 0%, GLD 45%; return 17.4%, volatility 16.4%, Sharpe 1.06 |
 | Compliance | PASS, rules v1, 0 of 5 triggered |

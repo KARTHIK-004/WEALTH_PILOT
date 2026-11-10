@@ -1,0 +1,29 @@
+2a3
+> annotated-doc==0.0.5
+18a20
+> filelock==4.2.8
+21a24
+> fsspec==2026.9.0
+29a33
+> hf-xet==1.8.0
+35a40
+> huggingface_hub==1.33.0
+37a43
+> Jinja2==3.1.6
+56a63
+> mpmath==1.3.0
+58a66
+> networkx==3.6.1
+94a103
+> safetensors==0.8.0
+97a107
+> shellingham==1.5.4
+104a115
+> sympy==1.14.0
+113a125,126
+> tokenizers==0.23.3
+> torch==2.15.0+cpu
+114a128
+> transformers==5.17.0
+115a130
+> typer==0.27.3

@@ -1,7 +1,8 @@
 {
   "source": "synthetic_demo",
   "mechanism": "backend/scripts/seed_demo_data.py -- the existing seed, through the real public API. There is no parallel demo backend: the same application code validates, stores and analyses this data.",
-  "idempotency": "Every step first reads what exists and writes only what is missing: personas by exact name, questionnaire answers / goals / financial inputs only when the persona has none, the household only when the primary has none, each household record only when its idempotency key is absent. Nothing already stored is overwritten.",
+  "idempotency": "Every step first reads what exists and writes only what is missing: personas by exact name, questionnaire answers / goals / financial inputs only when the persona has none, a monthly record only for a month not yet stored, each household only when its primary has none, each member only when absent, each household record only when its idempotency key is absent. Nothing already stored is overwritten, and a second run creates nothing.",
+  "households": "Two demo households are seeded by the same steps 7-9: the family (WPDEMO-FAM: B primary, C spouse; `setup-family`) and the full-pipeline household (WPDEMO-HHE: E primary, F spouse; built by `setup` after the personas, and addressable with `setup-family --household pipeline`). A household is the household's own stored source data: its summary is computed by the application and never reaches an individual analysis.",
   "steps": [
     {
       "step": 1,
@@ -40,13 +41,22 @@
     {
       "step": 5,
       "command": "setup",
+      "reads": "monthly_records",
+      "calls": [
+        "GET /api/profiles/{id}/monthly-financial-records -- which months are already reported",
+        "PUT /api/profiles/{id}/monthly-financial-records/{YYYY-MM} -- only for a month that is not stored yet (a stored month is never overwritten); only personas with a monthly_records file"
+      ]
+    },
+    {
+      "step": 6,
+      "command": "setup",
       "reads": null,
       "calls": [
         "POST /api/analysis -- the application computes every result (cached when the profile is unchanged)"
       ]
     },
     {
-      "step": 6,
+      "step": 7,
       "command": "setup-family",
       "reads": "household/households",
       "calls": [
@@ -54,7 +64,7 @@
       ]
     },
     {
-      "step": 7,
+      "step": 8,
       "command": "setup-family",
       "reads": "household/members",
       "calls": [
@@ -62,7 +72,7 @@
       ]
     },
     {
-      "step": 8,
+      "step": 9,
       "command": "setup-family",
       "reads": [
         "household/income",
@@ -76,7 +86,7 @@
       ]
     },
     {
-      "step": 9,
+      "step": 10,
       "command": "verify / verify-family",
       "reads": "expected_results",
       "calls": [
@@ -84,6 +94,6 @@
       ]
     }
   ],
-  "reset": "reset deletes only the personas with owned_by_seed true (exact names) and, first, the demo household; reset-family deletes only the household matched by its exact name AND its primary persona. Persona D (owned_by_seed false) and every other customer, household and record are never touched.",
+  "reset": "reset deletes only the personas with owned_by_seed true (exact names) and, first, the two demo households; reset-family deletes only the household matched by its exact name AND its primary persona. Persona D (owned_by_seed false) and every other customer, household and record are never touched.",
   "validate": "backend/scripts/validate_demo_data.py -- static checks, no database, exits non-zero on failure"
 }

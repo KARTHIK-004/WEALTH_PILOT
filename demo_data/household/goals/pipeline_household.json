@@ -1,0 +1,44 @@
+{
+  "household_demo_key": "WPDEMO-HHE",
+  "source": "synthetic_demo",
+  "api": "POST /api/households/{household_id}/goals",
+  "idempotency_key": "name",
+  "demonstrates": "household goals as stored facts (no goal math), including one with no current amount recorded, across the short/medium/long-term spread a demo should show",
+  "records": [
+    {
+      "current_savings": 500000,
+      "goal_type": "emergency_fund",
+      "name": "Emergency fund",
+      "target_amount": 600000,
+      "target_date": "2027-06-30"
+    },
+    {
+      "current_savings": 450000,
+      "goal_type": "house",
+      "name": "Home deposit (joint)",
+      "target_amount": 1800000,
+      "target_date": "2031-03-31",
+      "notes": "A joint target; the primary member's own Home Down Payment goal is a separate stored goal."
+    },
+    {
+      "current_savings": 120000,
+      "goal_type": "education",
+      "name": "Child's education fund",
+      "target_amount": 1800000,
+      "target_date": "2038-06-30"
+    },
+    {
+      "goal_type": "travel",
+      "name": "Family holiday",
+      "target_amount": 150000,
+      "target_date": "2027-12-15"
+    },
+    {
+      "current_savings": 680000,
+      "goal_type": "retirement",
+      "name": "Joint retirement fund",
+      "target_amount": 15000000,
+      "target_date": "2056-01-01"
+    }
+  ]
+}

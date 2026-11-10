@@ -195,6 +195,155 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/profiles/{profile_id}/monthly-financial-records": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Monthly Records
+         * @description Every reported month for this customer, newest first. No records is a
+         *     normal state (an empty list), not an error.
+         */
+        get: operations["list_monthly_records_api_profiles__profile_id__monthly_financial_records_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/profiles/{profile_id}/monthly-financial-records/{period}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Get Monthly Record */
+        get: operations["get_monthly_record_api_profiles__profile_id__monthly_financial_records__period__get"];
+        /**
+         * Put Monthly Record
+         * @description Creates or corrects one month (`period` is `YYYY-MM`). Omitted fields are
+         *     untouched; an explicit null clears a field back to "not reported".
+         */
+        put: operations["put_monthly_record_api_profiles__profile_id__monthly_financial_records__period__put"];
+        post?: never;
+        /** Delete Monthly Record */
+        delete: operations["delete_monthly_record_api_profiles__profile_id__monthly_financial_records__period__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/profiles/{profile_id}/behaviour-features": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Behaviour Features
+         * @description Read-only features from the customer's own monthly records. Each feature
+         *     is a number or the reason it is unavailable; nothing is a score and no
+         *     recommendation reads them.
+         */
+        get: operations["get_behaviour_features_api_profiles__profile_id__behaviour_features_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/profiles/{profile_id}/personalized-insights": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Create Personalized Insight
+         * @description Behaviour facts from the customer's own monthly records, plus an optional, unvalidated reading of text they chose to write. Missing text or missing months yield
+         *     explicit unavailable states, never a neutral label or a zero.
+         */
+        post: operations["create_personalized_insight_api_profiles__profile_id__personalized_insights_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/sentiment-model/status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Sentiment Model Status
+         * @description Whether a trained sentiment model is in use (ADR-052): `disabled` (the default; the rules baseline is the method), `ready` (a validated artifact is loaded) or `unavailable` (switched on
+         *     but unusable, with a fixed reason code and the rules baseline answering). Customer-independent, read-only, and it never returns a path, a secret or any text.
+         */
+        get: operations["get_sentiment_model_status_api_sentiment_model_status_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/demo/financial-behaviour": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Create Demo Financial Behaviour
+         * @description Fictional months with their calculated ratios and changes, plus the rules-baseline reading of the optional text (an unusable text is a 400 that never echoes it). Demo mode only.
+         */
+        post: operations["create_demo_financial_behaviour_api_demo_financial_behaviour_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/demo/family-financial-behaviour": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Create Demo Family Financial Behaviour
+         * @description A fictional family (three members and a household) with calculated ratios, changes and household totals, plus the rules-baseline reading of the optional text (the primary member's note).
+         *     Demo mode only.
+         */
+        post: operations["create_demo_family_financial_behaviour_api_demo_family_financial_behaviour_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/households": {
         parameters: {
             query?: never;
@@ -527,6 +676,72 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/api/profiles/{profile_id}/protected-notes": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * List Protected Notes
+         * @description The profile's note ids and timestamps. Nothing is decrypted.
+         */
+        get: operations["list_protected_notes_api_profiles__profile_id__protected_notes_get"];
+        put?: never;
+        /**
+         * Create Protected Note
+         * @description Encrypts the note and stores only the ciphertext. The response carries metadata, never the note.
+         */
+        post: operations["create_protected_note_api_profiles__profile_id__protected_notes_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/profiles/{profile_id}/protected-notes/{record_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Protected Note
+         * @description Decrypts the note for its owner, after authorization, and records the access in the audit ledger.
+         */
+        get: operations["get_protected_note_api_profiles__profile_id__protected_notes__record_id__get"];
+        /** Update Protected Note */
+        put: operations["update_protected_note_api_profiles__profile_id__protected_notes__record_id__put"];
+        post?: never;
+        /** Delete Protected Note */
+        delete: operations["delete_protected_note_api_profiles__profile_id__protected_notes__record_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/api/profiles/{profile_id}/security-status": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Get Security Status
+         * @description What is protected, and the result of checks run now: an encryption round trip and a full audit-chain verification.
+         */
+        get: operations["get_security_status_api_profiles__profile_id__security_status_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/api/analysis/stream": {
         parameters: {
             query?: never;
@@ -654,6 +869,143 @@ export interface components {
             /** Evaluated At */
             evaluated_at: string;
         };
+        /**
+         * BehaviourFeaturesResponse
+         * @description Read-only financial-behaviour features derived from the customer's own
+         *     monthly records. They are ratios and changes of reported amounts -- not a
+         *     score, not sentiment, and not an input to any recommendation.
+         */
+        BehaviourFeaturesResponse: {
+            /** Customer Id */
+            customer_id: number;
+            /** Model Version */
+            model_version: string;
+            /** Data Source */
+            data_source: string;
+            /** Currency */
+            currency: string;
+            /** Observation Count */
+            observation_count: number;
+            /** Latest Period */
+            latest_period: string | null;
+            /** Latest Income Basis */
+            latest_income_basis: ("net" | "gross") | null;
+            latest_ratios: components["schemas"]["RatioFeaturesOut"];
+            income_change: components["schemas"]["ChangeFeatureOut"];
+            expenses_change: components["schemas"]["ChangeFeatureOut"];
+            savings_change: components["schemas"]["ChangeFeatureOut"];
+            investment_contribution_change: components["schemas"]["ChangeFeatureOut"];
+            savings_consistency: components["schemas"]["ConsistencyFeatureOut"];
+            investment_contribution_consistency: components["schemas"]["ConsistencyFeatureOut"];
+            /** Data Quality Notes */
+            data_quality_notes: string[];
+        };
+        /** BehaviourFindingOut */
+        BehaviourFindingOut: {
+            /** Code */
+            code: string;
+            /**
+             * Category
+             * @enum {string}
+             */
+            category: "trend" | "activity" | "ratio" | "data_quality" | "coverage";
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "observed" | "unavailable" | "not_included";
+            /** Statement */
+            statement: string;
+            /** Sources */
+            sources: string[];
+            /** Direction */
+            direction: ("increased" | "decreased" | "unchanged") | null;
+            /** Values */
+            values: {
+                [key: string]: number | null;
+            };
+        };
+        /** BehaviourFindingsOut */
+        BehaviourFindingsOut: {
+            /** Version */
+            version: string;
+            /**
+             * History
+             * @enum {string}
+             */
+            history: "none" | "single_month" | "multiple_months";
+            /** Observation Count */
+            observation_count: number;
+            /** Latest Period */
+            latest_period: string | null;
+            /** Findings */
+            findings: components["schemas"]["BehaviourFindingOut"][];
+            /** Data Quality Notes */
+            data_quality_notes: string[];
+        };
+        /**
+         * CandidateReviewOut
+         * @description The recorded review of one pretrained candidate (ADR-054). `verdict` is one of the five review values; only `approved_for_research_inference` would allow a download, and none has it.
+         */
+        CandidateReviewOut: {
+            /** Key */
+            key: string;
+            /**
+             * Role
+             * @enum {string}
+             */
+            role: "financial" | "general";
+            /** Repository */
+            repository: string;
+            /** Revision */
+            revision: string;
+            /** Architecture */
+            architecture: string;
+            /** Declared Licence */
+            declared_licence: string;
+            /** Licence File */
+            licence_file: string;
+            /** Base Model */
+            base_model: string;
+            /** Base Model Licence */
+            base_model_licence: string;
+            /** Training Data */
+            training_data: string[];
+            /** Native Labels */
+            native_labels: string[];
+            /** Label Mapping */
+            label_mapping: {
+                [key: string]: string;
+            };
+            /** Languages */
+            languages: string;
+            /** Safetensors File */
+            safetensors_file: string | null;
+            /** Safetensors Sha256 */
+            safetensors_sha256: string | null;
+            /** Safetensors Size Bytes */
+            safetensors_size_bytes: number | null;
+            /**
+             * Verdict
+             * @enum {string}
+             */
+            verdict: "approved_for_research_inference" | "blocked_by_license" | "blocked_by_provenance" | "blocked_by_approval" | "incomplete_review";
+            /** Blockers */
+            blockers: string[];
+            /** Active In Registry */
+            active_in_registry: boolean;
+            /** Source Urls */
+            source_urls: string[];
+            /** Checked On */
+            checked_on: string;
+            /** Owner Decision */
+            owner_decision?: string | null;
+        };
+        /** ChangeFeatureOut */
+        ChangeFeatureOut: {
+            absolute_change: components["schemas"]["FeatureValueOut"];
+            relative_change: components["schemas"]["FeatureValueOut"];
+        };
         /** ComplianceSection */
         ComplianceSection: {
             /**
@@ -667,6 +1019,114 @@ export interface components {
             evaluated_at: string;
             /** Rule Results */
             rule_results: components["schemas"]["RuleResultSection"][];
+        };
+        /** ConsistencyFeatureOut */
+        ConsistencyFeatureOut: {
+            share_with_amount: components["schemas"]["FeatureValueOut"];
+            /** Known Months */
+            known_months: number;
+            /** Window Months */
+            window_months: number;
+        };
+        /**
+         * DemoFamilyFinancialBehaviourResponse
+         * @description `POST /api/demo/family-financial-behaviour` (only when `DEMO_MODE_ENABLED=true`): a fictional family. `household_summary` is the real household engine's output over invented household records
+         *     (so its totals, loans and EMIs are calculated, and a loan with no stated payment is reported as not provided). Nothing is read from or written to a database.
+         */
+        DemoFamilyFinancialBehaviourResponse: {
+            /**
+             * Demo
+             * @default true
+             * @constant
+             * @enum {boolean}
+             */
+            demo: true;
+            /**
+             * Scenario
+             * @default family
+             * @constant
+             * @enum {string}
+             */
+            scenario: "family";
+            /** Notice */
+            notice: string;
+            /** Household Label */
+            household_label: string;
+            /** Example Text */
+            example_text: string;
+            /** Currency */
+            currency: string;
+            /** Members */
+            members: components["schemas"]["DemoMemberOut"][];
+            household_summary: components["schemas"]["HouseholdFinancialSummaryResponse"];
+            sentiment_model: components["schemas"]["SentimentModelStatusOut"];
+            /** Data Source */
+            data_source: string;
+        };
+        /**
+         * DemoFinancialBehaviourResponse
+         * @description `POST /api/demo/financial-behaviour` (only when `DEMO_MODE_ENABLED=true`): fictional months, the real behaviour-findings and rules-baseline sentiment code run over them, and the
+         *     model status. Nothing is read from or written to a database; `demo` is always true so a caller can never mistake it for a customer's data.
+         */
+        DemoFinancialBehaviourResponse: {
+            /**
+             * Demo
+             * @default true
+             * @constant
+             * @enum {boolean}
+             */
+            demo: true;
+            /** Notice */
+            notice: string;
+            /** Example Text */
+            example_text: string;
+            /** Currency */
+            currency: string;
+            /** Months */
+            months: components["schemas"]["DemoMonthOut"][];
+            insight: components["schemas"]["PersonalizedInsightResponse"];
+            sentiment_model: components["schemas"]["SentimentModelStatusOut"];
+            /** Data Source */
+            data_source: string;
+        };
+        /**
+         * DemoMemberOut
+         * @description One FICTIONAL household member in the family demonstration: a stable demo label, a role, the member's fixed months with their calculated ratios and changes, and the records-only (or, for
+         *     the primary member, text-reading) insight produced by the same code as the customer route.
+         */
+        DemoMemberOut: {
+            /** Label */
+            label: string;
+            /** Role */
+            role: string;
+            /** Months */
+            months: components["schemas"]["DemoMonthOut"][];
+            insight: components["schemas"]["PersonalizedInsightResponse"];
+        };
+        /**
+         * DemoMonthOut
+         * @description One FICTIONAL demonstration month. `income`, `expenses` and `savings` are the fixed fixture figures; every ratio and change is calculated by the existing behaviour-feature logic
+         *     (`core/behaviour_features.py`) over the fixture months up to and including this one, so the first month has no change (with the reason) and nothing is invented here.
+         */
+        DemoMonthOut: {
+            /** Period */
+            period: string;
+            /** Income */
+            income: number | null;
+            /** Expenses */
+            expenses: number | null;
+            /** Savings */
+            savings: number | null;
+            /** Investment Contribution */
+            investment_contribution?: number | null;
+            /** Income Basis */
+            income_basis: ("net" | "gross") | null;
+            expense_to_income: components["schemas"]["FeatureValueOut"];
+            savings_to_income: components["schemas"]["FeatureValueOut"];
+            income_change: components["schemas"]["ChangeFeatureOut"];
+            expenses_change: components["schemas"]["ChangeFeatureOut"];
+            savings_change: components["schemas"]["ChangeFeatureOut"];
+            investment_contribution_change: components["schemas"]["ChangeFeatureOut"];
         };
         /** EmergencyFundSection */
         EmergencyFundSection: {
@@ -682,6 +1142,27 @@ export interface components {
             savings_first_required: boolean | null;
             /** Unavailable Reason */
             unavailable_reason: string | null;
+        };
+        /** EncryptionStatusOut */
+        EncryptionStatusOut: {
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "operational" | "not_configured" | "failed";
+            /** Algorithm */
+            algorithm: string;
+            /** Self Test Passed */
+            self_test_passed: boolean | null;
+            /** Unavailable Reason */
+            unavailable_reason: string | null;
+        };
+        /** EvidenceOut */
+        EvidenceOut: {
+            /** Label */
+            label: string;
+            /** Phrase */
+            phrase: string;
         };
         /** ExplanationSection */
         ExplanationSection: {
@@ -712,6 +1193,26 @@ export interface components {
             validation_passed: boolean;
             /** Failure Reason */
             failure_reason: string | null;
+        };
+        /** ExternalAnchorStatusOut */
+        ExternalAnchorStatusOut: {
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "not_configured" | "unreachable" | "available";
+            /** Detail */
+            detail: string;
+        };
+        /**
+         * FeatureValueOut
+         * @description A number, or the reason there is none (exactly one is set).
+         */
+        FeatureValueOut: {
+            /** Value */
+            value: number | null;
+            /** Unavailable Reason */
+            unavailable_reason: string | null;
         };
         /** FinancialHealthSection */
         FinancialHealthSection: {
@@ -1537,6 +2038,46 @@ export interface components {
              */
             updated_at: string;
         };
+        /**
+         * InsightConflictOut
+         * @description An inferred preference that disagrees with the stored risk assessment. The stored assessment stays in force; nothing is changed.
+         */
+        InsightConflictOut: {
+            /** Code */
+            code: string;
+            /** Detail */
+            detail: string;
+            /** Inferred Preference */
+            inferred_preference: string;
+            /** Stored Category */
+            stored_category: string;
+            /** Authoritative Source */
+            authoritative_source: string;
+            /**
+             * Preference Status
+             * @constant
+             * @enum {string}
+             */
+            preference_status: "unconfirmed";
+            /**
+             * Action
+             * @constant
+             * @enum {string}
+             */
+            action: "confirm_or_correct";
+        };
+        /** InsightStatementOut */
+        InsightStatementOut: {
+            /** Text */
+            text: string;
+            /** Sources */
+            sources: string[];
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "behaviour_fact" | "stated_by_user" | "risk_assessment" | "caveat";
+        };
         /** InstrumentRegimeSection */
         InstrumentRegimeSection: {
             /** Ticker */
@@ -1545,6 +2086,37 @@ export interface components {
             latest_regime: string | null;
             /** Date Range */
             date_range: string[] | null;
+        };
+        /** LedgerStatusOut */
+        LedgerStatusOut: {
+            /**
+             * Kind
+             * @constant
+             * @enum {string}
+             */
+            kind: "local_hash_chain";
+            /**
+             * Verification
+             * @enum {string}
+             */
+            verification: "valid" | "invalid" | "empty";
+            /** Events Checked */
+            events_checked: number;
+            /** First Invalid Sequence */
+            first_invalid_sequence: number | null;
+            /** Reason */
+            reason: string | null;
+            /** Note */
+            note: string;
+        };
+        /** LegacyDataStatusOut */
+        LegacyDataStatusOut: {
+            /** Encrypted */
+            encrypted: boolean;
+            /** Unprotected Categories */
+            unprotected_categories: string[];
+            /** Note */
+            note: string;
         };
         /** MarketSection */
         MarketSection: {
@@ -1569,6 +2141,125 @@ export interface components {
             portfolio: string | null;
             /** Compliance Rules */
             compliance_rules: string | null;
+        };
+        /**
+         * ModelVsRulesOut
+         * @description One answering model's label set beside the rules-based reading. `agrees` is agreement of two classifiers, never proof that either is right.
+         */
+        ModelVsRulesOut: {
+            /**
+             * Slot
+             * @enum {string}
+             */
+            slot: "financial" | "general";
+            /** Rules Label */
+            rules_label: ("positive" | "negative" | "neutral" | "mixed" | "uncertain" | "insufficient_evidence") | null;
+            /** Model Label */
+            model_label: ("positive" | "negative" | "neutral") | null;
+            /**
+             * Relation
+             * @enum {string}
+             */
+            relation: "agrees" | "disagrees" | "rules_abstained" | "not_compared";
+            /** Explanation */
+            explanation: string;
+        };
+        /** MonthlyRecordListResponse */
+        MonthlyRecordListResponse: {
+            /** Customer Id */
+            customer_id: number;
+            /** Records */
+            records: components["schemas"]["MonthlyRecordResponse"][];
+        };
+        /** MonthlyRecordResponse */
+        MonthlyRecordResponse: {
+            /** Customer Id */
+            customer_id: number;
+            /** Period */
+            period: string;
+            /** Income */
+            income: number | null;
+            /** Expenses */
+            expenses: number | null;
+            /** Savings */
+            savings: number | null;
+            /** Investment Contribution */
+            investment_contribution: number | null;
+            /** Income Basis */
+            income_basis: ("net" | "gross") | null;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
+        };
+        /**
+         * MonthlyRecordUpdate
+         * @description Upsert for one calendar month. Every field is optional. A field that is
+         *     OMITTED keeps its stored value; a field sent as an explicit `null` clears
+         *     it back to "not reported". `0` is a value the customer is stating, and is
+         *     never produced from a missing field. Amounts are rupees for the month:
+         *     `income` (on the stated `income_basis`), `expenses` (living costs only,
+         *     excluding money moved to savings or investments), `savings` (newly set
+         *     aside) and `investment_contribution` (newly invested). A transfer from
+         *     savings into an investment is neither new savings nor new income.
+         */
+        MonthlyRecordUpdate: {
+            /** Income */
+            income?: number | null;
+            /** Expenses */
+            expenses?: number | null;
+            /** Savings */
+            savings?: number | null;
+            /** Investment Contribution */
+            investment_contribution?: number | null;
+            /** Income Basis */
+            income_basis?: ("net" | "gross") | null;
+        };
+        /**
+         * PersonalizedInsightRequest
+         * @description Optional text the user chose to write. It is analysed in memory and is never stored, logged or sent anywhere. The length and content limits are checked by
+         *     the service (not here) so that a rejected text is never echoed back in a validation message.
+         */
+        PersonalizedInsightRequest: {
+            /** Text */
+            text?: string | null;
+        };
+        /**
+         * PersonalizedInsightResponse
+         * @description Display-only. No recommendation, risk profile, goal or compliance decision reads or changes because of this response.
+         */
+        PersonalizedInsightResponse: {
+            /** Customer Id */
+            customer_id: number;
+            /**
+             * Analysis Timestamp
+             * Format: date-time
+             */
+            analysis_timestamp: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "complete" | "behaviour_only" | "profile_only" | "unavailable";
+            /** Model Version */
+            model_version: string;
+            /** Data Source */
+            data_source: string;
+            behaviour: components["schemas"]["BehaviourFindingsOut"];
+            user_sentiment: components["schemas"]["UserSentimentOut"];
+            risk_profile: components["schemas"]["RiskProfileOut"] | null;
+            /** Preference Confirmation */
+            preference_confirmation: string;
+            /** Statements */
+            statements: components["schemas"]["InsightStatementOut"][];
+            /** Conflicts */
+            conflicts: components["schemas"]["InsightConflictOut"][];
+            /** Caveats */
+            caveats: string[];
+            /** Purpose */
+            purpose: string;
+            transformer_research?: components["schemas"]["TransformerResearchOut"] | null;
         };
         /** PortfolioSection */
         PortfolioSection: {
@@ -1676,6 +2367,71 @@ export interface components {
              */
             created_at: string;
         };
+        /** ProtectedNoteIn */
+        ProtectedNoteIn: {
+            /** Content */
+            content: string;
+        };
+        /**
+         * ProtectedNoteListOut
+         * @description Metadata only: listing never decrypts anything.
+         */
+        ProtectedNoteListOut: {
+            /** Items */
+            items: components["schemas"]["ProtectedNoteMetadataOut"][];
+        };
+        /** ProtectedNoteMetadataOut */
+        ProtectedNoteMetadataOut: {
+            /** Id */
+            id: string;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
+            protection: components["schemas"]["ProtectionInfoOut"];
+        };
+        /** ProtectedNoteOut */
+        ProtectedNoteOut: {
+            /** Id */
+            id: string;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Updated At
+             * Format: date-time
+             */
+            updated_at: string;
+            protection: components["schemas"]["ProtectionInfoOut"];
+            /** Content */
+            content: string;
+        };
+        /**
+         * ProtectionInfoOut
+         * @description How this record is stored. Facts about the envelope; never key material.
+         */
+        ProtectionInfoOut: {
+            /** Encrypted At Rest */
+            encrypted_at_rest: boolean;
+            /** Algorithm */
+            algorithm: string;
+            /** Envelope Version */
+            envelope_version: number;
+            /**
+             * Storage
+             * @constant
+             * @enum {string}
+             */
+            storage: "off_chain_private_database";
+        };
         /** QARequest */
         QARequest: {
             /** Question */
@@ -1756,6 +2512,12 @@ export interface components {
             /** Questions */
             questions: components["schemas"]["Question"][];
         };
+        /** RatioFeaturesOut */
+        RatioFeaturesOut: {
+            expense_to_income: components["schemas"]["FeatureValueOut"];
+            savings_to_income: components["schemas"]["FeatureValueOut"];
+            investment_contribution_to_income: components["schemas"]["FeatureValueOut"];
+        };
         /** RecommendationProvenanceSection */
         RecommendationProvenanceSection: {
             /** Phase14 Version */
@@ -1823,6 +2585,94 @@ export interface components {
             /** Evaluated At */
             evaluated_at: string;
         };
+        /** ResearchComparisonOut */
+        ResearchComparisonOut: {
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "agreement" | "disagreement" | "single_model" | "model_unavailable" | "one_model_unavailable" | "both_models_unavailable" | "no_model_configured" | "uncertain";
+            /** Shared Label */
+            shared_label: ("positive" | "negative" | "neutral") | null;
+            /** Explanation */
+            explanation: string;
+            /** Model Vs Rules */
+            model_vs_rules: components["schemas"]["ModelVsRulesOut"][];
+        };
+        /**
+         * ResearchModelResultOut
+         * @description One research model slot's independent answer (ADR-053, role-keyed by ADR-055). No text, no path. Scores are the model's own and are NOT a confidence: the probabilities are one uncalibrated
+         *     softmax, valid only within this model. A slot with no registered candidate has `model_id` null and says why in `unavailable_reason`.
+         */
+        ResearchModelResultOut: {
+            /**
+             * Slot
+             * @enum {string}
+             */
+            slot: "financial" | "general";
+            /** Display Name */
+            display_name: string;
+            /** Model Id */
+            model_id: string | null;
+            /** Revision */
+            revision: string | null;
+            /**
+             * Availability
+             * @enum {string}
+             */
+            availability: "available" | "unavailable" | "loading";
+            /** Unavailable Reason */
+            unavailable_reason: ("disabled" | "licence_not_verified" | "format_not_allowed" | "dependencies_missing" | "weights_missing" | "manifest_invalid" | "revision_mismatch" | "artifact_corrupt" | "label_unsupported" | "load_failed" | "timeout" | "inference_failed" | "invalid_output" | "invalid_configuration" | "input_not_eligible" | "loading" | "internal_error" | "no_candidate_approved" | "registration_pending") | null;
+            /** Native Label */
+            native_label: string | null;
+            /** Normalized Label */
+            normalized_label: ("positive" | "negative" | "neutral") | null;
+            /** Raw Scores */
+            raw_scores: {
+                [key: string]: number;
+            } | null;
+            /** Probabilities */
+            probabilities: {
+                [key: string]: number;
+            } | null;
+            /** Probability Kind */
+            probability_kind: "raw_softmax_uncalibrated" | null;
+            /** Processing Ms */
+            processing_ms: number | null;
+        };
+        /**
+         * ResearchSlotStatusOut
+         * @description Which registered candidate, if any, fills a role. `registration_pending` means an owner-approved candidate exists but registering it as runnable has not been approved.
+         */
+        ResearchSlotStatusOut: {
+            /**
+             * Role
+             * @enum {string}
+             */
+            role: "financial" | "general";
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "registered" | "registration_pending" | "no_candidate_approved";
+            /** Candidate Key */
+            candidate_key: string | null;
+        };
+        /** RiskProfileOut */
+        RiskProfileOut: {
+            /** Category */
+            category: string;
+            /** Source */
+            source: string;
+            /** Assessed At */
+            assessed_at: string | null;
+            /**
+             * Remains Authoritative
+             * @constant
+             * @enum {boolean}
+             */
+            remains_authoritative: true;
+        };
         /** RiskSection */
         RiskSection: {
             /** Risk Category */
@@ -1856,6 +2706,22 @@ export interface components {
             message: string;
             /** Reason */
             reason: string | null;
+        };
+        /**
+         * RulesBaselineOut
+         * @description What the deterministic rules baseline alone concluded, kept beside a trained model's reading so a disagreement is never hidden.
+         */
+        RulesBaselineOut: {
+            /** Label */
+            label: ("positive" | "negative" | "neutral" | "mixed" | "uncertain" | "insufficient_evidence") | null;
+            /**
+             * Method
+             * @constant
+             * @enum {string}
+             */
+            method: "rules_baseline";
+            /** Model Version */
+            model_version: string;
         };
         /** ScenarioCompareRequest */
         ScenarioCompareRequest: {
@@ -1899,6 +2765,311 @@ export interface components {
             compliance_decision: ("PASS" | "WARN" | "REJECT") | null;
             /** Recommendation Status */
             recommendation_status: ("approved" | "savings_first" | "blocked_rejected" | "failed") | null;
+        };
+        /**
+         * SecurityStatusOut
+         * @description Privacy-safe security status for ONE profile. Everything here is computed by the backend from real checks.
+         */
+        SecurityStatusOut: {
+            /** Prototype Notice */
+            prototype_notice: string;
+            /**
+             * Storage
+             * @constant
+             * @enum {string}
+             */
+            storage: "off_chain_private_database";
+            /** Protected Note Count */
+            protected_note_count: number;
+            encryption: components["schemas"]["EncryptionStatusOut"];
+            ledger: components["schemas"]["LedgerStatusOut"];
+            external_anchor: components["schemas"]["ExternalAnchorStatusOut"];
+            existing_data: components["schemas"]["LegacyDataStatusOut"];
+            /** Limitations */
+            limitations: string[];
+        };
+        /**
+         * SentimentModelStatusOut
+         * @description `GET /api/sentiment-model/status`: whether a trained model is in use. No path, no secret, no text. `unavailable` means it is switched on but cannot be used, and says why.
+         */
+        SentimentModelStatusOut: {
+            /** Enabled */
+            enabled: boolean;
+            /**
+             * State
+             * @enum {string}
+             */
+            state: "disabled" | "ready" | "unavailable";
+            /** Reason */
+            reason: ("dependencies_missing" | "artifact_missing" | "artifact_corrupt" | "artifact_incompatible" | "path_not_allowed" | "not_validated" | "version_mismatch" | "load_failed" | "inference_failed" | "timeout" | "invalid_output" | "invalid_configuration" | "below_threshold") | null;
+            /**
+             * Method When Used
+             * @enum {string}
+             */
+            method_when_used: "rules_baseline" | "hybrid";
+            /** Model Name */
+            model_name: string | null;
+            /** Model Version */
+            model_version: string | null;
+            /** Validation Status */
+            validation_status: string | null;
+            /** Calibration Status */
+            calibration_status: ("calibrated" | "uncalibrated") | null;
+            /** Intensity Available */
+            intensity_available: boolean;
+            /** Fallback Enabled */
+            fallback_enabled: boolean;
+            /** Dependencies Available */
+            dependencies_available: boolean;
+            /** Data Source */
+            data_source: string;
+            /**
+             * Research Models
+             * @default []
+             */
+            research_models: components["schemas"]["TransformerCandidateStatusOut"][];
+            /**
+             * Reviewed Candidates
+             * @default []
+             */
+            reviewed_candidates: components["schemas"]["CandidateReviewOut"][];
+            /**
+             * Research Slots
+             * @default []
+             */
+            research_slots: components["schemas"]["ResearchSlotStatusOut"][];
+            /**
+             * Transformers Enabled
+             * @default false
+             */
+            transformers_enabled: boolean;
+            /**
+             * Production Method
+             * @default user_text_rules_v1
+             * @constant
+             * @enum {string}
+             */
+            production_method: "user_text_rules_v1";
+            /**
+             * Production Activation
+             * @default not_activated
+             * @constant
+             * @enum {string}
+             */
+            production_activation: "not_activated";
+        };
+        /**
+         * StatedPreferenceOut
+         * @description A possible preference read from the user's own words. Never an official risk assessment. Only `unconfirmed` is produced today: confirmations are not stored.
+         */
+        StatedPreferenceOut: {
+            /**
+             * Code
+             * @enum {string}
+             */
+            code: "capital_preservation" | "growth_seeking" | "liquidity_access" | "debt_reduction" | "balanced_growth";
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "unconfirmed" | "confirmed" | "rejected" | "not_inferred";
+            /** Requires Confirmation */
+            requires_confirmation: boolean;
+            evidence: components["schemas"]["EvidenceOut"];
+        };
+        /**
+         * TransformerCandidateStatusOut
+         * @description Per-candidate status for `GET /api/sentiment-model/status`. No local path, no secret. Built without loading, hashing or verifying anything.
+         */
+        TransformerCandidateStatusOut: {
+            /** Model Key */
+            model_key: string;
+            /**
+             * Role
+             * @enum {string}
+             */
+            role: "financial" | "general";
+            /** Display Name */
+            display_name: string;
+            /** Repository */
+            repository: string;
+            /** Revision */
+            revision: string;
+            /** Weight Licence */
+            weight_licence: string;
+            /**
+             * Licence Status
+             * @enum {string}
+             */
+            licence_status: "license_verified" | "license_unverified" | "blocked_by_licence";
+            /**
+             * Format Status
+             * @enum {string}
+             */
+            format_status: "safetensors_available" | "no_safetensors_published";
+            /**
+             * Registration
+             * @enum {string}
+             */
+            registration: "registered" | "pending_owner_approval" | "historical";
+            /** Blocker */
+            blocker: string | null;
+            /** Weights Present */
+            weights_present: boolean;
+            /** Loaded */
+            loaded: boolean;
+            /** Inference Enabled */
+            inference_enabled: boolean;
+            /**
+             * Availability
+             * @enum {string}
+             */
+            availability: "disabled" | "blocked" | "weights_missing" | "not_loaded" | "loading" | "ready" | "unavailable";
+            /** Reason */
+            reason: string | null;
+            /** Checked On */
+            checked_on: string;
+        };
+        /**
+         * TransformerResearchOut
+         * @description Research output, display only. `production_effect` is always `none`: no risk, goal, portfolio, recommendation or compliance result reads or changes because of it.
+         */
+        TransformerResearchOut: {
+            /** Enabled */
+            enabled: boolean;
+            /**
+             * Mode
+             * @constant
+             * @enum {string}
+             */
+            mode: "research_experimental";
+            /**
+             * Validation Status
+             * @constant
+             * @enum {string}
+             */
+            validation_status: "not_human_validated";
+            /**
+             * Production Effect
+             * @constant
+             * @enum {string}
+             */
+            production_effect: "none";
+            rules_baseline: components["schemas"]["RulesBaselineOut"] | null;
+            /** Models */
+            models: components["schemas"]["ResearchModelResultOut"][];
+            comparison: components["schemas"]["ResearchComparisonOut"];
+            /** Overall Sentiment */
+            overall_sentiment: ("positive" | "negative" | "neutral" | "mixed" | "uncertain" | "insufficient_evidence") | null;
+            /**
+             * Overall Source
+             * @enum {string}
+             */
+            overall_source: "transformer_comparison" | "rules_baseline_fallback";
+            /**
+             * Rules Relation
+             * @enum {string}
+             */
+            rules_relation: "agrees" | "disagrees" | "rules_abstained" | "not_compared";
+            /** Uncertainty Reason */
+            uncertainty_reason: ("models_disagree" | "rules_disagree" | "context_safeguard" | "transformers_unavailable" | "one_model_unavailable" | "input_not_eligible" | "model_label_uncertain" | "no_model_registered") | null;
+            /** Model Versions */
+            model_versions: {
+                [key: string]: string;
+            };
+            /** Model Availability */
+            model_availability: {
+                [key: string]: string;
+            };
+            /** Processing Metadata */
+            processing_metadata: {
+                [key: string]: number | boolean | string | null;
+            };
+            /** Notices */
+            notices: string[];
+        };
+        /**
+         * UserSentimentOut
+         * @description A suggestion for the user to confirm, never a fact about them. `confidence` is null unless a calibrated model supplied one (the rules baseline never does), and
+         *     `confidence_band` is then `unavailable`. Emotional tone is not risk tolerance. `abstained` means the pipeline declined to interpret the text (see `abstain_reason`).
+         */
+        UserSentimentOut: {
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "analysed" | "unavailable";
+            /** Unavailable Reason */
+            unavailable_reason: string | null;
+            /** Sentiment */
+            sentiment: ("positive" | "negative" | "neutral" | "mixed" | "uncertain" | "insufficient_evidence") | null;
+            /** Emotional Tone */
+            emotional_tone: ("concerned" | "hopeful" | "frustrated" | "calm" | "neutral" | "unknown") | null;
+            /** Financial Relevance */
+            financial_relevance: ("relevant" | "unrelated" | "ambiguous") | null;
+            /** Topics */
+            topics: ("investment_risk" | "saving" | "debt" | "goals" | "liquidity" | "market" | "retirement" | "emergency_fund")[];
+            /** Preferences */
+            preferences: components["schemas"]["StatedPreferenceOut"][];
+            /** Evidence */
+            evidence: components["schemas"]["EvidenceOut"][];
+            /** Confidence */
+            confidence: number | null;
+            /**
+             * Confidence Band
+             * @enum {string}
+             */
+            confidence_band: "high" | "medium" | "low" | "unavailable";
+            /** Requires Confirmation */
+            requires_confirmation: boolean;
+            /** Abstained */
+            abstained: boolean;
+            /** Abstain Reason */
+            abstain_reason: ("too_short" | "low_quality_text" | "unsupported_language" | "unrelated_text" | "ambiguous_context" | "no_usable_evidence" | "model_confidence_below_threshold" | "model_unavailable") | null;
+            /**
+             * Interpretation State
+             * @enum {string}
+             */
+            interpretation_state: "valid" | "weak" | "abstained" | "unavailable";
+            /** Fallback Used */
+            fallback_used: boolean;
+            /** Fallback Reason */
+            fallback_reason: ("dependencies_missing" | "artifact_missing" | "artifact_corrupt" | "artifact_incompatible" | "path_not_allowed" | "not_validated" | "version_mismatch" | "load_failed" | "inference_failed" | "timeout" | "invalid_output" | "invalid_configuration" | "below_threshold") | null;
+            /**
+             * Method
+             * @enum {string}
+             */
+            method: "rules_baseline" | "trained_model" | "hybrid" | "unavailable";
+            /** Model Name */
+            model_name: string | null;
+            /** Model Version */
+            model_version: string;
+            /** Validation Status */
+            validation_status: string;
+            /** Class Probabilities */
+            class_probabilities: {
+                [key: string]: number;
+            } | null;
+            /**
+             * Confidence Calibration Status
+             * @enum {string}
+             */
+            confidence_calibration_status: "calibrated" | "uncalibrated" | "not_applicable";
+            /** Sentiment Intensity */
+            sentiment_intensity: number | null;
+            /** Intensity Available */
+            intensity_available: boolean;
+            rules_baseline: components["schemas"]["RulesBaselineOut"] | null;
+            /** Disagreement */
+            disagreement: boolean;
+            /**
+             * Privacy Status
+             * @constant
+             * @enum {string}
+             */
+            privacy_status: "in_memory_only";
+            /** Limitations */
+            limitations: string[];
         };
         /** ValidationError */
         ValidationError: {
@@ -2207,6 +3378,287 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["FinancialInputsResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_monthly_records_api_profiles__profile_id__monthly_financial_records_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MonthlyRecordListResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_monthly_record_api_profiles__profile_id__monthly_financial_records__period__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: number;
+                period: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MonthlyRecordResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    put_monthly_record_api_profiles__profile_id__monthly_financial_records__period__put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: number;
+                period: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["MonthlyRecordUpdate"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["MonthlyRecordResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_monthly_record_api_profiles__profile_id__monthly_financial_records__period__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: number;
+                period: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_behaviour_features_api_profiles__profile_id__behaviour_features_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["BehaviourFeaturesResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_personalized_insight_api_profiles__profile_id__personalized_insights_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                profile_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PersonalizedInsightRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["PersonalizedInsightResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_sentiment_model_status_api_sentiment_model_status_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SentimentModelStatusOut"];
+                };
+            };
+        };
+    };
+    create_demo_financial_behaviour_api_demo_financial_behaviour_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PersonalizedInsightRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DemoFinancialBehaviourResponse"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_demo_family_financial_behaviour_api_demo_family_financial_behaviour_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PersonalizedInsightRequest"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DemoFamilyFinancialBehaviourResponse"];
                 };
             };
             /** @description Validation Error */
@@ -3206,6 +4658,219 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_protected_notes_api_profiles__profile_id__protected_notes_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Phase 32: the id of the customer the session is associated with (the frontend's single `profileId`). Required by every household route, which authorizes against household membership. The prototype has no server session, so this is an ASSERTED identity -- it stops accidental or URL-edited cross-household access, not a malicious client (docs/DECISIONS.md ADR-031, docs/SECURITY.md). */
+                "X-Customer-Id"?: string | null;
+            };
+            path: {
+                profile_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProtectedNoteListOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    create_protected_note_api_profiles__profile_id__protected_notes_post: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Phase 32: the id of the customer the session is associated with (the frontend's single `profileId`). Required by every household route, which authorizes against household membership. The prototype has no server session, so this is an ASSERTED identity -- it stops accidental or URL-edited cross-household access, not a malicious client (docs/DECISIONS.md ADR-031, docs/SECURITY.md). */
+                "X-Customer-Id"?: string | null;
+            };
+            path: {
+                profile_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProtectedNoteIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProtectedNoteMetadataOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_protected_note_api_profiles__profile_id__protected_notes__record_id__get: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Phase 32: the id of the customer the session is associated with (the frontend's single `profileId`). Required by every household route, which authorizes against household membership. The prototype has no server session, so this is an ASSERTED identity -- it stops accidental or URL-edited cross-household access, not a malicious client (docs/DECISIONS.md ADR-031, docs/SECURITY.md). */
+                "X-Customer-Id"?: string | null;
+            };
+            path: {
+                profile_id: number;
+                record_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProtectedNoteOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    update_protected_note_api_profiles__profile_id__protected_notes__record_id__put: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Phase 32: the id of the customer the session is associated with (the frontend's single `profileId`). Required by every household route, which authorizes against household membership. The prototype has no server session, so this is an ASSERTED identity -- it stops accidental or URL-edited cross-household access, not a malicious client (docs/DECISIONS.md ADR-031, docs/SECURITY.md). */
+                "X-Customer-Id"?: string | null;
+            };
+            path: {
+                profile_id: number;
+                record_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ProtectedNoteIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["ProtectedNoteMetadataOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    delete_protected_note_api_profiles__profile_id__protected_notes__record_id__delete: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Phase 32: the id of the customer the session is associated with (the frontend's single `profileId`). Required by every household route, which authorizes against household membership. The prototype has no server session, so this is an ASSERTED identity -- it stops accidental or URL-edited cross-household access, not a malicious client (docs/DECISIONS.md ADR-031, docs/SECURITY.md). */
+                "X-Customer-Id"?: string | null;
+            };
+            path: {
+                profile_id: number;
+                record_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    get_security_status_api_profiles__profile_id__security_status_get: {
+        parameters: {
+            query?: never;
+            header?: {
+                /** @description Phase 32: the id of the customer the session is associated with (the frontend's single `profileId`). Required by every household route, which authorizes against household membership. The prototype has no server session, so this is an ASSERTED identity -- it stops accidental or URL-edited cross-household access, not a malicious client (docs/DECISIONS.md ADR-031, docs/SECURITY.md). */
+                "X-Customer-Id"?: string | null;
+            };
+            path: {
+                profile_id: number;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SecurityStatusOut"];
+                };
             };
             /** @description Validation Error */
             422: {

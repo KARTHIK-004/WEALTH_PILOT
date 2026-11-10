@@ -15,10 +15,14 @@ FAMILY DEMO (after `setup`):
     python scripts/seed_demo_data.py verify-family
     python scripts/seed_demo_data.py reset-family
 
+FULL-PIPELINE HOUSEHOLD (ADR-051): `setup` also builds the household of the full-pipeline persona -- "WealthPilot Demo - Full Pipeline Household",
+WPDEMO-E (primary) and its partner WPDEMO-F -- and `verify` / `reset` cover it. The *-family modes address it with `--household pipeline`
+(`--household family`, the default, is the B + C family above).
+
 THE DATA lives in `demo_data/` (see its README) -- the single source of every
 persona, household record, scenario input and expected outcome this script
 uses; `demo_data_package.py` loads it and `validate_demo_data.py` checks it.
-`setup` seeds all four individual personas: the three this script owns and
+`setup` seeds all six individual personas: the five this script owns and
 Phase 24's canonical "WealthPilot Demo Customer" (the pending-information
 persona), which it only creates if it is missing and which `reset` never
 deletes. `verify` also checks each persona's analysis against its expected
@@ -106,6 +110,7 @@ since Phase 28 gave them a real endpoint.
 from __future__ import annotations
 
 import argparse
+import json
 import sys
 import time
 from pathlib import Path
@@ -116,7 +121,7 @@ import httpx
 from sqlalchemy import text
 
 from demo_data_package import (
-    FAMILY_DEMO_KEY,
+    PIPELINE_HOUSEHOLD_KEY,
     analysis_state,
     load_expected_results,
     load_family,
@@ -138,7 +143,7 @@ DEFAULT_BASE_URL = "http://127.0.0.1:8000"
 # risk-labeled FAR-Trans customerID, never invented. Each persona's purpose
 # is stated in its own `demo_data/profiles/*.json`.
 #
-#   DEMO_PERSONAS          the three personas this script owns (A, B, C):
+#   DEMO_PERSONAS          the five personas this script owns (A, B, C, E, F):
 #                          created if missing, and the only ones `reset`
 #                          deletes (exact names).
 #   FALLBACK_DEMO_PERSONA  Phase 24's canonical "WealthPilot Demo Customer"
@@ -160,6 +165,10 @@ DEMO_PERSONAS = [p for p in ALL_DEMO_PERSONAS if p["owned_by_seed"]]
 FALLBACK_DEMO_PERSONA = next(p for p in ALL_DEMO_PERSONAS if not p["owned_by_seed"])
 FAMILY_DEMO = load_family()
 FAMILY_RECORD_KEYS = load_family_record_keys()
+# The household of the full-pipeline persona (ADR-051): WPDEMO-E (primary) and its partner WPDEMO-F. `setup` builds it after the personas, so one command leaves
+# the full-pipeline account complete; `setup-family --household pipeline` (and verify / reset) address it on its own.
+PIPELINE_HOUSEHOLD = load_family(household_key=PIPELINE_HOUSEHOLD_KEY)
+HOUSEHOLD_DEMOS = {"family": FAMILY_DEMO, "pipeline": PIPELINE_HOUSEHOLD}
 EXPECTED_RESULTS = load_expected_results()
 
 
@@ -240,13 +249,26 @@ def seed_persona(client: httpx.Client, persona: dict, link_risk_data=_set_extern
 
     if "financial_inputs" in persona:
         stored = client.get(f"/api/profiles/{customer_id}/financial-inputs").raise_for_status().json()
-        if stored["monthly_essential_expenses"] is not None:
+        if any(stored[field] is not None for field in FINANCIAL_INPUT_FIELDS):
             report["existing"].append("financial inputs")
         else:
             client.put(
                 f"/api/profiles/{customer_id}/financial-inputs", json=persona["financial_inputs"]
             ).raise_for_status()
             report["created"].append("financial inputs")
+
+    if "monthly_records" in persona:
+        # Only months the customer has NOT already reported are written: a stored month (this script's or the user's own) is never overwritten.
+        stored = {r["period"] for r in client.get(f"/api/profiles/{customer_id}/monthly-financial-records").raise_for_status().json()["records"]}
+        missing = [r for r in persona["monthly_records"] if r["period"] not in stored]
+        for record in missing:
+            body = {k: v for k, v in record.items() if k != "period"}
+            client.put(f"/api/profiles/{customer_id}/monthly-financial-records/{record['period']}", json=body).raise_for_status()
+        present = len(persona["monthly_records"]) - len(missing)
+        if missing:
+            report["created"].append(f"monthly records ({len(missing)} of {len(persona['monthly_records'])})")
+        if present:
+            report["existing"].append(f"monthly records ({present})")
     return report
 
 
@@ -273,6 +295,22 @@ def setup(client: httpx.Client) -> None:
         if analysis["recommendation"]:
             print(f"    recommendation: status={analysis['recommendation']['status']!r} "
                   f"strategy={analysis['recommendation'].get('selected_strategy')!r}")
+
+    # The full-pipeline account is complete only with its household (ADR-051): WPDEMO-E (primary) and its partner WPDEMO-F, with the household's own records.
+    print(f"\n=== {PIPELINE_HOUSEHOLD['household_name']} ({PIPELINE_HOUSEHOLD['demo_key']}) ===")
+    _print_household_report(setup_family(client, PIPELINE_HOUSEHOLD))
+
+
+def _print_household_report(report: dict) -> None:
+    print(f"household_id={report['household_id']}")
+    print(f"created ({len(report['created'])}): {report['created']}")
+    print(f"already present ({len(report['existing'])}): {report['existing']}")
+    summary = report["summary"]
+    print(f"summary: recurring income={summary['income']['recurring_monthly']}, "
+          f"recurring expenses={summary['expenses']['recurring_monthly']}, "
+          f"monthly cash flow={summary['cash_flow']['monthly']}, net position={summary['net_position']['value']}, "
+          f"emergency fund required={summary['emergency_fund']['required']} "
+          f"({summary['emergency_fund']['status']})")
 
 
 def verify(client: httpx.Client) -> bool:
@@ -313,6 +351,8 @@ def verify(client: httpx.Client) -> bool:
                   "extra ones were created by the frontend fallback, per browser (a disclosed Phase 24 "
                   "limitation, ADR-030) -- never by this script -- and are left in place.")
         check(all(profile[k] == v for k, v in persona["profile"].items()), "profile matches the dataset")
+        if isinstance(risk_inputs, str):  # raw SQL returns a JSON column as text on SQLite (the local demo database); PostgreSQL returns a dict
+            risk_inputs = json.loads(risk_inputs)
         link = (risk_inputs or {}).get("external_customer_id")
         check(link == persona["external_customer_id"], f"risk data link is {persona['external_customer_id']!r}")
         check(sorted((a["question_number"], a["option_key"]) for a in answers)
@@ -327,6 +367,13 @@ def verify(client: httpx.Client) -> bool:
         else:
             check(all(inputs[k] is None for k in FINANCIAL_INPUT_FIELDS),
                   "no financial inputs stored (unknown stays null, never zero)")
+        if "monthly_records" in persona:
+            listed = {r["period"]: r for r in client.get(f"/api/profiles/{customer_id}/monthly-financial-records").raise_for_status().json()["records"]}
+            check(all(p["period"] in listed and all(listed[p["period"]][k] == v for k, v in p.items() if k != "period") for p in persona["monthly_records"]),
+                  f"monthly records match the dataset ({len(persona['monthly_records'])} months)")
+            insight = client.post(f"/api/profiles/{customer_id}/personalized-insights", json={"text": None}).raise_for_status().json()
+            check(insight["behaviour"]["observation_count"] >= len(persona["monthly_records"]),
+                  "behaviour findings are computed from the reported months")
 
         analysis = client.post("/api/analysis", json={"profile_id": customer_id}).raise_for_status().json()
         state = analysis_state(analysis)
@@ -334,6 +381,11 @@ def verify(client: httpx.Client) -> bool:
         differs = {k: {"expected": v, "actual": state.get(k)} for k, v in expected.items() if state.get(k) != v}
         check(not differs, f"analysis {analysis['analysis_id']} ({state['analysis_status']}): expected states hold"
               + (f" -- differs: {differs}" if differs else ""))
+
+    print(f"\n=== {PIPELINE_HOUSEHOLD['household_name']} ({PIPELINE_HOUSEHOLD['demo_key']}) ===")
+    household_ok, lines = verify_family(client, PIPELINE_HOUSEHOLD)
+    print("\n".join(f"  {line}" for line in lines))
+    ok = ok and household_ok
 
     print(f"\nVERIFY {'PASSED' if ok else 'FAILED'}")
     return ok
@@ -351,13 +403,14 @@ def reset(base_url: str) -> None:
     engine = get_engine(settings.database_url)
     names = [p["name"] for p in DEMO_PERSONAS]
     with engine.begin() as conn:
-        # The family demo is built on two of these personas; remove it first so
-        # deleting them never leaves an orphaned household behind.
-        primary = conn.execute(
-            text("SELECT id FROM customers WHERE name = :n ORDER BY id LIMIT 1"), {"n": FAMILY_DEMO["primary_name"]}
-        ).scalar()
-        if primary is not None:
-            print(f"  deleted {_delete_family_household(conn, FAMILY_DEMO['household_name'], primary)} family demo household row(s)")
+        # The demo households are built on these personas; remove them first so
+        # deleting the personas never leaves an orphaned household behind.
+        for spec in HOUSEHOLD_DEMOS.values():
+            primary = conn.execute(
+                text("SELECT id FROM customers WHERE name = :n ORDER BY id LIMIT 1"), {"n": spec["primary_name"]}
+            ).scalar()
+            if primary is not None:
+                print(f"  deleted {_delete_family_household(conn, spec['household_name'], primary)} household row(s) named {spec['household_name']!r}")
         ids = [
             r[0]
             for r in conn.execute(
@@ -367,7 +420,7 @@ def reset(base_url: str) -> None:
         if not ids:
             print("No demo persona customers found -- nothing to reset.")
             return
-        for table in ("questionnaire_answers", "financial_goals", "financial_inputs", "agent_logs", "analysis_runs", "risk_assessments", "recommendations"):
+        for table in ("questionnaire_answers", "financial_goals", "financial_inputs", "monthly_financial_records", "agent_logs", "analysis_runs", "risk_assessments", "recommendations"):
             result = conn.execute(text(f"DELETE FROM {table} WHERE customer_id = ANY(:ids)"), {"ids": ids})
             print(f"  deleted {result.rowcount} row(s) from {table}")
         result = conn.execute(text("DELETE FROM customers WHERE id = ANY(:ids)"), {"ids": ids})
@@ -446,7 +499,7 @@ def setup_family(client: httpx.Client, spec: dict | None = None) -> dict:
         response.raise_for_status()
         report["created"].append(f"member {member['name']}")
 
-    for resource, key in FAMILY_RECORD_KEYS.items():
+    for resource, key in spec["record_keys"].items():
         stored = client.get(f"/api/households/{hid}/{resource}", headers=who).raise_for_status().json()
         have = {row[key] for row in stored}
         for record in spec[resource]:
@@ -498,7 +551,7 @@ def verify_family(client: httpx.Client, spec: dict | None = None) -> tuple[bool,
                               "is_dependent", "created_at", "updated_at"},
           "member entries carry identity/membership fields only")
 
-    for resource, key in FAMILY_RECORD_KEYS.items():
+    for resource, key in spec["record_keys"].items():
         stored = client.get(f"/api/households/{hid}/{resource}", headers=who).json()
         keys = [row[key] for row in stored]
         expected = [record[key] for record in spec[resource]]
@@ -506,8 +559,8 @@ def verify_family(client: httpx.Client, spec: dict | None = None) -> tuple[bool,
 
     summary = client.get(f"/api/households/{hid}/financial-summary", headers=who)
     check(summary.status_code == 200, "financial summary readable by the primary")
-    if spec is FAMILY_DEMO:
-        expected = EXPECTED_RESULTS[FAMILY_DEMO_KEY]
+    if spec.get("demo_key") in EXPECTED_RESULTS:
+        expected = EXPECTED_RESULTS[spec["demo_key"]]
         goals = client.get(f"/api/households/{hid}/goals", headers=who)
         check(len(members) == expected["member_count"], f"member count is the expected {expected['member_count']}")
         check((summary.status_code == 200) == expected["household_summary_available"],
@@ -545,17 +598,18 @@ def _delete_family_household(conn, household_name: str, primary_id: int) -> int:
     return result.rowcount
 
 
-def reset_family() -> None:
+def reset_family(spec: dict | None = None) -> None:
+    spec = spec or FAMILY_DEMO
     settings = get_settings()
     engine = get_engine(settings.database_url)
     with engine.begin() as conn:
         primary = conn.execute(
-            text("SELECT id FROM customers WHERE name = :n ORDER BY id LIMIT 1"), {"n": FAMILY_DEMO["primary_name"]}
+            text("SELECT id FROM customers WHERE name = :n ORDER BY id LIMIT 1"), {"n": spec["primary_name"]}
         ).scalar()
         if primary is None:
-            print("Family primary persona not found -- nothing to reset.")
+            print("Household primary persona not found -- nothing to reset.")
             return
-        deleted = _delete_family_household(conn, FAMILY_DEMO["household_name"], primary)
+        deleted = _delete_family_household(conn, spec["household_name"], primary)
     print(f"  deleted {deleted} demo household row(s) (members, records and goals cascade)")
     print("Family reset complete. The personas themselves are unchanged.")
 
@@ -577,6 +631,8 @@ def _open_client(args: argparse.Namespace):
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     parser.add_argument("mode", choices=["setup", "verify", "reset", "setup-family", "verify-family", "reset-family"])
+    parser.add_argument("--household", choices=sorted(HOUSEHOLD_DEMOS), default="family",
+                        help="which demo household the *-family modes address: 'family' (B + C, the default) or 'pipeline' (E + F, also built by `setup`)")
     parser.add_argument("--base-url", default=DEFAULT_BASE_URL, help=f"running backend base URL (default: {DEFAULT_BASE_URL})")
     parser.add_argument("--in-process", action="store_true",
                         help="run through the real app in-process (FastAPI TestClient on DATABASE_URL; no server needed)")
@@ -593,24 +649,16 @@ def main() -> None:
         reset(args.base_url)
     elif args.mode == "setup-family":
         with _open_client(args) as client:
-            report = setup_family(client)
-        print(f"household_id={report['household_id']}")
-        print(f"created ({len(report['created'])}): {report['created']}")
-        print(f"already present ({len(report['existing'])}): {report['existing']}")
-        summary = report["summary"]
-        print(f"summary: recurring income={summary['income']['recurring_monthly']}, "
-              f"recurring expenses={summary['expenses']['recurring_monthly']}, "
-              f"monthly cash flow={summary['cash_flow']['monthly']}, net position={summary['net_position']['value']}, "
-              f"emergency fund required={summary['emergency_fund']['required']} "
-              f"({summary['emergency_fund']['status']})")
+            report = setup_family(client, HOUSEHOLD_DEMOS[args.household])
+        _print_household_report(report)
     elif args.mode == "verify-family":
         with _open_client(args) as client:
-            ok, lines = verify_family(client)
+            ok, lines = verify_family(client, HOUSEHOLD_DEMOS[args.household])
         print("\n".join(lines))
         print(f"\nVERIFY-FAMILY {'PASSED' if ok else 'FAILED'}")
         sys.exit(0 if ok else 1)
     elif args.mode == "reset-family":
-        reset_family()
+        reset_family(HOUSEHOLD_DEMOS[args.household])
 
 
 if __name__ == "__main__":

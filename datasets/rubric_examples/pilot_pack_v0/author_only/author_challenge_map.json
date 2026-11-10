@@ -1,0 +1,129 @@
+{
+ "note": "Pack author's challenge tags only. Not labels, not shown to annotators, not used to score anything.",
+ "challenges": {
+  "pilot-001": [
+   "neutral",
+   "no_attitude"
+  ],
+  "pilot-002": [
+   "neutral"
+  ],
+  "pilot-003": [
+   "mixed",
+   "doubt"
+  ],
+  "pilot-004": [
+   "mixed",
+   "emotion_and_preference_unclear"
+  ],
+  "pilot-005": [
+   "contradictory",
+   "preferences_opposed"
+  ],
+  "pilot-006": [
+   "contradictory",
+   "hedged"
+  ],
+  "pilot-007": [
+   "unclear",
+   "no_topic"
+  ],
+  "pilot-008": [
+   "unclear",
+   "very_short"
+  ],
+  "pilot-009": [
+   "unclear",
+   "sarcasm_or_resignation"
+  ],
+  "pilot-010": [
+   "unclear",
+   "sarcasm"
+  ],
+  "pilot-011": [
+   "code_mixed",
+   "transliterated_hindi",
+   "contradictory"
+  ],
+  "pilot-012": [
+   "code_mixed",
+   "transliterated_hindi",
+   "emotion"
+  ],
+  "pilot-013": [
+   "code_mixed",
+   "transliterated_hindi",
+   "positive"
+  ],
+  "pilot-014": [
+   "unsupported_language",
+   "spanish"
+  ],
+  "pilot-015": [
+   "unsupported_language",
+   "german"
+  ],
+  "pilot-016": [
+   "unclear",
+   "numbers_only"
+  ],
+  "pilot-017": [
+   "positive",
+   "debt",
+   "emotion_not_in_list"
+  ],
+  "pilot-018": [
+   "negation",
+   "emotion_negated"
+  ],
+  "pilot-019": [
+   "unclear",
+   "hedged"
+  ],
+  "pilot-020": [
+   "negation",
+   "liquidity_preference"
+  ],
+  "pilot-021": [
+   "hedged",
+   "growth_preference"
+  ],
+  "pilot-022": [
+   "negative",
+   "emotion_not_in_list"
+  ],
+  "pilot-023": [
+   "mixed",
+   "two_emotions",
+   "ambiguous_tone"
+  ],
+  "pilot-024": [
+   "positive",
+   "goals"
+  ],
+  "pilot-025": [
+   "request_for_advice",
+   "no_attitude"
+  ],
+  "pilot-026": [
+   "reported_speech",
+   "hedged"
+  ],
+  "pilot-027": [
+   "off_topic"
+  ],
+  "pilot-028": [
+   "negative",
+   "debt",
+   "implicit_emotion"
+  ],
+  "pilot-029": [
+   "contradictory_or_compatible",
+   "liquidity_and_growth"
+  ],
+  "pilot-030": [
+   "unclear",
+   "resignation"
+  ]
+ }
+}

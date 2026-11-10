@@ -1,0 +1,19 @@
+{
+  "demo_key": "WPDEMO-F",
+  "source": "synthetic_demo",
+  "checked_by": "backend/scripts/seed_demo_data.py verify (the persona's default POST /api/analysis result)",
+  "expected": {
+    "analysis_status": "pending_information",
+    "risk_available": false,
+    "goal_results_returned": false,
+    "goal_feasibility_available": false,
+    "emergency_fund_sufficient": null,
+    "compliance_decision": null,
+    "triggered_compliance_rules": null,
+    "recommendation_available": false,
+    "recommendation_status": null,
+    "portfolio_weights_available": false,
+    "explanation_available": false
+  },
+  "note": "compliance_decision and triggered_compliance_rules are null: compliance was never evaluated (not evaluated is different from evaluated with nothing triggered)."
+}

@@ -47,6 +47,8 @@ type GoalCreate = components["schemas"]["GoalCreate"]
 
 export const DEMO_CUSTOMER_NAME = "WealthPilot Demo Customer"
 export const PRIMARY_DEMO_CUSTOMER_NAME = "WealthPilot Demo — Complete"
+/** The full-pipeline demo persona (WPDEMO-E, `seed_demo_data.py setup`): a seeded, FAR-Trans-linked customer with twelve reported months, so every page shows real results. */
+export const FULL_PIPELINE_DEMO_NAME = "WealthPilot Demo — Full Pipeline"
 /** The family demo's primary member (`seed_demo_data.py setup-family`): an
  * existing seeded persona who is the primary of "WealthPilot Demo Family". */
 export const FAMILY_DEMO_PRIMARY_NAME = "WealthPilot Demo — Savings"
@@ -65,11 +67,11 @@ const FAMILY_STORAGE_KEY = "wealthpilot-family-demo-customer-id"
  * a shortcut. */
 const DEMO_PROFILE: ProfileCreateRequest = {
   name: DEMO_CUSTOMER_NAME,
-  age: 34,
-  income: 62000,
+  age: 31,
+  income: 960000,
   employment_status: "Full-time",
   customer_type: "Mass",
-  investment_capacity: "CAP_30K_80K",
+  investment_capacity: "CAP_GT300K",
 }
 
 /** A small, realistic demo goal set — every field is a real `GoalCreate`
@@ -78,8 +80,8 @@ const DEMO_PROFILE: ProfileCreateRequest = {
  * goals are enough to demonstrate the Goals page and feed the analysis
  * pipeline without over-populating the demo profile. */
 const DEMO_GOALS: GoalCreate[] = [
-  { goal_type: "Retirement", target_amount: 250000, target_date: "2050-01-01", current_savings: 15000, priority: 1 },
-  { goal_type: "House Purchase", target_amount: 60000, target_date: "2032-06-01", current_savings: 8000, priority: 2 },
+  { goal_type: "Home Down Payment", target_amount: 1000000, target_date: "2031-06-01", current_savings: 150000, priority: 1 },
+  { goal_type: "Retirement Corpus", target_amount: 9000000, target_date: "2057-01-01", current_savings: 120000, priority: 2 },
 ]
 
 function readStoredDemoCustomerId(): number | null {
@@ -206,6 +208,26 @@ export async function resolveDemoCustomer(): Promise<number> {
   await populateDemoQuestionnaire(customerId)
   await populateDemoGoals(customerId)
   return customerId
+}
+
+/** Thrown when this environment has not been seeded with the full-pipeline demo persona. */
+export class FullPipelineDemoNotSeededError extends Error {
+  constructor() {
+    super("The full-pipeline demo persona has not been set up in this environment.")
+    this.name = "FullPipelineDemoNotSeededError"
+  }
+}
+
+/**
+ * Resolves the FULL-PIPELINE demo: the seeded persona "WealthPilot Demo — Full Pipeline", found by exact name (`GET /api/profiles/lookup`). Find-only, like the family demo: the
+ * frontend never creates this customer, because its FAR-Trans link (the risk model's only input) can only be set by the seed script (`seed_demo_data.py`); a same-named customer
+ * made here would look complete and have no history behind it. An unseeded environment gets a clear error instead. It is a login entry point, not a switcher (ADR-021): exactly
+ * one customer is active for the session, and nothing is stored in the browser beyond the usual active profile.
+ */
+export async function resolveFullPipelineDemoCustomer(): Promise<number> {
+  const { customer_id } = await api.lookupProfileByName(FULL_PIPELINE_DEMO_NAME)
+  if (customer_id === null) throw new FullPipelineDemoNotSeededError()
+  return customer_id
 }
 
 /** Thrown when this environment has not been seeded with the family demo. */

@@ -30,8 +30,8 @@ export function OnboardingNoProfile() {
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-wrap gap-2">
-        <Button render={<Link to="/create-user" />}>Create New User</Button>
-        <Button variant="outline" render={<Link to="/login" />}>
+        <Button nativeButton={false} render={<Link to="/create-user" />}>Create New User</Button>
+        <Button variant="outline" nativeButton={false} render={<Link to="/login" />}>
           Back to Login
         </Button>
       </CardContent>

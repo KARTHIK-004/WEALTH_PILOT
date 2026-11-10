@@ -1,0 +1,61 @@
+C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pytest_asyncio\plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+........................................................................ [  4%]
+........................................................................ [  9%]
+........................................................................ [ 14%]
+........................................................................ [ 19%]
+........................................................................ [ 23%]
+........................................................................ [ 28%]
+........................................................................ [ 33%]
+........................................................................ [ 38%]
+........................................................................ [ 42%]
+........................................................................ [ 47%]
+........................................................................ [ 52%]
+........................................................................ [ 57%]
+........................................................................ [ 62%]
+........................................................................ [ 66%]
+........................................................................ [ 71%]
+........................................................................ [ 76%]
+........................................................................ [ 81%]
+........................................................................ [ 85%]
+........................................................................ [ 90%]
+.F...................................................................... [ 95%]
+.....................................................................    [100%]
+================================== FAILURES ===================================
+___ test_no_production_entry_point_or_helper_imports_the_sentiment_scaffold ___
+
+    def test_no_production_entry_point_or_helper_imports_the_sentiment_scaffold():
+        this = Path(__file__).resolve()
+        checked = 0
+        for top in ("backend", "training", "scripts", "tests"):
+            base = ROOT / top
+            if not base.exists():
+                continue
+            for f in base.rglob("*.py"):
+                parts = set(f.parts)
+                if f.resolve() == this or PKG in f.parents or parts & {".venv", "venv", "site-packages", "node_modules", "__pycache__"} \
+                        or (f.parent == this.parent and f.name.startswith("test_sentiment_")) \
+                        or f.relative_to(ROOT).as_posix() in ALLOWED_RESEARCH_TOOLS:                           # the scaffold's own test files; the one allowed research tool
+                    continue
+                text = f.read_text(encoding="utf-8", errors="replace")
+                for needle in ("gdelt.sentiment", "import sentiment", "sentiment.fake_scorer", "FakeScorerTestOnly"):
+>                   assert needle not in text, (str(f.relative_to(ROOT)), needle)
+E                   AssertionError: ('backend\\wealthpilot\\api\\services\\personalized_insight_service.py', 'import sentiment')
+E                   assert 'import sentiment' not in '"""Personal...tomer_id))\n'
+E                     
+E                     'import sentiment' is contained here:
+E                       ilot.core import sentiment_model as trained
+E                     ?           ++++++++++++++++
+E                       from wealthpilot.core.sentiment import adapter as research_adapter
+E                       from wealthpilot.core.sentiment import inference_service as research_inference
+E                       from wealthpilot.core.sentiment import registry as research_registry...
+E                     
+E                     ...Full output truncated (245 lines hidden), use '-vv' to show
+
+tests\backend\data\gdelt\test_sentiment_scaffold.py:1110: AssertionError
+=========================== short test summary info ===========================
+FAILED tests/backend/data/gdelt/test_sentiment_scaffold.py::test_no_production_entry_point_or_helper_imports_the_sentiment_scaffold
+1 failed, 1508 passed in 169.29s (0:02:49)
+NETGUARD external connection or lookup attempts: 0

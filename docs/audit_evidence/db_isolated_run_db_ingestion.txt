@@ -1,0 +1,30 @@
+C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pytest_asyncio\plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-8.3.3, pluggy-1.6.0
+rootdir: C:\Users\Administrator\Desktop\Project\TEST
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.8.5, asyncio-0.24.0
+asyncio: mode=Mode.STRICT, default_loop_scope=None
+collected 136 items
+
+tests\backend\db\test_household_finance_metadata.py ...........          [  8%]
+tests\backend\db\test_household_finance_models.py ...................... [ 24%]
+.................                                                        [ 36%]
+tests\backend\db\test_household_goal_models.py ......................... [ 55%]
+.....                                                                    [ 58%]
+tests\backend\db\test_household_models.py .......................        [ 75%]
+tests\backend\db\test_migration_history.py ................              [ 87%]
+tests\backend\db\test_models.py .............                            [ 97%]
+tests\backend\data\test_ingestion.py ....                                [100%]
+
+ISOLATED-DB: deselected development-database tests = 0; engines created (all the resolved test target) = 120; blocked engine attempts = 0
+======================= 136 passed in 789.51s (0:13:09) =======================
+preflight: host=ep-wild-mode-ae88s68g-pooler.c-2.us-east-2.aws.neon.tech database=neondb_test
+preflight: effective application settings resolve to the same host and database: True
+preflight: keepalive on test connection: {'keepalives': 1, 'keepalives_idle': 20, 'keepalives_interval': 5, 'keepalives_count': 3, 'tcp_user_timeout': 30000, 'connect_timeout': 20}
+preflight: suites=['db', 'ingestion']; development-database tests are deselected; ALEMBIC_TARGET=test only for --alembic
+$ pytest -p isolated_db.pytest_plugin -p no:cacheprovider tests/backend/db tests/backend/data/test_ingestion.py --ignore=tests/backend/api/test_health.py --ignore=tests/backend/api/test_lifespan.py --ignore=tests/backend/api/test_personalized_insights.py -rfEs
+RUNNER EXIT 0

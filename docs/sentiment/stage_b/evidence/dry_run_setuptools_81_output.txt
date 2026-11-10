@@ -1,0 +1,3 @@
+﻿Collecting setuptools==81.0.0
+  Downloading setuptools-81.0.0-py3-none-any.whl.metadata (6.6 kB)
+Would install setuptools-81.0.0

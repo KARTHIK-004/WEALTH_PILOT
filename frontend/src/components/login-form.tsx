@@ -13,13 +13,20 @@ import {
   FieldTitle,
 } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
-import { FamilyDemoNotSeededError, resolveDemoCustomer, resolveFamilyDemoCustomer } from "@/lib/demo-customer"
+import {
+  FamilyDemoNotSeededError,
+  FullPipelineDemoNotSeededError,
+  resolveDemoCustomer,
+  resolveFamilyDemoCustomer,
+  resolveFullPipelineDemoCustomer,
+} from "@/lib/demo-customer"
+import { destinationAfterLogin } from "@/lib/demo-mode"
 import { DEMO_EMAIL, DEMO_PASSWORD } from "@/lib/prototype-auth"
 import { useAuth } from "@/providers/auth-context"
 import { useCustomer } from "@/providers/customer-context"
 
 interface LocationState {
-  from?: { pathname: string }
+  from?: { pathname: string; search?: string }
 }
 
 /**
@@ -63,15 +70,18 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
   const { setProfileId } = useCustomer()
   const navigate = useNavigate()
   const location = useLocation()
-  const redirectTo = (location.state as LocationState | null)?.from?.pathname ?? "/dashboard"
+  const from = (location.state as LocationState | null)?.from
+  const redirectTo = destinationAfterLogin("demo", from)
   const [searchParams] = useSearchParams()
   const demoHint = searchParams.get("demo")
   const individualDemoRef = useRef<HTMLButtonElement>(null)
   const familyDemoRef = useRef<HTMLButtonElement>(null)
+  const pipelineDemoRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     if (demoHint === "individual") individualDemoRef.current?.focus()
     if (demoHint === "family") familyDemoRef.current?.focus()
+    if (demoHint === "pipeline") pipelineDemoRef.current?.focus()
   }, [demoHint])
 
   const [email, setEmail] = useState("")
@@ -81,19 +91,25 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
   // each button show its OWN pending label instead of both changing
   // together, while a single boolean (`pendingAction !== null`) still
   // disables both during either action.
-  const [pendingAction, setPendingAction] = useState<"signin" | "demo" | "family" | null>(null)
+  const [pendingAction, setPendingAction] = useState<"signin" | "demo" | "family" | "pipeline" | null>(null)
 
   /** Resolves and activates the account's associated customer, then
    * navigates -- the one deterministic mapping every successful
    * authentication (regular Sign In or Use Demo Account) goes through, so
    * the user always lands directly on Dashboard, never a profile picker. */
-  const completeLogin = async (action: "signin" | "demo" | "family") => {
+  const completeLogin = async (action: "signin" | "demo" | "family" | "pipeline") => {
     setPendingAction(action)
     try {
       if (action === "family") {
         const customerId = await resolveFamilyDemoCustomer()
         setProfileId(customerId)
-        navigate("/profile?household=open", { replace: true })
+        navigate(destinationAfterLogin("family", from), { replace: true })
+        return
+      }
+      if (action === "pipeline") {
+        const customerId = await resolveFullPipelineDemoCustomer()
+        setProfileId(customerId)
+        navigate(redirectTo, { replace: true })
         return
       }
       const customerId = await resolveDemoCustomer()
@@ -103,7 +119,9 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
       setError(
         caught instanceof FamilyDemoNotSeededError
           ? "The family demo has not been set up in this environment yet (seed_demo_data.py setup-family)."
-          : "Could not set up your account. Please try again.",
+          : caught instanceof FullPipelineDemoNotSeededError
+            ? "The full-pipeline demo has not been set up in this environment yet (seed_demo_data.py setup)."
+            : "Could not set up your account. Please try again.",
       )
     } finally {
       setPendingAction(null)
@@ -113,7 +131,7 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
   const attemptLogin = async (
     candidateEmail: string,
     candidatePassword: string,
-    action: "signin" | "demo" | "family",
+    action: "signin" | "demo" | "family" | "pipeline",
   ) => {
     setError(null)
     const ok = login(candidateEmail, candidatePassword)
@@ -140,6 +158,12 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
     setEmail(DEMO_EMAIL)
     setPassword(DEMO_PASSWORD)
     await attemptLogin(DEMO_EMAIL, DEMO_PASSWORD, "family")
+  }
+
+  const handlePipelineDemoLogin = async () => {
+    setEmail(DEMO_EMAIL)
+    setPassword(DEMO_PASSWORD)
+    await attemptLogin(DEMO_EMAIL, DEMO_PASSWORD, "pipeline")
   }
 
   return (
@@ -206,6 +230,21 @@ export function LoginForm({ className, ...props }: React.ComponentProps<"form">)
             </Button>
             <FieldDescription>
               One customer&apos;s own analysis: risk, financial health, goals, portfolio and recommendation.
+            </FieldDescription>
+          </div>
+          <div className={cn("flex flex-col gap-1.5 rounded-md", demoHint === "pipeline" && "ring-primary ring-2 ring-offset-4 ring-offset-muted")}>
+            <Button
+              ref={pipelineDemoRef}
+              type="button"
+              variant="outline"
+              onClick={handlePipelineDemoLogin}
+              disabled={pendingAction !== null}
+            >
+              {pendingAction === "pipeline" ? "Opening full-pipeline demo…" : "Use Full Pipeline Demo"}
+            </Button>
+            <FieldDescription>
+              A customer with a real investment history and twelve reported months, so risk, goals, behaviour, portfolio,
+              recommendation and explanation all show computed results.
             </FieldDescription>
           </div>
           <div className={cn("flex flex-col gap-1.5 rounded-md", demoHint === "family" && "ring-primary ring-2 ring-offset-4 ring-offset-muted")}>

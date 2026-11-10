@@ -1,6 +1,11 @@
 {
   "demo_key": "WPDEMO-C",
   "source": "synthetic_demo",
-  "financial_inputs": null,
-  "financial_inputs_unavailable_reason": "Deliberately not provided: this persona demonstrates the fail-closed compliance rejection when emergency-fund data is genuinely missing (Phase 28). Unknown is not zero."
+  "financial_inputs": {
+    "annual_inflation_rate": 0.04,
+    "annual_return_rate": 0.09,
+    "contribution_periods_per_year": 12,
+    "contribution_amount": 25000
+  },
+  "financial_inputs_unavailable_reason": "Monthly essential spending and easy-access savings were deliberately not provided, so the emergency-fund position is unknown. Unknown is not zero and is never assumed sufficient."
 }

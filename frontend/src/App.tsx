@@ -6,6 +6,8 @@ import { AboutPage } from "@/pages/about-page"
 import { AgentActivityPage } from "@/pages/agent-activity-page"
 import { CreateUserPage } from "@/pages/create-user-page"
 import { DashboardPage } from "@/pages/dashboard-page"
+import { FinancialBehaviourPage } from "@/pages/financial-behaviour-page"
+import { SecurityStatusPage } from "@/pages/security-status-page"
 import { FinancialHealthPage } from "@/pages/financial-health-page"
 import { GoalsPage } from "@/pages/goals-page"
 import { HomePage } from "@/pages/home-page"
@@ -66,6 +68,8 @@ function App() {
           <Route path="profile" element={<ProfilePage />} />
           <Route path="risk-assessment" element={<RiskAssessmentPage />} />
           <Route path="financial-health" element={<FinancialHealthPage />} />
+          <Route path="financial-behaviour" element={<FinancialBehaviourPage />} />
+          <Route path="security" element={<SecurityStatusPage />} />
           <Route path="goals" element={<GoalsPage />} />
           <Route path="portfolio" element={<PortfolioPage />} />
           <Route path="recommendation" element={<RecommendationPage />} />

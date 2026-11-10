@@ -1,0 +1,9 @@
+﻿Collecting setuptools==81.0.0 (from -r docs\sentiment\stage_b\evidence\requirements-recovery-setuptools-81.txt (line 2))
+  Downloading setuptools-81.0.0-py3-none-any.whl (1.1 MB)
+     ---------------------------------------- 1.1/1.1 MB 4.7 MB/s  0:00:00
+Installing collected packages: setuptools
+  Attempting uninstall: setuptools
+    Found existing installation: setuptools 84.2.1
+    Uninstalling setuptools-84.2.1:
+      Successfully uninstalled setuptools-84.2.1
+Successfully installed setuptools-81.0.0

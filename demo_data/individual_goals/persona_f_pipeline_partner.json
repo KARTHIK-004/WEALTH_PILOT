@@ -1,0 +1,13 @@
+{
+  "demo_key": "WPDEMO-F",
+  "source": "synthetic_demo",
+  "goals": [
+    {
+      "goal_type": "Retirement Corpus",
+      "target_amount": 6000000,
+      "target_date": "2058-01-01",
+      "current_savings": 90000,
+      "priority": 1
+    }
+  ]
+}

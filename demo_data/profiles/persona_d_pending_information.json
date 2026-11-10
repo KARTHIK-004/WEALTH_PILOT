@@ -5,16 +5,16 @@
   "demonstrates": "pending_information",
   "customer_name": "WealthPilot Demo Customer",
   "owned_by_seed": false,
-  "also_created_by": "frontend/src/lib/demo-customer.ts (the resolveDemoCustomer fallback), with these same values",
-  "purpose": "Phase 24's canonical demo customer -- the pending-information case: a full profile, questionnaire and goals, but no FAR-Trans trading history linked, so no risk label can be computed. Its ACTUAL result is `pending_information`: no compliance evaluation, portfolio, recommendation or explanation is produced, and nothing downstream is fabricated.",
+  "purpose": "A new customer who has shared a complete profile, spending, savings and goals, and has answered the first part of the questionnaire, but has no investment trading history and has not answered the risk-tolerance questions. The risk model has nothing to classify, so the existing pipeline stops at its low-confidence branch and asks for more information; compliance, portfolio, recommendation and explanation are never produced. The pending state is the real outcome of that missing input.",
+  "also_created_by": "frontend/src/lib/demo-customer.ts (the resolveDemoCustomer fallback), with these same profile and goal values",
   "risk_data_link": null,
-  "risk_data_link_unavailable_reason": "Deliberately unlinked: this customer has no FAR-Trans trading history, so the risk model has no input -- the pending-information case this persona demonstrates.",
+  "risk_data_link_unavailable_reason": "Deliberately unlinked: this customer has no investment trading history, so the risk model has no input and the analysis asks for more information. Unknown is not guessed.",
   "profile": {
     "name": "WealthPilot Demo Customer",
-    "age": 34,
-    "income": 62000,
+    "age": 31,
+    "income": 960000,
     "employment_status": "Full-time",
     "customer_type": "Mass",
-    "investment_capacity": "CAP_30K_80K"
+    "investment_capacity": "CAP_GT300K"
   }
 }

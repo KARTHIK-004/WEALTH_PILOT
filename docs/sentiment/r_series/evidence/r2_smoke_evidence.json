@@ -1,0 +1,185 @@
+{
+  "adapter_inference_ms": {
+    "calls": 6,
+    "max": 32.7,
+    "median": 24.9,
+    "min": 22.6
+  },
+  "adapter_results": {
+    "ambiguous": {
+      "native_label": "neutral",
+      "probabilities": {
+        "negative": 0.0020071746259979237,
+        "neutral": 0.9926914738104113,
+        "positive": 0.0053013515635907255
+      },
+      "processing_ms": 24.78,
+      "raw_scores": {
+        "negative": -1.7857354879379272,
+        "neutral": 4.417956352233887,
+        "positive": -0.8145017623901367
+      }
+    },
+    "mixed": {
+      "native_label": "neutral",
+      "probabilities": {
+        "negative": 0.08574757781776353,
+        "neutral": 0.8839043840265988,
+        "positive": 0.030348038155637823
+      },
+      "processing_ms": 32.59,
+      "raw_scores": {
+        "negative": 0.21101069450378418,
+        "neutral": 2.5439517498016357,
+        "positive": -0.8276652693748474
+      }
+    },
+    "negation": {
+      "native_label": "positive",
+      "probabilities": {
+        "negative": 0.03233697897937123,
+        "neutral": 0.23711031004536667,
+        "positive": 0.7305527109752622
+      },
+      "processing_ms": 24.86,
+      "raw_scores": {
+        "negative": -1.1405043601989746,
+        "neutral": 0.8518096804618835,
+        "positive": 1.9770855903625488
+      }
+    },
+    "negative": {
+      "native_label": "negative",
+      "probabilities": {
+        "negative": 0.9828979552003235,
+        "neutral": 0.016608656866137727,
+        "positive": 0.000493387933538707
+      },
+      "processing_ms": 22.55,
+      "raw_scores": {
+        "negative": 4.7015862464904785,
+        "neutral": 0.6210049986839294,
+        "positive": -2.895378589630127
+      }
+    },
+    "neutral": {
+      "native_label": "neutral",
+      "probabilities": {
+        "negative": 0.002959781617310785,
+        "neutral": 0.9591323551413323,
+        "positive": 0.037907863241356796
+      },
+      "processing_ms": 24.94,
+      "raw_scores": {
+        "negative": -2.3735997676849365,
+        "neutral": 3.407313823699951,
+        "positive": 0.17644330859184265
+      }
+    },
+    "positive": {
+      "native_label": "positive",
+      "probabilities": {
+        "negative": 0.00017834621296494233,
+        "neutral": 0.00023561901287613463,
+        "positive": 0.999586034774159
+      },
+      "processing_ms": 23.63,
+      "raw_scores": {
+        "negative": -2.031162977218628,
+        "neutral": -1.7526735067367554,
+        "positive": 6.6002068519592285
+      }
+    }
+  },
+  "concurrency": {
+    "available": 1,
+    "callers": 4,
+    "errors": 0,
+    "loading": 3
+  },
+  "first_call_seconds_including_verification_and_load": 10.24,
+  "machine_note": "this machine and this test configuration only",
+  "memory_after_inference": {
+    "current_mb": 1077.2,
+    "peak_mb": 1285.2
+  },
+  "memory_after_load": {
+    "current_mb": 1075.7,
+    "peak_mb": 1285.2
+  },
+  "privacy": {
+    "marker_in_response_or_logs": false,
+    "network_attempts": 0,
+    "torch_load_called": false
+  },
+  "scope": "smoke observation on fictional sentences; not an accuracy evaluation",
+  "service_results": {
+    "ambiguous": {
+      "general_reason": "input_not_eligible",
+      "model_called": false,
+      "overall": "insufficient_evidence",
+      "rules_label": "insufficient_evidence",
+      "rules_state": "abstained"
+    },
+    "mixed": {
+      "comparison": "single_model",
+      "model_label": "neutral",
+      "overall": "uncertain",
+      "overall_source": "transformer_comparison",
+      "relation": "disagrees",
+      "rules_label": "negative",
+      "rules_state": "valid",
+      "uncertainty_reason": "rules_disagree"
+    },
+    "negation": {
+      "comparison": "single_model",
+      "model_label": "positive",
+      "overall": "uncertain",
+      "overall_source": "transformer_comparison",
+      "relation": "rules_abstained",
+      "rules_label": "uncertain",
+      "rules_state": "weak",
+      "uncertainty_reason": "context_safeguard"
+    },
+    "negative": {
+      "comparison": "single_model",
+      "model_label": "negative",
+      "overall": "negative",
+      "overall_source": "transformer_comparison",
+      "relation": "agrees",
+      "rules_label": "negative",
+      "rules_state": "valid",
+      "uncertainty_reason": null
+    },
+    "neutral": {
+      "comparison": "single_model",
+      "model_label": "neutral",
+      "overall": "uncertain",
+      "overall_source": "transformer_comparison",
+      "relation": "agrees",
+      "rules_label": "neutral",
+      "rules_state": "weak",
+      "uncertainty_reason": "context_safeguard"
+    },
+    "positive": {
+      "comparison": "single_model",
+      "model_label": "positive",
+      "overall": "positive",
+      "overall_source": "transformer_comparison",
+      "relation": "agrees",
+      "rules_label": "positive",
+      "rules_state": "valid",
+      "uncertainty_reason": null
+    }
+  },
+  "timeout": {
+    "breaker_call_seconds": 1e-05,
+    "configured_seconds": 0.001,
+    "second_call_seconds": 0.0
+  },
+  "unsupported_language": {
+    "general_reason": "input_not_eligible",
+    "model_called": false,
+    "overall": "insufficient_evidence"
+  }
+}

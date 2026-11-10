@@ -1,0 +1,9 @@
+{"env": "project", "label": "base_1", "exit_code": 0, "crashed": false, "summary": "795 passed, 3 skipped, 144 warnings in 164.88s (0:02:44)", "elapsed_s": 168.8, "imported_at_end": "torch,tensorflow,xgboost,sklearn,joblib,transformers,shap,numba,scipy,statsmodels,arch,keras"}
+{"env": "project", "label": "guard_1", "exit_code": 0, "crashed": false, "summary": "796 passed, 2 skipped, 144 warnings in 166.19s (0:02:46)", "elapsed_s": 170.1, "imported_at_end": "torch,tensorflow,xgboost,sklearn,joblib,transformers,shap,numba,scipy,statsmodels,arch,keras"}
+{"env": "project", "label": "base_2", "exit_code": 3221225477, "crashed": true, "summary": "", "elapsed_s": 431.1, "imported_at_end": ""}
+{"env": "project", "label": "guard_2", "exit_code": 0, "crashed": false, "summary": "796 passed, 2 skipped, 144 warnings in 201.19s (0:03:21)", "elapsed_s": 206.0, "imported_at_end": "torch,tensorflow,xgboost,sklearn,joblib,transformers,shap,numba,scipy,statsmodels,arch,keras"}
+{"env": "project", "label": "guard_3", "exit_code": 0, "crashed": false, "summary": "796 passed, 2 skipped, 144 warnings in 201.38s (0:03:21)", "elapsed_s": 206.6, "imported_at_end": "torch,tensorflow,xgboost,sklearn,joblib,transformers,shap,numba,scipy,statsmodels,arch,keras"}
+{"env": "project", "label": "base_3", "exit_code": 3221225477, "crashed": true, "summary": "", "elapsed_s": 479.5, "imported_at_end": ""}
+{"env": "project", "label": "guard_4", "exit_code": 0, "crashed": false, "summary": "796 passed, 2 skipped, 144 warnings in 143.17s (0:02:23)", "elapsed_s": 147.1, "imported_at_end": "torch,tensorflow,xgboost,sklearn,joblib,transformers,shap,numba,scipy,statsmodels,arch,keras"}
+{"env": "project", "label": "guard_5", "exit_code": 0, "crashed": false, "summary": "796 passed, 2 skipped, 144 warnings in 152.15s (0:02:32)", "elapsed_s": 156.1, "imported_at_end": "torch,tensorflow,xgboost,sklearn,joblib,transformers,shap,numba,scipy,statsmodels,arch,keras"}
+R4-SERIES-DONE

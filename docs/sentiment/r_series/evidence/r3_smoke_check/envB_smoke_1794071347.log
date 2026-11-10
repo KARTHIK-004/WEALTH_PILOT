@@ -1,0 +1,15 @@
+.............                                                            [100%]
+============================== warnings summary ===============================
+tests/training/behaviour/test_detection.py::test_isolation_forest_flags_a_clear_multivariate_outlier
+  C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\sklearn\base.py:486: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+13 passed, 1 warning in 13.22s
+NETGUARD external connection or lookup attempts: 0
+
+C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pytest_asyncio\plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+R3_IMPORTED sklearn,joblib,scipy

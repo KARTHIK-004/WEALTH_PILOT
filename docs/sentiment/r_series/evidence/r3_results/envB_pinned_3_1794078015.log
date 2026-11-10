@@ -1,0 +1,38 @@
+........................................................................ [  9%]
+........................................................................ [ 19%]
+........................................................................ [ 29%]
+........................................................................ [ 39%]
+...................................................................s.... [ 48%]
+........................................................................ [ 58%]
+........................................................................ [ 68%]
+........................................................................ [ 78%]
+........................................................................ [ 88%]
+........................................................................ [ 97%]
+................                                                         [100%]
+============================== warnings summary ===============================
+tests/training/behaviour/test_detection.py::test_isolation_forest_flags_a_clear_multivariate_outlier
+  C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\sklearn\base.py:486: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+    warnings.warn(
+
+tests/training/market/test_artifacts.py: 46 warnings
+tests/training/market/test_dl_models.py: 95 warnings
+  C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\keras\src\utils\python_utils.py:190: DeprecationWarning: Conversion of an array with ndim > 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+    value = float(value)
+
+tests/training/market/test_evaluate.py::test_diebold_mariano_handles_too_few_observations_gracefully
+  C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\numpy\core\fromnumeric.py:3787: RuntimeWarning: Degrees of freedom <= 0 for slice
+    return _methods._var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+
+tests/training/market/test_evaluate.py::test_diebold_mariano_handles_too_few_observations_gracefully
+  C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\numpy\core\_methods.py:198: RuntimeWarning: invalid value encountered in scalar divide
+    ret = ret.dtype.type(ret / rcount)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+735 passed, 3 skipped, 144 warnings in 186.75s (0:03:06)
+NETGUARD external connection or lookup attempts: 0
+
+C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pytest_asyncio\plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+R3_IMPORTED tensorflow,xgboost,sklearn,joblib,shap,numba,scipy,statsmodels,arch,keras

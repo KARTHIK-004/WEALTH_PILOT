@@ -1,0 +1,46 @@
+C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pytest_asyncio\plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+........................................................................ [  5%]
+........................................................................ [ 11%]
+........................................................................ [ 17%]
+.sssssssss.............................................................. [ 23%]
+........................................................................ [ 29%]
+........................................................................ [ 35%]
+........................................................................ [ 41%]
+........................................................................ [ 47%]
+........................................................................ [ 53%]
+.........................s.............................................. [ 59%]
+........s.....s......................................................... [ 65%]
+........................................................................ [ 71%]
+........................................................................ [ 77%]
+........................................................................ [ 83%]
+........................................................................ [ 89%]
+........................................................................ [ 95%]
+..........................................................               [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\starlette\testclient.py:40
+  C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\starlette\testclient.py:40: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+
+.venv\Lib\site-packages\langgraph\checkpoint\base\__init__.py:18
+  C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\langgraph\checkpoint\base\__init__.py:18: LangChainPendingDeprecationWarning: The default value of `allowed_objects` will change in a future version. Pass an explicit value (e.g., allowed_objects='messages' or allowed_objects='core') to suppress this warning.
+    from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [1] tests\backend\core\test_horizon_real_weights_smoke.py:103: opt-in: set WEALTHPILOT_REAL_WEIGHTS_SMOKE=1 and place the verified model with a manifest under models/sentiment_pretrained/horizon (owner request R2)
+SKIPPED [1] tests\backend\core\test_horizon_real_weights_smoke.py:111: opt-in: set WEALTHPILOT_REAL_WEIGHTS_SMOKE=1 and place the verified model with a manifest under models/sentiment_pretrained/horizon (owner request R2)
+SKIPPED [1] tests\backend\core\test_horizon_real_weights_smoke.py:122: opt-in: set WEALTHPILOT_REAL_WEIGHTS_SMOKE=1 and place the verified model with a manifest under models/sentiment_pretrained/horizon (owner request R2)
+SKIPPED [1] tests\backend\core\test_horizon_real_weights_smoke.py:153: opt-in: set WEALTHPILOT_REAL_WEIGHTS_SMOKE=1 and place the verified model with a manifest under models/sentiment_pretrained/horizon (owner request R2)
+SKIPPED [1] tests\backend\core\test_horizon_real_weights_smoke.py:186: opt-in: set WEALTHPILOT_REAL_WEIGHTS_SMOKE=1 and place the verified model with a manifest under models/sentiment_pretrained/horizon (owner request R2)
+SKIPPED [1] tests\backend\core\test_horizon_real_weights_smoke.py:198: opt-in: set WEALTHPILOT_REAL_WEIGHTS_SMOKE=1 and place the verified model with a manifest under models/sentiment_pretrained/horizon (owner request R2)
+SKIPPED [1] tests\backend\core\test_horizon_real_weights_smoke.py:209: opt-in: set WEALTHPILOT_REAL_WEIGHTS_SMOKE=1 and place the verified model with a manifest under models/sentiment_pretrained/horizon (owner request R2)
+SKIPPED [1] tests\backend\core\test_horizon_real_weights_smoke.py:232: opt-in: set WEALTHPILOT_REAL_WEIGHTS_SMOKE=1 and place the verified model with a manifest under models/sentiment_pretrained/horizon (owner request R2)
+SKIPPED [1] tests\backend\core\test_horizon_real_weights_smoke.py:239: opt-in: set WEALTHPILOT_REAL_WEIGHTS_SMOKE=1 and place the verified model with a manifest under models/sentiment_pretrained/horizon (owner request R2)
+SKIPPED [1] tests\backend\core\test_sentiment_model.py:141: symbolic links are not permitted for this account
+SKIPPED [1] tests\backend\core\test_sentiment_research_slots.py:271: symbolic links are not available here
+SKIPPED [1] tests\backend\core\test_sentiment_research_slots.py:341: the packages are installed here
+1198 passed, 12 skipped, 2 warnings in 40.30s
+NETGUARD external connection or lookup attempts: 0

@@ -1,0 +1,28 @@
+# Example run configuration for the isolated GDELT tool. Copy it OUTSIDE the repository's tracked
+# files (for example to datasets/raw/gdelt/english_gkg_v1/provenance/run_config.yaml, which Git
+# ignores) before editing. This example contains NO approval and never counts as one.
+#
+# mode: dry_run | dev_sample | confirmation_sample | full_acquisition
+#   full_acquisition always refuses in this build, whatever else is written here.
+mode: dry_run
+
+# output_root: datasets/raw/gdelt/english_gkg_v1   # default; must be ignored by Git
+
+# Limits may only be TIGHTENED (maxima lowered, floors raised). Defaults are the B2-J proposals:
+# max_planned_bytes 1.30 GB, max_total_bytes 1.50 GB, max_requests 1,200, sequential only,
+# min_free_bytes_preflight 20 GB, min_free_bytes_runtime 10 GB, max_tmp_bytes 0.5 GB.
+limits: {}
+
+# An approval is a record YOU write, with every field explicit. Missing fields, a quoted "true",
+# or a record in this example file are never approval. The development sample additionally stays
+# disabled in this build (DEV_SAMPLE_ENABLED_IN_THIS_BUILD = False) until a reviewed code change.
+#
+# approvals:
+#   dev_sample:
+#     approved: true
+#     approved_by: <your initials>               # no email address
+#     approved_on: 2026-10-13
+#     reference: reports/phaseB2J_development_sample_approval_checklist.md
+#     data_allowance_remaining_bytes: <bytes you can spare this billing period; at least the 1.5 GB cap>
+#     stage_sha256: "a459a3fb44afd7e1e8121cd04f247564ea4e8fe434fdca33c9570e50605b2730"   # keep the quotes
+approvals: {}

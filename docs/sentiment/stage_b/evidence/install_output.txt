@@ -1,0 +1,40 @@
+﻿Looking in indexes: https://download.pytorch.org/whl/cpu, https://pypi.org/simple
+Collecting annotated-doc==0.0.5 (from -r docs\sentiment\stage_b\evidence\requirements-b2-1-install-set.lock.txt (line 4))
+  Using cached annotated_doc-0.0.5-py3-none-any.whl (5.3 kB)
+Collecting filelock==4.2.8 (from -r docs\sentiment\stage_b\evidence\requirements-b2-1-install-set.lock.txt (line 6))
+  Using cached filelock-4.2.8-py3-none-any.whl (164 kB)
+Collecting fsspec==2026.9.0 (from -r docs\sentiment\stage_b\evidence\requirements-b2-1-install-set.lock.txt (line 8))
+  Using cached fsspec-2026.9.0-py3-none-any.whl (221 kB)
+Collecting hf-xet==1.8.0 (from -r docs\sentiment\stage_b\evidence\requirements-b2-1-install-set.lock.txt (line 10))
+  Using cached hf_xet-1.8.0-cp38-abi3-win_amd64.whl (3.9 MB)
+Collecting huggingface-hub==1.33.0 (from -r docs\sentiment\stage_b\evidence\requirements-b2-1-install-set.lock.txt (line 12))
+  Using cached huggingface_hub-1.33.0-py3-none-any.whl (846 kB)
+Collecting jinja2==3.1.6 (from -r docs\sentiment\stage_b\evidence\requirements-b2-1-install-set.lock.txt (line 14))
+  Using cached jinja2-3.1.6-py3-none-any.whl (134 kB)
+Collecting mpmath==1.3.0 (from -r docs\sentiment\stage_b\evidence\requirements-b2-1-install-set.lock.txt (line 16))
+  Using cached mpmath-1.3.0-py3-none-any.whl (536 kB)
+Collecting networkx==3.6.1 (from -r docs\sentiment\stage_b\evidence\requirements-b2-1-install-set.lock.txt (line 18))
+  Using cached networkx-3.6.1-py3-none-any.whl (2.1 MB)
+Collecting safetensors==0.8.0 (from -r docs\sentiment\stage_b\evidence\requirements-b2-1-install-set.lock.txt (line 20))
+  Using cached safetensors-0.8.0-cp310-abi3-win_amd64.whl (355 kB)
+Collecting setuptools==84.2.1 (from -r docs\sentiment\stage_b\evidence\requirements-b2-1-install-set.lock.txt (line 22))
+  Using cached setuptools-84.2.1-py3-none-any.whl (876 kB)
+Collecting shellingham==1.5.4 (from -r docs\sentiment\stage_b\evidence\requirements-b2-1-install-set.lock.txt (line 24))
+  Using cached shellingham-1.5.4-py2.py3-none-any.whl (9.8 kB)
+Collecting sympy==1.14.0 (from -r docs\sentiment\stage_b\evidence\requirements-b2-1-install-set.lock.txt (line 26))
+  Using cached sympy-1.14.0-py3-none-any.whl (6.3 MB)
+Collecting tokenizers==0.23.3 (from -r docs\sentiment\stage_b\evidence\requirements-b2-1-install-set.lock.txt (line 28))
+  Using cached tokenizers-0.23.3-cp310-abi3-win_amd64.whl (2.9 MB)
+Collecting torch==2.15.0+cpu (from -r docs\sentiment\stage_b\evidence\requirements-b2-1-install-set.lock.txt (line 30))
+  Using cached torch-2.15.0%2Bcpu-cp311-cp311-win_amd64.whl (126.6 MB)
+Collecting transformers==5.17.0 (from -r docs\sentiment\stage_b\evidence\requirements-b2-1-install-set.lock.txt (line 32))
+  Using cached transformers-5.17.0-py3-none-any.whl (12.3 MB)
+Collecting typer==0.27.3 (from -r docs\sentiment\stage_b\evidence\requirements-b2-1-install-set.lock.txt (line 34))
+  Using cached typer-0.27.3-py3-none-any.whl (123 kB)
+Installing collected packages: mpmath, typer, transformers, torch, tokenizers, sympy, shellingham, setuptools, safetensors, networkx, jinja2, huggingface-hub, hf-xet, fsspec, filelock, annotated-doc
+  Attempting uninstall: setuptools
+    Found existing installation: setuptools 65.5.0
+    Uninstalling setuptools-65.5.0:
+      Successfully uninstalled setuptools-65.5.0
+
+Successfully installed annotated-doc-0.0.5 filelock-4.2.8 fsspec-2026.9.0 hf-xet-1.8.0 huggingface-hub-1.33.0 jinja2-3.1.6 mpmath-1.3.0 networkx-3.6.1 safetensors-0.8.0 setuptools-84.2.1 shellingham-1.5.4 sympy-1.14.0 tokenizers-0.23.3 torch-2.15.0+cpu transformers-5.17.0 typer-0.27.3

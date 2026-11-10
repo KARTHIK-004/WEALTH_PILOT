@@ -31,6 +31,8 @@ from seed_demo_data import (
     FAMILY_DEMO,
     FAMILY_RECORD_KEYS,
     FamilyDemoError,
+    HOUSEHOLD_DEMOS,
+    PIPELINE_HOUSEHOLD,
     _delete_family_household,
     _select_option,
     seed_persona,
@@ -235,7 +237,7 @@ def _row_counts(db_session, customer_ids: list[int]) -> dict[str, int]:
     counts = {
         table: db_session.execute(text(f"SELECT count(*) FROM {table} WHERE customer_id = ANY(:ids)"),
                                   {"ids": customer_ids}).scalar()
-        for table in ("questionnaire_answers", "financial_goals", "financial_inputs")
+        for table in ("questionnaire_answers", "financial_goals", "financial_inputs", "monthly_financial_records")
     }
     counts["customers"] = db_session.execute(
         text("SELECT count(*) FROM customers WHERE name = ANY(:names)"),
@@ -244,13 +246,15 @@ def _row_counts(db_session, customer_ids: list[int]) -> dict[str, int]:
     return counts
 
 
-def test_all_four_personas_are_loaded_and_only_three_are_resettable():
-    assert [p["demo_key"] for p in ALL_DEMO_PERSONAS] == ["WPDEMO-A", "WPDEMO-B", "WPDEMO-C", "WPDEMO-D"]
-    assert DEMO_PERSONAS == ALL_DEMO_PERSONAS[:3]
+def test_all_six_personas_are_loaded_and_only_five_are_resettable():
+    assert [p["demo_key"] for p in ALL_DEMO_PERSONAS] == ["WPDEMO-A", "WPDEMO-B", "WPDEMO-C", "WPDEMO-D", "WPDEMO-E", "WPDEMO-F"]
+    assert DEMO_PERSONAS == [p for p in ALL_DEMO_PERSONAS if p["demo_key"] != "WPDEMO-D"]   # A, B, C, E and F; D is never reset
     assert FALLBACK_DEMO_PERSONA["name"] == "WealthPilot Demo Customer"
     assert FALLBACK_DEMO_PERSONA["name"] not in {p["name"] for p in DEMO_PERSONAS}   # never reset
     assert FALLBACK_DEMO_PERSONA["external_customer_id"] is None                     # the pending case
-    assert "financial_inputs" not in FALLBACK_DEMO_PERSONA
+    # The pending case is missing trading history and part of the questionnaire, not spending data.
+    assert "financial_inputs" in FALLBACK_DEMO_PERSONA
+    assert FALLBACK_DEMO_PERSONA["questionnaire_complete"] is False
 
 
 def test_the_fallback_persona_is_the_frontends_own_fallback_customer():
@@ -272,9 +276,9 @@ def test_the_fallback_persona_is_the_frontends_own_fallback_customer():
     goals = re.search(r"const DEMO_GOALS: GoalCreate\[\] = \[(.*?)\n\]", source, re.S).group(1)
     assert pairs(profile) == FALLBACK_DEMO_PERSONA["profile"]
     assert [pairs(g) for g in re.findall(r"\{([^{}]*)\}", goals)] == FALLBACK_DEMO_PERSONA["goals"]
-    # The frontend's middle option is the dataset's position rule with offset 1.
+    # The unseeded-database fallback answers every question with the middle option; the dataset's own
+    # (curated, partial) answers are what the seed submits, so the two are deliberately not compared.
     assert "Math.floor((question.options.length - 1) / 2)" in source
-    assert FALLBACK_DEMO_PERSONA["answer_offset"] == 1
 
 
 def test_seed_persona_stores_the_dataset_values_through_the_api(client, db_session):
@@ -297,7 +301,7 @@ def test_seed_persona_stores_the_dataset_values_through_the_api(client, db_sessi
         risk_inputs = db_session.execute(text("SELECT risk_inputs FROM customers WHERE id = :id"), {"id": cid}).scalar()
         assert (risk_inputs or {}).get("external_customer_id") == persona["external_customer_id"]
     # The one direct write happened once per linked persona -- never for persona D.
-    assert calls == [p["external_customer_id"] for p in DEMO_PERSONAS]
+    assert calls == [p["external_customer_id"] for p in DEMO_PERSONAS if p["external_customer_id"]]   # persona F (unlinked, like D) is never linked
 
 
 def test_seeding_twice_creates_nothing_the_second_time(client, db_session):
@@ -306,11 +310,12 @@ def test_seeding_twice_creates_nothing_the_second_time(client, db_session):
     ids = [r["customer_id"] for r in first]
     after_first = _row_counts(db_session, ids)
     second = [seed_persona(client, p, link_risk_data=_link_through(db_session, calls)) for p in ALL_DEMO_PERSONAS]
-    assert [r["created"] for r in second] == [[], [], [], []]
+    assert [r["created"] for r in second] == [[], [], [], [], [], []]
     assert [r["customer_id"] for r in second] == ids
     assert _row_counts(db_session, ids) == after_first
-    assert after_first["customers"] == 4
-    assert len(calls) == 3                     # linked on creation only, not again
+    assert after_first["customers"] == 6
+    assert after_first["monthly_financial_records"] == 12           # the full-pipeline persona's twelve months, written once
+    assert len(calls) == 4                     # linked on creation only, not again
 
 
 def test_seed_persona_never_overwrites_a_stored_value(client, db_session, make_customer):
@@ -328,7 +333,7 @@ def test_seed_persona_never_overwrites_a_stored_value(client, db_session, make_c
 
 def test_analysis_state_reads_the_expected_states_and_no_number():
     """`verify` compares these states with `demo_data/expected_results/`. The
-    responses below have the shape of the four personas' real analyses."""
+    responses below have the shape of the five personas' real analyses."""
     approved = {"status": "approved", "risk": {"risk_category": "Aggressive"}, "goals": [{"feasibility": "Feasible"}],
                 "emergency_fund": {"sufficient": True},
                 "compliance": {"decision": "PASS", "rule_results": [{"rule_id": "single_asset_cap", "triggered": False}]},
@@ -337,7 +342,7 @@ def test_analysis_state_reads_the_expected_states_and_no_number():
     savings_first = {**approved, "emergency_fund": {"sufficient": False}, "recommendation": {"status": "savings_first"},
                      "portfolio": {"strategy": "savings_first", "weights": {}}}
     rejected = {"status": "rejected", "risk": {"risk_category": "Conservative"},
-                "goals": [{"feasibility": None}], "emergency_fund": {"sufficient": None},
+                "goals": [{"feasibility": "Feasible"}], "emergency_fund": {"sufficient": None},
                 "compliance": {"decision": "REJECT", "rule_results": [
                     {"rule_id": "single_asset_cap", "triggered": False},
                     {"rule_id": "emergency_fund_savings_first", "triggered": True}]},
@@ -346,7 +351,7 @@ def test_analysis_state_reads_the_expected_states_and_no_number():
                "goals": [], "emergency_fund": None, "compliance": None, "recommendation": None, "portfolio": None,
                "explanation": None}
     for key, result in (("WPDEMO-A", approved), ("WPDEMO-B", savings_first), ("WPDEMO-C", rejected),
-                        ("WPDEMO-D", pending)):
+                        ("WPDEMO-D", pending), ("WPDEMO-E", approved)):
         state = analysis_state(result)
         assert set(state) == set(ANALYSIS_STATE_KEYS)
         assert state == EXPECTED_RESULTS[key], key
@@ -395,6 +400,55 @@ def test_family_idempotency_keys_are_unique_within_each_resource():
     for resource, key in FAMILY_RECORD_KEYS.items():
         keys = [record[key] for record in FAMILY_DEMO[resource]]
         assert len(keys) == len(set(keys)), resource
+
+
+# --- the full-pipeline household (ADR-051): E (primary) and its partner F, built by `setup` and addressable with `--household pipeline`
+
+def test_pipeline_household_records_validate_against_the_real_api_schemas_and_have_unique_keys():
+    assert PIPELINE_HOUSEHOLD["demo_key"] == "WPDEMO-HHE" and set(PIPELINE_HOUSEHOLD["record_keys"]) == set(_SCHEMAS)
+    for resource, schema in _SCHEMAS.items():
+        assert PIPELINE_HOUSEHOLD[resource], resource
+        keys = [record[PIPELINE_HOUSEHOLD["record_keys"][resource]] for record in PIPELINE_HOUSEHOLD[resource]]
+        assert len(keys) == len(set(keys)), resource
+        for record in PIPELINE_HOUSEHOLD[resource]:
+            schema(**record)
+    for member in PIPELINE_HOUSEHOLD["members"]:
+        HouseholdMemberCreateRequest(customer_id=1, relationship=member["relationship"], role=member["role"])
+
+
+def test_pipeline_household_uses_only_seed_owned_personas_and_is_disjoint_from_the_family():
+    owned = {p["name"] for p in DEMO_PERSONAS}
+    pipeline = {PIPELINE_HOUSEHOLD["primary_name"], *(m["name"] for m in PIPELINE_HOUSEHOLD["members"])}
+    family = {FAMILY_DEMO["primary_name"], *(m["name"] for m in FAMILY_DEMO["members"])}
+    assert pipeline <= owned and not pipeline & family and not pipeline & set(INDIVIDUAL_DEMO_NAMES)
+    assert HOUSEHOLD_DEMOS == {"family": FAMILY_DEMO, "pipeline": PIPELINE_HOUSEHOLD}
+
+
+@pytest.fixture()
+def pipeline_personas(make_customer):
+    return {name: make_customer(name=name) for name in (PIPELINE_HOUSEHOLD["primary_name"], *(m["name"] for m in PIPELINE_HOUSEHOLD["members"]))}
+
+
+def test_setup_pipeline_household_builds_it_through_the_api_and_is_idempotent(client, pipeline_personas):
+    first = setup_family(client, PIPELINE_HOUSEHOLD)
+    primary = pipeline_personas[PIPELINE_HOUSEHOLD["primary_name"]]
+    partner = pipeline_personas[PIPELINE_HOUSEHOLD["members"][0]["name"]]
+    members = client.get(f"/api/households/{first['household_id']}/members", headers=_h(primary)).json()["members"]
+    assert {(m["customer_id"], m["relationship"], m["role"]) for m in members} == {(primary.id, "self", "primary"), (partner.id, "spouse", "member")}
+    for resource, key in PIPELINE_HOUSEHOLD["record_keys"].items():
+        stored = client.get(f"/api/households/{first['household_id']}/{resource}", headers=_h(primary)).json()
+        assert len(stored) == len(PIPELINE_HOUSEHOLD[resource]), resource
+    second = setup_family(client, PIPELINE_HOUSEHOLD)
+    assert second["created"] == [] and second["household_id"] == first["household_id"]
+    ok, lines = verify_family(client, PIPELINE_HOUSEHOLD)
+    assert ok, lines
+
+
+def test_the_two_demo_households_can_coexist(client, personas, pipeline_personas):
+    family, pipeline = setup_family(client), setup_family(client, PIPELINE_HOUSEHOLD)
+    assert family["household_id"] != pipeline["household_id"]
+    primary = pipeline_personas[PIPELINE_HOUSEHOLD["primary_name"]]
+    assert client.get(f"/api/households/{family['household_id']}/financial-summary", headers=_h(primary)).status_code == 403   # a member of one household is no member of the other
 
 
 @pytest.fixture()
@@ -468,18 +522,18 @@ def test_family_summary_follows_the_existing_phase_34_semantics(client, personas
     the emergency-fund basis, a recorded zero kept, an unrecorded payment not
     counted as zero."""
     summary = setup_family(client)["summary"]
-    assert summary["income"]["recurring_monthly"] == 201000            # 84000 + 93000 + 288000/12
-    assert summary["income"]["one_time"] == 90000                      # the bonus, kept separate
+    assert summary["income"]["recurring_monthly"] == 160000            # 62000 + 95000 + 36000/12
+    assert summary["income"]["one_time"] == 120000                     # the bonus, kept separate
     assert summary["income"]["active_record_count"] == 4               # the ended job is stored, not counted
-    assert summary["expenses"]["recurring_essential_monthly"] == 89100  # 49500 + 22500 + 5700 + 7800 + 43200/12
-    assert summary["expenses"]["recurring_monthly"] == 100950
-    assert summary["expenses"]["one_time"] == 36000
-    assert summary["cash_flow"]["monthly"] == 100050
-    assert summary["assets"]["liquid"] == 465000
-    assert summary["liabilities"]["outstanding"] == 234000             # includes the card's recorded 0
-    assert summary["liabilities"]["monthly_payment"] == 9300           # the card's unrecorded payment is not 0
-    assert summary["net_position"]["value"] == 1251000
-    assert (summary["emergency_fund"]["required"], summary["emergency_fund"]["status"]) == (534600, "insufficient")
+    assert summary["expenses"]["recurring_essential_monthly"] == 86000  # 34000 + 15000 + 4500 + 8000 + 54000/12 + 10500 + 9500
+    assert summary["expenses"]["recurring_monthly"] == 99200
+    assert summary["expenses"]["one_time"] == 45000
+    assert summary["cash_flow"]["monthly"] == 60800
+    assert summary["assets"]["liquid"] == 360000
+    assert summary["liabilities"]["outstanding"] == 320000             # includes the card's recorded 0
+    assert summary["liabilities"]["monthly_payment"] == 9500           # the card's unrecorded payment is not 0
+    assert summary["net_position"]["value"] == 1820000
+    assert (summary["emergency_fund"]["required"], summary["emergency_fund"]["status"]) == (516000, "insufficient")
 
 
 def test_family_members_see_identity_only_never_each_others_private_data(client, personas):

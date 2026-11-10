@@ -1,0 +1,33 @@
+before: 785 after: 812
+PRE-EXISTING files with changed content: 0
+PRE-EXISTING files removed from the modified/untracked set: 0
+NEW files (not in baseline): 27
+    docs/                                                  2
+    docs/audit_evidence                                    25
+    docs/FINAL_PROJECT_READINESS_AUDIT.md
+    docs/FINAL_PROJECT_READINESS_CHECKLIST.md
+    docs/audit_evidence/artifact_hashes.tsv
+    docs/audit_evidence/collect_only.txt
+    docs/audit_evidence/db_isolated_run.txt
+    docs/audit_evidence/db_isolated_run_api_partial_STOPPED.txt
+    docs/audit_evidence/db_isolated_run_db_ingestion.txt
+    docs/audit_evidence/db_isolated_run_started.txt
+    docs/audit_evidence/fe_build.txt
+    docs/audit_evidence/fe_mutations.txt
+    docs/audit_evidence/fe_oxlint.txt
+    docs/audit_evidence/fe_test.txt
+    docs/audit_evidence/fe_tsc.txt
+    docs/audit_evidence/fe_typecheck_tests.txt
+    docs/audit_evidence/git_status_after.txt
+    docs/audit_evidence/manifest_before.tsv
+    docs/audit_evidence/run_sealed_suites.sh
+    docs/audit_evidence/sealed_agents7.txt
+    docs/audit_evidence/sealed_api_personalized_insights.txt
+    docs/audit_evidence/sealed_console.txt
+    docs/audit_evidence/sealed_core.txt
+    docs/audit_evidence/sealed_data.txt
+    docs/audit_evidence/sealed_pipeline.txt
+    docs/audit_evidence/sealed_scripts.txt
+    docs/audit_evidence/sealed_security.txt
+    docs/audit_evidence/sealed_summary.txt
+    docs/audit_evidence/sealed_training.txt

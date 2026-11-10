@@ -1,0 +1,18 @@
+{
+  "files": {
+    "LICENSE": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+    "NOTICE": "8dd5797f6cf2c56c04dc1f0ca5cb92d152da54938a0e07f08844659cd809b186",
+    "SHA256SUMS": "fb38ed23ae3858e453a937901af4758912b1f1b5d92cbf2731ba468405b891ec",
+    "config.json": "516d8046cca3238145113bbe8b5e2b5b34b2f0c04b0ca093d7761c5f0a504eb9",
+    "model.safetensors": "f0d0b6d2958f2f0a017ec060bb4768bfa720ef67625486ef02710c6484d02dd1",
+    "special_tokens_map.json": "baec30ea10906f16adb8c18af7a34023002c1746542612b8b41c9f09e1351351",
+    "tokenizer.json": "f34b44a6dc8a0eef651bfa10e8325057530152606a69d9c3b6ae02efb1558f0a",
+    "tokenizer_config.json": "ea349495764b24570b4560fe2e4a557e5c0a47e6bce782c2409b1d6445cf8633"
+  },
+  "manifest_schema_version": 1,
+  "manifest_sha256": "9fa0c9099e30a27ea0ce8daff42daf91926127c4be3d09c2ce04df606f9f4da9",
+  "repository": "Horizon-Labs/multilingual-sentiment-small",
+  "revision": "e60eb86fd9e5bdd8c097bf6d6e75dade85a1ccac",
+  "tokenizer_length": 256000,
+  "weight_licence": "apache-2.0"
+}

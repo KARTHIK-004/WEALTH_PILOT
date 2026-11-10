@@ -1,0 +1,355 @@
+﻿python.exe : C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pytest_asyncio\plugin.py:208: 
+PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+At line:5 char:1
++ & .\.venv\Scripts\python.exe -m pytest -p netguard tests/backend/core ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\Admini...cope" is unset.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of 
+pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop 
+scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", 
+"class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+...FF........................................s.....s.................... [  4%]
+.F.FF...............................................s................... [  9%]
+........................................................................ [ 13%]
+........................................................................ [ 18%]
+......................................................FF................ [ 22%]
+........................................................................ [ 27%]
+..............s......................................................... [ 31%]
+........................................................................ [ 36%]
+........................................................................ [ 40%]
+........................................................................ [ 45%]
+........................................................................ [ 49%]
+...................................F............F....................... [ 54%]
+.......................F..F............................................. [ 58%]
+........................................................................ [ 63%]
+........................................................................ [ 67%]
+........................................................................ [ 72%]
+...................s.................................................... [ 76%]
+........................................................................ [ 81%]
+........................................................................ [ 85%]
+........................................................................ [ 90%]
+........................................................................ [ 95%]
+........................................................................ [ 99%]
+.......                                                                  [100%]
+================================== FAILURES ===================================
+_ test_the_replacements_are_not_in_the_active_registry_and_the_active_pair_is_still_blocked _
+
+    def test_the_replacements_are_not_in_the_active_registry_and_the_active_pair_is_still_blocked():
+>       assert [c.repository for c in registry.CANDIDATES] == ["ProsusAI/finbert", "cardiffnlp/twitter-roberta-base-sentiment-latest"]
+E       AssertionError: assert ['Horizon-Lab...iment-latest'] == ['ProsusAI/fi...iment-latest']
+E         
+E         At index 0 diff: 'Horizon-Labs/multilingual-sentiment-small' != 'ProsusAI/finbert'
+E         Left contains one more item: 'cardiffnlp/twitter-roberta-base-sentiment-latest'
+E         Use -v to get more diff
+
+tests\backend\core\test_sentiment_candidate_reviews.py:66: AssertionError
+______ test_a_replacement_built_from_its_review_still_cannot_load_or_run ______
+
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-840/test_a_replacement_built_from_0')
+
+    def test_a_replacement_built_from_its_review_still_cannot_load_or_run(tmp_path):
+        for review in (FIN, GEN):
+>           cand = registry.Candidate(key=review.key, display_name=review.key, repository=review.repository, revision=review.revision, weight_licence=review.declared_licence,
+                                      licence_status=registry.LICENCE_UNVERIFIED, licence_note="not approved", format_status=registry.FORMAT_SAFETENSORS, format_note="", source_urls=())
+E           TypeError: Candidate.__init__() missing 3 required positional arguments: 'role', 'registration', and 'registration_note'
+
+tests\backend\core\test_sentiment_candidate_reviews.py:74: TypeError
+_ test_the_status_endpoint_reports_both_candidates_the_findings_and_that_nothing_is_activated _
+
+client = <starlette.testclient.TestClient object at 0x000001B1400C5710>
+
+    def test_the_status_endpoint_reports_both_candidates_the_findings_and_that_nothing_is_activated(client):
+        body = client.get("/api/sentiment-model/status").json()
+        assert body["production_method"] == "user_text_rules_v1" and body["production_activation"] == "not_activated" and body["transformers_enabled"] is False
+        assert body["enabled"] is False and body["state"] == "disabled" and body["method_when_used"] == "rules_baseline"                # the existing fields are unchanged
+        by_key = {m["model_key"]: m for m in body["research_models"]}
+>       assert set(by_key) == {"finbert", "roberta"}
+E       AssertionError: assert {'finbert', '...n', 'roberta'} == {'finbert', 'roberta'}
+E         
+E         Extra items in the left set:
+E         'horizon'
+E         Use -v to get more diff
+
+tests\backend\api\test_sentiment_research_api.py:42: AssertionError
+---------------------------- Captured stdout call -----------------------------
+{"timestamp": "2026-11-04T18:27:08.180146+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/api/sentiment-model/status \"HTTP/1.1 200 OK\""}
+------------------------------ Captured log call ------------------------------
+INFO     httpx:_client.py:1038 HTTP Request: GET http://testserver/api/sentiment-model/status "HTTP/1.1 200 OK"
+_ test_switched_on_the_status_still_cannot_claim_a_model_is_active_when_weights_are_missing _
+
+client = <starlette.testclient.TestClient object at 0x000001B1400F0CD0>
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001B1400F2710>
+
+    def test_switched_on_the_status_still_cannot_claim_a_model_is_active_when_weights_are_missing(client, monkeypatch):
+        monkeypatch.setattr(get_settings(), "sentiment_transformers_enabled", True)
+        monkeypatch.setattr(get_settings(), "sentiment_transformers_max_tokens", "128")
+        monkeypatch.setattr(get_settings(), "sentiment_transformers_timeout_seconds", "5")
+        body = client.get("/api/sentiment-model/status").json()
+        assert body["transformers_enabled"] is True and body["production_activation"] == "not_activated"
+        for m in body["research_models"]:
+>           assert m["availability"] == "blocked" and m["inference_enabled"] is False and m["loaded"] is False and m["reason"] in ("licence_not_verified", "format_not_allowed")
+E           AssertionError: assert ('blocked' == 'blocked'
+E             
+E               blocked and False is False and False is False and 'registration_pending' in ('licence_not_verified', 'format_not_allowed'))
+
+tests\backend\api\test_sentiment_research_api.py:67: AssertionError
+---------------------------- Captured stdout call -----------------------------
+{"timestamp": "2026-11-04T18:27:08.197234+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/api/sentiment-model/status \"HTTP/1.1 200 OK\""}
+------------------------------ Captured log call ------------------------------
+INFO     httpx:_client.py:1038 HTTP Request: GET http://testserver/api/sentiment-model/status "HTTP/1.1 200 OK"
+_ test_the_insight_response_carries_the_research_object_beside_unchanged_existing_fields _
+
+client = <starlette.testclient.TestClient object at 0x000001B1400E34D0>
+
+    def test_the_insight_response_carries_the_research_object_beside_unchanged_existing_fields(client):
+        body = client.post("/api/demo/financial-behaviour", json={"text": TEXT}).json()["insight"]
+        research = body["transformer_research"]
+        assert research["enabled"] is False and research["mode"] == "research_experimental" and research["production_effect"] == "none" and research["validation_status"] == "not_human_validated"
+>       assert research["finbert_result"]["availability"] == "unavailable" and research["roberta_result"]["unavailable_reason"] == "disabled"
+E       KeyError: 'finbert_result'
+
+tests\backend\api\test_sentiment_research_api.py:74: KeyError
+---------------------------- Captured stdout call -----------------------------
+{"timestamp": "2026-11-04T18:27:08.209290+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/demo/financial-behaviour \"HTTP/1.1 200 OK\""}
+------------------------------ Captured log call ------------------------------
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/demo/financial-behaviour "HTTP/1.1 200 OK"
+_ test_with_the_gates_satisfied_the_manifest_is_accepted_by_the_adapters_verifier _
+
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-840/test_with_the_gates_satisfied_0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001B140BC5210>
+
+    def test_with_the_gates_satisfied_the_manifest_is_accepted_by_the_adapters_verifier(tmp_path, monkeypatch):
+        cand = dataclasses.replace(registry.FINBERT, licence_status=registry.LICENCE_VERIFIED)
+        monkeypatch.setattr(tool, "by_key", lambda key: cand)
+        place(tmp_path, "finbert")
+>       manifest = tool.build_manifest("finbert", 90, tmp_path)
+
+tests\backend\scripts\test_write_pretrained_manifest.py:51: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+key = 'finbert', tokenizer_length = 90
+root = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-840/test_with_the_gates_satisfied_0')
+
+    def build_manifest(key: str, tokenizer_length: int, root: Path = adapter.PRETRAINED_ROOT) -> dict:
+        candidate = by_key(key)
+        if not candidate.runnable_in_principle:
+>           raise ManifestError(f"{candidate.display_name} is not permitted to run: {candidate.blocker}")
+E           write_pretrained_manifest.ManifestError: FinBERT is not permitted to run: Historical candidate: blocked by licence; not registered and not eligible for registration.
+
+scripts\write_pretrained_manifest.py:35: ManifestError
+_ test_pickle_capable_files_missing_files_bad_labels_and_a_bad_length_are_refused _
+
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-840/test_pickle_capable_files_miss0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001B1409E04D0>
+
+    def test_pickle_capable_files_missing_files_bad_labels_and_a_bad_length_are_refused(tmp_path, monkeypatch):
+        cand = dataclasses.replace(registry.FINBERT, licence_status=registry.LICENCE_VERIFIED)
+        monkeypatch.setattr(tool, "by_key", lambda key: cand)
+        place(tmp_path, "finbert", {"pytorch_model.bin": b"x"})
+        with pytest.raises(tool.ManifestError, match="pickle-capable"):
+>           tool.build_manifest("finbert", 90, tmp_path)
+
+tests\backend\scripts\test_write_pretrained_manifest.py:62: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+key = 'finbert', tokenizer_length = 90
+root = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-840/test_pickle_capable_files_miss0')
+
+    def build_manifest(key: str, tokenizer_length: int, root: Path = adapter.PRETRAINED_ROOT) -> dict:
+        candidate = by_key(key)
+        if not candidate.runnable_in_principle:
+>           raise ManifestError(f"{candidate.display_name} is not permitted to run: {candidate.blocker}")
+E           write_pretrained_manifest.ManifestError: FinBERT is not permitted to run: Historical candidate: blocked by licence; not registered and not eligible for registration.
+
+scripts\write_pretrained_manifest.py:35: ManifestError
+
+During handling of the above exception, another exception occurred:
+
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-840/test_pickle_capable_files_miss0')
+monkeypatch = <_pytest.monkeypatch.MonkeyPatch object at 0x000001B1409E04D0>
+
+    def test_pickle_capable_files_missing_files_bad_labels_and_a_bad_length_are_refused(tmp_path, monkeypatch):
+        cand = dataclasses.replace(registry.FINBERT, licence_status=registry.LICENCE_VERIFIED)
+        monkeypatch.setattr(tool, "by_key", lambda key: cand)
+        place(tmp_path, "finbert", {"pytorch_model.bin": b"x"})
+>       with pytest.raises(tool.ManifestError, match="pickle-capable"):
+E       AssertionError: Regex pattern did not match.
+E        Regex: 'pickle-capable'
+E        Input: 'FinBERT is not permitted to run: Historical candidate: blocked by licence; not registered and not eligible for registration.'
+
+tests\backend\scripts\test_write_pretrained_manifest.py:61: AssertionError
+__________ test_the_frontend_fixtures_are_what_the_route_returns_now __________
+
+    def test_the_frontend_fixtures_are_what_the_route_returns_now():
+        done = subprocess.run([sys.executable, "-I", str(ROOT / "scripts" / "export_demo_fixtures.py"), "--check"], capture_output=True, text=True, cwd=ROOT, timeout=300)
+>       assert done.returncode == 0 and "fixtures match the backend" in done.stdout, done.stdout[-300:] + done.stderr[-300:]
+E       AssertionError: NFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/demo/family-financial-behaviour \"HTTP/1.1 200 OK\""}
+E         DRIFT: demo-records-only, demo-example-text, demo-quoted, demo-third-person, demo-hypothetical, demo-unrelated, family-records-only, family-example-text, family-quoted
+E         ktop\Project\TEST\.venv\Lib\site-packages\pydantic\_internal\_fields.py:132: UserWarning: Field "model_vs_rules" in ResearchComparisonOut has conflict with protected namespace "model_".
+E         
+E         You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+E           warnings.warn(
+E         
+E       assert (1 == 0)
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\Administrator\\Desktop\\Project\\TEST\\.venv\\Scripts\\python.exe', '-I', 'C:\\User...You may be able to resolve this warning by setting `model_config[\'protected_namespaces\'] = ()`.\n  warnings.warn(\n').returncode
+
+tests\backend\api\test_demo_financial_behaviour.py:188: AssertionError
+_ test_with_the_model_switched_off_the_rules_baseline_is_the_method_and_every_model_field_is_honestly_empty _
+
+client = <starlette.testclient.TestClient object at 0x000001B14116C6D0>
+
+    def test_with_the_model_switched_off_the_rules_baseline_is_the_method_and_every_model_field_is_honestly_empty(client):
+        s = post(client).json()["user_sentiment"]
+        assert (s["method"], s["fallback_used"], s["fallback_reason"], s["model_name"], s["class_probabilities"], s["confidence"], s["confidence_band"]) == ("rules_baseline", False, None, None, None, None, "unavailable")
+        assert (s["confidence_calibration_status"], s["sentiment_intensity"], s["intensity_available"], s["disagreement"]) == ("not_applicable", None, False, False)
+        assert s["rules_baseline"] == {"label": "negative", "method": "rules_baseline", "model_version": "user_text_rules_v1"} and s["validation_status"] == "UNVALIDATED_BASELINE"
+        status = client.get("/api/sentiment-model/status")
+        assert status.status_code == 200
+        body = status.json()
+        research = {"research_models", "reviewed_candidates", "transformers_enabled", "production_method", "production_activation"}        # ADR-053 / ADR-054 additive fields, covered by test_sentiment_research_api.py and test_sentiment_candidate_reviews.py
+>       assert {k: v for k, v in body.items() if k not in research} == {"enabled": False, "state": "disabled", "reason": None, "method_when_used": "rules_baseline", "model_name": None, "model_version": None,
+                                                                        "validation_status": None, "calibration_status": None, "intensity_available": False, "fallback_enabled": True,
+                                                                        "dependencies_available": sm.dependencies_available(), "data_source": "models/sentiment"}
+E       AssertionError: assert {'calibration...': False, ...} == {'calibration...': False, ...}
+E         
+E         Omitting 12 identical items, use -vv to show
+E         Left contains 1 more item:
+E         {'research_slots': [{'candidate_key': None,
+E                              'role': 'financial',
+E                              'state': 'no_candidate_approved'},
+E                             {'candidate_key': None,...
+E         
+E         ...Full output truncated (3 lines hidden), use '-vv' to show
+
+tests\backend\api\test_personalized_insights_model.py:99: AssertionError
+---------------------------- Captured stdout call -----------------------------
+{"timestamp": "2026-11-04T18:28:22.139402+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/1/personalized-insights \"HTTP/1.1 200 OK\""}
+{"timestamp": "2026-11-04T18:28:22.142970+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: GET http://testserver/api/sentiment-model/status \"HTTP/1.1 200 OK\""}
+------------------------------ Captured log call ------------------------------
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/1/personalized-insights "HTTP/1.1 200 OK"
+INFO     httpx:_client.py:1038 HTTP Request: GET http://testserver/api/sentiment-model/status "HTTP/1.1 200 OK"
+_ test_the_generated_types_contain_every_field_of_the_response_and_request_schemas _
+
+    def test_the_generated_types_contain_every_field_of_the_response_and_request_schemas():
+        schemas = openapi_schemas()
+        types = (ROOT / "frontend" / "src" / "types" / "api.ts").read_text(encoding="utf-8")
+        names = reachable(schemas, "PersonalizedInsightResponse") + reachable(schemas, "PersonalizedInsightRequest")
+        assert {"PersonalizedInsightResponse", "UserSentimentOut", "BehaviourFindingsOut", "InsightStatementOut", "InsightConflictOut", "RiskProfileOut", "StatedPreferenceOut", "EvidenceOut",
+                "PersonalizedInsightRequest"} <= set(names)
+        for name in dict.fromkeys(names):
+            block = ts_block(types, name)
+            for prop, spec in schemas[name].get("properties", {}).items():
+>               assert re.search(rf"\b{prop}\??:", block), (name, prop)
+E               AssertionError: ('TransformerResearchOut', 'models')
+E               assert None
+E                +  where None = <function search at 0x000001B10421BE20>('\\bmodels\\??:', '{\n            /** Enabled */\n            enabled: boolean;\n            /**\n             * Mode\n             * @c...mber | boolean | string | null;\n            };\n            /** Notices */\n            notices: string[];\n        }')
+E                +    where <function search at 0x000001B10421BE20> = re.search
+
+tests\backend\api\test_personalized_insights_hardening.py:261: AssertionError
+_ test_the_frontend_test_fixtures_are_exactly_what_the_backend_returns_today __
+
+    def test_the_frontend_test_fixtures_are_exactly_what_the_backend_returns_today():
+        fixtures = exporter.generate()
+        assert len(fixtures) >= 9
+        for name, payload in fixtures.items():
+            saved = (exporter.FIXTURE_DIR / f"{name}.json").read_bytes().replace(b"\r\n", b"\n").decode("utf-8")
+>           assert saved == exporter.render(payload), f"fixture {name} drifted from the backend; run scripts/export_insight_fixtures.py"
+E           AssertionError: fixture records-only drifted from the backend; run scripts/export_insight_fixtures.py
+E           assert '{\n  "custom...  ]\n  }\n}\n' == '{\n  "custom...  ]\n  }\n}\n'
+E             
+E             Skipping 9898 identical leading characters in diff, use -v to show
+E               ull,
+E             +     "finbert_result": {
+E             +       "model_key": "finbert",
+E             +       "display_name": "FinBERT",
+E             +       "repository": "ProsusAI/finbert",...
+E             
+E             ...Full output truncated (120 lines hidden), use '-vv' to show
+
+tests\backend\api\test_personalized_insights_hardening.py:295: AssertionError
+---------------------------- Captured stdout call -----------------------------
+{"timestamp": "2026-11-04T18:28:22.852767+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/1/personalized-insights \"HTTP/1.1 200 OK\""}
+{"timestamp": "2026-11-04T18:28:22.856948+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/1/personalized-insights \"HTTP/1.1 200 OK\""}
+{"timestamp": "2026-11-04T18:28:22.860693+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/1/personalized-insights \"HTTP/1.1 200 OK\""}
+{"timestamp": "2026-11-04T18:28:22.865474+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/1/personalized-insights \"HTTP/1.1 200 OK\""}
+{"timestamp": "2026-11-04T18:28:22.869293+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/2/personalized-insights \"HTTP/1.1 200 OK\""}
+{"timestamp": "2026-11-04T18:28:22.872347+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/2/personalized-insights \"HTTP/1.1 200 OK\""}
+{"timestamp": "2026-11-04T18:28:22.876434+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/3/personalized-insights \"HTTP/1.1 200 OK\""}
+{"timestamp": "2026-11-04T18:28:22.880210+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/4/personalized-insights \"HTTP/1.1 200 OK\""}
+{"timestamp": "2026-11-04T18:28:22.883357+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/5/personalized-insights \"HTTP/1.1 200 OK\""}
+{"timestamp": "2026-11-04T18:28:22.887509+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/4/personalized-insights \"HTTP/1.1 200 OK\""}
+{"timestamp": "2026-11-04T18:28:22.891251+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/4/personalized-insights \"HTTP/1.1 200 OK\""}
+{"timestamp": "2026-11-04T18:28:22.895291+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/1/personalized-insights \"HTTP/1.1 200 OK\""}
+{"timestamp": "2026-11-04T18:28:22.899304+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/1/personalized-insights \"HTTP/1.1 200 OK\""}
+{"timestamp": "2026-11-04T18:28:22.903039+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/1/personalized-insights \"HTTP/1.1 200 OK\""}
+{"timestamp": "2026-11-04T18:28:22.906158+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/1/personalized-insights \"HTTP/1.1 200 OK\""}
+{"timestamp": "2026-11-04T18:28:22.910126+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/1/personalized-insights \"HTTP/1.1 200 OK\""}
+{"timestamp": "2026-11-04T18:28:22.914609+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/1/personalized-insights \"HTTP/1.1 200 OK\""}
+{"timestamp": "2026-11-04T18:28:22.917668+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/4/personalized-insights \"HTTP/1.1 200 OK\""}
+{"timestamp": "2026-11-04T18:28:22.922568+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/1/personalized-insights \"HTTP/1.1 200 OK\""}
+{"timestamp": "2026-11-04T18:28:22.926095+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/1/personalized-insights \"HTTP/1.1 200 OK\""}
+{"timestamp": "2026-11-04T18:28:22.930637+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/1/personalized-insights \"HTTP/1.1 200 OK\""}
+{"timestamp": "2026-11-04T18:28:22.934085+00:00", "level": "INFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/profiles/1/personalized-insights \"HTTP/1.1 200 OK\""}
+------------------------------ Captured log call ------------------------------
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/1/personalized-insights "HTTP/1.1 200 OK"
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/1/personalized-insights "HTTP/1.1 200 OK"
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/1/personalized-insights "HTTP/1.1 200 OK"
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/1/personalized-insights "HTTP/1.1 200 OK"
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/2/personalized-insights "HTTP/1.1 200 OK"
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/2/personalized-insights "HTTP/1.1 200 OK"
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/3/personalized-insights "HTTP/1.1 200 OK"
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/4/personalized-insights "HTTP/1.1 200 OK"
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/5/personalized-insights "HTTP/1.1 200 OK"
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/4/personalized-insights "HTTP/1.1 200 OK"
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/4/personalized-insights "HTTP/1.1 200 OK"
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/1/personalized-insights "HTTP/1.1 200 OK"
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/1/personalized-insights "HTTP/1.1 200 OK"
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/1/personalized-insights "HTTP/1.1 200 OK"
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/1/personalized-insights "HTTP/1.1 200 OK"
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/1/personalized-insights "HTTP/1.1 200 OK"
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/1/personalized-insights "HTTP/1.1 200 OK"
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/4/personalized-insights "HTTP/1.1 200 OK"
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/1/personalized-insights "HTTP/1.1 200 OK"
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/1/personalized-insights "HTTP/1.1 200 OK"
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/1/personalized-insights "HTTP/1.1 200 OK"
+INFO     httpx:_client.py:1038 HTTP Request: POST http://testserver/api/profiles/1/personalized-insights "HTTP/1.1 200 OK"
+============================== warnings summary ===============================
+.venv\Lib\site-packages\starlette\testclient.py:40
+  C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\starlette\testclient.py:40: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+
+.venv\Lib\site-packages\langgraph\checkpoint\base\__init__.py:18
+  C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\langgraph\checkpoint\base\__init__.py:18: LangChainPendingDeprecationWarning: The default value of `allowed_objects` will change in a future version. Pass an explicit value (e.g., allowed_objects='messages' or allowed_objects='core') to suppress this warning.
+    from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
+
+.venv\Lib\site-packages\pydantic\_internal\_fields.py:132
+  C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pydantic\_internal\_fields.py:132: UserWarning: Field "model_label" in ModelVsRulesOut has conflict with protected namespace "model_".
+  
+  You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+    warnings.warn(
+
+.venv\Lib\site-packages\pydantic\_internal\_fields.py:132
+  C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pydantic\_internal\_fields.py:132: UserWarning: Field "model_vs_rules" in ResearchComparisonOut has conflict with protected namespace "model_".
+  
+  You may be able to resolve this warning by setting `model_config['protected_namespaces'] = ()`.
+    warnings.warn(
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/backend/core/test_sentiment_candidate_reviews.py::test_the_replacements_are_not_in_the_active_registry_and_the_active_pair_is_still_blocked
+FAILED tests/backend/core/test_sentiment_candidate_reviews.py::test_a_replacement_built_from_its_review_still_cannot_load_or_run
+FAILED tests/backend/api/test_sentiment_research_api.py::test_the_status_endpoint_reports_both_candidates_the_findings_and_that_nothing_is_activated
+FAILED tests/backend/api/test_sentiment_research_api.py::test_switched_on_the_status_still_cannot_claim_a_model_is_active_when_weights_are_missing
+FAILED tests/backend/api/test_sentiment_research_api.py::test_the_insight_response_carries_the_research_object_beside_unchanged_existing_fields
+FAILED tests/backend/scripts/test_write_pretrained_manifest.py::test_with_the_gates_satisfied_the_manifest_is_accepted_by_the_adapters_verifier
+FAILED tests/backend/scripts/test_write_pretrained_manifest.py::test_pickle_capable_files_missing_files_bad_labels_and_a_bad_length_are_refused
+FAILED tests/backend/api/test_demo_financial_behaviour.py::test_the_frontend_fixtures_are_what_the_route_returns_now
+FAILED tests/backend/api/test_personalized_insights_model.py::test_with_the_model_switched_off_the_rules_baseline_is_the_method_and_every_model_field_is_honestly_empty
+FAILED tests/backend/api/test_personalized_insights_hardening.py::test_the_generated_types_contain_every_field_of_the_response_and_request_schemas
+FAILED tests/backend/api/test_personalized_insights_hardening.py::test_the_frontend_test_fixtures_are_exactly_what_the_backend_returns_today
+11 failed, 1575 passed, 5 skipped, 4 warnings in 122.13s (0:02:02)
+NETGUARD external connection or lookup attempts: 0

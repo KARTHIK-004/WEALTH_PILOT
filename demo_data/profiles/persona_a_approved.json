@@ -5,18 +5,18 @@
   "demonstrates": "approved",
   "customer_name": "WealthPilot Demo — Complete",
   "owned_by_seed": true,
-  "purpose": "The most complete real demonstration this architecture can produce: highest available risk-model confidence, enough trading history for behaviour-drift detection to also produce a real result, a full questionnaire, two goals, and (Phase 28) a real, sufficient set of financial inputs. Its ACTUAL result is `approved`, with real MVO portfolio weights -- verified live, not forced (see `reports/phase28_financial_input_savings_first_report.md`).",
+  "purpose": "A financially coherent salaried professional with everything the analysis needs: stable income, essential spending well below income, easy-access savings above the emergency target, a regular monthly investment, a full questionnaire and three realistic goals. The application takes it through the whole pipeline to an approved recommendation with a portfolio, a compliance pass and an explanation -- every one of those results is computed, none is stored here.",
   "risk_data_link": {
     "external_customer_id": "4E6A7212289A2EA941BB",
     "selected_by": "backend/scripts/find_demo_risk_candidates.py",
-    "note": "predicted Aggressive, confidence ~0.913, 21 months of trading history"
+    "note": "an anonymised FAR-Trans customer with 21 months of trading history; the risk model, not this file, decides the category"
   },
   "profile": {
-    "age": 41,
-    "customer_type": "Premium",
+    "name": "WealthPilot Demo — Complete",
+    "age": 38,
+    "income": 1440000,
     "employment_status": "Full-time",
-    "income": 980000,
-    "investment_capacity": "CAP_80K_300K",
-    "name": "WealthPilot Demo — Complete"
+    "customer_type": "Premium",
+    "investment_capacity": "CAP_GT300K"
   }
 }

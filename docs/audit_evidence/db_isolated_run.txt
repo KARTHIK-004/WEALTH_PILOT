@@ -1,0 +1,32 @@
+C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pytest_asyncio\plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+============================= test session starts =============================
+platform win32 -- Python 3.11.9, pytest-8.3.3, pluggy-1.6.0
+rootdir: C:\Users\Administrator\Desktop\Project\TEST
+configfile: pytest.ini
+plugins: anyio-4.15.1, langsmith-0.8.5, asyncio-0.24.0
+asyncio: mode=Mode.STRICT, default_loop_scope=None
+collected 777 items / 2 deselected / 775 selected
+
+tests\backend\api\test_analysis.py F
+ISOLATED-DB FAILURE [call] tests/backend/api/test_analysis.py::test_approved_analysis_returns_recommendation_and_explanation
+            body = response.json()
+            assert body["status"] == "approved"
+            assert body["compliance"]["decision"] == "PASS"
+            assert body["recommendation"] is not None
+            assert body["recommendation"]["status"] == "approved"
+            assert body["recommendation"]["selected_strategy"] == "equal_weight"
+            assert body["explanation"] is not None
+    >       assert body["explanation"]["disclaimer"]
+    E       assert None
+    tests\backend\api\test_analysis.py:50: AssertionError
+........                             [  1%]
+tests\backend\api\test_demo_family_financial_behaviour.py ...........    [  2%]
+tests\backend\api\test_demo_financial_behaviour.py ....................  [  5%]
+tests\backend\api\test_goal_period_frequency.py ..............           [  6%]
+tests\backend\api\test_household_finance_metadata.py ................... [  9%]
+....................                                                     [ 12%]
+tests\backend\api\test_household_finances.py ........................... [ 15%]
+.................................STOPPED by the auditor 2026-11-10T01:46:38+05:30: the API suite's TestClient fixture runs the app lifespan (warm_model_caches) and in-process requests, which the U1 restrictions say not to execute. Partial results only; see FINAL_PROJECT_READINESS_AUDIT.md.

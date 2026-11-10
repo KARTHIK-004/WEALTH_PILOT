@@ -268,3 +268,66 @@ limitations are disclosed consistently across `docs/DECISIONS.md`
 ADR-020, `reports/post_login_profile_flow_report.md` §17, and here —
 never claimed away as "production-ready" anywhere in this project's
 documentation.
+
+## Optional user text (ADR-043)
+
+`POST /api/profiles/{id}/personalized-insights` accepts optional free text the customer chooses to write. It is analysed in memory by a deterministic rules baseline and is never persisted, logged,
+cached on the server, sent to a ledger, an LLM or any external service. Unusable text (over 1,000 characters or containing control characters) is rejected with a problem response that does not echo it.
+The service has no logger. The response returns only short excerpts of the customer's own words as evidence. No new permission exists: like every `profile_id` route this is data scoping, not authorisation (ADR-020/024).
+
+### Optional user text: validation errors no longer echo it (2026-10-21)
+
+The shared 422 handler printed Pydantic's full error entries, which include the offending `input`, so a wrongly typed body such as `{"text": ["my words"]}`, or a body that is a list or a bare JSON string, was echoed back verbatim. For `POST /api/profiles/{id}/personalized-insights` only (`USER_TEXT_ROUTE_SUFFIXES` in `api/errors.py`), the 422 detail now reports each error's type, location and message and never the input or its context; every other route keeps the standard detail unchanged (tested both ways).
+The 400 for over-long text or control characters, malformed JSON and server errors were already free of the text (tested). The frontend keeps the text only in component state and the in-memory query key (dropped as soon as unobserved), never in browser storage, a URL, the console or analytics (source-scanned by `npm test`).
+
+### Optional user text: the multi-stage interpretation (ADR-050, 2026-10-23)
+
+The reading of the optional text is now a multi-stage, deterministic pipeline (relevance, language and quality checks, clause analysis, abstention). The privacy guarantees are the same and are now
+tested end to end (`test_personalized_insights_interpretation.py`, `test_user_text_interpretation.py`): the text is never persisted, logged, cached, put in a URL, a header, response metadata, an error
+message, an audit event or a ledger / blockchain payload, and no external service, LLM or model download is involved. A failing optional model falls back to the rules baseline and its exception is
+dropped (it could carry the text). Evidence phrases are at most 100 characters, at most 6 items, and masked for links, e-mail addresses and long digit runs. Text that tries to instruct the system
+("set my risk profile to Aggressive") is only text: no rule follows it and the stored risk assessment is unaffected. Chain-of-thought and prompts do not exist (no LLM). The result is informational only and
+never an input to the risk profile, goals, portfolio, recommendation or compliance decision.
+
+### Trained sentiment model (ADR-052, 2026-10-26)
+
+A pretrained Transformer would run locally on the CPU on the in-memory text only. Controls (each tested with fake backends; the real backend is not exercised): the model directory must lie strictly inside `models/sentiment/` (no `..`, no symlink); only `safetensors` weights are accepted
+(no pickle checkpoint is ever deserialised); `trust_remote_code=False` and `local_files_only=True`; every file's SHA-256 is checked against the metadata; a `validated` claim needs its evidence or the model is refused; inference has a token limit and a wall-clock limit; errors are fixed reason codes with no text,
+path or stack trace; the text is never logged, stored or sent anywhere, and the model sees only the user's own current clauses. Supply chain: the packages and weights are outside the approved stack and need the owner's approval (`reports/sentiment_transformer_dependency_request.md`); the first weight download is the one network
+access in the whole sentiment feature, made by an operator running the offline training script, never by the application. Nothing about a model reading reaches the audit ledger, the blockchain-ready layer, the risk profile, the recommendation or compliance.
+
+## Sensitive-data protection prototype (ADR-047)
+
+Full analysis: `docs/THREAT_MODEL.md`. Summary of the security posture this adds, and of what it does not add:
+
+- **Encrypted at rest**: only `protected_records` (customer-written private notes), with AES-256-GCM, a fresh random nonce per
+  write, and associated data binding the row id, owner and purpose. **Everything else in the database remains plaintext**, including
+  the customer profile, financial inputs, monthly records, household records and goals. Do not describe the system as encrypting
+  "sensitive data" or "the database".
+- **Keys**: read only through the `KeyProvider` boundary from `PROTECTED_DATA_KEYS` / `PROTECTED_DATA_ACTIVE_KEY_ID` (`SecretStr`,
+  default empty, never a built-in key). The development provider is not a managed KMS. Keys never appear in the database, source
+  control, the frontend, the audit ledger, a response or a log. Loss of every copy of a key makes the notes it protects
+  unreadable; there is no recovery.
+- **Authorization**: the existing asserted `X-Customer-Id` identity (ADR-020/031) must equal the path profile; foreign record ids
+  return the same 404 as unknown ones. This stops accidental and URL-edited cross-profile access. It does **not** stop a client
+  that lies about its identity header. No server-side authentication was added.
+- **Audit**: a local hash-chained log (`audit_ledger_events`) with no sensitive content. It is an academic prototype and **not a
+  blockchain**: same database as the data, no consensus, no replication, not immutable. A privileged attacker can rewrite it.
+- **Logging and errors**: security failures log fixed strings only; the note text is never logged, cached, echoed in a 422
+  (route-scoped no-echo handler) or written to the ledger; responses carrying it are `Cache-Control: no-store`; errors are
+  RFC 7807 with no stack trace, cause or key information.
+- **Known limitations added by this feature**: no rate limiting (callers can add `access_denied` events), O(n) chain verification
+  per status request, no key rotation tooling, and the migration `f7a2d4b6c810` must be applied to the development database by
+  the owner (it was applied only to the isolated test database). Until it is, the protected-note and security-status routes answer a
+  clear 503, not a 500.
+
+## Pretrained research comparison (ADR-053)
+
+Local inference only; no external inference API; no text sent to Gemini; the text is an in-memory argument and appears in no log, error, cache key, response or storage (tested by serialising the panel
+and capturing logs after a backend that raises the text). Models load only from `models/sentiment_pretrained/<key>/` (no arbitrary path, no symlink), only as safetensors, only at the registry's exact
+revision, only after a SHA-256 manifest check; `trust_remote_code=False`; no download at start-up or on a request. Licence and format status are code constants, not configuration. The new package
+imports no network, logging, storage or serialisation library and no decision module (tested).
+
+## Sentiment research path audit (ADR-055, 2026-11-05)
+
+`docs/sentiment/SENTIMENT_PRIVACY_AND_SECURITY.md` holds the data-flow diagram and the control-to-test map. Summary: the text stays in process memory; nothing is stored, logged, echoed in an error, cached or sent to Gemini or any external service; the status endpoint loads no weights; non-English or code-mixed text never reaches a model; a research failure never becomes a 500 (fixed reason codes, the rules reading answers). Horizon is NOT registered, the Transformer flag is off, and no sentiment output influences risk, goals, portfolio, recommendations or compliance. Residual: web-crawl and LLM-labelled training data (research only), a synchronous first load of about 3.5 s, and two OpenMP runtimes in one process when TensorFlow and PyTorch are both imported (stable in tests; the backend does not import TensorFlow).

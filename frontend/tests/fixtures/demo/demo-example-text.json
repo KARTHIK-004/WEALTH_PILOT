@@ -1,0 +1,964 @@
+{
+  "demo": true,
+  "notice": "Demonstration data. Every month, amount and sentence here is fictional and fixed. It is not read from, and never written to, any customer record or database, and it does not affect any risk profile, allocation or recommendation.",
+  "example_text": "I feel more confident about saving this month, but I am still watching my expenses.",
+  "currency": "INR",
+  "months": [
+    {
+      "period": "2026-03",
+      "income": 62000.0,
+      "expenses": 41500.0,
+      "savings": 8000.0,
+      "investment_contribution": null,
+      "income_basis": "net",
+      "expense_to_income": {
+        "value": 0.6693548387096774,
+        "unavailable_reason": null
+      },
+      "savings_to_income": {
+        "value": 0.12903225806451613,
+        "unavailable_reason": null
+      },
+      "income_change": {
+        "absolute_change": {
+          "value": null,
+          "unavailable_reason": "No record for the month before 2026-03, so no change can be measured."
+        },
+        "relative_change": {
+          "value": null,
+          "unavailable_reason": "No record for the month before 2026-03, so no change can be measured."
+        }
+      },
+      "expenses_change": {
+        "absolute_change": {
+          "value": null,
+          "unavailable_reason": "No record for the month before 2026-03, so no change can be measured."
+        },
+        "relative_change": {
+          "value": null,
+          "unavailable_reason": "No record for the month before 2026-03, so no change can be measured."
+        }
+      },
+      "savings_change": {
+        "absolute_change": {
+          "value": null,
+          "unavailable_reason": "No record for the month before 2026-03, so no change can be measured."
+        },
+        "relative_change": {
+          "value": null,
+          "unavailable_reason": "No record for the month before 2026-03, so no change can be measured."
+        }
+      },
+      "investment_contribution_change": {
+        "absolute_change": {
+          "value": null,
+          "unavailable_reason": "No record for the month before 2026-03, so no change can be measured."
+        },
+        "relative_change": {
+          "value": null,
+          "unavailable_reason": "No record for the month before 2026-03, so no change can be measured."
+        }
+      }
+    },
+    {
+      "period": "2026-04",
+      "income": 62000.0,
+      "expenses": 43200.0,
+      "savings": 6500.0,
+      "investment_contribution": null,
+      "income_basis": "net",
+      "expense_to_income": {
+        "value": 0.6967741935483871,
+        "unavailable_reason": null
+      },
+      "savings_to_income": {
+        "value": 0.10483870967741936,
+        "unavailable_reason": null
+      },
+      "income_change": {
+        "absolute_change": {
+          "value": 0.0,
+          "unavailable_reason": null
+        },
+        "relative_change": {
+          "value": 0.0,
+          "unavailable_reason": null
+        }
+      },
+      "expenses_change": {
+        "absolute_change": {
+          "value": 1700.0,
+          "unavailable_reason": null
+        },
+        "relative_change": {
+          "value": 0.04096385542168675,
+          "unavailable_reason": null
+        }
+      },
+      "savings_change": {
+        "absolute_change": {
+          "value": -1500.0,
+          "unavailable_reason": null
+        },
+        "relative_change": {
+          "value": -0.1875,
+          "unavailable_reason": null
+        }
+      },
+      "investment_contribution_change": {
+        "absolute_change": {
+          "value": null,
+          "unavailable_reason": "Investment contribution was not reported in both months."
+        },
+        "relative_change": {
+          "value": null,
+          "unavailable_reason": "Investment contribution was not reported in both months."
+        }
+      }
+    },
+    {
+      "period": "2026-05",
+      "income": 63500.0,
+      "expenses": 42800.0,
+      "savings": 9000.0,
+      "investment_contribution": null,
+      "income_basis": "net",
+      "expense_to_income": {
+        "value": 0.6740157480314961,
+        "unavailable_reason": null
+      },
+      "savings_to_income": {
+        "value": 0.14173228346456693,
+        "unavailable_reason": null
+      },
+      "income_change": {
+        "absolute_change": {
+          "value": 1500.0,
+          "unavailable_reason": null
+        },
+        "relative_change": {
+          "value": 0.024193548387096774,
+          "unavailable_reason": null
+        }
+      },
+      "expenses_change": {
+        "absolute_change": {
+          "value": -400.0,
+          "unavailable_reason": null
+        },
+        "relative_change": {
+          "value": -0.009259259259259259,
+          "unavailable_reason": null
+        }
+      },
+      "savings_change": {
+        "absolute_change": {
+          "value": 2500.0,
+          "unavailable_reason": null
+        },
+        "relative_change": {
+          "value": 0.38461538461538464,
+          "unavailable_reason": null
+        }
+      },
+      "investment_contribution_change": {
+        "absolute_change": {
+          "value": null,
+          "unavailable_reason": "Investment contribution was not reported in both months."
+        },
+        "relative_change": {
+          "value": null,
+          "unavailable_reason": "Investment contribution was not reported in both months."
+        }
+      }
+    },
+    {
+      "period": "2026-06",
+      "income": 63500.0,
+      "expenses": 45100.0,
+      "savings": 5500.0,
+      "investment_contribution": null,
+      "income_basis": "net",
+      "expense_to_income": {
+        "value": 0.710236220472441,
+        "unavailable_reason": null
+      },
+      "savings_to_income": {
+        "value": 0.08661417322834646,
+        "unavailable_reason": null
+      },
+      "income_change": {
+        "absolute_change": {
+          "value": 0.0,
+          "unavailable_reason": null
+        },
+        "relative_change": {
+          "value": 0.0,
+          "unavailable_reason": null
+        }
+      },
+      "expenses_change": {
+        "absolute_change": {
+          "value": 2300.0,
+          "unavailable_reason": null
+        },
+        "relative_change": {
+          "value": 0.053738317757009345,
+          "unavailable_reason": null
+        }
+      },
+      "savings_change": {
+        "absolute_change": {
+          "value": -3500.0,
+          "unavailable_reason": null
+        },
+        "relative_change": {
+          "value": -0.3888888888888889,
+          "unavailable_reason": null
+        }
+      },
+      "investment_contribution_change": {
+        "absolute_change": {
+          "value": null,
+          "unavailable_reason": "Investment contribution was not reported in both months."
+        },
+        "relative_change": {
+          "value": null,
+          "unavailable_reason": "Investment contribution was not reported in both months."
+        }
+      }
+    },
+    {
+      "period": "2026-07",
+      "income": 65000.0,
+      "expenses": 43900.0,
+      "savings": 8500.0,
+      "investment_contribution": null,
+      "income_basis": "net",
+      "expense_to_income": {
+        "value": 0.6753846153846154,
+        "unavailable_reason": null
+      },
+      "savings_to_income": {
+        "value": 0.13076923076923078,
+        "unavailable_reason": null
+      },
+      "income_change": {
+        "absolute_change": {
+          "value": 1500.0,
+          "unavailable_reason": null
+        },
+        "relative_change": {
+          "value": 0.023622047244094488,
+          "unavailable_reason": null
+        }
+      },
+      "expenses_change": {
+        "absolute_change": {
+          "value": -1200.0,
+          "unavailable_reason": null
+        },
+        "relative_change": {
+          "value": -0.026607538802660754,
+          "unavailable_reason": null
+        }
+      },
+      "savings_change": {
+        "absolute_change": {
+          "value": 3000.0,
+          "unavailable_reason": null
+        },
+        "relative_change": {
+          "value": 0.5454545454545454,
+          "unavailable_reason": null
+        }
+      },
+      "investment_contribution_change": {
+        "absolute_change": {
+          "value": null,
+          "unavailable_reason": "Investment contribution was not reported in both months."
+        },
+        "relative_change": {
+          "value": null,
+          "unavailable_reason": "Investment contribution was not reported in both months."
+        }
+      }
+    },
+    {
+      "period": "2026-08",
+      "income": 65000.0,
+      "expenses": 42600.0,
+      "savings": 10500.0,
+      "investment_contribution": null,
+      "income_basis": "net",
+      "expense_to_income": {
+        "value": 0.6553846153846153,
+        "unavailable_reason": null
+      },
+      "savings_to_income": {
+        "value": 0.16153846153846155,
+        "unavailable_reason": null
+      },
+      "income_change": {
+        "absolute_change": {
+          "value": 0.0,
+          "unavailable_reason": null
+        },
+        "relative_change": {
+          "value": 0.0,
+          "unavailable_reason": null
+        }
+      },
+      "expenses_change": {
+        "absolute_change": {
+          "value": -1300.0,
+          "unavailable_reason": null
+        },
+        "relative_change": {
+          "value": -0.029612756264236904,
+          "unavailable_reason": null
+        }
+      },
+      "savings_change": {
+        "absolute_change": {
+          "value": 2000.0,
+          "unavailable_reason": null
+        },
+        "relative_change": {
+          "value": 0.23529411764705882,
+          "unavailable_reason": null
+        }
+      },
+      "investment_contribution_change": {
+        "absolute_change": {
+          "value": null,
+          "unavailable_reason": "Investment contribution was not reported in both months."
+        },
+        "relative_change": {
+          "value": null,
+          "unavailable_reason": "Investment contribution was not reported in both months."
+        }
+      }
+    }
+  ],
+  "insight": {
+    "customer_id": 0,
+    "analysis_timestamp": "2026-01-01T00:00:00Z",
+    "status": "behaviour_only",
+    "model_version": "personalized_insight_v2|behaviour_findings_v1|user_text_rules_v1",
+    "data_source": "monthly_financial_records+risk_assessments+user_text",
+    "behaviour": {
+      "version": "behaviour_findings_v1",
+      "history": "multiple_months",
+      "observation_count": 6,
+      "latest_period": "2026-08",
+      "findings": [
+        {
+          "code": "history_sufficiency",
+          "category": "coverage",
+          "status": "observed",
+          "statement": "6 months have been reported.",
+          "sources": [
+            "observation_count"
+          ],
+          "direction": null,
+          "values": {
+            "observation_count": 6.0
+          }
+        },
+        {
+          "code": "income_trend",
+          "category": "trend",
+          "status": "observed",
+          "statement": "Income was unchanged from the previous month.",
+          "sources": [
+            "income_change.absolute_change",
+            "income_change.relative_change"
+          ],
+          "direction": "unchanged",
+          "values": {
+            "absolute_change": 0.0,
+            "relative_change": 0.0
+          }
+        },
+        {
+          "code": "expenses_trend",
+          "category": "trend",
+          "status": "observed",
+          "statement": "Expenses decreased by ₹1,300 compared with the previous month (3.0%).",
+          "sources": [
+            "expenses_change.absolute_change",
+            "expenses_change.relative_change"
+          ],
+          "direction": "decreased",
+          "values": {
+            "absolute_change": -1300.0,
+            "relative_change": -0.029612756264236904
+          }
+        },
+        {
+          "code": "savings_trend",
+          "category": "trend",
+          "status": "observed",
+          "statement": "Savings increased by ₹2,000 compared with the previous month (23.5%).",
+          "sources": [
+            "savings_change.absolute_change",
+            "savings_change.relative_change"
+          ],
+          "direction": "increased",
+          "values": {
+            "absolute_change": 2000.0,
+            "relative_change": 0.23529411764705882
+          }
+        },
+        {
+          "code": "investment_contribution_trend",
+          "category": "trend",
+          "status": "unavailable",
+          "statement": "Investment contributions: no month-on-month change is available. Investment contribution was not reported in both months.",
+          "sources": [
+            "investment_contribution_change.absolute_change",
+            "investment_contribution_change.relative_change"
+          ],
+          "direction": null,
+          "values": {}
+        },
+        {
+          "code": "savings_activity",
+          "category": "activity",
+          "status": "observed",
+          "statement": "Savings were above zero in 6 of the 6 reported months within the last 12 (months that were not reported are not counted).",
+          "sources": [
+            "savings_consistency.share_with_amount",
+            "savings_consistency.known_months"
+          ],
+          "direction": null,
+          "values": {
+            "months_with_amount": 6.0,
+            "known_months": 6.0,
+            "share": 1.0
+          }
+        },
+        {
+          "code": "investment_contribution_activity",
+          "category": "activity",
+          "status": "unavailable",
+          "statement": "Investment contributions: Needs investment contribution reported in at least 3 of the last 12 months; found 0.",
+          "sources": [
+            "investment_contribution_consistency.share_with_amount",
+            "investment_contribution_consistency.known_months"
+          ],
+          "direction": null,
+          "values": {
+            "known_months": 0.0
+          }
+        },
+        {
+          "code": "expense_to_income_ratio",
+          "category": "ratio",
+          "status": "observed",
+          "statement": "In 2026-08, expenses were 65.5% of that month's reported income.",
+          "sources": [
+            "latest_ratios.expense_to_income"
+          ],
+          "direction": null,
+          "values": {
+            "ratio": 0.6553846153846153
+          }
+        },
+        {
+          "code": "savings_to_income_ratio",
+          "category": "ratio",
+          "status": "observed",
+          "statement": "In 2026-08, savings were 16.2% of that month's reported income.",
+          "sources": [
+            "latest_ratios.savings_to_income"
+          ],
+          "direction": null,
+          "values": {
+            "ratio": 0.16153846153846155
+          }
+        },
+        {
+          "code": "investment_contribution_to_income_ratio",
+          "category": "ratio",
+          "status": "unavailable",
+          "statement": "Investment contributions as a share of income: Investment contribution was not reported for this month.",
+          "sources": [
+            "latest_ratios.investment_contribution_to_income"
+          ],
+          "direction": null,
+          "values": {}
+        },
+        {
+          "code": "debt_burden",
+          "category": "coverage",
+          "status": "not_included",
+          "statement": "Debt and EMI burden is not computed: the monthly records hold no debt or EMI amounts, so nothing is assumed.",
+          "sources": [
+            "monthly_financial_records"
+          ],
+          "direction": null,
+          "values": {}
+        },
+        {
+          "code": "goal_progress",
+          "category": "coverage",
+          "status": "not_included",
+          "statement": "Goal progress is calculated by the existing goal analysis, not by this behaviour view.",
+          "sources": [
+            "financial_goals"
+          ],
+          "direction": null,
+          "values": {}
+        }
+      ],
+      "data_quality_notes": []
+    },
+    "user_sentiment": {
+      "status": "analysed",
+      "unavailable_reason": null,
+      "sentiment": "positive",
+      "emotional_tone": "hopeful",
+      "financial_relevance": "relevant",
+      "topics": [
+        "saving"
+      ],
+      "preferences": [],
+      "evidence": [
+        {
+          "label": "positive_cue",
+          "phrase": "I feel more confident about saving this month"
+        }
+      ],
+      "confidence": null,
+      "confidence_band": "unavailable",
+      "requires_confirmation": false,
+      "abstained": false,
+      "abstain_reason": null,
+      "interpretation_state": "valid",
+      "fallback_used": false,
+      "fallback_reason": null,
+      "method": "rules_baseline",
+      "model_name": null,
+      "model_version": "user_text_rules_v1",
+      "validation_status": "UNVALIDATED_BASELINE",
+      "class_probabilities": null,
+      "confidence_calibration_status": "not_applicable",
+      "sentiment_intensity": null,
+      "intensity_available": false,
+      "rules_baseline": {
+        "label": "positive",
+        "method": "rules_baseline",
+        "model_version": "user_text_rules_v1"
+      },
+      "disagreement": false,
+      "privacy_status": "in_memory_only",
+      "limitations": [
+        "rules baseline, not validated",
+        "English only: the language check is conservative (script and common English words), so other languages are not interpreted and very terse English can be declined",
+        "relevance is judged from a fixed list of personal-finance words, which can misjudge a word with two meanings",
+        "no sarcasm, irony or deep context; negation, quotation and third-person handling is basic",
+        "negated cues are not read as their opposite",
+        "confidence is not claimed"
+      ]
+    },
+    "risk_profile": null,
+    "preference_confirmation": "Confirming a preference is not available yet: confirmed preferences are not stored (storing them needs a reviewed schema change). Until then an inferred preference is a suggestion only, and your risk assessment and questionnaire answers stay in force.",
+    "statements": [
+      {
+        "text": "6 months have been reported.",
+        "sources": [
+          "observation_count"
+        ],
+        "kind": "behaviour_fact"
+      },
+      {
+        "text": "Income was unchanged from the previous month.",
+        "sources": [
+          "income_change.absolute_change",
+          "income_change.relative_change"
+        ],
+        "kind": "behaviour_fact"
+      },
+      {
+        "text": "Expenses decreased by ₹1,300 compared with the previous month (3.0%).",
+        "sources": [
+          "expenses_change.absolute_change",
+          "expenses_change.relative_change"
+        ],
+        "kind": "behaviour_fact"
+      },
+      {
+        "text": "Savings increased by ₹2,000 compared with the previous month (23.5%).",
+        "sources": [
+          "savings_change.absolute_change",
+          "savings_change.relative_change"
+        ],
+        "kind": "behaviour_fact"
+      },
+      {
+        "text": "Savings were above zero in 6 of the 6 reported months within the last 12 (months that were not reported are not counted).",
+        "sources": [
+          "savings_consistency.share_with_amount",
+          "savings_consistency.known_months"
+        ],
+        "kind": "behaviour_fact"
+      },
+      {
+        "text": "In 2026-08, expenses were 65.5% of that month's reported income.",
+        "sources": [
+          "latest_ratios.expense_to_income"
+        ],
+        "kind": "behaviour_fact"
+      },
+      {
+        "text": "In 2026-08, savings were 16.2% of that month's reported income.",
+        "sources": [
+          "latest_ratios.savings_to_income"
+        ],
+        "kind": "behaviour_fact"
+      },
+      {
+        "text": "From the text you wrote, the overall tone reads as positive; the wording suggests hopeful. This is an automatic reading, not a fact about you, and not a risk score.",
+        "sources": [
+          "user_text.sentiment"
+        ],
+        "kind": "stated_by_user"
+      }
+    ],
+    "conflicts": [],
+    "caveats": [
+      "Investment contributions: no month-on-month change is available. Investment contribution was not reported in both months.",
+      "Investment contributions: Needs investment contribution reported in at least 3 of the last 12 months; found 0.",
+      "Investment contributions as a share of income: Investment contribution was not reported for this month.",
+      "Debt and EMI burden is not computed: the monthly records hold no debt or EMI amounts, so nothing is assumed.",
+      "Goal progress is calculated by the existing goal analysis, not by this behaviour view.",
+      "No stored risk assessment was found for this profile.",
+      "Text readings are informational only. The rules baseline is unvalidated and reports no confidence."
+    ],
+    "purpose": "Informational only. It does not change your risk profile, goals, allocation or any recommendation, and it is not financial advice.",
+    "transformer_research": {
+      "enabled": false,
+      "mode": "research_experimental",
+      "validation_status": "not_human_validated",
+      "production_effect": "none",
+      "rules_baseline": {
+        "label": "positive",
+        "method": "rules_baseline",
+        "model_version": "user_text_rules_v1"
+      },
+      "models": [
+        {
+          "slot": "financial",
+          "display_name": "Financial sentiment model",
+          "model_id": null,
+          "revision": null,
+          "availability": "unavailable",
+          "unavailable_reason": "no_candidate_approved",
+          "native_label": null,
+          "normalized_label": null,
+          "raw_scores": null,
+          "probabilities": null,
+          "probability_kind": null,
+          "processing_ms": null
+        },
+        {
+          "slot": "general",
+          "display_name": "General sentiment model",
+          "model_id": "Horizon-Labs/multilingual-sentiment-small",
+          "revision": "e60eb86fd9e5bdd8c097bf6d6e75dade85a1ccac",
+          "availability": "unavailable",
+          "unavailable_reason": "disabled",
+          "native_label": null,
+          "normalized_label": null,
+          "raw_scores": null,
+          "probabilities": null,
+          "probability_kind": null,
+          "processing_ms": null
+        }
+      ],
+      "comparison": {
+        "status": "model_unavailable",
+        "shared_label": null,
+        "explanation": "The pretrained model produced no result, so the rules-based reading is used on its own.",
+        "model_vs_rules": []
+      },
+      "overall_sentiment": "positive",
+      "overall_source": "rules_baseline_fallback",
+      "rules_relation": "not_compared",
+      "uncertainty_reason": "transformers_unavailable",
+      "model_versions": {
+        "general": "e60eb86fd9e5bdd8c097bf6d6e75dade85a1ccac"
+      },
+      "model_availability": {
+        "financial": "unavailable",
+        "general": "unavailable"
+      },
+      "processing_metadata": {
+        "total_ms": null,
+        "input_eligible": true,
+        "device": "cpu"
+      },
+      "notices": [
+        "Experimental pretrained model output — not human validated.",
+        "Model predictions are not financial advice.",
+        "Sentiment does not modify your financial risk profile or investment recommendations."
+      ]
+    }
+  },
+  "sentiment_model": {
+    "enabled": false,
+    "state": "disabled",
+    "reason": null,
+    "method_when_used": "rules_baseline",
+    "model_name": null,
+    "model_version": null,
+    "validation_status": null,
+    "calibration_status": null,
+    "intensity_available": false,
+    "fallback_enabled": true,
+    "dependencies_available": false,
+    "data_source": "models/sentiment",
+    "research_models": [
+      {
+        "model_key": "horizon",
+        "role": "general",
+        "display_name": "Horizon multilingual sentiment (small)",
+        "repository": "Horizon-Labs/multilingual-sentiment-small",
+        "revision": "e60eb86fd9e5bdd8c097bf6d6e75dade85a1ccac",
+        "weight_licence": "apache-2.0",
+        "licence_status": "license_verified",
+        "format_status": "safetensors_available",
+        "registration": "registered",
+        "blocker": null,
+        "weights_present": true,
+        "loaded": false,
+        "inference_enabled": false,
+        "availability": "disabled",
+        "reason": "disabled",
+        "checked_on": "2026-11-03"
+      },
+      {
+        "model_key": "finbert",
+        "role": "financial",
+        "display_name": "FinBERT",
+        "repository": "ProsusAI/finbert",
+        "revision": "0bc2ac10dda6929bcb1f77ccc43c7ec5c424f031",
+        "weight_licence": "cc-by-nc-sa-4.0",
+        "licence_status": "blocked_by_licence",
+        "format_status": "safetensors_available",
+        "registration": "historical",
+        "blocker": "The repository declares CC BY-NC-SA 4.0 (non-commercial, share-alike). The project owner rejected the share-alike term (A3.5) and the training-data terms (A3.3) are unresolved.",
+        "weights_present": false,
+        "loaded": false,
+        "inference_enabled": false,
+        "availability": "disabled",
+        "reason": "disabled",
+        "checked_on": "2026-11-03"
+      },
+      {
+        "model_key": "roberta",
+        "role": "general",
+        "display_name": "Twitter-RoBERTa (CardiffNLP)",
+        "repository": "cardiffnlp/twitter-roberta-base-sentiment-latest",
+        "revision": "3216a57f2a0d9c45a2e6c20157c20c49fb4bf9c7",
+        "weight_licence": "cc-by-4.0",
+        "licence_status": "license_unverified",
+        "format_status": "no_safetensors_published",
+        "registration": "historical",
+        "blocker": "The repository declares CC BY 4.0, but it was fine-tuned on tweet_eval over a social-media corpus whose own terms were not reviewed; no owner approval is recorded for this candidate.",
+        "weights_present": false,
+        "loaded": false,
+        "inference_enabled": false,
+        "availability": "disabled",
+        "reason": "disabled",
+        "checked_on": "2026-11-03"
+      }
+    ],
+    "reviewed_candidates": [
+      {
+        "key": "finbert",
+        "role": "financial",
+        "repository": "ProsusAI/finbert",
+        "revision": "0bc2ac10dda6929bcb1f77ccc43c7ec5c424f031",
+        "architecture": "BertForSequenceClassification",
+        "declared_licence": "cc-by-nc-sa-4.0",
+        "licence_file": "metadata field only (not re-inspected in this review)",
+        "base_model": "not re-inspected",
+        "base_model_licence": "not re-inspected",
+        "training_data": [
+          "not listed in repository metadata; training corpora not reviewed (A3.3)"
+        ],
+        "native_labels": [
+          "positive",
+          "negative",
+          "neutral"
+        ],
+        "label_mapping": {
+          "positive": "positive",
+          "negative": "negative",
+          "neutral": "neutral"
+        },
+        "languages": "en",
+        "safetensors_file": "model.safetensors",
+        "safetensors_sha256": null,
+        "safetensors_size_bytes": null,
+        "verdict": "blocked_by_license",
+        "blockers": [
+          "CC BY-NC-SA 4.0: non-commercial and share-alike; the owner rejected share-alike (A3.5)",
+          "training-data terms unresolved (A3.3)"
+        ],
+        "active_in_registry": false,
+        "source_urls": [
+          "https://huggingface.co/api/models/ProsusAI/finbert"
+        ],
+        "checked_on": "2026-11-03",
+        "owner_decision": null
+      },
+      {
+        "key": "roberta",
+        "role": "general",
+        "repository": "cardiffnlp/twitter-roberta-base-sentiment-latest",
+        "revision": "3216a57f2a0d9c45a2e6c20157c20c49fb4bf9c7",
+        "architecture": "RobertaForSequenceClassification",
+        "declared_licence": "cc-by-4.0",
+        "licence_file": "metadata field only (not re-inspected in this review)",
+        "base_model": "not re-inspected",
+        "base_model_licence": "not re-inspected",
+        "training_data": [
+          "tweet_eval (social-media posts); platform and poster terms not reviewed"
+        ],
+        "native_labels": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "label_mapping": {
+          "negative": "negative",
+          "neutral": "neutral",
+          "positive": "positive"
+        },
+        "languages": "en",
+        "safetensors_file": null,
+        "safetensors_sha256": null,
+        "safetensors_size_bytes": null,
+        "verdict": "blocked_by_provenance",
+        "blockers": [
+          "training data is tweet-derived and its platform terms are not reviewed or approved",
+          "no model.safetensors is published at this revision (only pickle-capable checkpoints)"
+        ],
+        "active_in_registry": false,
+        "source_urls": [
+          "https://huggingface.co/api/models/cardiffnlp/twitter-roberta-base-sentiment-latest"
+        ],
+        "checked_on": "2026-11-03",
+        "owner_decision": null
+      },
+      {
+        "key": "tooshlegacy_distilbert_financial_tweet",
+        "role": "financial",
+        "repository": "tooshlegacy/distilbert-financial-tweet-sentiment",
+        "revision": "ba66b6a858cc775dc9e78d773c437b7e984fd5fc",
+        "architecture": "DistilBertForSequenceClassification (66M parameters per the card; vocab 30522; 512 positions)",
+        "declared_licence": "apache-2.0 (YAML metadata and model-card header)",
+        "licence_file": "NONE: the repository contains no LICENSE or NOTICE file, and the card names no author or organisation (it links a personal GitHub project)",
+        "base_model": "distilbert/distilbert-base-uncased (repository sha 12040accade4e8a0f71eabdb258fecc2e7e948be)",
+        "base_model_licence": "apache-2.0 (declared); trained on bookcorpus and wikipedia",
+        "training_data": [
+          "zeroshot/twitter-financial-news-sentiment (sha ccbe24de388e287beb92dd393a335c376b350ac3): ~11,932 finance-related tweets, MIT declared; 'collected using the Twitter API'; annotators recorded only as 'other', annotation process ABSENT; no Twitter/X terms or redistribution statement; no Financial PhraseBank and no share-alike or non-commercial wording found"
+        ],
+        "native_labels": [
+          "Bearish",
+          "Bullish",
+          "Neutral"
+        ],
+        "label_mapping": {
+          "Bearish": "negative",
+          "Bullish": "positive",
+          "Neutral": "neutral"
+        },
+        "languages": "en only",
+        "safetensors_file": "model.safetensors",
+        "safetensors_sha256": "97fcaa54879f7cfd07af3cdcdb73aaa011dc89ced9b4ca479038148b957c6ac0",
+        "safetensors_size_bytes": 267835644,
+        "verdict": "blocked_by_provenance",
+        "blockers": [
+          "training data is third-party tweets collected through the Twitter API; how they were annotated and whether platform terms permit this use are undocumented (the same unresolved issue that blocked the CardiffNLP candidate)",
+          "no licence file in the repository and no identifiable author or organisation: the Apache-2.0 declaration is a bare metadata tag",
+          "A3.3 (training-data terms) is unresolved and the owner has not approved this candidate"
+        ],
+        "active_in_registry": false,
+        "source_urls": [
+          "https://huggingface.co/api/models/tooshlegacy/distilbert-financial-tweet-sentiment",
+          "https://huggingface.co/api/datasets/zeroshot/twitter-financial-news-sentiment",
+          "https://huggingface.co/api/models/distilbert/distilbert-base-uncased"
+        ],
+        "checked_on": "2026-11-03",
+        "owner_decision": null
+      },
+      {
+        "key": "horizon_multilingual_sentiment_small",
+        "role": "general",
+        "repository": "Horizon-Labs/multilingual-sentiment-small",
+        "revision": "e60eb86fd9e5bdd8c097bf6d6e75dade85a1ccac",
+        "architecture": "ModernBertForSequenceClassification (vocab 256000; 8192 positions; config written by transformers 5.17.0 with v5-format keys such as rope_parameters)",
+        "declared_licence": "apache-2.0",
+        "licence_file": "LICENSE (Apache License 2.0 text; no copyright line inside it) and NOTICE (names Horizon Labs and the MIT base model)",
+        "base_model": "jhu-clsp/mmBERT-small (repository sha abc32620dd4f6ab06f5fbe905dc25f310618e09f)",
+        "base_model_licence": "mit (declared); its multilingual pretraining corpora are listed but not reviewed",
+        "training_data": [
+          "snippets of FineWeb-2 and FineWeb (ODC-BY dataset licence; a web crawl, so rights in the underlying pages are not covered by that tag), 67 languages, about 433k training examples",
+          "synthetic reviews, posts, comments, messages and complaints written by the teacher LLM Qwen/Qwen3.8-27B (repository exists, apache-2.0 declared, sha 1d4bf0f2ff6012fd82039f2fa52739d0dd7c60c0); the real/synthetic split is not stated",
+          "labels are soft labels from that LLM, zero-shot; NO human annotation (the card: 'the model inherits the teacher's judgement')"
+        ],
+        "native_labels": [
+          "negative",
+          "neutral",
+          "positive"
+        ],
+        "label_mapping": {
+          "negative": "negative",
+          "neutral": "neutral",
+          "positive": "positive"
+        },
+        "languages": "multilingual (67 languages); WealthPilot passes only English text to a model, other languages abstain before reaching it",
+        "safetensors_file": "model.safetensors",
+        "safetensors_sha256": "f0d0b6d2958f2f0a017ec060bb4768bfa720ef67625486ef02710c6484d02dd1",
+        "safetensors_size_bytes": 562584932,
+        "verdict": "approved_for_research_inference",
+        "blockers": [
+          "REMAINING limits (research use only): transformers 4.57.1 is NOT compatible with this config (it ignores rope_parameters and would silently use local_rope_theta 10000 instead of 160000), so transformers >= 5 is required; 5.17.0 is installed in the project environment (B2.1) and the older ADR-052 pins (tokenizers 0.22.1, safetensors 0.6.2) are not used for this model",
+          "registered as the `general` research candidate (R1, ADR-056) but NOT production: production activation (F1/R14), any financial-domain claim, and any accuracy, calibration or human-validation claim remain unauthorised",
+          "inference was verified by direct loading (Stage A, B2.1); inference through the application adapter is verified only by the opt-in real-weights smoke test (R2)",
+          "the card says not to use it to make decisions about individuals: acceptable only because WealthPilot uses sentiment as display-only context; its training data and LLM-made labels are accepted for research inference only"
+        ],
+        "active_in_registry": true,
+        "source_urls": [
+          "https://huggingface.co/api/models/Horizon-Labs/multilingual-sentiment-small",
+          "https://huggingface.co/Horizon-Labs/multilingual-sentiment-small/raw/e60eb86fd9e5bdd8c097bf6d6e75dade85a1ccac/SHA256SUMS",
+          "https://huggingface.co/api/models/jhu-clsp/mmBERT-small",
+          "https://huggingface.co/api/models/Qwen/Qwen3.8-27B"
+        ],
+        "checked_on": "2026-11-03",
+        "owner_decision": "Recorded 2026-11-04 from the project owner's instruction. Horizon-Labs/multilingual-sentiment-small at revision e60eb86fd9e5bdd8c097bf6d6e75dade85a1ccac may be considered for RESEARCH INFERENCE ONLY, accepting its disclosed web-crawl and LLM-generated training data and the absence of human-validated labels. NOT authorised: production activation, dataset creation or collection, fine-tuning, training, automatic model downloads, redistribution, commercial use, any human-validation, accuracy or calibration claim, or any financial-decision impact. Package installation, weight download, actual inference and the registry change each still need their own approval. UPDATE 2026-11-07 (owner requests R1, R2, R3, ADR-056): the owner approved registering this model as the `general` RESEARCH candidate, placing the exact approved artifacts in the project's local, untracked model-artifact directory (never committed) and running the application-adapter smoke test. This does NOT authorise production activation, a financial-domain claim, dataset collection, training, human evaluation, or any accuracy or calibration claim."
+      }
+    ],
+    "research_slots": [
+      {
+        "role": "financial",
+        "state": "no_candidate_approved",
+        "candidate_key": null
+      },
+      {
+        "role": "general",
+        "state": "registered",
+        "candidate_key": "horizon"
+      }
+    ],
+    "transformers_enabled": false,
+    "production_method": "user_text_rules_v1",
+    "production_activation": "not_activated"
+  },
+  "data_source": "demo_fixture"
+}

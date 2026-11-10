@@ -1,7 +1,8 @@
 # WealthPilot AI — Demo Dataset
 
-> **This dataset is NOT a replacement for FAR-Trans or the Kaggle training
-> dataset and MUST NOT be used as additional ML training data.**
+> **This dataset is synthetic demo data and is not used for model training.
+> It is NOT a replacement for FAR-Trans or the Kaggle training dataset and
+> MUST NOT be used as additional ML training data.**
 
 The demo data comes in two forms:
 
@@ -16,10 +17,12 @@ The demo data comes in two forms:
 
 This folder holds the complete synthetic demo population for WealthPilot AI:
 
-- four individual personas, each with a profile, questionnaire answers,
-  financial inputs and goals;
-- one family household with members, income, expenses, assets, liabilities
-  and goals;
+- six individual personas, each with a profile, questionnaire answers,
+  financial inputs and goals (and, for the full-pipeline persona E, twelve
+  reported months in `monthly_records/`);
+- two households, each with members, income, expenses, assets, liabilities
+  and goals: the family (B + C) and the full-pipeline household (E + its
+  partner F);
 - scenario inputs for the Scenario Simulator;
 - the high-level outcome each persona and the household is expected to show.
 
@@ -48,7 +51,11 @@ Every file is labelled `"source": "synthetic_demo"`.
   the approved architecture can give a new identity a genuine model-computed
   risk result. The link reuses that customer's already-present trading
   history. It invents none, and it copies no personal data.
-- **Currency:** amounts are EUR, the project's single currency.
+- **Currency:** the demo is presented in Indian rupees. The application formats
+  every amount with the ₹ symbol and Indian digit grouping (a presentation
+  relabel in `frontend/src/lib/format.ts`); no schema stores a currency and
+  nothing is converted. This is separate from the research datasets, whose own
+  currency (FAR-Trans, euros) is unchanged.
 - **Nothing computed is stored.** The dataset holds no risk category,
   Monte Carlo probability, emergency-fund status, portfolio weight, compliance
   decision, recommendation or household summary. The application computes
@@ -61,17 +68,123 @@ Every file is labelled `"source": "synthetic_demo"`.
 | `WPDEMO-A` | WealthPilot Demo — Complete | approved: portfolio, recommendation, compliance PASS, explanation | provided (sufficient emergency fund) | FAR-Trans |
 | `WPDEMO-B` | WealthPilot Demo — Savings | savings first: insufficient emergency fund, no portfolio weights | provided (insufficient emergency fund) | FAR-Trans |
 | `WPDEMO-C` | WealthPilot Demo — Compliance | compliance REJECT (`emergency_fund_savings_first`, fail-closed), no recommendation, no explanation | **not provided** (`null` + reason) | FAR-Trans |
+| `WPDEMO-E` | WealthPilot Demo — Full Pipeline | everything: a real FAR-Trans history for the risk model, twelve reported months for the behaviour findings, an emergency fund above target, three goals; approved, equal-weight (Balanced), compliance PASS, explanation | provided (sufficient emergency fund) | FAR-Trans |
 | `WPDEMO-D` | WealthPilot Demo Customer | pending information: no risk label, so nothing downstream | **not provided** (`null` + reason) | none (`null` + reason) |
+| `WPDEMO-F` | WealthPilot Demo — Full Pipeline Partner | the second member of E's household; pending information (no trading history, first part of the questionnaire only), so nothing downstream | **not provided** (`null` + reason) | none (`null` + reason) |
 
-A, B and C are owned by the seed (`owned_by_seed: true`).
+A, B, C, E and F are owned by the seed (`owned_by_seed: true`).
 
 D is Phase 24's canonical demo customer. The seed creates it only if it is
 missing. The frontend fallback (`lib/demo-customer.ts`) may also create it,
 with the same values. `reset` never deletes it.
 
-In the current development database these personas are customers 29107,
-29108, 29109 and 29096. The dataset stores **no numeric id**: every persona
-is found by its exact name.
+In the current development database these personas are customers **29110**
+(Complete), **29111** (Savings), **29112** (Compliance) and **29113**
+(Pending), and the family is household **9**. The dataset stores **no numeric
+id**: every persona is found by its exact name.
+
+### The full-pipeline persona (E)
+
+`WPDEMO-E` ("WealthPilot Demo — Full Pipeline") exists so that **every page shows
+real pipeline results**. It is synthetic in identity, and real only in the one
+thing the application must read from a dataset: its `risk_data_link` points to
+the anonymised FAR-Trans customer `F7D82BE85FF183D757BA` (52 months of trading
+history, 370 transactions, 2018-01 to 2022-11; the dataset's own label for it is
+a genuine `Balanced`, never a `Predicted_*` or `Not_Available` row). Its profile
+uses that customer's own type (`Mass`) and capacity band (`CAP_LT30K`). The
+risk model, not the file, decides the category, and no persona file carries a
+risk category, score, allocation or other computed result.
+
+It also has `monthly_records/persona_e_full_pipeline.json`: twelve consecutive
+months (2025-10 to 2026-09) of reported income, living costs, savings and
+investing, so the behaviour findings (changes, ratios, activity) are computed by
+the application rather than empty. Spending, saving and investing never exceed
+income in any month (the validator checks it). Months are sent through
+`PUT /api/profiles/{id}/monthly-financial-records/{YYYY-MM}`, only for a month
+not already stored, so a month the user changed is never overwritten.
+
+What the application computes for it (reported by `seed_demo_data.py setup`):
+Balanced (confidence about 0.66) -> an approved, risk-conditioned equal-weight
+recommendation, compliance PASS, an emergency fund above target and a
+feasibility result for each of its three goals. The allocation and goal figures
+depend on the market prices loaded (see section 7).
+
+### The full-pipeline household (E + F)
+
+`WPDEMO-HHE` ("WealthPilot Demo — Full Pipeline Household", ADR-051) is the household of the full-pipeline persona: **E is the primary member (self)** and **F** — the partner — is
+the spouse (a household member must be an existing customer, so F is a real, light, synthetic customer). All records are the household's own **stored source data**; the
+application computes the summary (`core/household_finance.py`) and nothing here is a result. It shows, under **Customer Profile → Household**:
+
+| Section | Records seeded | What the application then computes (checked against independent arithmetic in the tests) |
+| --- | --- | --- |
+| Members | E (self, primary), F (spouse, member) | member count 2 |
+| Income | primary salary (net) 100,000 a month, partner salary (net) 52,000, interest and dividends 36,000 a year, a one-time bonus, an inactive past freelance stream | recurring 155,000 a month; one-time 120,000 kept apart; the inactive record is stored but in no total |
+| Expenses | rent, groceries, utilities, transport, medical, insurance (yearly), dining, subscriptions, an annual trip (yearly), two EMIs as `debt_payment`, a one-time purchase | recurring 96,000 (essential 80,000, other 16,000); one-time 85,000 kept apart |
+| Assets | easy-access savings (300,000, E's own), partner's savings, a liquid fund, a fixed deposit, mutual funds, provident fund, a car | total 2,370,000; liquid 500,000 |
+| Debt & commitments | a car loan (EMI 9,500, 9.25%), an education loan (EMI 6,500, 9.5%), a credit card recorded at a genuine 0 with no payment | outstanding 650,000; monthly payments 16,000 |
+| Goals (stored facts) | emergency fund, joint home deposit, child's education, family holiday (no amount recorded), joint retirement fund | no goal math exists for a household |
+| Derived | — | monthly cash flow 59,000; net position 1,720,000; emergency fund required 480,000 (6 × essential) against 500,000 liquid: **sufficient** |
+
+**Coherence with E's own records** (documented, and enforced by `validate_demo_data.py` and `tests/backend/pipeline/test_full_pipeline_household.py`): the primary salary equals E's latest
+reported month (100,000); recurring non-EMI spending (80,000) is E's latest reported living costs (53,000) plus the partner's share (27,000); E's saving and investing (37,000) fit
+inside the household's cash flow; E's 300,000 easy-access savings are one of the liquid assets; each EMI is recorded both as a liability payment and as a `debt_payment` expense of the
+same size (the validator checks the two totals agree); household income is consistent with the members' own annual incomes. The household records are the household's own and are not a
+sum of the members' individual figures — the one unavoidable difference is that E's financial inputs use essential spending 38,000 for E alone, while the household's essential
+spending is 80,000 for two people with two loans.
+
+**What stays unsupported, by design (not missing data).** WealthPilot has no individual debt or EMI record (loans and EMIs exist only as a household's liabilities), so Financial Health's
+"Debt & Commitments" card says "Not recorded for an individual" and points a household member to the household's liabilities. The expense-persona ("spending pattern") model is
+Kaggle-only and is never applied to a FAR-Trans customer (ADR-010), so that remains unavailable with its reason; an individual's spending is stored as one monthly total, so the
+"Spending and expenses" card shows the backend's spending findings from the twelve reported months, not a category breakdown (the household has the categories).
+
+**Which login shows what.** Only **Use Full Pipeline Demo** opens E. "Sign In" and "Use Individual Demo" open persona A, which has **no monthly records and no household** by design, so its
+Financial Health shows "0 reported months" and the Customer Profile has no household. The header shows the active customer's name.
+
+### The four financial stories
+
+The inputs below are the only things the dataset provides. The application
+computes everything in the right-hand column when the data is seeded.
+
+| Persona | Age | Annual income | Essential spending / month | Easy-access savings | Monthly investment | Goals | What the application computes |
+| --- | ---: | ---: | ---: | ---: | ---: | --- | --- |
+| A Complete | 38 | ₹14,40,000 | ₹45,000 | ₹3,60,000 | ₹30,000 | Home down payment ₹15,00,000 (2030); child's higher education ₹20,00,000 (2036); retirement corpus ₹1,50,00,000 (2051) | emergency target ₹2,70,000, met; Aggressive; MVO portfolio; goals Feasible, Feasible, At Risk; PASS; approved |
+| B Savings | 33 | ₹8,40,000 | ₹38,000 | ₹90,000 | ₹12,000 | Emergency fund ₹2,28,000 (2027); home down payment ₹9,00,000 (2032) | emergency target ₹2,28,000, short by ₹1,38,000; Balanced; savings first, no portfolio; goals Feasible, At Risk; PASS |
+| C Compliance | 36 | ₹13,20,000 | not provided | not provided | ₹25,000 | Higher education ₹10,00,000 (2029); retirement corpus ₹1,20,00,000 (2050) | Conservative; goals Feasible, At Risk; emergency fund unknown, so the existing rule `emergency_fund_savings_first` REJECTs; no recommendation |
+| D Pending | 31 | ₹9,60,000 | ₹35,000 | ₹2,40,000 | ₹15,000 | Home down payment ₹10,00,000 (2031); retirement corpus ₹90,00,000 (2057) | no risk label, so the analysis asks for more information and stops |
+
+How each story was built:
+
+- **Consistency:** essential spending is 15%–75% of monthly income, the
+  monthly investment is something income leaves after essential spending, and
+  savings are compared with the application's own six-month emergency target.
+  The validator enforces these relationships.
+- **A:** a stable salary, savings above the target, and a regular investment.
+  The retirement goal is deliberately demanding, so one goal is At Risk.
+- **B:** savings cover about two and a half months against a six-month target,
+  so the existing emergency-fund rule steers the application to savings first.
+  Nothing states "savings first" in the data.
+- **C:** the compliance engine has exactly one rule an input can trigger. The
+  other four check the optimizer's own weights, which no customer input
+  controls. That rule fails closed when the emergency-fund position is
+  unknown, so C omits its monthly essential spending and easy-access savings.
+  The savings plan is provided, so goals are still computed before compliance
+  rejects. No rule was added or changed.
+- **D:** the missing input is investment history. Without a linked trading
+  history the risk model has nothing to classify, and the existing
+  low-confidence branch asks for more information. The questionnaire is also
+  intentionally only partly answered (questions 1–15; the risk-tolerance and
+  objectives sections are blank).
+- **Questionnaire answers** are curated per persona to match the profile and
+  the risk category the model assigns. They are stored but no analysis step
+  reads them. The questionnaire is the research instrument's own wording, so
+  its money bands are in euros; the answers use the approximate real-world
+  equivalent of each rupee figure.
+- **Individuals have no asset or liability records.** The schema stores
+  those only for a household. An individual's savings and investments appear
+  as `current_liquid_assets`, goal `current_savings` and the capacity band.
+- **Investment capacity** is a FAR-Trans category shown in the UI as a band
+  ("Above ₹300K"). It is chosen to fit each persona's savings; it is not an
+  input to the risk model for A–C, which reads the linked trading history.
 
 ## 5. Family persona
 
@@ -79,7 +192,14 @@ is found by its exact name.
 
 - **Members:** the primary is persona B (`self`/`primary`) and the spouse is
   persona C (`spouse`/`member`).
-- **Records:** 5 income, 8 expenses, 4 assets, 2 liabilities and 3 goals.
+- **Records:** 5 income, 10 expenses, 6 assets, 2 liabilities and 5 goals.
+- **The couple:** B (33) and C (36) are spouses with two net salaries
+  (₹62,000 and ₹95,000 a month) plus a small yearly interest income; a car
+  loan, school fees and rent are among the essentials.
+- **What the application computes:** recurring income ₹1,60,000 and
+  recurring spending ₹99,200 a month (cash flow ₹60,800), net position
+  ₹18,20,000, and an emergency target of ₹5,16,000 against ₹3,60,000 of
+  liquid assets (insufficient).
 
 The records are chosen to show the household summary's rules:
 
@@ -112,6 +232,8 @@ demo_data/
 ├── financial_inputs/       one file per persona: the PUT .../financial-inputs body,
 │                           or null + financial_inputs_unavailable_reason
 ├── individual_goals/       one file per persona: POST .../goals bodies
+├── monthly_records/        only for persona E: twelve reported months, each the
+│                           PUT .../monthly-financial-records/{YYYY-MM} body + `period`
 ├── household/
 │   ├── households/         the household name and its primary persona
 │   ├── members/            membership (relationship / role) by persona key
@@ -131,7 +253,10 @@ metadata (`demo_key`, `purpose`, `source` and so on) and is never stored.
 **Questionnaire definition vs answers.** The questions and options are the
 application's own questionnaire. `GET /api/questionnaire` serves them from
 `datasets/raw/FAR-Trans/questionnaires.csv`, and they are never copied here.
-This folder holds only each persona's answers.
+This folder holds only each persona's answers. They are curated per persona,
+not generated by a rule, and each file states why (`answers_basis`) and whether
+the questionnaire is `complete`. Only the pending-information persona may leave
+questions unanswered, and the unanswered question numbers are listed.
 
 **Scenarios.** The simulator lets a client vary one thing: the portfolio
 strategy (default, `mvo`, `hrp` or `equal_weight`). The five scenarios use
@@ -163,13 +288,34 @@ script talks to a running backend (`--base-url`, default
 `http://127.0.0.1:8000`).
 
 ```bash
-python scripts/seed_demo_data.py setup          # personas A–D (+ their analyses)
-python scripts/seed_demo_data.py setup-family   # the family household
+python scripts/seed_demo_data.py setup          # personas A–F (+ their analyses) and the full-pipeline household (E + F)
+python scripts/seed_demo_data.py setup-family   # the family household (B + C)
+python scripts/seed_demo_data.py setup-family --household pipeline   # only the full-pipeline household (setup already builds it)
 ```
 
 Seeding is **idempotent**. Each step reads what exists and writes only what
 is missing, so it never overwrites a stored value. A second run creates
 nothing. See `seed/seed_plan.json`.
+
+**Prerequisite for approved results: market prices.** The portfolio stage and the
+goal engine's Monte Carlo read the `market_data` table (QQQ, AGG, GLD; filled
+from Yahoo Finance in Phase 6). Where it is empty, the portfolio is unavailable
+and compliance, which fails closed, rejects the missing weights, so even persona
+A would come back `rejected`. A hosted development database already holds them.
+A throwaway local database does not; the order there is:
+
+```bash
+python scripts/local_synthetic_backend.py --db demo.db --prepare-only       # repo root: create the tables
+python scripts/load_local_market_data.py --db demo.db                       # public prices; caches a gitignored CSV
+python scripts/local_synthetic_backend.py --db demo.db --port 8001          # serve it (set DATABASE_URL to the same file for the seed)
+python scripts/seed_demo_data.py setup --base-url http://127.0.0.1:8001     # from backend/, with DATABASE_URL=sqlite:///.../demo.db
+python scripts/seed_demo_data.py verify --base-url http://127.0.0.1:8001
+```
+
+(Load the prices BEFORE the first `setup`: an analysis is cached per profile and
+the cache does not know the prices changed.) The loader accepts only a SQLite
+file path and never reads `.env`, so it cannot reach a hosted database. To reset
+a local demo, delete the `.db` file and repeat.
 
 It uses the real public API throughout. The one exception is
 `risk_inputs.external_customer_id`: no API exposes that field, so it is set by
@@ -179,8 +325,9 @@ a single direct write, only for a persona the seed has just created.
 
 ```bash
 python backend/scripts/validate_demo_data.py          # static; exits 1 on any failure
-python scripts/seed_demo_data.py verify               # live: stored data + expected states
+python scripts/seed_demo_data.py verify               # live: stored data + expected states (also E's household)
 python scripts/seed_demo_data.py verify-family        # live: household + authorization
+python scripts/seed_demo_data.py verify-family --household pipeline
 ```
 
 The static validator needs no database. It checks:
@@ -190,7 +337,17 @@ The static validator needs no database. It checks:
 - every payload against the real API request schemas, rejecting any field
   those schemas do not define;
 - that a missing value is `null` with a reason, never zero;
-- the answers against the live questionnaire and each persona's own rule;
+- the answers against the live questionnaire: every answer is a real option,
+  every persona answers every question except the pending one, whose gap is
+  declared;
+- the plausibility of the inputs: income range, essential spending as a share
+  of income, a monthly investment income can fund, savings that agree with the
+  persona's expected emergency-fund position, goals that are not placeholders,
+  and household spending that does not exceed household income;
+- that each persona's inputs can cause the outcome it demonstrates: the
+  Compliance persona's rejecting rule exists in `config/compliance_rules.yaml`
+  and its emergency-fund inputs are genuinely unknown, and the Pending persona
+  has no risk data link;
 - the household rules: exactly one primary, who is `self`; nobody else is
   `self`; no persona is in two households;
 - the scenario payloads against the simulator contract;
@@ -212,13 +369,16 @@ The validator refuses to write a manifest for data that fails any check.
 ```bash
 python scripts/seed_demo_data.py reset-family   # only the household matched by its exact
                                                 # name AND its primary persona
-python scripts/seed_demo_data.py reset          # the household first, then personas A, B, C
+python scripts/seed_demo_data.py reset          # both households first, then personas A, B, C, E and F
                                                 # (exact names) and their own rows
 ```
 
 Nothing else is ever deleted:
 
-- persona D;
+- persona D (the pending persona, "WealthPilot Demo Customer", is created by
+  the seed but deliberately never reset, because the frontend's fallback may
+  also create that name per browser; to change D's data, remove its rows
+  deliberately and run `setup` again);
 - any other customer, household or record;
 - the raw datasets;
 - the trained models.
@@ -236,7 +396,10 @@ each persona's live, default analysis.
 | B | `approved` | `savings_first`, no portfolio weights | `PASS` | yes |
 | C | `rejected` | none | `REJECT`, rule `emergency_fund_savings_first` | none |
 | D | `pending_information` | none | not evaluated (`null`) | none |
+| E | `approved` | `approved`, equal weight (Balanced) | `PASS` | yes |
+| F | `pending_information` | none | not evaluated (`null`) | none |
 | Family | household summary and household goals available; 2 members; non-members get 403 | | | |
+| Full-pipeline household | the same, with E as primary and F as spouse | | | |
 
 For B, the overall status is `approved`. Savings first is the
 **recommendation's** status, not a separate overall status.
@@ -274,7 +437,11 @@ FAR-Trans rows.
   (`datasets/raw/kaggle/`) are the immutable raw training datasets. Nothing
   here modifies them.
 - The manifest's `training_data_guard` records their SHA-256 hashes, and the
-  validator fails if any raw file changes.
+  validator fails if any raw file changes. Every folder under `datasets/raw/` is
+  guarded by default; only the news-sentiment research area `datasets/raw/gdelt/`
+  is excluded (`GUARD_EXCLUDED_RAW_SOURCES` in `validate_demo_data.py`), because its
+  pipeline writes there during normal use and it keeps its own provenance and
+  manifest. It is not a training dataset and is not part of this demo.
 - The only link to FAR-Trans is by reference, for A–C: `risk_data_link` names
   an existing customer so the risk and behaviour models have genuine input.
 - The questionnaire definition is read from FAR-Trans's questionnaire file.
@@ -289,7 +456,7 @@ columns.
 ### What it is
 
 The CSV has one row per demo customer, exported from the live application on
-2026-09-30. It shows the demo population and the results the application
+2026-10-06. It shows the demo population and the results the application
 computed for each persona in one table, for demonstration, testing and the
 viva.
 
@@ -313,15 +480,15 @@ remains the only calculation engine, and it does not read this CSV.
 
 | `demo_customer_id` | `demo_persona` | Customer | Household |
 | --- | --- | --- | --- |
-| 29107 | `APPROVED` | WealthPilot Demo — Complete | none |
-| 29108 | `SAVINGS_FIRST` | WealthPilot Demo — Savings | 8, `primary` / `self` |
-| 29109 | `COMPLIANCE_REJECTED` | WealthPilot Demo — Compliance | 8, `member` / `spouse` |
-| 29096 | `PENDING_INFORMATION` | WealthPilot Demo Customer | none |
+| 29110 | `APPROVED` | WealthPilot Demo — Complete | none |
+| 29111 | `SAVINGS_FIRST` | WealthPilot Demo — Savings | 9, `primary` / `self` |
+| 29112 | `COMPLIANCE_REJECTED` | WealthPilot Demo — Compliance | 9, `member` / `spouse` |
+| 29113 | `PENDING_INFORMATION` | WealthPilot Demo Customer | none |
 
 The ids are this environment's customer ids. Every row has
 `demo_type = INDIVIDUAL`: each is one customer's own record.
 
-The **family** (household 8, "WealthPilot Demo Family") appears on its two
+The **family** (household 9, "WealthPilot Demo Family") appears on its two
 members' rows:
 
 - The household columns describe the **household**. They are repeated
@@ -350,8 +517,8 @@ Columns use the application's own field names and meanings.
 | Demo purpose | `demo_description`, `expected_demo_flow`, `notes` |
 | Dataset | `data_source`, `training_eligible`, `dataset_purpose` |
 
-Goals are ordered by priority. No persona has a third goal, so the `goal_3_*`
-columns are empty.
+Goals are ordered by priority. Only persona A has a third goal, so the `goal_3_*`
+columns are empty for the others.
 
 #### Where a column follows the application's name
 
@@ -383,18 +550,19 @@ claims a meaning the application does not have:
 - **Not evaluated:** persona D's emergency fund, goal results, compliance,
   portfolio and recommendation were never evaluated. The analysis stops at
   `pending_information`, so those cells are empty. Its `notes` says so.
-- **`0`** is always a genuine, recorded zero. Examples: 29107's
-  emergency-fund `shortfall` of 0, and 29108's Emergency Fund goal
-  probability of 0. A missing value is never written as 0.
+- **`0`** is always a genuine, recorded zero. Example: 29110's emergency-fund
+  `shortfall` of 0. A missing value is never written as 0 -- for instance
+  persona C's unknown essential spending and savings are empty cells, and
+  its `financial_inputs_unavailable_reason` says why.
 - **Never used as a missing marker:** `null`, `None`, `NaN`, `N/A` and `-`.
 - **Booleans** are `true` / `false`.
 
 ### Numbers and currency
 
-- **Currency:** all amounts are **EUR**, the project's single currency. The
-  application formats every amount as €. No schema stores a currency, so the
-  `currency` column states that convention. There is no conversion, and no
-  INR anywhere.
+- **Currency:** all demo amounts are **INR**, as the application displays them
+  (₹, Indian digit grouping). No schema stores a currency, so the `currency`
+  column states that convention. There is no conversion. This is the demo's
+  presentation only: the research datasets keep their own currency.
 - **Numbers are exactly as stored, unrounded.** Rates, probabilities,
   confidences and weights are fractions: `0.07` means 7%, and a goal
   probability of `0.9411` is shown as 94.1%.
@@ -427,7 +595,7 @@ The validator checks the following:
   null-like tokens or credentials.
 - **Rows:** the four personas, each exactly once with its canonical id, and
   no duplicate ids.
-- **Household 8:** 29108 is `primary` / `self` and 29109 is `member` /
+- **Household 9:** 29111 is `primary` / `self` and 29112 is `member` /
   `spouse`, with identical household values on both rows.
 - **Dataset labels:** the three columns on every row.
 - **Missing values:** a value is empty wherever its reason column is filled

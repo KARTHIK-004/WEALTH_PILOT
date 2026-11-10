@@ -1,0 +1,22 @@
+{
+  "demo_key": "WPDEMO-E",
+  "source": "synthetic_demo",
+  "persona": "E",
+  "demonstrates": "full_pipeline",
+  "customer_name": "WealthPilot Demo — Full Pipeline",
+  "owned_by_seed": true,
+  "purpose": "A salaried, mass-market customer built to show EVERY page with real results: a genuine FAR-Trans trading history for the risk model, twelve months of reported income, spending and saving for the behaviour findings, an emergency fund above the six-month target, a regular monthly investment, a full questionnaire and three realistic goals. The application takes it through risk, goals, market regime, a risk-conditioned allocation, compliance, a recommendation and an explanation, and every number is computed by the application, not stored here. Synthetic identity; the only real data is the linked anonymised FAR-Trans history.",
+  "risk_data_link": {
+    "external_customer_id": "F7D82BE85FF183D757BA",
+    "selected_by": "backend/scripts/find_demo_risk_candidates.py (confidence >= 0.60, >= 12 months of trading history), then checked against customer_information.csv",
+    "note": "an anonymised FAR-Trans customer with 52 months of trading history (370 transactions, 2018-01 to 2022-11) whose dataset label is a genuine 'Balanced' (not a Predicted_* or Not_Available row); the risk model, not this file, decides the category"
+  },
+  "profile": {
+    "name": "WealthPilot Demo — Full Pipeline",
+    "age": 34,
+    "income": 1140000,
+    "employment_status": "Full-time",
+    "customer_type": "Mass",
+    "investment_capacity": "CAP_LT30K"
+  }
+}

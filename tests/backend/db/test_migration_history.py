@@ -20,6 +20,8 @@ BACKEND = Path(__file__).resolve().parents[3] / "backend"
 PHASE_33_REVISION = "d2be70d8b07f"
 PHASE_35_REVISION = "a7c41e9b6f30"
 PHASE_36_REVISION = "c3e8f2a9d154"
+B1_REVISION = "e5b1c7d93a20"  # Research Enhancement Track, Phase B1
+SECURITY_REVISION = "f7a2d4b6c810"  # Sensitive-data protection prototype (ADR-047)
 
 
 def _scripts() -> ScriptDirectory:
@@ -30,7 +32,7 @@ def _scripts() -> ScriptDirectory:
 
 def test_there_is_exactly_one_head():
     """A second head would mean two migrations both claim to be "latest"."""
-    assert _scripts().get_heads() == [PHASE_36_REVISION]
+    assert _scripts().get_heads() == [SECURITY_REVISION]
 
 
 def test_the_revision_chain_is_linear():
@@ -146,3 +148,49 @@ def test_the_individual_goal_table_is_never_touched_by_a_household_migration():
     for revision in (PHASE_33_REVISION, PHASE_35_REVISION, PHASE_36_REVISION):
         for name, literals in _upgrade_calls(revision):
             assert "financial_goals" not in literals, (revision, name, literals)
+
+
+def test_b1_revises_the_phase_36_head():
+    assert _scripts().get_revision(B1_REVISION).down_revision == PHASE_36_REVISION
+
+
+def test_b1_creates_only_the_monthly_records_table_and_touches_nothing_existing():
+    """B1 is additive: its `upgrade()` creates one table and one index on it,
+    and operates on no existing table (checked against the `op.*` call
+    arguments, not the docstring, which may name tables to say they are
+    untouched)."""
+    calls = [(name, literals) for name, literals in _upgrade_calls(B1_REVISION) if name != "f"]  # op.f = index-name helper
+    assert [name for name, _ in calls] == ["create_table", "create_index"]
+    assert calls[0][1][0] == "monthly_financial_records"
+    for name, literals in calls:
+        for existing in ("customers", "financial_inputs", "financial_goals", "questionnaire_answers"):
+            assert existing not in literals, (name, literals)
+
+
+# ----------------------------------------------------------------- Sensitive-data protection (ADR-047)
+
+
+def test_security_revision_revises_the_b1_head():
+    assert _scripts().get_revision(SECURITY_REVISION).down_revision == B1_REVISION
+
+
+def test_security_migration_creates_only_its_two_new_tables_and_touches_no_existing_data():
+    """Two new tables and one index; nothing altered, dropped, rewritten or executed. In particular no existing
+    column is encrypted or rewritten by the migration (the migration-safety requirement of ADR-047)."""
+    calls = _upgrade_calls(SECURITY_REVISION)
+    assert [literals[0] for name, literals in calls if name == "create_table"] == ["protected_records", "audit_ledger_events"]
+    assert {name for name, _ in calls} <= {"create_table", "create_index", "f"}
+    forbidden = {"add_column", "drop_column", "drop_table", "alter_column", "drop_constraint", "rename_table", "execute", "bulk_insert"}
+    assert not forbidden & {name for name, _ in calls}
+
+
+def test_security_downgrade_drops_exactly_what_it_created():
+    path = Path(_scripts().get_revision(SECURITY_REVISION).path)
+    tree = ast.parse(path.read_text(encoding="utf-8"))
+    downgrade = next(node for node in tree.body if isinstance(node, ast.FunctionDef) and node.name == "downgrade")
+    dropped = [
+        node.args[0].value
+        for node in ast.walk(downgrade)
+        if isinstance(node, ast.Call) and isinstance(node.func, ast.Attribute) and node.func.attr == "drop_table"
+    ]
+    assert sorted(dropped) == ["audit_ledger_events", "protected_records"]

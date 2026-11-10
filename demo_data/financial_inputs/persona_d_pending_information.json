@@ -1,6 +1,12 @@
 {
   "demo_key": "WPDEMO-D",
   "source": "synthetic_demo",
-  "financial_inputs": null,
-  "financial_inputs_unavailable_reason": "Not provided: Phase 24's canonical demo customer never had financial inputs, and its analysis stops earlier, at pending_information (no risk label). Unknown is not zero."
+  "financial_inputs": {
+    "annual_inflation_rate": 0.04,
+    "annual_return_rate": 0.09,
+    "contribution_periods_per_year": 12,
+    "contribution_amount": 15000,
+    "current_liquid_assets": 240000,
+    "monthly_essential_expenses": 35000
+  }
 }

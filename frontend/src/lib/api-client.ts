@@ -110,6 +110,53 @@ export const api = {
       body: JSON.stringify(body),
     }),
 
+  listMonthlyRecords: (profileId: number) =>
+    request<Schemas["MonthlyRecordListResponse"]>(`/api/profiles/${profileId}/monthly-financial-records`),
+
+  saveMonthlyRecord: (profileId: number, period: string, body: Schemas["MonthlyRecordUpdate"]) =>
+    request<Schemas["MonthlyRecordResponse"]>(`/api/profiles/${profileId}/monthly-financial-records/${period}`, {
+      method: "PUT",
+      body: JSON.stringify(body),
+    }),
+
+  deleteMonthlyRecord: (profileId: number, period: string) =>
+    request<void>(`/api/profiles/${profileId}/monthly-financial-records/${period}`, { method: "DELETE" }),
+
+  /** Sensitive-data protection status (ADR-047): the backend runs a real encryption round trip and a full audit-chain
+   * verification. Asserted identity, like the household routes; carries no note text, key or audit event. */
+  getSecurityStatus: (profileId: number) =>
+    request<Schemas["SecurityStatusOut"]>(`/api/profiles/${profileId}/security-status`, {
+      headers: asCustomer(profileId),
+    }),
+
+  getBehaviourFeatures: (profileId: number) =>
+    request<Schemas["BehaviourFeaturesResponse"]>(`/api/profiles/${profileId}/behaviour-features`),
+
+  /** Display-only behaviour facts plus an optional reading of text the user chose to write. The text is
+   * sent in the body, analysed in memory by the backend and never stored. */
+  createPersonalizedInsight: (profileId: number, text: string | null) =>
+    request<Schemas["PersonalizedInsightResponse"]>(`/api/profiles/${profileId}/personalized-insights`, {
+      method: "POST",
+      body: JSON.stringify({ text }),
+    }),
+
+  /** `POST /api/demo/financial-behaviour` -- FICTIONAL demonstration months and a rules-baseline reading of the optional text; the backend answers only when DEMO_MODE_ENABLED=true (otherwise 404). */
+  createDemoFinancialBehaviour: (text: string | null) =>
+    request<Schemas["DemoFinancialBehaviourResponse"]>("/api/demo/financial-behaviour", {
+      method: "POST",
+      body: JSON.stringify({ text }),
+    }),
+
+  /** `GET /api/sentiment-model/status` -- customer-independent, read-only: `disabled` (the default; the rules baseline is the method), `ready` or `unavailable`. Never a path, a secret or text. */
+  getSentimentModelStatus: () => request<Schemas["SentimentModelStatusOut"]>("/api/sentiment-model/status"),
+
+  /** `POST /api/demo/family-financial-behaviour` -- a FICTIONAL family (three members, a household) with calculated ratios and changes; the backend answers only when DEMO_MODE_ENABLED=true (otherwise 404). */
+  createDemoFamilyFinancialBehaviour: (text: string | null) =>
+    request<Schemas["DemoFamilyFinancialBehaviourResponse"]>("/api/demo/family-financial-behaviour", {
+      method: "POST",
+      body: JSON.stringify({ text }),
+    }),
+
   getQuestionnaireAnswers: (profileId: number) =>
     request<Schemas["QuestionnaireAnswersResponse"]>(`/api/profiles/${profileId}/questionnaire`),
 

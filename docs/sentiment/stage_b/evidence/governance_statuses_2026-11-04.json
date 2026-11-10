@@ -1,0 +1,226 @@
+{
+ "A1": {
+  "status": "APPROVE",
+  "text": "R6 `ProsusAI/finbert`"
+ },
+ "A2": {
+  "status": "KEEP UNRESOLVED",
+  "text": "R7 candidate (exactly one)"
+ },
+ "A3.1": {
+  "status": "APPROVE",
+  "text": "Model licence accepted"
+ },
+ "A3.2": {
+  "status": "APPROVE",
+  "text": "Tokenizer licence"
+ },
+ "A3.3": {
+  "status": "KEEP UNRESOLVED",
+  "text": "Training-data licence and provenance accepted"
+ },
+ "A3.4": {
+  "status": "APPROVE",
+  "text": "Commercial / non-commercial position"
+ },
+ "A3.5": {
+  "status": "REJECT",
+  "text": "Attribution and share-alike"
+ },
+ "A3.6": {
+  "status": "APPROVE",
+  "text": "Suitability limits accepted"
+ },
+ "A3.7": {
+  "status": "APPROVE",
+  "text": "Exact 40-character lowercase revision"
+ },
+ "A3.8": {
+  "status": "APPROVE",
+  "text": "Exact permitted files"
+ },
+ "A3.9": {
+  "status": "APPROVE",
+  "text": "Permitted download hosts and redirects"
+ },
+ "A3.10": {
+  "status": "APPROVE",
+  "text": "Destination directory"
+ },
+ "A3.11": {
+  "status": "APPROVE",
+  "text": "SHA-256 verification"
+ },
+ "A3.12": {
+  "status": "APPROVE",
+  "text": "Cleanup and rollback"
+ },
+ "A3.13": {
+  "status": "APPROVE",
+  "text": "Use of the weights"
+ },
+ "B1": {
+  "status": "APPROVE",
+  "text": "Approve one metadata-only query?"
+ },
+ "B2": {
+  "status": "APPROVE",
+  "text": "Exact model identifier(s)"
+ },
+ "B3": {
+  "status": "APPROVE",
+  "text": "Items to read"
+ },
+ "B4": {
+  "status": "APPROVE",
+  "text": "Maximum request count"
+ },
+ "B5": {
+  "status": "APPROVE",
+  "text": "Permitted hosts"
+ },
+ "B6": {
+  "status": "APPROVE",
+  "text": "Redirect policy"
+ },
+ "B7": {
+  "status": "APPROVE",
+  "text": "Anonymous / token"
+ },
+ "B8": {
+  "status": "APPROVE",
+  "text": "Response storage location"
+ },
+ "B9": {
+  "status": "APPROVE",
+  "text": "Tool"
+ },
+ "B10": {
+  "status": "APPROVE",
+  "text": "Stop condition"
+ },
+ "C1": {
+  "status": "APPROVE",
+  "text": "**D10** Hub conversion"
+ },
+ "C2": {
+  "status": "APPROVE",
+  "text": "**D11** network boundary"
+ },
+ "C3": {
+  "status": "APPROVE",
+  "text": "**D12** install the S1 set in a named disposable training environment"
+ },
+ "C4": {
+  "status": "APPROVE",
+  "text": "**D13** TASK-CERT-1"
+ },
+ "C5": {
+  "status": "APPROVE",
+  "text": "Hugging Face cache location"
+ },
+ "D1": {
+  "status": "KEEP UNRESOLVED",
+  "text": "Dataset source and licence"
+ },
+ "D2": {
+  "status": "KEEP UNRESOLVED",
+  "text": "Provenance statement and who authors the statements"
+ },
+ "D3": {
+  "status": "APPROVE",
+  "text": "Fictional versus consented text"
+ },
+ "D4": {
+  "status": "APPROVE",
+  "text": "De-identification method and who verifies it; consent wording and notice (consented text only)"
+ },
+ "D5": {
+  "status": "KEEP UNRESOLVED",
+  "text": "Rubric freeze"
+ },
+ "D6": {
+  "status": "APPROVE",
+  "text": "Annotators"
+ },
+ "D7": {
+  "status": "APPROVE",
+  "text": "Annotation blinding"
+ },
+ "D8": {
+  "status": "APPROVE",
+  "text": "Agreement and adjudication policy"
+ },
+ "D9": {
+  "status": "APPROVE",
+  "text": "Held-out set composition"
+ },
+ "D10": {
+  "status": "APPROVE",
+  "text": "Split sizes"
+ },
+ "D11": {
+  "status": "APPROVE",
+  "text": "Duplicate and near-duplicate policy"
+ },
+ "D12": {
+  "status": "APPROVE",
+  "text": "Group-dimension names for subgroup reports"
+ },
+ "D13": {
+  "status": "APPROVE",
+  "text": "Calibration policy"
+ },
+ "D14": {
+  "status": "KEEP UNRESOLVED",
+  "text": "Training data (only if A3.13 = training)"
+ },
+ "D15": {
+  "status": "APPROVE",
+  "text": "Coverage and abstention policy"
+ },
+ "D16": {
+  "status": "KEEP UNRESOLVED",
+  "text": "Data retention"
+ },
+ "D17": {
+  "status": "APPROVE",
+  "text": "Deletion"
+ },
+ "D18": {
+  "status": "APPROVE",
+  "text": "Access"
+ },
+ "D19": {
+  "status": "KEEP UNRESOLVED",
+  "text": "Validation design (O7)"
+ },
+ "D20": {
+  "status": "REJECT",
+  "text": "Permission to generate, collect or label"
+ },
+ "E1": {
+  "status": "APPROVE",
+  "text": "Build a verified fetch step (and the metadata-query tool of B9)"
+ },
+ "E2": {
+  "status": "APPROVE",
+  "text": "Predictions format with probabilities"
+ },
+ "E3": {
+  "status": "KEEP UNRESOLVED",
+  "text": "Create a real frozen manifest"
+ },
+ "E4": {
+  "status": "APPROVE",
+  "text": "Rubric / baseline alignment"
+ },
+ "E5": {
+  "status": "APPROVE",
+  "text": "Use the built metadata-query tool"
+ },
+ "F1": {
+  "status": "KEEP UNRESOLVED",
+  "text": "R14 activation of an approved, evaluated model — **no decision is requested now**: it is asked only after phas"
+ }
+}

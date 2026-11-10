@@ -1,0 +1,67 @@
+........................................................................ [  9%]
+...................
+C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pytest_asyncio\plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+Windows fatal exception: access violation
+
+Thread 0x00006918 (most recent call first):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\connection.py", line 293 in _send_bytes
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\connection.py", line 200 in send_bytes
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\joblib\externals\loky\backend\queues.py", line 161 in _feed
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 982 in run
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1045 in _bootstrap_inner
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1002 in _bootstrap
+
+Thread 0x0000163c (most recent call first):
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\connection.py", line 828 in _exhaustive_wait
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python311\Lib\multiprocessing\connection.py", line 896 in wait
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\joblib\externals\loky\process_executor.py", line 686 in wait_result_broken_or_wakeup
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\joblib\externals\loky\process_executor.py", line 623 in run
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1045 in _bootstrap_inner
+  File "C:\Users\Administrator\AppData\Local\Programs\Python\Python311\Lib\threading.py", line 1002 in _bootstrap
+
+Thread 0x00004840 (most recent call first):
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\joblib\parallel.py", line 1822 in _retrieve
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\joblib\parallel.py", line 1704 in _get_outputs
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\joblib\parallel.py", line 2098 in __call__
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\sklearn\utils\parallel.py", line 74 in __call__
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\sklearn\model_selection\_search.py", line 965 in evaluate_candidates
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\sklearn\model_selection\_search.py", line 1573 in _run_search
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\sklearn\model_selection\_search.py", line 1019 in fit
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\sklearn\base.py", line 1473 in wrapper
+  File "C:\Users\Administrator\Desktop\Project\TEST\training\risk\random_forest.py", line 41 in train_and_evaluate
+  File "C:\Users\Administrator\Desktop\Project\TEST\tests\training\risk\test_deterministic.py", line 23 in test_random_forest_is_deterministic
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\_pytest\python.py", line 159 in pytest_pyfunc_call
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\pluggy\_callers.py", line 121 in _multicall
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\pluggy\_manager.py", line 120 in _hookexec
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\pluggy\_hooks.py", line 512 in __call__
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\_pytest\python.py", line 1627 in runtest
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\_pytest\runner.py", line 174 in pytest_runtest_call
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\pluggy\_callers.py", line 121 in _multicall
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\pluggy\_manager.py", line 120 in _hookexec
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\pluggy\_hooks.py", line 512 in __call__
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\_pytest\runner.py", line 242 in <lambda>
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\_pytest\runner.py", line 341 in from_call
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\_pytest\runner.py", line 241 in call_and_report
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\_pytest\runner.py", line 132 in runtestprotocol
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\_pytest\runner.py", line 113 in pytest_runtest_protocol
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\pluggy\_callers.py", line 121 in _multicall
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\pluggy\_manager.py", line 120 in _hookexec
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\pluggy\_hooks.py", line 512 in __call__
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\_pytest\main.py", line 362 in pytest_runtestloop
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\pluggy\_callers.py", line 121 in _multicall
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\pluggy\_manager.py", line 120 in _hookexec
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\pluggy\_hooks.py", line 512 in __call__
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\_pytest\main.py", line 337 in _main
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\_pytest\main.py", line 283 in wrap_session
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\_pytest\main.py", line 330 in pytest_cmdline_main
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\pluggy\_callers.py", line 121 in _multicall
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\pluggy\_manager.py", line 120 in _hookexec
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\pluggy\_hooks.py", line 512 in __call__
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\_pytest\config\__init__.py", line 175 in main
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\_pytest\config\__init__.py", line 201 in console_main
+  File "C:\Users\Administrator\.copilot\wealthpilot-r3\envB\Lib\site-packages\pytest\__main__.py", line 9 in <module>
+  File "<frozen runpy>", line 88 in _run_code
+  File "<frozen runpy>", line 198 in _run_module_as_main

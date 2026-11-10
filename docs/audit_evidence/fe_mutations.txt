@@ -1,0 +1,210 @@
+== npm run test:mutations
+
+> frontend@0.0.0 test:mutations
+> node tests/mutation-check.mjs
+
+control (pure, unmutated): pass
+control (component, unmutated): pass
+L1   killed by pure         limit no longer matches the backend
+L2   killed by pure         DEL no longer refused
+L3   killed by pure         emoji counted as two characters
+L4   killed by pure         blank input sent as an empty string, not as no text
+L5   killed by pure         duplicate submit while pending allowed
+L6   killed by pure         uncertain labelled Neutral
+L7   killed by pure         missing confidence shown as 0
+L8   killed by pure         same text submitted again does not refetch
+L9   killed by pure         results never reported stale
+L10  killed by pure         text not trimmed
+L11  killed by pure         control characters accepted
+L12  killed by pure         over-long text accepted
+L13  killed by pure         invalid draft submitted anyway
+L14  killed by pure         clear keeps the submitted text
+C1   killed by component    loading state never shown
+C2   killed by component    backend response not passed to the view
+H1   killed by pure         response kept in the cache after use
+H2   killed by pure         text removed from the query key (stale answers across texts)
+H3   killed by pure         failed request retried automatically
+A1   killed by pure         blank sent as an empty string
+A2   killed by pure         wrong route
+A3   killed by pure         text sent in the URL
+F1   killed by pure         age upper limit no longer matches the backend
+F2   killed by pure         an empty name is accepted
+F3   killed by pure         a negative income is accepted
+F4   killed by pure         an empty income is sent as zero
+F5   killed by pure         a fractional age is accepted
+F6   killed by pure         focus is not moved to the first invalid field
+F7   killed by pure         the page stops using the validation rules
+P3   killed by pure         Financial Health keeps the detailed text card again
+P4   killed by pure         Financial Health summary not keyed by profile
+R1   killed by pure         route to the new page removed
+N1   killed by pure         navigation entry removed
+S1   killed by pure         summary shows far more than three facts
+S2   killed by pure         summary repeats the bare month-count line
+S3   killed by pure         summary link points at the wrong page
+S4   killed by pure         summary sends text to the backend
+S5   killed by pure         summary link exposed to assistive technology as a button
+M1   killed by pure         phone sidebar sheet stays open after choosing a page
+M2   killed by pure         closing the phone sheet does nothing
+S9   killed by component    summary link text no longer describes the destination
+S7   killed by component    summary shows no error state
+S8   killed by component    summary shows no loading state
+D1   killed by pure         security page not keyed by profile (earlier result survives a switch)
+D2   killed by pure         route to the security page removed
+D3   killed by pure         navigation entry for the security page removed
+D4   killed by pure         security status served from a 60 s cache
+D5   killed by pure         security status kept in the cache after unmount
+D6   killed by pure         security status silently retried
+D7   killed by pure         security query runs without a profile
+D8   killed by pure         security client call loses the identity header
+D9   killed by pure         page claims the audit trail is decentralized
+D10  killed by component    failed chain verification labelled consistent
+D11  killed by component    empty chain labelled consistent
+D12  killed by component    failed self-test labelled operating
+D13  killed by component    prototype label replaced
+D14  killed by component    existing-data warning removed
+D15  killed by component    earlier result shown beside an error
+D16  killed by component    self-test line shown when there was no key
+D17  killed by component    failing event number hidden
+D18  killed by component    limitations hidden
+D19  killed by component    no loading state
+D20  killed by component    unprotected categories hidden
+D22  killed by component    a 503 is shown as a generic failed analysis
+D23  killed by component    the 503 sentence from the backend is replaced by a fixed one
+D21  killed by component    external ledger shown as connected
+S6   killed by component    summary hides that more findings exist
+V1   killed by component    a failed request shown beside the earlier results
+V1b  killed by component    records and assessment still shown after a failed request
+V2   killed by component    stale-results notice removed
+V3   killed by component    a missing text rendered as a reading
+V4   killed by component    results region not live
+V5   killed by component    validation message not announced
+V6   killed by component    label not tied to the text area
+V7   killed by component    missing confidence displayed as 0
+V8   killed by component    conflict not shown
+N1   killed by component    the informational-only notice is dropped
+N2   killed by pure         an abstention is presented as a reading
+N3   killed by pure         a weak or unknown state is promoted to valid
+N4   killed by component    the fallback to the rules baseline is not announced
+N5   killed by component    the unconfirmed-interpretation notice is dropped
+N6   killed by component    the conflict stops saying the stored assessment is authoritative
+N7   killed by component    the risk panel stops saying the assessment remains authoritative
+N8   killed by pure         insufficient evidence is worded as neutral
+N9   killed by pure         an unrelated text gets the general message
+N10  killed by pure         the rules baseline is worded as a model
+N11  killed by component    the validation status is hidden
+N12  killed by component    the emotional tone is shown without its risk-tolerance disclaimer
+V9   killed by component    preferences shown as confirmed
+V10  killed by component    Clear always enabled
+V11  killed by component    Analyse enabled while pending or invalid
+V12  killed by component    pending state not shown on the button
+V13  killed by component    form loses its accessible name
+V14  killed by component    long evidence no longer wraps
+V15  killed by component    evidence truncated to a fragment
+V16  killed by component    insight rows repeated
+V17  killed by component    counter shows a different limit
+V18  killed by component    rules baseline presented as a validated model
+V19  killed by component    backend limitations hidden
+V20  killed by component    risk assessment fallback removed
+V21  killed by pure         text area replaced by a single-line input
+V22  killed by pure         hard length cap added to the text area
+V23  killed by pure         Ctrl+Enter shortcut removed from the text area
+V24  killed by pure         any Ctrl or Cmd key submits on Enter, plus a plain Enter
+V25  killed by pure         Enter without a modifier counts as the shortcut via a loosened check
+V26  killed by pure         unavailable and not-included findings shown as insights
+V27  killed by pure         the bare month count repeated as an insight row
+V28  killed by pure         direction dropped from an insight
+V29  killed by pure         an uncertain reading is not flagged inconclusive
+V30  killed by component    an inconclusive reading styled like a found one
+V31  killed by component    the 'Not a confirmed reading' marker removed
+V32  killed by component    the stored assessment's authority is not stated on a conflict
+V33  killed by component    the assessment panel says it is updated from the words
+V34  killed by pure         the view repeats the page title
+V35  killed by component    the two-column layout lost
+V36  killed by component    the text box column comes before the records column
+V37  killed by component    the intro that separates observed from expressed is removed
+V38  killed by component    the empty-state pointer to monthly records points nowhere
+V39  killed by pure         an insight sentence is recomputed
+V40  killed by pure         the text is written to local storage
+V41  killed by pure         the text is logged
+V42  killed by pure         Clear keeps the draft
+V43  killed by pure         a profile switch keeps the typed text and results
+V44  killed by pure         a second submit while pending allowed
+G1   killed by pure         the sign-in entry is not offered
+G2   killed by pure         the persona name drifts from the backend package
+G3   killed by pure         an unseeded environment gets a created customer instead of an error
+G4   killed by pure         the entry can be pressed again while a sign-in is resolving
+G5   killed by pure         the unseeded message no longer names the seed command
+G6   killed by pure         the entry signs in without the demo credential gate
+G7   killed by pure         the home-page hint no longer reaches the new entry
+H1   killed by pure         a saved month no longer refreshes the behaviour and spending findings
+H2   killed by component    the spending view shows every finding, not the spending ones
+H3   killed by component    a failed request is shown as 'no reported months'
+H4   killed by component    no reported months is not stated
+H5   killed by component    the spending card claims a category breakdown
+H6   killed by pure         the spending card is not keyed by profile
+H7   killed by pure         the commitments card is not keyed by profile
+H8   killed by component    an individual's debt is shown as a missing value instead of an unsupported record
+H9   killed by component    a household member is no longer pointed to the household's liabilities
+T1   killed by pure         a model that is not validated is called validated
+T2   killed by pure         a fallback is presented as a model answer
+T3   killed by pure         a missing intensity is shown as 0
+T4   killed by pure         the model unavailable (fallback off) is shown as a model answer
+T5   killed by pure         a fallback reason loses its wording
+T6   killed by component    the disagreement alert is dropped
+T7   killed by component    the class probabilities are not shown
+T8   killed by component    the rules reading is no longer kept beside a model reading
+T9   killed by component    the method row is removed
+T10  killed by component    the interpretation notice is dropped
+DM1  killed by pure         demo mode honoured on a build that does not allow it
+DM2  killed by pure         demo mode requested by any value of the query
+DM3  killed by pure         every build allows demo mode
+DM4  killed by component    the page shows demo data whenever the query is present, ignoring the build
+DM5  killed by component    an unavailable change shown as zero
+DM6  killed by component    a failed request still shows the demo months
+DM7  killed by component    a 404 from the demo route reads as a generic not-found
+DM8  killed by component    the demo banner is not announced as a status
+DM9  killed by component    the months table loses its scrollable focusable region on a narrow screen
+DM10 killed by component    the method panel shows a confidence the backend did not give
+DM11 killed by pure         the demo query keeps a copy of the typed text after it is no longer observed
+DM12 killed by pure         the family sign-in discards the requested address
+DM13 killed by pure         a weak (hypothetical or past-only) note is read as a current feeling
+DM14 killed by pure         the model-disabled sentence is stated without the backend saying so
+DM15 killed by pure         unusual investing is claimed without a model flag
+DM16 killed by pure         no investment history is reported as consistent
+DM17 killed by pure         a backend outage is reported as a model problem
+DM18 killed by pure         a spending pattern is shown without one from the model
+DM19 killed by pure         an unavailable savings rate is read as zero
+DM20 killed by pure         the date range does not sort the months
+DM21 killed by pure         the family demonstration is honoured on a build that does not allow it
+DM22 killed by component    the technical reading is shown outside the optional details
+DM23 killed by component    a family member loses the 'Not recorded for an individual' wording
+DM24 killed by component    an unavailable spending pattern is drawn as a result
+DM25 killed by component    zero records no longer show the empty state
+DM26 killed by component    the optional-note statement is dropped
+DM27 killed by pure         a demo parameter on a build that does not allow it is silently ignored
+DM28 killed by pure         the sidebar link drops the demonstration from inside it
+DM29 killed by component    the developer pointer to the fictional examples is shown to every profile
+DM30 killed by component    the 'demonstration mode is not active' notice is not shown
+DM31 killed by pure         a sign-in from a protected address drops its query
+DM32 killed by pure         the family sign-in default loses the household section
+TR1  killed by component    the switched-off research state is reported as agreement
+TR2  killed by component    an unknown label is shown as neutral
+TR3  killed by component    the important notices are not shown
+TR4  killed by component    the 'confidence is not available' explanation is dropped
+TR5  killed by component    agreement is worded as disagreement
+TR6  killed by component    the panel hides itself while the research models are off
+TR7  killed by component    the rules-based fallback is not labelled as a fallback
+TR8  killed by component    a disagreement is reported as agreement
+TR9  killed by component    the plain-language view omits the research panel
+TR10 killed by component    the full view omits the research panel
+TR11 killed by component    raw model scores are rounded in the browser
+TR12 killed by component    an unavailable or loading model is shown with the answered badge
+TR13 killed by component    an empty slot is shown as a failed model
+TR14 killed by component    a single model that differs from the rules reading is reported as agreeing
+TR15 killed by component    a model that is still loading is not announced
+TR16 killed by component    a slot whose approved model is awaiting registration is treated as a failure
+TR17 killed by component    the per-model comparison with the rules reading is not shown
+TR18 killed by component    an unexpected research problem is not reassured as harmless to the reading above
+
+200 of 200 mutations detected
+mutations exit 0

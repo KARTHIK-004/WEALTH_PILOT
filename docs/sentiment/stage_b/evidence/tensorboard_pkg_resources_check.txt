@@ -1,0 +1,4 @@
+tensorboard.default -> FAILS: ModuleNotFoundError No module named 'pkg_resources'
+tensorboard.data.server_ingester -> FAILS: ModuleNotFoundError No module named 'pkg_resources'
+tensorboard.program -> FAILS: ModuleNotFoundError No module named 'pkg_resources'
+tensorboard.summary -> imports OK

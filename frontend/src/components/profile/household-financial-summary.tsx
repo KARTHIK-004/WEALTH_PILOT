@@ -233,6 +233,11 @@ export function HouseholdFinancialSummarySection({
   if (query.error) return <ErrorState error={query.error} onRetry={() => query.refetch()} />
   if (!query.data) return null
 
+  return <HouseholdFinancialSummaryView summary={query.data} />
+}
+
+/** The summary as pure markup for a response the backend already computed (the stored-records route, or the fictional family demo's engine output). Performs no arithmetic. */
+export function HouseholdFinancialSummaryView({ summary }: { summary: HouseholdFinancialSummary }) {
   return (
     <div className="flex flex-col gap-4 rounded-lg border p-4">
       <div className="space-y-1">
@@ -245,11 +250,11 @@ export function HouseholdFinancialSummarySection({
           provided" are not recorded — they are not zero.
         </p>
       </div>
-      <MonthlyView summary={query.data} />
-      <OneTimeView summary={query.data} />
-      <BalanceView summary={query.data} />
-      <EmergencyFundView summary={query.data} />
-      <CompletenessView summary={query.data} />
+      <MonthlyView summary={summary} />
+      <OneTimeView summary={summary} />
+      <BalanceView summary={summary} />
+      <EmergencyFundView summary={summary} />
+      <CompletenessView summary={summary} />
     </div>
   )
 }

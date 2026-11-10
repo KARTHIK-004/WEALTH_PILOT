@@ -19,6 +19,7 @@ boundary too).
 from __future__ import annotations
 
 from datetime import date, datetime
+from decimal import Decimal
 from typing import Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator, model_validator
@@ -1010,3 +1011,572 @@ class HouseholdGoalResponse(BaseModel):
     is_active: bool
     created_at: datetime
     updated_at: datetime
+
+
+# ---------------------------------------------------------------------------
+# Monthly financial records and behaviour features (Research Enhancement Track
+# B1, ADR-042) -- `PUT/GET/DELETE /api/profiles/{id}/monthly-financial-records`
+# and `GET /api/profiles/{id}/behaviour-features`.
+# ---------------------------------------------------------------------------
+
+
+def _reject_non_numbers(value: object) -> object:
+    """An amount must arrive as a JSON number. Strings (including "1,000" or
+    "12e3"), booleans and containers are rejected rather than coerced, so no
+    unsupported numeric format is ever guessed at."""
+    if value is None:
+        return value
+    if isinstance(value, bool) or not isinstance(value, (int, float)):
+        raise ValueError("must be a number")
+    return value
+
+
+def _at_most_two_decimals(value: float | None) -> float | None:
+    if value is None:
+        return value
+    exponent = Decimal(repr(value)).as_tuple().exponent
+    if isinstance(exponent, int) and exponent < -2:
+        raise ValueError("must have at most 2 decimal places")
+    return value
+
+
+class MonthlyRecordUpdate(BaseModel):
+    """Upsert for one calendar month. Every field is optional. A field that is
+    OMITTED keeps its stored value; a field sent as an explicit `null` clears
+    it back to "not reported". `0` is a value the customer is stating, and is
+    never produced from a missing field. Amounts are rupees for the month:
+    `income` (on the stated `income_basis`), `expenses` (living costs only,
+    excluding money moved to savings or investments), `savings` (newly set
+    aside) and `investment_contribution` (newly invested). A transfer from
+    savings into an investment is neither new savings nor new income."""
+
+    model_config = ConfigDict(extra="forbid")
+
+    income: float | None = Field(default=None, ge=0, le=_NUMERIC_14_2_MAX, allow_inf_nan=False)
+    expenses: float | None = Field(default=None, ge=0, le=_NUMERIC_14_2_MAX, allow_inf_nan=False)
+    savings: float | None = Field(default=None, ge=0, le=_NUMERIC_14_2_MAX, allow_inf_nan=False)
+    investment_contribution: float | None = Field(default=None, ge=0, le=_NUMERIC_14_2_MAX, allow_inf_nan=False)
+    income_basis: Literal["net", "gross"] | None = None
+
+    @field_validator("income", "expenses", "savings", "investment_contribution", mode="before")
+    @classmethod
+    def _numbers_only(cls, value: object) -> object:
+        return _reject_non_numbers(value)
+
+    @field_validator("income", "expenses", "savings", "investment_contribution")
+    @classmethod
+    def _two_decimals(cls, value: float | None) -> float | None:
+        return _at_most_two_decimals(value)
+
+
+class MonthlyRecordResponse(BaseModel):
+    customer_id: int
+    period: str  # "YYYY-MM"
+    income: float | None
+    expenses: float | None
+    savings: float | None
+    investment_contribution: float | None
+    income_basis: Literal["net", "gross"] | None
+    updated_at: datetime
+
+
+class MonthlyRecordListResponse(BaseModel):
+    customer_id: int
+    records: list[MonthlyRecordResponse]  # newest month first
+
+
+class FeatureValueOut(BaseModel):
+    """A number, or the reason there is none (exactly one is set)."""
+
+    value: float | None
+    unavailable_reason: str | None
+
+
+class RatioFeaturesOut(BaseModel):
+    expense_to_income: FeatureValueOut
+    savings_to_income: FeatureValueOut
+    investment_contribution_to_income: FeatureValueOut
+
+
+class ChangeFeatureOut(BaseModel):
+    absolute_change: FeatureValueOut
+    relative_change: FeatureValueOut
+
+
+class ConsistencyFeatureOut(BaseModel):
+    share_with_amount: FeatureValueOut
+    known_months: int
+    window_months: int
+
+
+class BehaviourFeaturesResponse(BaseModel):
+    """Read-only financial-behaviour features derived from the customer's own
+    monthly records. They are ratios and changes of reported amounts -- not a
+    score, not sentiment, and not an input to any recommendation."""
+
+    model_config = ConfigDict(protected_namespaces=())
+
+    customer_id: int
+    model_version: str
+    data_source: str
+    currency: str
+    observation_count: int
+    latest_period: str | None
+    latest_income_basis: Literal["net", "gross"] | None
+    latest_ratios: RatioFeaturesOut
+    income_change: ChangeFeatureOut
+    expenses_change: ChangeFeatureOut
+    savings_change: ChangeFeatureOut
+    investment_contribution_change: ChangeFeatureOut
+    savings_consistency: ConsistencyFeatureOut
+    investment_contribution_consistency: ConsistencyFeatureOut
+    data_quality_notes: list[str]
+
+
+# ---------------------------------------------------------------------------
+# Financial behaviour and user-text sentiment (Research Enhancement Track, ADR-043)
+# ---------------------------------------------------------------------------
+
+
+class PersonalizedInsightRequest(BaseModel):
+    """Optional text the user chose to write. It is analysed in memory and is never stored, logged or sent anywhere. The length and content limits are checked by
+    the service (not here) so that a rejected text is never echoed back in a validation message."""
+
+    text: str | None = None
+
+
+class EvidenceOut(BaseModel):
+    label: str
+    phrase: str  # a short excerpt of the user's own words
+
+
+class StatedPreferenceOut(BaseModel):
+    """A possible preference read from the user's own words. Never an official risk assessment. Only `unconfirmed` is produced today: confirmations are not stored."""
+
+    code: Literal["capital_preservation", "growth_seeking", "liquidity_access", "debt_reduction", "balanced_growth"]
+    status: Literal["unconfirmed", "confirmed", "rejected", "not_inferred"]
+    requires_confirmation: bool
+    evidence: EvidenceOut
+
+
+class RulesBaselineOut(BaseModel):
+    """What the deterministic rules baseline alone concluded, kept beside a trained model's reading so a disagreement is never hidden."""
+
+    model_config = ConfigDict(protected_namespaces=())
+
+    label: Literal["positive", "negative", "neutral", "mixed", "uncertain", "insufficient_evidence"] | None
+    method: Literal["rules_baseline"]
+    model_version: str
+
+
+class UserSentimentOut(BaseModel):
+    """A suggestion for the user to confirm, never a fact about them. `confidence` is null unless a calibrated model supplied one (the rules baseline never does), and
+    `confidence_band` is then `unavailable`. Emotional tone is not risk tolerance. `abstained` means the pipeline declined to interpret the text (see `abstain_reason`)."""
+
+    model_config = ConfigDict(protected_namespaces=())
+
+    status: Literal["analysed", "unavailable"]
+    unavailable_reason: str | None
+    sentiment: Literal["positive", "negative", "neutral", "mixed", "uncertain", "insufficient_evidence"] | None
+    emotional_tone: Literal["concerned", "hopeful", "frustrated", "calm", "neutral", "unknown"] | None
+    financial_relevance: Literal["relevant", "unrelated", "ambiguous"] | None
+    topics: list[Literal["investment_risk", "saving", "debt", "goals", "liquidity", "market", "retirement", "emergency_fund"]]
+    preferences: list[StatedPreferenceOut]
+    evidence: list[EvidenceOut]
+    confidence: float | None
+    confidence_band: Literal["high", "medium", "low", "unavailable"]
+    requires_confirmation: bool
+    abstained: bool
+    abstain_reason: Literal[
+        "too_short", "low_quality_text", "unsupported_language", "unrelated_text", "ambiguous_context", "no_usable_evidence", "model_confidence_below_threshold", "model_unavailable"
+    ] | None
+    interpretation_state: Literal["valid", "weak", "abstained", "unavailable"]
+    fallback_used: bool
+    fallback_reason: Literal[
+        "dependencies_missing", "artifact_missing", "artifact_corrupt", "artifact_incompatible", "path_not_allowed", "not_validated", "version_mismatch", "load_failed",
+        "inference_failed", "timeout", "invalid_output", "invalid_configuration", "below_threshold"
+    ] | None
+    method: Literal["rules_baseline", "trained_model", "hybrid", "unavailable"]
+    model_name: str | None
+    model_version: str
+    validation_status: str
+    class_probabilities: dict[str, float] | None
+    confidence_calibration_status: Literal["calibrated", "uncalibrated", "not_applicable"]
+    sentiment_intensity: float | None
+    intensity_available: bool
+    rules_baseline: RulesBaselineOut | None
+    disagreement: bool
+    privacy_status: Literal["in_memory_only"]
+    limitations: list[str]
+
+
+ResearchReason = Literal[
+    "disabled", "licence_not_verified", "format_not_allowed", "dependencies_missing", "weights_missing", "manifest_invalid", "revision_mismatch", "artifact_corrupt", "label_unsupported",
+    "load_failed", "timeout", "inference_failed", "invalid_output", "invalid_configuration", "input_not_eligible", "loading", "internal_error", "no_candidate_approved", "registration_pending"
+]
+
+
+class ResearchModelResultOut(BaseModel):
+    """One research model slot's independent answer (ADR-053, role-keyed by ADR-055). No text, no path. Scores are the model's own and are NOT a confidence: the probabilities are one uncalibrated
+    softmax, valid only within this model. A slot with no registered candidate has `model_id` null and says why in `unavailable_reason`."""
+
+    model_config = ConfigDict(protected_namespaces=())
+
+    slot: Literal["financial", "general"]
+    display_name: str
+    model_id: str | None
+    revision: str | None
+    availability: Literal["available", "unavailable", "loading"]
+    unavailable_reason: ResearchReason | None
+    native_label: str | None
+    normalized_label: Literal["positive", "negative", "neutral"] | None
+    raw_scores: dict[str, float] | None
+    probabilities: dict[str, float] | None
+    probability_kind: Literal["raw_softmax_uncalibrated"] | None
+    processing_ms: float | None
+
+
+class ModelVsRulesOut(BaseModel):
+    """One answering model's label set beside the rules-based reading. `agrees` is agreement of two classifiers, never proof that either is right."""
+
+    model_config = ConfigDict(protected_namespaces=())
+
+    slot: Literal["financial", "general"]
+    rules_label: Literal["positive", "negative", "neutral", "mixed", "uncertain", "insufficient_evidence"] | None
+    model_label: Literal["positive", "negative", "neutral"] | None
+    relation: Literal["agrees", "disagrees", "rules_abstained", "not_compared"]
+    explanation: str
+
+
+class ResearchComparisonOut(BaseModel):
+    model_config = ConfigDict(protected_namespaces=())
+
+    status: Literal["agreement", "disagreement", "single_model", "model_unavailable", "one_model_unavailable", "both_models_unavailable", "no_model_configured", "uncertain"]
+    shared_label: Literal["positive", "negative", "neutral"] | None
+    explanation: str
+    model_vs_rules: list[ModelVsRulesOut]
+
+
+class TransformerResearchOut(BaseModel):
+    """Research output, display only. `production_effect` is always `none`: no risk, goal, portfolio, recommendation or compliance result reads or changes because of it."""
+
+    model_config = ConfigDict(protected_namespaces=())
+
+    enabled: bool
+    mode: Literal["research_experimental"]
+    validation_status: Literal["not_human_validated"]
+    production_effect: Literal["none"]
+    rules_baseline: RulesBaselineOut | None
+    models: list[ResearchModelResultOut]
+    comparison: ResearchComparisonOut
+    overall_sentiment: Literal["positive", "negative", "neutral", "mixed", "uncertain", "insufficient_evidence"] | None
+    overall_source: Literal["transformer_comparison", "rules_baseline_fallback"]
+    rules_relation: Literal["agrees", "disagrees", "rules_abstained", "not_compared"]
+    uncertainty_reason: Literal[
+        "models_disagree", "rules_disagree", "context_safeguard", "transformers_unavailable", "one_model_unavailable", "input_not_eligible", "model_label_uncertain", "no_model_registered"
+    ] | None
+    model_versions: dict[str, str]
+    model_availability: dict[str, str]
+    processing_metadata: dict[str, float | bool | str | None]
+    notices: list[str]
+
+
+class ResearchSlotStatusOut(BaseModel):
+    """Which registered candidate, if any, fills a role. `registration_pending` means an owner-approved candidate exists but registering it as runnable has not been approved."""
+
+    role: Literal["financial", "general"]
+    state: Literal["registered", "registration_pending", "no_candidate_approved"]
+    candidate_key: str | None
+
+
+class TransformerCandidateStatusOut(BaseModel):
+    """Per-candidate status for `GET /api/sentiment-model/status`. No local path, no secret. Built without loading, hashing or verifying anything."""
+
+    model_config = ConfigDict(protected_namespaces=())
+
+    model_key: str
+    role: Literal["financial", "general"]
+    display_name: str
+    repository: str
+    revision: str
+    weight_licence: str
+    licence_status: Literal["license_verified", "license_unverified", "blocked_by_licence"]
+    format_status: Literal["safetensors_available", "no_safetensors_published"]
+    registration: Literal["registered", "pending_owner_approval", "historical"]
+    blocker: str | None
+    weights_present: bool
+    loaded: bool
+    inference_enabled: bool
+    availability: Literal["disabled", "blocked", "weights_missing", "not_loaded", "loading", "ready", "unavailable"]
+    reason: str | None
+    checked_on: str
+
+
+class CandidateReviewOut(BaseModel):
+    """The recorded review of one pretrained candidate (ADR-054). `verdict` is one of the five review values; only `approved_for_research_inference` would allow a download, and none has it."""
+
+    model_config = ConfigDict(protected_namespaces=())
+
+    key: str
+    role: Literal["financial", "general"]
+    repository: str
+    revision: str
+    architecture: str
+    declared_licence: str
+    licence_file: str
+    base_model: str
+    base_model_licence: str
+    training_data: list[str]
+    native_labels: list[str]
+    label_mapping: dict[str, str]
+    languages: str
+    safetensors_file: str | None
+    safetensors_sha256: str | None
+    safetensors_size_bytes: int | None
+    verdict: Literal["approved_for_research_inference", "blocked_by_license", "blocked_by_provenance", "blocked_by_approval", "incomplete_review"]
+    blockers: list[str]
+    active_in_registry: bool
+    source_urls: list[str]
+    checked_on: str
+    owner_decision: str | None = None
+
+
+class SentimentModelStatusOut(BaseModel):
+    """`GET /api/sentiment-model/status`: whether a trained model is in use. No path, no secret, no text. `unavailable` means it is switched on but cannot be used, and says why."""
+
+    model_config = ConfigDict(protected_namespaces=())
+
+    enabled: bool
+    state: Literal["disabled", "ready", "unavailable"]
+    reason: Literal[
+        "dependencies_missing", "artifact_missing", "artifact_corrupt", "artifact_incompatible", "path_not_allowed", "not_validated", "version_mismatch", "load_failed",
+        "inference_failed", "timeout", "invalid_output", "invalid_configuration", "below_threshold"
+    ] | None
+    method_when_used: Literal["rules_baseline", "hybrid"]
+    model_name: str | None
+    model_version: str | None
+    validation_status: str | None
+    calibration_status: Literal["calibrated", "uncalibrated"] | None
+    intensity_available: bool
+    fallback_enabled: bool
+    dependencies_available: bool
+    data_source: str
+    research_models: list[TransformerCandidateStatusOut] = []          # ADR-053: the two pretrained research candidates
+    reviewed_candidates: list[CandidateReviewOut] = []                 # ADR-054: every candidate considered, with its verdict
+    research_slots: list[ResearchSlotStatusOut] = []                   # ADR-055: which role slot has a registered candidate
+    transformers_enabled: bool = False
+    production_method: Literal["user_text_rules_v1"] = "user_text_rules_v1"
+    production_activation: Literal["not_activated"] = "not_activated"
+
+
+class BehaviourFindingOut(BaseModel):
+    code: str
+    category: Literal["trend", "activity", "ratio", "data_quality", "coverage"]
+    status: Literal["observed", "unavailable", "not_included"]
+    statement: str
+    sources: list[str]
+    direction: Literal["increased", "decreased", "unchanged"] | None
+    values: dict[str, float | None]
+
+
+class BehaviourFindingsOut(BaseModel):
+    version: str
+    history: Literal["none", "single_month", "multiple_months"]
+    observation_count: int
+    latest_period: str | None
+    findings: list[BehaviourFindingOut]
+    data_quality_notes: list[str]
+
+
+class RiskProfileOut(BaseModel):
+    category: str
+    source: str
+    assessed_at: datetime | None
+    remains_authoritative: Literal[True]   # the stored assessment always outranks a reading of the user's text
+
+
+class InsightStatementOut(BaseModel):
+    text: str
+    sources: list[str]
+    kind: Literal["behaviour_fact", "stated_by_user", "risk_assessment", "caveat"]
+
+
+class InsightConflictOut(BaseModel):
+    """An inferred preference that disagrees with the stored risk assessment. The stored assessment stays in force; nothing is changed."""
+
+    code: str
+    detail: str
+    inferred_preference: str
+    stored_category: str
+    authoritative_source: str
+    preference_status: Literal["unconfirmed"]
+    action: Literal["confirm_or_correct"]
+
+
+class PersonalizedInsightResponse(BaseModel):
+    """Display-only. No recommendation, risk profile, goal or compliance decision reads or changes because of this response."""
+
+    model_config = ConfigDict(protected_namespaces=())
+
+    customer_id: int
+    analysis_timestamp: datetime
+    status: Literal["complete", "behaviour_only", "profile_only", "unavailable"]
+    model_version: str
+    data_source: str
+    behaviour: BehaviourFindingsOut
+    user_sentiment: UserSentimentOut
+    risk_profile: RiskProfileOut | None
+    preference_confirmation: str
+    statements: list[InsightStatementOut]
+    conflicts: list[InsightConflictOut]
+    caveats: list[str]
+    purpose: str
+    transformer_research: TransformerResearchOut | None = None          # ADR-053: research-only, off by default, display only
+
+
+# ---------------------------------------------------------------------------
+# Sensitive-data protection prototype (ADR-047). Protected notes are the ONLY encrypted record type; the older tables
+# are unchanged and unprotected. The note text is the user's own words: it is never echoed in a validation error
+# (api/errors.py USER_TEXT_ROUTE_MARKERS), never logged and never written to the audit ledger.
+# ---------------------------------------------------------------------------
+
+PROTECTED_NOTE_MAX_CHARS = 2000
+PROTOTYPE_NOTICE = "Academic prototype \u2014 not a real blockchain."
+
+
+class ProtectedNoteIn(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+
+    content: str = Field(min_length=1, max_length=PROTECTED_NOTE_MAX_CHARS)
+
+    @field_validator("content")
+    @classmethod
+    def _not_blank(cls, value: str) -> str:
+        if not value.strip():
+            raise ValueError("content must not be blank")
+        return value
+
+
+class ProtectionInfoOut(BaseModel):
+    """How this record is stored. Facts about the envelope; never key material."""
+
+    encrypted_at_rest: bool
+    algorithm: str
+    envelope_version: int
+    storage: Literal["off_chain_private_database"]
+
+
+class ProtectedNoteMetadataOut(BaseModel):
+    id: str
+    created_at: datetime
+    updated_at: datetime
+    protection: ProtectionInfoOut
+
+
+class ProtectedNoteOut(ProtectedNoteMetadataOut):
+    content: str
+
+
+class ProtectedNoteListOut(BaseModel):
+    """Metadata only: listing never decrypts anything."""
+
+    items: list[ProtectedNoteMetadataOut]
+
+
+class EncryptionStatusOut(BaseModel):
+    status: Literal["operational", "not_configured", "failed"]
+    algorithm: str
+    # A real encrypt/decrypt round trip with a random probe, run for this request. None when no key is configured.
+    self_test_passed: bool | None
+    unavailable_reason: str | None
+
+
+class LedgerStatusOut(BaseModel):
+    kind: Literal["local_hash_chain"]
+    verification: Literal["valid", "invalid", "empty"]
+    events_checked: int
+    first_invalid_sequence: int | None
+    reason: str | None
+    note: str
+
+
+class ExternalAnchorStatusOut(BaseModel):
+    state: Literal["not_configured", "unreachable", "available"]
+    detail: str
+
+
+class LegacyDataStatusOut(BaseModel):
+    encrypted: bool
+    unprotected_categories: list[str]
+    note: str
+
+
+class SecurityStatusOut(BaseModel):
+    """Privacy-safe security status for ONE profile. Everything here is computed by the backend from real checks."""
+
+    prototype_notice: str
+    storage: Literal["off_chain_private_database"]
+    protected_note_count: int
+    encryption: EncryptionStatusOut
+    ledger: LedgerStatusOut
+    external_anchor: ExternalAnchorStatusOut
+    existing_data: LegacyDataStatusOut
+    limitations: list[str]
+
+
+class DemoMonthOut(BaseModel):
+    """One FICTIONAL demonstration month. `income`, `expenses` and `savings` are the fixed fixture figures; every ratio and change is calculated by the existing behaviour-feature logic
+    (`core/behaviour_features.py`) over the fixture months up to and including this one, so the first month has no change (with the reason) and nothing is invented here."""
+
+    period: str  # "YYYY-MM"
+    income: float | None
+    expenses: float | None
+    savings: float | None
+    investment_contribution: float | None = None
+    income_basis: Literal["net", "gross"] | None
+    expense_to_income: FeatureValueOut
+    savings_to_income: FeatureValueOut
+    income_change: ChangeFeatureOut
+    expenses_change: ChangeFeatureOut
+    savings_change: ChangeFeatureOut
+    investment_contribution_change: ChangeFeatureOut
+
+
+class DemoFinancialBehaviourResponse(BaseModel):
+    """`POST /api/demo/financial-behaviour` (only when `DEMO_MODE_ENABLED=true`): fictional months, the real behaviour-findings and rules-baseline sentiment code run over them, and the
+    model status. Nothing is read from or written to a database; `demo` is always true so a caller can never mistake it for a customer's data."""
+
+    demo: Literal[True] = True
+    notice: str
+    example_text: str
+    currency: str
+    months: list[DemoMonthOut]  # oldest first
+    insight: PersonalizedInsightResponse
+    sentiment_model: SentimentModelStatusOut
+    data_source: str
+
+
+class DemoMemberOut(BaseModel):
+    """One FICTIONAL household member in the family demonstration: a stable demo label, a role, the member's fixed months with their calculated ratios and changes, and the records-only (or, for
+    the primary member, text-reading) insight produced by the same code as the customer route."""
+
+    label: str
+    role: str
+    months: list[DemoMonthOut]  # oldest first
+    insight: PersonalizedInsightResponse
+
+
+class DemoFamilyFinancialBehaviourResponse(BaseModel):
+    """`POST /api/demo/family-financial-behaviour` (only when `DEMO_MODE_ENABLED=true`): a fictional family. `household_summary` is the real household engine's output over invented household records
+    (so its totals, loans and EMIs are calculated, and a loan with no stated payment is reported as not provided). Nothing is read from or written to a database."""
+
+    demo: Literal[True] = True
+    scenario: Literal["family"] = "family"
+    notice: str
+    household_label: str
+    example_text: str
+    currency: str
+    members: list[DemoMemberOut]
+    household_summary: HouseholdFinancialSummaryResponse
+    sentiment_model: SentimentModelStatusOut
+    data_source: str

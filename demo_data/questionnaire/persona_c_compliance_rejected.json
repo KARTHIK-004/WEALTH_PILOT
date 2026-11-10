@@ -1,60 +1,57 @@
 {
   "demo_key": "WPDEMO-C",
   "source": "synthetic_demo",
-  "definition": "Answers only. The questions and options are the application's own questionnaire (GET /api/questionnaire, read from datasets/raw/FAR-Trans/questionnaires.csv) and are never copied here.",
-  "selection_rule": {
-    "method": "position",
-    "answer_offset": -1,
-    "meaning": "the last option of every question"
-  },
+  "definition": "Answers only. The questions and options are the application's own questionnaire (GET /api/questionnaire, read from datasets/raw/FAR-Trans/questionnaires.csv) and are never copied here. The questionnaire is the research instrument's own wording (its money bands are stated in euros); these answers use the approximate real-world equivalent of each persona's rupee figures. The application stores the answers but no analysis step reads them.",
+  "complete": true,
+  "answers_basis": "Curated to match the profile: 36, married, postgraduate, salaried, minimal investment experience, a low risk appetite and a defensive current allocation, in line with the Conservative category the risk model assigns to the linked trading history.",
   "answers": [
     {
       "question_number": 1,
-      "option_key": "e"
-    },
-    {
-      "question_number": 2,
       "option_key": "b"
     },
     {
+      "question_number": 2,
+      "option_key": "a"
+    },
+    {
       "question_number": 3,
-      "option_key": "d"
+      "option_key": "b"
     },
     {
       "question_number": 4,
-      "option_key": "e"
+      "option_key": "d"
     },
     {
       "question_number": 5,
-      "option_key": "e"
+      "option_key": "c"
     },
     {
       "question_number": 6,
-      "option_key": "d"
+      "option_key": "b"
     },
     {
       "question_number": 7,
-      "option_key": "d"
+      "option_key": "a"
     },
     {
       "question_number": 8,
-      "option_key": "d"
+      "option_key": "a"
     },
     {
       "question_number": 9,
-      "option_key": "e"
+      "option_key": "a"
     },
     {
       "question_number": 10,
-      "option_key": "e"
+      "option_key": "b"
     },
     {
       "question_number": 11,
-      "option_key": "e"
+      "option_key": "c"
     },
     {
       "question_number": 12,
-      "option_key": "d"
+      "option_key": "c"
     },
     {
       "question_number": 13,
@@ -62,51 +59,51 @@
     },
     {
       "question_number": 14,
-      "option_key": "e"
+      "option_key": "d"
     },
     {
       "question_number": 15,
-      "option_key": "e"
+      "option_key": "a"
     },
     {
       "question_number": 16,
-      "option_key": "e"
+      "option_key": "d"
     },
     {
       "question_number": 17,
-      "option_key": "e"
+      "option_key": "d"
     },
     {
       "question_number": 18,
-      "option_key": "e"
+      "option_key": "d"
     },
     {
       "question_number": 19,
-      "option_key": "e"
+      "option_key": "d"
     },
     {
       "question_number": 20,
-      "option_key": "d"
+      "option_key": "b"
     },
     {
       "question_number": 21,
-      "option_key": "d"
+      "option_key": "b"
     },
     {
       "question_number": 22,
-      "option_key": "e"
+      "option_key": "d"
     },
     {
       "question_number": 23,
-      "option_key": "e"
+      "option_key": "c"
     },
     {
       "question_number": 24,
-      "option_key": "e"
+      "option_key": "d"
     },
     {
       "question_number": 25,
-      "option_key": "e"
+      "option_key": "a"
     }
   ]
 }

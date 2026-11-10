@@ -1,0 +1,31 @@
+python 3.11.9 (tags/v3.11.9:de54cf5, Apr  2 2024, 10:12:12) [MSC v.1938 64 bit (AMD64)]
+platform Windows-10-10.0.26300-SP0 AMD64
+tensorflow==2.17.0
+keras==3.15.1
+xgboost==2.1.2
+joblib==1.6.0
+numpy==1.26.4
+scipy==1.14.1
+scikit-learn==1.5.2
+pandas==2.2.3
+torch==2.15.0+cpu
+transformers==5.17.0
+tokenizers==0.23.3
+safetensors==0.8.0
+protobuf==4.25.9
+setuptools==81.0.0
+threadpoolctl==3.6.0
+shap==0.46.0
+numba==0.67.0
+llvmlite==0.49.0
+statsmodels==0.14.4
+arch==7.1.0
+ml-dtypes==0.4.1
+h5py==3.16.0
+pytest==8.3.3
+pytest-asyncio==0.24.0
+relevant environment variables (names containing ('OMP', 'MKL', 'KMP', 'TF_', 'CUDA', 'JOBLIB', 'LOKY', 'XGB', 'NUMEXPR', 'OPENBLAS', 'PYTHON', 'NUMBA', 'VECLIB', 'TCMALLOC', 'PYTEST') ):
+  CUDA_VISIBLE_DEVICES = -1
+threadpool openblas libopenblas64__v0.3.23-293-gc2f4bdbb-gcc_10_3_0-2bde3a66a51006b2b53eb373ff767a3f.dll 8 0.3.23.dev
+threadpool openmp vcomp140.dll 8 None
+threadpool openblas libscipy_openblas-5b1ec8b915dfb81d11cebc0788069d2d.dll 8 0.3.27.dev

@@ -36,6 +36,11 @@ from sqlalchemy.orm import Session
 from wealthpilot.api.errors import IdentityRequiredError
 
 from wealthpilot.config import get_settings
+from wealthpilot.security.anchor import LedgerAnchor, UnconfiguredAnchor
+from wealthpilot.security.crypto import EncryptionService
+from wealthpilot.security.errors import KeyUnavailableError
+from wealthpilot.security.keys import EnvironmentKeyProvider, UnavailableKeyProvider
+from wealthpilot.security.ledger import AuditLedger, LocalHashChainLedger
 from wealthpilot.db.session import get_db as _get_db
 from wealthpilot.db.session import get_engine
 
@@ -86,3 +91,24 @@ def get_acting_customer_id(
     if acting is None or acting <= 0:
         raise IdentityRequiredError("A valid X-Customer-Id header identifying the associated customer is required.")
     return acting
+
+
+def get_encryption_service() -> EncryptionService:
+    """The encryption service, built from configuration on each request (cheap; keys are never cached outside the
+    provider). Always returns a service: when no key, or a malformed key, is configured the service fails closed on use
+    and reports itself as not configured. The service is an override point in tests."""
+    settings = get_settings()
+    try:
+        provider = EnvironmentKeyProvider(settings.protected_data_keys.get_secret_value(), settings.protected_data_active_key_id)
+    except KeyUnavailableError:
+        provider = UnavailableKeyProvider()
+    return EncryptionService(provider)
+
+
+def get_audit_ledger() -> AuditLedger:
+    return LocalHashChainLedger()
+
+
+def get_ledger_anchor() -> LedgerAnchor:
+    """The prototype has no external ledger; see `security/anchor.py`."""
+    return UnconfiguredAnchor()

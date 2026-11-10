@@ -1,0 +1,109 @@
+{
+  "demo_key": "WPDEMO-E",
+  "source": "synthetic_demo",
+  "definition": "Answers only. The questions and options are the application's own questionnaire (GET /api/questionnaire, read from datasets/raw/FAR-Trans/questionnaires.csv); nothing here is a score.",
+  "complete": true,
+  "answers_basis": "Curated to match the profile: 34, married, private-sector salaried, moderate investment knowledge and experience, six months to a year of emergency funds, essential liabilities about 40% of income, a moderate appetite for risk, a steady saver aiming at a first home and a child's education over five to seven years, with a balanced current portfolio.",
+  "answers": [
+    {
+      "question_number": 1,
+      "option_key": "a"
+    },
+    {
+      "question_number": 2,
+      "option_key": "a"
+    },
+    {
+      "question_number": 3,
+      "option_key": "b"
+    },
+    {
+      "question_number": 4,
+      "option_key": "c"
+    },
+    {
+      "question_number": 5,
+      "option_key": "c"
+    },
+    {
+      "question_number": 6,
+      "option_key": "b"
+    },
+    {
+      "question_number": 7,
+      "option_key": "b"
+    },
+    {
+      "question_number": 8,
+      "option_key": "b"
+    },
+    {
+      "question_number": 9,
+      "option_key": "a"
+    },
+    {
+      "question_number": 10,
+      "option_key": "b"
+    },
+    {
+      "question_number": 11,
+      "option_key": "b"
+    },
+    {
+      "question_number": 12,
+      "option_key": "c"
+    },
+    {
+      "question_number": 13,
+      "option_key": "e"
+    },
+    {
+      "question_number": 14,
+      "option_key": "d"
+    },
+    {
+      "question_number": 15,
+      "option_key": "a"
+    },
+    {
+      "question_number": 16,
+      "option_key": "c"
+    },
+    {
+      "question_number": 17,
+      "option_key": "c"
+    },
+    {
+      "question_number": 18,
+      "option_key": "c"
+    },
+    {
+      "question_number": 19,
+      "option_key": "c"
+    },
+    {
+      "question_number": 20,
+      "option_key": "c"
+    },
+    {
+      "question_number": 21,
+      "option_key": "c"
+    },
+    {
+      "question_number": 22,
+      "option_key": "c"
+    },
+    {
+      "question_number": 23,
+      "option_key": "b"
+    },
+    {
+      "question_number": 24,
+      "option_key": "c"
+    },
+    {
+      "question_number": 25,
+      "option_key": "c"
+    }
+  ]
+}

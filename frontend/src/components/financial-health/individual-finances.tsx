@@ -1,4 +1,4 @@
-import { Home } from "lucide-react"
+import { HandCoins, Home, Landmark } from "lucide-react"
 import { Link } from "react-router"
 
 import { ErrorState } from "@/components/shell/error-state"
@@ -39,7 +39,9 @@ export function IndividualFinancesCard({ profileId }: { profileId: number }) {
   return (
     <Card>
       <CardHeader>
-        <CardTitle>Your income, expenses and savings</CardTitle>
+        <CardTitle className="flex items-center gap-2">
+          <HandCoins className="text-muted-foreground size-4" aria-hidden="true" /> Financial snapshot
+        </CardTitle>
         <CardDescription>The figures stored for this profile, shown exactly as recorded.</CardDescription>
       </CardHeader>
       <CardContent className="space-y-3">
@@ -55,18 +57,18 @@ export function IndividualFinancesCard({ profileId }: { profileId: number }) {
           />
         ) : (
           <>
-            <dl className="grid gap-3 sm:grid-cols-3">
-              <div>
+            <dl className="grid gap-4 sm:grid-cols-2">
+              <div className="space-y-0.5">
                 <dt className="text-muted-foreground text-xs">Annual income</dt>
                 <dd className="text-sm font-medium">{stored(profile.data?.income)}</dd>
               </div>
-              <div>
-                <dt className="text-muted-foreground text-xs">Monthly essential expenses</dt>
+              <div className="space-y-0.5">
+                <dt className="text-muted-foreground text-xs">Essential spending (per month)</dt>
                 <dd className="text-sm font-medium">{stored(inputs.data?.monthly_essential_expenses)}</dd>
               </div>
-              <div>
+              <div className="space-y-0.5">
                 <dt className="text-muted-foreground text-xs">
-                  <TermLabel help={HELP.emergencySavings}>Savings you can access quickly</TermLabel>
+                  <TermLabel help={HELP.emergencySavings}>Easy-access savings</TermLabel>
                 </dt>
                 <dd className="text-sm font-medium">{stored(inputs.data?.current_liquid_assets)}</dd>
               </div>
@@ -80,15 +82,49 @@ export function IndividualFinancesCard({ profileId }: { profileId: number }) {
                 .
               </p>
             ) : null}
-            <SectionUnavailable
-              title="Debts, cash flow and net position not available"
-              message="WealthPilot does not record an individual's debts or full monthly spending, so it does not calculate an individual cash flow or net position. No values are assumed."
-            />
           </>
         )}
       </CardContent>
     </Card>
   )
+}
+
+/**
+ * Debt and commitments for an INDIVIDUAL: WealthPilot has no individual debt or EMI record (ADR-033: loans and EMIs exist only as a household's own liabilities), so this is a
+ * feature the application does not have, not a value that is missing. It says so plainly instead of showing an invented or zero value. A member of a household is pointed to the
+ * household's own liabilities, which are NOT shown here, so individual and household figures stay apart.
+ */
+export function CommitmentsView({ householdName }: { householdName: string | null }) {
+  return (
+    <Card>
+      <CardHeader>
+        <CardTitle className="flex items-center gap-2">
+          <Landmark className="text-muted-foreground size-4" aria-hidden="true" /> Debt &amp; Commitments
+        </CardTitle>
+        <CardDescription>Loans, EMIs and other regular financial obligations.</CardDescription>
+      </CardHeader>
+      <CardContent className="space-y-3">
+        <SectionUnavailable
+          title="Not recorded for an individual"
+          message="WealthPilot does not record loans or EMIs for an individual, so none are shown and none are assumed."
+        />
+        {householdName ? (
+          <p className="text-sm">
+            The “{householdName}” household records its own loans and EMIs (liabilities, with their monthly payments). They are listed on{" "}
+            <Link to="/profile?household=open" className="text-primary underline underline-offset-2">
+              Customer Profile → Household → Liabilities
+            </Link>{" "}
+            and are not part of this individual view.
+          </p>
+        ) : null}
+      </CardContent>
+    </Card>
+  )
+}
+
+export function CommitmentsCard({ profileId }: { profileId: number }) {
+  const household = useProfileHouseholdQuery(profileId)
+  return <CommitmentsView householdName={household.data?.household?.name ?? null} />
 }
 
 /**

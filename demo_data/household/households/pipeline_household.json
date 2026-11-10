@@ -1,0 +1,8 @@
+{
+  "demo_key": "WPDEMO-HHE",
+  "source": "synthetic_demo",
+  "household_name": "WealthPilot Demo — Full Pipeline Household",
+  "primary_demo_key": "WPDEMO-E",
+  "currency": "INR",
+  "purpose": "The household of the full-pipeline persona (ADR-051): E (self, primary) and the partner F (spouse). Its records are the household's own stored source data and its goals are stored facts. The household summary (income, spending, cash flow, liabilities and EMIs, net position, emergency fund) is computed by the application (core/household_finance.py) and is never stored here, and no household figure reaches any individual analysis. Coherence with E's individual records: the 'Primary salary (net)' stream equals E's latest reported monthly income (100000); the recurring non-EMI spending (80000) is E's latest reported living costs (53000) plus the partner's share (27000); E's reported savings and investing (37000 a month) fit inside the household's monthly cash flow; E's easy-access savings (300000) are one of the liquid assets. The household records are the household's own and are not a sum of the members' individual figures."
+}

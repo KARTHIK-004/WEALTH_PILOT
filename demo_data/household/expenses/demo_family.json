@@ -3,59 +3,73 @@
   "source": "synthetic_demo",
   "api": "POST /api/households/{household_id}/expenses",
   "idempotency_key": "description",
-  "demonstrates": "essential and non-essential expenses (the essential ones are the emergency-fund basis), a yearly expense, and a one-time purchase kept out of the recurring view",
+  "demonstrates": "essential and non-essential expenses (the essential ones are the emergency-fund basis), a yearly premium, a loan repayment, and a one-time purchase kept out of the recurring view",
   "records": [
     {
-      "amount": 49500,
+      "amount": 34000,
       "category": "housing",
       "description": "Rent",
       "frequency": "monthly",
       "is_essential": true
     },
     {
-      "amount": 22500,
+      "amount": 15000,
       "category": "food",
       "description": "Groceries",
       "frequency": "monthly",
       "is_essential": true
     },
     {
-      "amount": 5700,
+      "amount": 4500,
       "category": "utilities",
-      "description": "Energy and water",
+      "description": "Electricity, water and internet",
       "frequency": "monthly",
       "is_essential": true
     },
     {
-      "amount": 7800,
+      "amount": 8000,
       "category": "transportation",
-      "description": "Public transport and fuel",
+      "description": "Fuel and public transport",
       "frequency": "monthly",
       "is_essential": true
     },
     {
-      "amount": 43200,
+      "amount": 54000,
       "category": "insurance",
-      "description": "Home and car insurance",
+      "description": "Health, home and car insurance",
       "frequency": "yearly",
       "is_essential": true
     },
     {
       "amount": 10500,
+      "category": "education",
+      "description": "School fees",
+      "frequency": "monthly",
+      "is_essential": true
+    },
+    {
+      "amount": 9500,
+      "category": "debt_payment",
+      "description": "Car loan EMI",
+      "frequency": "monthly",
+      "is_essential": true
+    },
+    {
+      "amount": 12000,
       "category": "entertainment",
       "description": "Dining and leisure",
       "frequency": "monthly",
       "is_essential": false
     },
     {
-      "amount": 1350,
+      "amount": 1200,
       "category": "other",
       "description": "Streaming subscriptions",
       "frequency": "monthly",
       "is_essential": false
     },
     {
-      "amount": 36000,
+      "amount": 45000,
       "category": "other",
       "description": "New sofa",
       "frequency": "one_time",

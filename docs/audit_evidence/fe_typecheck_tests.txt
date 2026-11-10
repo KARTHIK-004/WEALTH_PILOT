@@ -1,0 +1,6 @@
+== npm run typecheck:tests
+
+> frontend@0.0.0 typecheck:tests
+> tsc -p tsconfig.test.json
+
+typecheck:tests exit 0

@@ -99,7 +99,7 @@ BOOLEAN_COLUMNS = {"is_dependent", "questionnaire_completed", "emergency_fund_su
                    "portfolio_weights_available", "explanation_available", "training_eligible"}
 # A value group and the reason column that explains why it is missing.
 REASON_GROUPS = {
-    "financial_inputs_unavailable_reason": FINANCIAL_INPUT_COLUMNS,
+    "financial_inputs_unavailable_reason": ("monthly_essential_expenses", "current_liquid_assets"),
     "emergency_fund_unavailable_reason": ("emergency_fund_sufficient", "emergency_fund_required_amount",
                                           "emergency_fund_current_amount", "emergency_fund_shortfall"),
     "risk_unavailable_reason": ("risk_category", "risk_confidence"),
@@ -107,15 +107,15 @@ REASON_GROUPS = {
        for n in (1, 2, 3)},
 }
 PERSONAS = {  # dataset key -> (persona label, canonical customer id in this environment)
-    "WPDEMO-A": ("APPROVED", "29107"),
-    "WPDEMO-B": ("SAVINGS_FIRST", "29108"),
-    "WPDEMO-C": ("COMPLIANCE_REJECTED", "29109"),
-    "WPDEMO-D": ("PENDING_INFORMATION", "29096"),
+    "WPDEMO-A": ("APPROVED", "29110"),
+    "WPDEMO-B": ("SAVINGS_FIRST", "29111"),
+    "WPDEMO-C": ("COMPLIANCE_REJECTED", "29112"),
+    "WPDEMO-D": ("PENDING_INFORMATION", "29113"),
 }
-FAMILY = {"household_id": "8", "household_name": "WealthPilot Demo Family",
-          "members": {"29108": ("primary", "self"), "29109": ("member", "spouse")}}
+FAMILY = {"household_id": "9", "household_name": "WealthPilot Demo Family",
+          "members": {"29111": ("primary", "self"), "29112": ("member", "spouse")}}
 CONSTANTS = {"data_source": "synthetic_demo", "training_eligible": "false",
-             "dataset_purpose": "demo_testing_presentation", "currency": "EUR", "demo_type": "INDIVIDUAL"}
+             "dataset_purpose": "demo_testing_presentation", "currency": "INR", "demo_type": "INDIVIDUAL"}
 EXPECTED_DEMO_FLOW = {
     "WPDEMO-A": ("Use Individual Demo login > Dashboard > Risk Assessment > Financial Health > Goals > Portfolio "
                  "> Recommendation > Why This Recommendation (Simple and Detailed) > Scenario Simulator > "
@@ -132,12 +132,14 @@ EXPECTED_DEMO_FLOW = {
 NOTES = {
     "WPDEMO-A": ("Individual demo persona; in no household. The AGG weight is copied exactly as stored (a "
                  "floating-point value of about 1.7e-16), which the application displays as 0%."),
-    "WPDEMO-B": ("Also the primary (self) of household 8. The household columns describe the household and are "
+    "WPDEMO-B": ("Also the primary (self) of the family household. The household columns describe the household and are "
                  "repeated on each member row - they are not this customer's own figures and never enter the "
                  "individual analysis."),
-    "WPDEMO-C": ("Also the spouse (member) of household 8. Financial inputs are deliberately not provided, so the "
-                 "emergency fund is unknown and the compliance gate rejects fail-closed."),
-    "WPDEMO-D": ("Phase 24 canonical demo customer (lowest id with this name). Emergency fund, goals, "
+    "WPDEMO-C": ("Also the spouse (member) of the family household. Monthly essential spending and easy-access "
+                 "savings are deliberately not provided, so the emergency fund is unknown and the compliance gate "
+                 "rejects fail-closed; the savings plan is provided, so goal feasibility is still computed."),
+    "WPDEMO-D": ("Canonical pending-information customer (lowest id with this name). The questionnaire is "
+                 "intentionally partly answered and there is no trading history. Emergency fund, goals, "
                  "compliance, portfolio, recommendation and explanation are not evaluated because the analysis "
                  "stops at pending_information."),
 }
@@ -234,7 +236,7 @@ def build_rows(snapshot: dict) -> list[dict[str, str]]:
             **{c: inputs[c] for c in FINANCIAL_INPUT_COLUMNS},
             "financial_inputs_unavailable_reason":
                 package[key]["financial_inputs"].get("financial_inputs_unavailable_reason")
-                if all(inputs[c] is None for c in FINANCIAL_INPUT_COLUMNS) else None,
+                if any(inputs[c] is None for c in FINANCIAL_INPUT_COLUMNS) else None,
         }
         ef = analysis.get("emergency_fund") or {}
         row.update({

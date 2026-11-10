@@ -6,31 +6,38 @@
   "demonstrates": "household goals as stored facts (no goal math), including one with no current amount recorded, across the short/medium/long-term spread a demo should show",
   "records": [
     {
-      "current_savings": 285000,
+      "current_savings": 360000,
       "goal_type": "emergency_fund",
       "name": "Emergency fund",
-      "target_amount": 540000,
+      "target_amount": 550000,
       "target_date": "2027-12-31"
     },
     {
-      "current_savings": 180000,
+      "current_savings": 400000,
       "goal_type": "house",
       "name": "Home deposit",
-      "target_amount": 1350000,
-      "target_date": "2030-06-30"
+      "target_amount": 1500000,
+      "target_date": "2031-03-31"
+    },
+    {
+      "current_savings": 150000,
+      "goal_type": "education",
+      "name": "Children's education fund",
+      "target_amount": 1200000,
+      "target_date": "2034-06-30"
     },
     {
       "goal_type": "travel",
       "name": "Family holiday",
-      "target_amount": 120000,
-      "target_date": "2027-08-01"
+      "target_amount": 150000,
+      "target_date": "2027-12-15"
     },
     {
-      "current_savings": 450000,
+      "current_savings": 550000,
       "goal_type": "retirement",
       "name": "Family retirement fund",
-      "target_amount": 10500000,
-      "target_date": "2048-01-01"
+      "target_amount": 15000000,
+      "target_date": "2054-01-01"
     }
   ]
 }

@@ -3,25 +3,25 @@
   "source": "synthetic_demo",
   "goals": [
     {
-      "current_savings": 120000,
-      "goal_type": "Emergency Fund",
-      "priority": 1,
-      "target_amount": 180000,
-      "target_date": "2027-06-01"
+      "goal_type": "Home Down Payment",
+      "target_amount": 1500000,
+      "target_date": "2030-10-01",
+      "current_savings": 450000,
+      "priority": 1
     },
     {
-      "current_savings": 350000,
-      "goal_type": "Retirement",
-      "priority": 2,
-      "target_amount": 4000000,
-      "target_date": "2050-01-01"
+      "goal_type": "Child Higher Education",
+      "target_amount": 2000000,
+      "target_date": "2036-06-01",
+      "current_savings": 250000,
+      "priority": 2
     },
     {
-      "current_savings": 200000,
-      "goal_type": "House Purchase",
-      "priority": 3,
-      "target_amount": 900000,
-      "target_date": "2031-06-01"
+      "goal_type": "Retirement Corpus",
+      "target_amount": 15000000,
+      "target_date": "2051-01-01",
+      "current_savings": 800000,
+      "priority": 3
     }
   ]
 }

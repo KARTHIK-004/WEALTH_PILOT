@@ -1,0 +1,18 @@
+{
+  "demo_key": "WPDEMO-E",
+  "source": "synthetic_demo",
+  "checked_by": "backend/scripts/seed_demo_data.py verify (the persona's default POST /api/analysis result)",
+  "expected": {
+    "analysis_status": "approved",
+    "risk_available": true,
+    "goal_results_returned": true,
+    "goal_feasibility_available": true,
+    "emergency_fund_sufficient": true,
+    "compliance_decision": "PASS",
+    "triggered_compliance_rules": [],
+    "recommendation_available": true,
+    "recommendation_status": "approved",
+    "portfolio_weights_available": true,
+    "explanation_available": true
+  }
+}

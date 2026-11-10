@@ -1,0 +1,29 @@
+{
+  "TEMPLATE": "NOT APPROVED. Copy to datasets/raw/sentiment/<dataset_id>/manifest.json, fill every field from the dataset's own documentation, and have the project owner set approved=true and approved_by. Nothing here is a statement about any real dataset.",
+  "dataset_id": "<short stable id>",
+  "version": "<dataset version or snapshot date>",
+  "source": "<who published it, and the publication or card>",
+  "url": "<where it was obtained>",
+  "license": "<the exact licence, e.g. its SPDX id or the quoted terms; non-commercial and share-alike terms matter for derived model weights>",
+  "language": "en",
+  "label_definitions": {
+    "<dataset label 1>": "<what the annotators meant by it>",
+    "<dataset label 2>": "<...>"
+  },
+  "label_map": {
+    "<dataset label 1>": "positive",
+    "<dataset label 2>": "negative",
+    "<dataset label 3>": "neutral"
+  },
+  "sample_count": 0,
+  "preprocessing": "validate_text (control characters refused, whitespace collapsed, at most 1000 characters); case-insensitive exact-duplicate removal; no other change",
+  "split_policy": {"train": 0.8, "validation": 0.1, "test": 0.1, "unit": "group (a 'group' field when present, otherwise the normalised text)", "seed": 42},
+  "duplicate_policy": "exact duplicates (same normalised text) kept once; the same text with different labels removed from every split; no group or text shared between splits (checked)",
+  "limitations": ["<who wrote the text, in what register>", "<how it differs from a person describing their own finances>"],
+  "domain_note": "Financial-news or market-commentary sentiment is not personal-finance sentiment: it is written about companies, not about the writer's own savings, debts and goals. A model validated on it is not thereby validated for WealthPilot input.",
+  "has_intensity": false,
+  "intensity_definition": "",
+  "approved": false,
+  "approved_by": "",
+  "development_fixture": false
+}

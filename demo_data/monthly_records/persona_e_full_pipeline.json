@@ -1,0 +1,103 @@
+{
+  "demo_key": "WPDEMO-E",
+  "source": "synthetic_demo",
+  "definition": "Twelve consecutive calendar months of what the customer reports (rupees, net income): income, living costs, newly set-aside savings and newly invested money. Sent through PUT /api/profiles/{id}/monthly-financial-records/{YYYY-MM}; the application computes every change, ratio and finding from them (GET /api/profiles/{id}/behaviour-features). Spending, saving and investing never exceed income in any month.",
+  "records": [
+    {
+      "period": "2025-10",
+      "income": 95000,
+      "expenses": 56000,
+      "savings": 14000,
+      "investment_contribution": 20000,
+      "income_basis": "net"
+    },
+    {
+      "period": "2025-11",
+      "income": 95000,
+      "expenses": 54000,
+      "savings": 15000,
+      "investment_contribution": 20000,
+      "income_basis": "net"
+    },
+    {
+      "period": "2025-12",
+      "income": 95000,
+      "expenses": 51000,
+      "savings": 16000,
+      "investment_contribution": 20000,
+      "income_basis": "net"
+    },
+    {
+      "period": "2026-01",
+      "income": 95000,
+      "expenses": 49000,
+      "savings": 17000,
+      "investment_contribution": 20000,
+      "income_basis": "net"
+    },
+    {
+      "period": "2026-02",
+      "income": 95000,
+      "expenses": 48000,
+      "savings": 18000,
+      "investment_contribution": 20000,
+      "income_basis": "net"
+    },
+    {
+      "period": "2026-03",
+      "income": 95000,
+      "expenses": 50000,
+      "savings": 17000,
+      "investment_contribution": 20000,
+      "income_basis": "net"
+    },
+    {
+      "period": "2026-04",
+      "income": 100000,
+      "expenses": 50000,
+      "savings": 20000,
+      "investment_contribution": 20000,
+      "income_basis": "net"
+    },
+    {
+      "period": "2026-05",
+      "income": 100000,
+      "expenses": 49000,
+      "savings": 21000,
+      "investment_contribution": 20000,
+      "income_basis": "net"
+    },
+    {
+      "period": "2026-06",
+      "income": 100000,
+      "expenses": 51000,
+      "savings": 19000,
+      "investment_contribution": 20000,
+      "income_basis": "net"
+    },
+    {
+      "period": "2026-07",
+      "income": 100000,
+      "expenses": 50000,
+      "savings": 20000,
+      "investment_contribution": 20000,
+      "income_basis": "net"
+    },
+    {
+      "period": "2026-08",
+      "income": 100000,
+      "expenses": 52000,
+      "savings": 18000,
+      "investment_contribution": 20000,
+      "income_basis": "net"
+    },
+    {
+      "period": "2026-09",
+      "income": 100000,
+      "expenses": 53000,
+      "savings": 17000,
+      "investment_contribution": 20000,
+      "income_basis": "net"
+    }
+  ]
+}

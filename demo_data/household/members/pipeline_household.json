@@ -1,0 +1,18 @@
+{
+  "household_demo_key": "WPDEMO-HHE",
+  "source": "synthetic_demo",
+  "members": [
+    {
+      "demo_key": "WPDEMO-E",
+      "relationship": "self",
+      "role": "primary",
+      "created_by": "POST /api/households -- the creating customer becomes the self/primary member"
+    },
+    {
+      "demo_key": "WPDEMO-F",
+      "relationship": "spouse",
+      "role": "member",
+      "created_by": "POST /api/households/{household_id}/members"
+    }
+  ]
+}

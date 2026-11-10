@@ -1,7 +1,8 @@
 """Reads the synthetic demo dataset in `demo_data/` -- files in, dicts out.
 
-`demo_data/` is the single source of WealthPilot AI's demo population: four
-individual personas (profile, questionnaire answers, financial inputs, goals)
+`demo_data/` is the single source of WealthPilot AI's demo population: five
+individual personas (profile, questionnaire answers, financial inputs, goals, and
+for one of them twelve months of monthly records)
 and one family household (members, income, expenses, assets, liabilities,
 goals), plus scenario inputs and the expected high-level outcomes. See
 `demo_data/README.md`.
@@ -27,8 +28,12 @@ REPO_ROOT = Path(__file__).resolve().parents[2]
 DEMO_DATA_DIR = REPO_ROOT / "demo_data"
 SOURCE_LABEL = "synthetic_demo"
 FAMILY_DEMO_KEY = "WPDEMO-FAM"
+# The household of the full-pipeline persona (WPDEMO-E and its partner WPDEMO-F), ADR-051.
+PIPELINE_HOUSEHOLD_KEY = "WPDEMO-HHE"
 
 PERSONA_DIRS = ("profiles", "questionnaire", "financial_inputs", "individual_goals")
+# Optional per persona (only the full-pipeline persona has any): reported months for the behaviour findings.
+MONTHLY_RECORDS_DIR = "monthly_records"
 HOUSEHOLD_RECORD_RESOURCES = ("income", "expenses", "assets", "liabilities", "goals")
 
 # The contract-level states `expected_results/` may state, and how each is
@@ -85,9 +90,10 @@ def select_option(options: list[dict], offset: int) -> str:
     different offset so the demo questionnaires are intentionally
     different from one another, while remaining a pure "which real option
     did this demo submission use" choice -- never converted into or read
-    as a score of any kind. The materialised answers in
-    `demo_data/questionnaire/` must equal this rule's result (the validator
-    checks it)."""
+    as a score of any kind. Only the frontend's unseeded-database fallback
+    still follows this rule; the dataset's own answers in
+    `demo_data/questionnaire/` are curated per persona and are checked
+    against the live questionnaire's options instead."""
     if offset == 0:
         return options[0]["key"]
     if offset == -1:
@@ -115,10 +121,14 @@ def _one(indexed: dict[str, dict], key: str, where: str) -> dict:
 
 
 def load_personas(data_dir: Path = DEMO_DATA_DIR) -> list[dict]:
-    """One dict per persona, ordered by demo key (A, B, C, D), in the shape the
+    """One dict per persona, ordered by demo key (A-E), in the shape the
     seed uses. `financial_inputs` is present only when the persona's file
-    provides them -- a persona without inputs has no such key, never zeros."""
+    provides them -- a persona without inputs has no such key, never zeros.
+    `monthly_records` is present only for a persona that has a file in
+    `monthly_records/` -- the other personas report no months, never an empty
+    or zero-filled history."""
     parts = {d: _index(data_dir / d, "demo_key") for d in PERSONA_DIRS}
+    monthly = _index(data_dir / MONTHLY_RECORDS_DIR, "demo_key") if (data_dir / MONTHLY_RECORDS_DIR).is_dir() else {}
     personas = []
     for key, profile_file in sorted(parts["profiles"].items()):
         questionnaire = _one(parts["questionnaire"], key, "questionnaire")
@@ -133,19 +143,23 @@ def load_personas(data_dir: Path = DEMO_DATA_DIR) -> list[dict]:
             "external_customer_id": None if link is None else link["external_customer_id"],
             "profile": profile_file["profile"],
             "goals": goals["goals"],
-            "answer_offset": questionnaire["selection_rule"]["answer_offset"],
+            "questionnaire_complete": questionnaire["complete"],
             "answers": questionnaire["answers"],
         }
         if financial["financial_inputs"] is not None:
             persona["financial_inputs"] = financial["financial_inputs"]
+        if key in monthly:
+            persona["monthly_records"] = monthly[key]["records"]
         personas.append(persona)
     return personas
 
 
 def load_family(data_dir: Path = DEMO_DATA_DIR, household_key: str = FAMILY_DEMO_KEY) -> dict:
-    """The family household in the shape `setup_family` sends through the API:
+    """A demo household in the shape `setup_family` sends through the API:
     names resolved from the persona files, the members to add (the primary is
-    the household's creator, not an added member), and each resource's records."""
+    the household's creator, not an added member), each resource's records, and
+    the field that identifies one of those records for idempotency. Defaults to
+    the family household; `PIPELINE_HOUSEHOLD_KEY` selects the full-pipeline one."""
     names = {key: p["customer_name"] for key, p in _index(data_dir / "profiles", "demo_key").items()}
     household_dir = data_dir / "household"
     household = _one(_index(household_dir / "households", "demo_key"), household_key, "household/households")
@@ -157,6 +171,7 @@ def load_family(data_dir: Path = DEMO_DATA_DIR, household_key: str = FAMILY_DEMO
         return names[demo_key]
 
     family: dict[str, Any] = {
+        "demo_key": household_key,
         "household_name": household["household_name"],
         "primary_name": name_of(household["primary_demo_key"]),
         "members": [
@@ -169,6 +184,7 @@ def load_family(data_dir: Path = DEMO_DATA_DIR, household_key: str = FAMILY_DEMO
         family[resource] = _one(
             _index(household_dir / resource, "household_demo_key"), household_key, f"household/{resource}"
         )["records"]
+    family["record_keys"] = load_family_record_keys(data_dir, household_key)
     return family
 
 

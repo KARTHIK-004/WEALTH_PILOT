@@ -1,0 +1,40 @@
+........................................................................ [  9%]
+........................................................................ [ 18%]
+........................................................................ [ 27%]
+........................................................................ [ 36%]
+...................................................................s.... [ 45%]
+........................................................................ [ 54%]
+........................................................................ [ 63%]
+........................................................................ [ 72%]
+........................................................................ [ 81%]
+........................................................................ [ 90%]
+.................................................................s...... [ 99%]
+......                                                                   [100%]
+============================== warnings summary ===============================
+tests/training/behaviour/test_detection.py::test_isolation_forest_flags_a_clear_multivariate_outlier
+  C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\sklearn\base.py:486: UserWarning: X has feature names, but IsolationForest was fitted without feature names
+    warnings.warn(
+
+tests/training/market/test_artifacts.py: 46 warnings
+tests/training/market/test_dl_models.py: 95 warnings
+  C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\keras\src\utils\python_utils.py:190: DeprecationWarning: Conversion of an array with ndim > 0 to a scalar is deprecated, and will error in future. Ensure you extract a single element from your array before performing this operation. (Deprecated NumPy 1.25.)
+    value = float(value)
+
+tests/training/market/test_evaluate.py::test_diebold_mariano_handles_too_few_observations_gracefully
+  C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\numpy\core\fromnumeric.py:3787: RuntimeWarning: Degrees of freedom <= 0 for slice
+    return _methods._var(a, axis=axis, dtype=dtype, out=out, ddof=ddof,
+
+tests/training/market/test_evaluate.py::test_diebold_mariano_handles_too_few_observations_gracefully
+  C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\numpy\core\_methods.py:198: RuntimeWarning: invalid value encountered in scalar divide
+    ret = ret.dtype.type(ret / rcount)
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+796 passed, 2 skipped, 144 warnings in 166.19s (0:02:46)
+NETGUARD external connection or lookup attempts: 0
+
+C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pytest_asyncio\plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+R3_IMPORTED torch,tensorflow,xgboost,sklearn,joblib,transformers,shap,numba,scipy,statsmodels,arch,keras
+R3_GUARD nvidia_dll_guard: active (pinned) C:\WINDOWS\System32\DriverStore\FileRepository\nvam.inf_amd64_900a074fe80431cd\nvdxgdmal64.dll sha256=6ce2215dda5fcf9c0a3c64bf318b2fa3e7e212142ce3a3eb7961bdf44eea243b

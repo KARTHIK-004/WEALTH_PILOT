@@ -169,13 +169,13 @@ over. (`core/goals.py::EMERGENCY_FUND_TARGET_MONTHS`, ADR-016)
 **21. What happens when the emergency fund is insufficient?**
 Portfolio optimisation is skipped, the recommendation status is
 `savings_first`, weights are `null`, and compliance passes because a
-savings-first proposal legitimately has no weights (ADR-018). Demo 29108: 15,000
-required, 4,000 held, shortfall €11,000, "build liquidity before investing".
+savings-first proposal legitimately has no weights (ADR-018). Demo 29111: ₹2,28,000
+required, ₹90,000 held, shortfall ₹1,38,000, "build liquidity before investing".
 
 **22. What happens when the emergency fund is unknown?**
 The same savings-first route runs, but compliance is fail-closed: the rule
 `emergency_fund_savings_first` triggers ("emergency-fund status was not
-provided") and the result is **REJECT**. Demo 29109 — the system refuses to
+provided") and the result is **REJECT**. Demo 29112 — the system refuses to
 guess. (ADR-015, ADR-018)
 
 **23. How does compliance work?**
@@ -292,8 +292,9 @@ server-side render checks. (ARCH §23, PRD §39, `reports/final_viva_facts.md`)
 
 **37. What is the current approved demo path?**
 Sign in with **Use Individual Demo**, which resolves to "WealthPilot Demo —
-Complete": Aggressive, emergency fund sufficient, Retirement Feasible (94.1%),
-House Purchase At Risk (50.3%), MVO QQQ 55% / GLD 45%, compliance PASS,
+Complete": Aggressive, emergency fund sufficient, Home Down Payment Feasible
+(98.8%), Child Higher Education Feasible (100.0%), Retirement Corpus At Risk
+(67.7%), MVO QQQ 55% / GLD 45%, compliance PASS,
 approved. Savings-first and the compliance REJECT are shown through the API
 explorer because the app deliberately has no customer switcher. The household
 side has its own entry point, **Use Family Demo**, which opens the canonical
@@ -310,7 +311,7 @@ approved outcome with no allocation, not an error. (ADR-016, ADR-018)
 The pipeline could not classify risk with enough confidence — either confidence
 is below 0.50 or the customer has no FAR-Trans linkage (a brand-new user) — so it
 stops at an information request. Every downstream section is unavailable and
-nothing is fabricated. (ARCH §10, demo 29096)
+nothing is fabricated. (ARCH §10, demo 29113)
 
 **40. Is this real financial advice?**
 No. It is an educational decision-support prototype: it does not execute

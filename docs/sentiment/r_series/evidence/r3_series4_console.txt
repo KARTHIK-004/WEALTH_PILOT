@@ -1,0 +1,7 @@
+{"env": "envB", "label": "ctl_unpinned_1", "exit_code": 3221225477, "crashed": true, "summary": "", "elapsed_s": 501.5, "imported_at_end": ""}
+{"env": "envB", "label": "ctl_pinned_1", "exit_code": 0, "crashed": false, "summary": "735 passed, 3 skipped, 144 warnings in 230.38s (0:03:50)", "elapsed_s": 236.5, "imported_at_end": "tensorflow,xgboost,sklearn,joblib,shap,numba,scipy,statsmodels,arch,keras"}
+{"env": "envB", "label": "ctl_unpinned_2", "exit_code": 3221225477, "crashed": true, "summary": "", "elapsed_s": 483.5, "imported_at_end": ""}
+{"env": "envB", "label": "ctl_pinned_2", "exit_code": 0, "crashed": false, "summary": "735 passed, 3 skipped, 144 warnings in 205.53s (0:03:25)", "elapsed_s": 210.5, "imported_at_end": "tensorflow,xgboost,sklearn,joblib,shap,numba,scipy,statsmodels,arch,keras"}
+{"env": "envA", "label": "ctl_envA_pinned_1", "exit_code": 0, "crashed": false, "summary": "774 passed, 1 skipped, 144 warnings in 279.46s (0:04:39)", "elapsed_s": 285.7, "imported_at_end": "torch,tensorflow,xgboost,sklearn,joblib,transformers,shap,numba,scipy,statsmodels,arch,keras"}
+{"env": "envA", "label": "ctl_envA_pinned_2", "exit_code": 0, "crashed": false, "summary": "774 passed, 1 skipped, 144 warnings in 215.19s (0:03:35)", "elapsed_s": 219.7, "imported_at_end": "torch,tensorflow,xgboost,sklearn,joblib,transformers,shap,numba,scipy,statsmodels,arch,keras"}
+SERIES4-DONE

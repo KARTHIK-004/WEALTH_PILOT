@@ -1,0 +1,56 @@
+{
+  "household_demo_key": "WPDEMO-HHE",
+  "source": "synthetic_demo",
+  "api": "POST /api/households/{household_id}/assets",
+  "idempotency_key": "name",
+  "demonstrates": "liquid and illiquid assets (the liquid ones are the emergency-fund balance); the primary member's easy-access savings equal the 300000 in E's own financial inputs",
+  "records": [
+    {
+      "asset_type": "bank_account",
+      "current_value": 300000,
+      "is_liquid": true,
+      "name": "Primary member's savings account",
+      "description": "Equals the primary member's easy-access savings."
+    },
+    {
+      "asset_type": "bank_account",
+      "current_value": 110000,
+      "is_liquid": true,
+      "name": "Partner's savings account"
+    },
+    {
+      "asset_type": "cash",
+      "current_value": 90000,
+      "is_liquid": true,
+      "name": "Liquid fund",
+      "description": "Redeemable the next business day"
+    },
+    {
+      "asset_type": "fixed_deposit",
+      "current_value": 250000,
+      "is_liquid": false,
+      "name": "Fixed deposit",
+      "description": "Locked in until 2028"
+    },
+    {
+      "asset_type": "investment",
+      "current_value": 420000,
+      "is_liquid": false,
+      "name": "Mutual fund portfolio",
+      "description": "Self-reported; monthly SIPs"
+    },
+    {
+      "asset_type": "retirement",
+      "current_value": 680000,
+      "is_liquid": false,
+      "name": "Provident fund (EPF/PPF)"
+    },
+    {
+      "asset_type": "vehicle",
+      "current_value": 520000,
+      "is_liquid": false,
+      "name": "Car",
+      "description": "Self-reported estimate"
+    }
+  ]
+}

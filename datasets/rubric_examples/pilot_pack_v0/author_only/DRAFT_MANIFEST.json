@@ -1,0 +1,44 @@
+{
+ "manifest_status": "DRAFT",
+ "frozen": false,
+ "freeze_process_completed": false,
+ "freeze_steps_remaining": [
+  "annotation completed by independent human annotators",
+  "independent adjudication completed",
+  "rubric ambiguities resolved and a new rubric version written",
+  "owner decisions O2, O3, O7 made (and O5/O6 accepted or rejected)",
+  "final manifest with the extended fields (rubric 5a) written and the files hashed"
+ ],
+ "rubric_version": "v0-draft",
+ "rubric_sha256": "346c5dce27bd37f493decc4d55876adc6dbdf6008e48f10c318f74e217896e8e",
+ "rubric_excerpt_sha256": "d98ece044dde43c36b1337d8e4df7cc7015f2b84d1c36402447f2601f180e778",
+ "package_files": {
+  "pilot_texts.jsonl": "b37568933e59f1630a4e740dc886ba64c653275727d77a014c5d73d90db09b48",
+  "annotation_template.csv": "3d72b2a76f23a50c69242f80d2a427528f0431041a5d79d6fff4e8767fcd1569",
+  "INSTRUCTIONS.md": "291049daf44f9f6e6e8872144b2bc3fa5154a2d07e586db2a95fe9663536878e",
+  "RUBRIC_EXCERPT.md": "d98ece044dde43c36b1337d8e4df7cc7015f2b84d1c36402447f2601f180e778"
+ },
+ "text_count": 30,
+ "ids_sha256": "e7ba4f18fdff78092011611299bd5e6beffd66af1d91ee38731f65a8a8ba25fe",
+ "data_kind": "FICTIONAL synthetic notes; not real user text; not validation data",
+ "owner_decisions_in_force": {
+  "O1": "accepted by the owner for FICTIONAL notes only; real participant text collection remains prohibited",
+  "O4": "accepted by the owner for the fictional dry run: two independent annotators and one adjudicator, all independent of the rubric author; self-annotation must not be called independent",
+  "O5": "PROPOSED, not accepted; Option A is the proposed annotation policy for the dry run (code-mixed/unsupported-language text annotated `uncertain`)",
+  "O6": "PROPOSED, not accepted; the dry run only identifies rubric ambiguity; no production schema or API change",
+  "O2": "unresolved",
+  "O3": "unresolved",
+  "O7": "unresolved"
+ },
+ "baseline_method_version_recorded_only": "user_text_rules_v1",
+ "baseline_status": "UNVALIDATED_BASELINE (not run on this pack)",
+ "annotation_status": "NOT STARTED",
+ "annotators_required": 2,
+ "adjudicators_required": 1,
+ "distribution_ready": false,
+ "distribution_blockers": [
+  "no participant register supplied: annotators and an adjudicator, each attested independent of the rubric author, are not yet identified"
+ ],
+ "independence_attestation_note": "The register is the owner's own attestation; the tool checks that it is complete and consistent and cannot verify independence.",
+ "future_real_text_blocker": "Withdrawal vs unlinkability (decision-sheet C3) is unresolved and blocks any future real-text collection: a contributor cannot withdraw a text that is stored with no link to them."
+}

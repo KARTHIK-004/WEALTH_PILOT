@@ -540,3 +540,74 @@ prose; nothing else computes. See `docs/DECISIONS.md` ADR-014.
   household to confirm that what it entered is complete (ADR-033).
 - See `docs/MEMORY.md` for the current, fuller list including anything
   that has changed since this document was last verified against source.
+
+## 24. Sensitive-Data Protection Prototype (ADR-047)
+
+```
+route (protected_records.py)  ->  api/services/protected_record_service.py
+        |  authorize (X-Customer-Id == profile_id)       |
+        |                                                v
+        |                          security/crypto.EncryptionService -> security/keys.KeyProvider (env keys, dev only)
+        v                                                |
+ db/models.ProtectedRecord (envelope: nonce, ciphertext+tag, algorithm, version, key_id)
+        |
+ security/ledger.LocalHashChainLedger -> db/models.AuditLedgerEvent   (same transaction as the data change)
+ security/anchor.LedgerAnchor  (interface; UnconfiguredAnchor is connected to nothing)
+```
+
+- The package `backend/wealthpilot/security/` is imported only by `api/dependencies.py` and the protected-record service/router.
+  `core/`, `agents/`, `data/` and `training/` never import it (`tests/backend/security/test_boundaries.py`).
+- Routes: `POST|GET /api/profiles/{id}/protected-notes`, `GET|PUT|DELETE /api/profiles/{id}/protected-notes/{record_id}`,
+  `GET /api/profiles/{id}/security-status`. The status route runs a real encryption round trip and a full chain verification and
+  returns no key, hash, audit event or note text. No route lists, verifies or reads another profile's records or exposes events.
+- Frontend: the "Data Protection" page (`/security`) only displays the status response, labelled exactly "Academic prototype — not
+  a real blockchain." It computes and verifies nothing.
+- Existing endpoints, the advisory pipeline, the risk/compliance/recommendation logic and the sentiment feature are unchanged.
+
+## 25. Financial Behaviour & Sentiment Interpretation Pipeline (ADR-050)
+
+```
+POST /api/profiles/{id}/personalized-insights   (text in the body only)
+  api/services/personalized_insight_service.py   reads monthly features + stored risk assessment; calls get_sentiment_model() (None today)
+    core/user_text_sentiment.py                  validate -> quality / language -> relevance -> clauses (quote, other person, past, negation)
+                                                 -> sentiment + tone -> topics -> explicit preferences -> abstention / state
+        [optional] SentimentModel.interpret()    local, in memory; any failure -> rules baseline, fallback_used = true
+    core/personalized_insight.py                 composes statements; structured conflicts; authority wording; abstention caveats
+  api/schemas.py  UserSentimentOut / StatedPreferenceOut / RiskProfileOut(remains_authoritative) / InsightConflictOut
+frontend: lib/user-text-input.ts (wording, states) -> sentiment-results-panel.tsx / risk-assessment-panel.tsx (display only)
+```
+
+- One flow, one route; the text is analysed in memory and nothing is written, logged or sent (`tests/backend/api/test_personalized_insights_interpretation.py`).
+- The insight modules import nothing from the analysis, recommendation, compliance, portfolio or agent code, and the analysis path never reads this output: sentiment cannot change a risk
+  category, goal, weight, recommendation or compliance decision. Authority: stored risk assessment > compliance > savings-first > goals > market context > sentiment / stated preference.
+- Method state in every response: `method` (`rules_baseline | trained_model | hybrid | unavailable`), `model_version` (`user_text_rules_v1`), `validation_status` (`UNVALIDATED_BASELINE`),
+  `confidence` (null unless a calibrated model supplied one), `interpretation_state` (`valid | weak | abstained | unavailable`), `abstain_reason`, `fallback_used`, `privacy_status`.
+- No trained model exists; the seam is `get_sentiment_model()` plus `SentimentModel` / `ModelReading`. Wiring one needs owner approval (ADR-050, decisions required).
+
+## 26. Demo households (ADR-051)
+
+Two demo households are seeded through the public household API (`demo_data/household/*`, `seed_demo_data.py`): the family (WPDEMO-FAM: B + C) and the full-pipeline household (WPDEMO-HHE: E + F). Each has its own
+`households` row, memberships and stored source records; the summary is computed by `core/household_finance.py` and never stored or fed to any individual analysis. The individual pages show no household figure: Financial Health
+points a member to Customer Profile -> Household. No schema change.
+
+## 27. Trained Sentiment Model Seam (ADR-052)
+
+```
+settings (SENTIMENT_MODEL_*, default off)
+  api/services/personalized_insight_service.py   _config() -> _resolve_model() -> (model | None, reason | None); status route
+    core/sentiment_model.py                      verify artifact (path in models/sentiment/, SHA-256, label map, vocab, version, evidence) -> cache -> TrainedSentimentModel.interpret()
+        TextClassifierBackend  <-  TransformersBackend (torch + transformers, CPU, NOT installed / NOT exercised)   |   fake backends in tests
+    core/user_text_sentiment.py                  gates -> rules -> model reads own current clauses -> policy: agree | disagree | safeguard | fallback | abstain
+training/sentiment/   (offline only; never imported by backend/)   dataset -> split -> train -> calibrate -> evaluate -> artifact (re-verified by the loader)
+models/sentiment/<version>/   weights (git-ignored), tokenizer, config.json, label_map.json, metrics.json, model_metadata.json
+```
+
+- Default: the model is off and the rules baseline is the method; there is no model, no weight and no deep-learning package in the repository.
+- A model is primary only when `validated` with full evidence and calibrated; every other state is a visible rules-baseline fallback with a fixed reason (`fallback_used`, `fallback_reason`) or, with fallback off, an abstention.
+- Sentiment (model or rules) reaches nothing but the display: the stored risk assessment, goals, portfolio, recommendation and compliance never read it.
+
+## 28. Pretrained Research Comparison (ADR-053)
+
+`core/sentiment/` (registry, normalization, adapter, comparison, inference_service) -> `api/services/personalized_insight_service.py` (`build_transformer_research`, composed AFTER `compose_insight`)
+-> optional `transformer_research` on `PersonalizedInsightResponse`; per-candidate status on `GET /api/sentiment-model/status`. Display only; off by default; both candidates currently blocked.
+Detail: `docs/sentiment/transformer_architecture.md`.

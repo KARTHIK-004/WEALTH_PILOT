@@ -1,0 +1,65 @@
+# ============================================================================================================
+# UNAPPROVED DRAFT. NOT AN APPROVAL. NOT AN EXPERIMENT RECORD. NOTHING HERE AUTHORISES ANYTHING.
+#
+# Proposed Anthropic Claude Haiku 5.5 configuration for the M2 annotation experiment, from the B2-U12 D9 decision sheet.
+# Every value is a PROPOSAL for the project owner to confirm or change. Execution stays blocked: the build lock is False,
+# no adapter exists, no gate record exists, and this file is read only by the non-writing `ai dry-run`.
+#
+# Unresolved by design (left null / false on purpose):
+#   - approvals A, B, C, D                        : no record; the owner creates them against the dry-run hashes
+#   - data_handling.provider_data_terms_reviewed  : false; the owner's attestation after reading Anthropic's terms
+#   - data_handling.retention_days                : null; account-specific retention is unresolved (D9 item 5, D10)
+#   - region (inference_geo) and zero data retention: not represented here; unresolved
+#   - data transmission                           : the five fields below are proposed, NOT approved (D9 item 4)
+#   - protocol.overlap_labels_sha256              : null; set only from `annotate lock-overlap` after the 312 are labelled
+#   - run_id                                      : null; the owner's choice
+# The API key is never stored here: only the NAME of an environment variable. Its value is never read by this repository.
+# ============================================================================================================
+experiment_id: b2t_m2_haiku55_v1_DRAFT
+description: "UNAPPROVED DRAFT: M2, claude-haiku-5-5; the 312 overlap items are never sent"
+
+source:
+  review_files: "C:\\Users\\Administrator\\Desktop\\Project\\TEST\\datasets\\raw\\gdelt\\english_gkg_v1\\review\\b2i_review_v1\\review_files"
+# A new versioned destination (a sibling of the original review folder, never inside it). It must not exist; nothing creates it here.
+destination: "C:\\Users\\Administrator\\Desktop\\Project\\TEST\\datasets\\raw\\gdelt\\english_gkg_v1\\review\\b2t_m2_haiku55_v1"
+
+protocol:
+  id: M2_overlap_human_only_rest_ai_assisted
+  blind_item_ids: []                              # D2: no designated blind subset
+  review_required_for_every_item: true
+  polarity_option: P1_required_as_in_existing_rubric   # D6
+  provider_exclusion: overlap_and_blind           # D2: the 312 overlap items are never sent
+  overlap_labels_sha256: null                     # D13: unresolved until the 312 labels are complete and locked
+
+provider:
+  name: anthropic                                 # PROPOSED (D9 item 1); no adapter exists
+  model_id: claude-haiku-5-5                      # official model ID: a fixed snapshot with no date suffix and no alias
+  model_version: "fixed-snapshot-claude-haiku-5-5"   # the provider has no separate version; the ID is the pin
+  credentials_env_var: ANTHROPIC_API_KEY          # PROPOSED name only (D9 item 7); the value is never read
+  timeout_seconds: 60
+  temperature: 1.0                                # the only value Claude Haiku 5.5 accepts (any other returns HTTP 400)
+
+prompt:
+  version: b2t_prompt_v1
+  rubric_version: b2t_rubric_v1
+
+limits:                                           # PROPOSED (D9 item 6); every value needs approval
+  max_requests: 1600
+  max_attempts_per_item: 3
+  max_reasks_per_item: 1
+  backoff_seconds: [2, 4, 8]
+  max_input_tokens: 2400000
+  max_output_tokens_per_request: 400
+  max_cost: 0.70                                  # about 1.5 x the base estimate at the unit prices below
+  currency: USD
+  unit_price_input_per_1k: 0.0001                 # USD 0.10 per million input tokens (Anthropic pricing page, 2026-10-19)
+  unit_price_output_per_1k: 0.0005                # USD 0.50 per million output tokens
+
+data_handling:
+  provider_data_terms_reviewed: false             # the owner's attestation; deliberately false
+  retention_days: null                            # unresolved
+  external_transmission_fields: [item_id, batch_date_utc, source_domain, url, title]   # PROPOSED, not approved
+
+run_id: null
+
+approvals: {A: null, B: null, C: null, D: null}   # no approval record exists

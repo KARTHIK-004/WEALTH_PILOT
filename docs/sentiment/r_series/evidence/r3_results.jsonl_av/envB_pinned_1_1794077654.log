@@ -1,0 +1,1138 @@
+00:24:15.978 poll LOADED   kernel.appcore.dll base=0x7ff9ebbd0000 size=0x1b000
+00:24:15.998 poll LOADED   _multiprocessing.pyd base=0x7ff9c4cb0000 size=0x9000
+00:24:16.040 poll LOADED   _multiarray_umath.cp311-win_amd64.pyd base=0x7ff914d90000 size=0x2d8000
+00:24:16.041 poll LOADED   libopenblas64__v0.3.23-293-gc2f4bdbb-gcc_10_3_0-2bde3a66a51006b2b53eb373ff767a3f.dll base=0x7ff90ed90000 size=0x20b6000
+00:24:16.063 poll LOADED   _multiarray_tests.cp311-win_amd64.pyd base=0x7ff985470000 size=0x14000
+00:24:16.084 poll LOADED   _umath_linalg.cp311-win_amd64.pyd base=0x7ff974b90000 size=0x1d000
+00:24:16.107 poll LOADED   _pocketfft_internal.cp311-win_amd64.pyd base=0x7ff96ad50000 size=0x1e000
+00:24:16.129 poll LOADED   mtrand.cp311-win_amd64.pyd base=0x7ff930300000 size=0x97000
+00:24:16.129 poll LOADED   bit_generator.cp311-win_amd64.pyd base=0x7ff955190000 size=0x2c000
+00:24:16.129 poll LOADED   _common.cp311-win_amd64.pyd base=0x7ff951f60000 size=0x2f000
+00:24:16.131 poll LOADED   _bounded_integers.cp311-win_amd64.pyd base=0x7ff934600000 size=0x43000
+00:24:16.131 poll LOADED   _mt19937.cp311-win_amd64.pyd base=0x7ff95a730000 size=0x16000
+00:24:16.132 poll LOADED   _philox.cp311-win_amd64.pyd base=0x7ff957700000 size=0x15000
+00:24:16.132 poll LOADED   _pcg64.cp311-win_amd64.pyd base=0x7ff9553b0000 size=0x19000
+00:24:16.132 poll LOADED   _sfc64.cp311-win_amd64.pyd base=0x7ff9e0e00000 size=0x10000
+00:24:16.133 poll LOADED   _generator.cp311-win_amd64.pyd base=0x7ff930250000 size=0xaf000
+00:24:16.174 poll LOADED   pandas_parser.cp311-win_amd64.pyd base=0x7ff9e0dd0000 size=0xb000
+00:24:16.196 poll LOADED   pandas_datetime.cp311-win_amd64.pyd base=0x7ff9cb890000 size=0xc000
+00:24:16.197 poll LOADED   interval.cp311-win_amd64.pyd base=0x7ff914c70000 size=0x115000
+00:24:16.198 poll LOADED   hashtable.cp311-win_amd64.pyd base=0x7ff914aa0000 size=0x1c9000
+00:24:16.198 poll LOADED   missing.cp311-win_amd64.pyd base=0x7ff930210000 size=0x31000
+00:24:16.199 poll LOADED   dtypes.cp311-win_amd64.pyd base=0x7ff951b70000 size=0x2d000
+00:24:16.199 poll LOADED   ccalendar.cp311-win_amd64.pyd base=0x7ff952300000 size=0x15000
+00:24:16.200 poll LOADED   np_datetime.cp311-win_amd64.pyd base=0x7ff9511f0000 size=0x20000
+00:24:16.200 poll LOADED   conversion.cp311-win_amd64.pyd base=0x7ff9301d0000 size=0x3c000
+00:24:16.202 poll LOADED   base.cp311-win_amd64.pyd base=0x7ff950e50000 size=0x11000
+00:24:16.202 poll LOADED   offsets.cp311-win_amd64.pyd base=0x7ff92ff00000 size=0xde000
+00:24:16.202 poll LOADED   timestamps.cp311-win_amd64.pyd base=0x7ff914a10000 size=0x81000
+00:24:16.203 poll LOADED   nattype.cp311-win_amd64.pyd base=0x7ff930190000 size=0x36000
+00:24:16.204 poll LOADED   timedeltas.cp311-win_amd64.pyd base=0x7ff914990000 size=0x78000
+00:24:16.204 poll LOADED   timezones.cp311-win_amd64.pyd base=0x7ff914950000 size=0x3a000
+00:24:16.226 poll LOADED   tzres.dll base=0x1f2de060000 size=0x3000
+00:24:16.226 poll LOADED   fields.cp311-win_amd64.pyd base=0x7ff914900000 size=0x46000
+00:24:16.228 poll LOADED   tzconversion.cp311-win_amd64.pyd base=0x7ff9148c0000 size=0x40000
+00:24:16.228 poll LOADED   properties.cp311-win_amd64.pyd base=0x7ff94d630000 size=0x14000
+00:24:16.229 poll LOADED   parsing.cp311-win_amd64.pyd base=0x7ff914860000 size=0x53000
+00:24:16.229 poll LOADED   strptime.cp311-win_amd64.pyd base=0x7ff914810000 size=0x4f000
+00:24:16.230 poll LOADED   period.cp311-win_amd64.pyd base=0x7ff9147a0000 size=0x68000
+00:24:16.230 poll LOADED   vectorized.cp311-win_amd64.pyd base=0x7ff914760000 size=0x32000
+00:24:16.231 poll LOADED   ops_dispatch.cp311-win_amd64.pyd base=0x7ff94a390000 size=0x11000
+00:24:16.231 poll LOADED   algos.cp311-win_amd64.pyd base=0x7ff914590000 size=0x1c3000
+00:24:16.232 poll LOADED   lib.cp311-win_amd64.pyd base=0x7ff9144e0000 size=0xa5000
+00:24:16.253 poll LOADED   ops.cp311-win_amd64.pyd base=0x7ff9144a0000 size=0x36000
+00:24:16.293 poll LOADED   hashing.cp311-win_amd64.pyd base=0x7ff92e950000 size=0x2c000
+00:24:16.295 poll LOADED   arrays.cp311-win_amd64.pyd base=0x7ff934190000 size=0x1c000
+00:24:16.316 poll LOADED   tslib.cp311-win_amd64.pyd base=0x7ff914450000 size=0x42000
+00:24:16.337 poll LOADED   sparse.cp311-win_amd64.pyd base=0x7ff914370000 size=0xd2000
+00:24:16.338 poll LOADED   internals.cp311-win_amd64.pyd base=0x7ff914320000 size=0x50000
+00:24:16.338 poll LOADED   indexing.cp311-win_amd64.pyd base=0x7ff930170000 size=0x11000
+00:24:16.360 poll LOADED   index.cp311-win_amd64.pyd base=0x7ff914260000 size=0xb5000
+00:24:16.362 poll LOADED   writers.cp311-win_amd64.pyd base=0x7ff914220000 size=0x33000
+00:24:16.362 poll LOADED   join.cp311-win_amd64.pyd base=0x7ff914100000 size=0x116000
+00:24:16.403 poll LOADED   aggregations.cp311-win_amd64.pyd base=0x7ff9140a0000 size=0x59000
+00:24:16.404 poll LOADED   VCRUNTIME140_1.dll base=0x7ff9c9bf0000 size=0xc000
+00:24:16.404 poll LOADED   msvcp140-0f2ea95580b32bcfc81c235d5751ce78.dll base=0x7ff914000000 size=0x9b000
+00:24:16.406 poll LOADED   indexers.cp311-win_amd64.pyd base=0x7ff92dc30000 size=0x2b000
+00:24:16.426 poll LOADED   reshape.cp311-win_amd64.pyd base=0x7ff913fc0000 size=0x3f000
+00:24:16.448 poll LOADED   groupby.cp311-win_amd64.pyd base=0x7ff913da0000 size=0x21f000
+00:24:16.469 poll LOADED   json.cp311-win_amd64.pyd base=0x7ff92d280000 size=0x11000
+00:24:16.470 poll LOADED   parsers.cp311-win_amd64.pyd base=0x7ff913d30000 size=0x66000
+00:24:16.513 poll LOADED   testing.cp311-win_amd64.pyd base=0x7ff913d10000 size=0x19000
+00:24:16.535 poll LOADED   _check_build.cp311-win_amd64.pyd base=0x7ff9cac70000 size=0xb000
+00:24:16.535 poll LOADED   vcomp140.dll base=0x7ff913ce0000 size=0x30000
+00:24:16.536 poll LOADED   msvcp140.dll base=0x7ff913c50000 size=0x8d000
+00:24:16.585 poll LOADED   _ccallback_c.cp311-win_amd64.pyd base=0x7ff913c30000 size=0x1d000
+00:24:16.630 poll LOADED   _sparsetools.cp311-win_amd64.pyd base=0x7ff90e660000 size=0x406000
+00:24:16.630 poll LOADED   _csparsetools.cp311-win_amd64.pyd base=0x7ff913b60000 size=0xc8000
+00:24:16.651 poll LOADED   _fblas.cp311-win_amd64.pyd base=0x7ff913aa0000 size=0xb4000
+00:24:16.651 poll LOADED   libscipy_openblas-5b1ec8b915dfb81d11cebc0788069d2d.dll base=0x7ff90c5a0000 size=0x20b9000
+00:24:16.652 poll LOADED   _flapack.cp311-win_amd64.pyd base=0x7ff9138b0000 size=0x1ee000
+00:24:16.653 poll LOADED   _cythonized_array_utils.cp311-win_amd64.pyd base=0x7ff912da0000 size=0x97000
+00:24:16.653 poll LOADED   cython_lapack.cp311-win_amd64.pyd base=0x7ff912d10000 size=0x88000
+00:24:16.654 poll LOADED   _solve_toeplitz.cp311-win_amd64.pyd base=0x7ff913860000 size=0x4c000
+00:24:16.654 poll LOADED   _decomp_lu_cython.cp311-win_amd64.pyd base=0x7ff912cc0000 size=0x44000
+00:24:16.654 poll LOADED   _matfuncs_sqrtm_triu.cp311-win_amd64.pyd base=0x7ff912c70000 size=0x46000
+00:24:16.656 poll LOADED   _matfuncs_expm.cp311-win_amd64.pyd base=0x7ff912bf0000 size=0x7e000
+00:24:16.656 poll LOADED   cython_blas.cp311-win_amd64.pyd base=0x7ff912ba0000 size=0x4d000
+00:24:16.677 poll LOADED   _decomp_update.cp311-win_amd64.pyd base=0x7ff911500000 size=0x59000
+00:24:16.677 poll LOADED   _superlu.cp311-win_amd64.pyd base=0x7ff911470000 size=0x8c000
+00:24:16.678 poll LOADED   _arpack.cp311-win_amd64.pyd base=0x7ff90eca0000 size=0xe9000
+00:24:16.699 poll LOADED   _spropack.cp311-win_amd64.pyd base=0x7ff9113d0000 size=0x94000
+00:24:16.699 poll LOADED   _dpropack.cp311-win_amd64.pyd base=0x7ff90c500000 size=0x94000
+00:24:16.700 poll LOADED   _cpropack.cp311-win_amd64.pyd base=0x7ff90c440000 size=0xb6000
+00:24:16.700 poll LOADED   _zpropack.cp311-win_amd64.pyd base=0x7ff90c370000 size=0xcf000
+00:24:16.701 poll LOADED   _shortest_path.cp311-win_amd64.pyd base=0x7ff90ec10000 size=0x86000
+00:24:16.701 poll LOADED   _tools.cp311-win_amd64.pyd base=0x7ff90eb40000 size=0x32000
+00:24:16.701 poll LOADED   _traversal.cp311-win_amd64.pyd base=0x7ff90c2d0000 size=0x9e000
+00:24:16.703 poll LOADED   _min_spanning_tree.cp311-win_amd64.pyd base=0x7ff90c280000 size=0x43000
+00:24:16.703 poll LOADED   _flow.cp311-win_amd64.pyd base=0x7ff90c220000 size=0x54000
+00:24:16.704 poll LOADED   _matching.cp311-win_amd64.pyd base=0x7ff90c1c0000 size=0x55000
+00:24:16.704 poll LOADED   _reordering.cp311-win_amd64.pyd base=0x7ff90c160000 size=0x51000
+00:24:16.725 poll LOADED   libsf_error_state.dll base=0x7ff912b70000 size=0x23000
+00:24:16.725 poll LOADED   _ufuncs.cp311-win_amd64.pyd base=0x7ff90b9b0000 size=0x186000
+00:24:16.726 poll LOADED   _ufuncs_cxx.cp311-win_amd64.pyd base=0x7ff90b770000 size=0x23c000
+00:24:16.726 poll LOADED   _special_ufuncs.cp311-win_amd64.pyd base=0x7ff90c050000 size=0x109000
+00:24:16.727 poll LOADED   _gufuncs.cp311-win_amd64.pyd base=0x7ff90bf00000 size=0x5b000
+00:24:16.727 poll LOADED   _specfun.cp311-win_amd64.pyd base=0x7ff90bec0000 size=0x39000
+00:24:16.727 poll LOADED   _comb.cp311-win_amd64.pyd base=0x7ff9113b0000 size=0x15000
+00:24:16.728 poll LOADED   _ellip_harm_2.cp311-win_amd64.pyd base=0x7ff90eb10000 size=0x23000
+00:24:16.750 poll LOADED   _ckdtree.cp311-win_amd64.pyd base=0x7ff903e90000 size=0x1a9000
+00:24:16.750 poll LOADED   _qhull.cp311-win_amd64.pyd base=0x7ff90bba0000 size=0x111000
+00:24:16.751 poll LOADED   messagestream.cp311-win_amd64.pyd base=0x7ff9112e0000 size=0x18000
+00:24:16.751 poll LOADED   _voronoi.cp311-win_amd64.pyd base=0x7ff90be80000 size=0x3e000
+00:24:16.751 poll LOADED   _distance_wrap.cp311-win_amd64.pyd base=0x7ff90b740000 size=0x23000
+00:24:16.752 poll LOADED   _hausdorff.cp311-win_amd64.pyd base=0x7ff903e50000 size=0x40000
+00:24:16.752 poll LOADED   _distance_pybind.cp311-win_amd64.pyd base=0x7ff903cf0000 size=0x157000
+00:24:16.774 poll LOADED   _rotation.cp311-win_amd64.pyd base=0x7ff903c00000 size=0xea000
+00:24:16.774 poll LOADED   _group_columns.cp311-win_amd64.pyd base=0x7ff903af0000 size=0x103000
+00:24:16.795 poll LOADED   _trlib.cp311-win_amd64.pyd base=0x7ff903a90000 size=0x59000
+00:24:16.796 poll LOADED   _lbfgsb.cp311-win_amd64.pyd base=0x7ff9039f0000 size=0x92000
+00:24:16.796 poll LOADED   _moduleTNC.cp311-win_amd64.pyd base=0x7ff9039c0000 size=0x30000
+00:24:16.798 poll LOADED   _cobyla.cp311-win_amd64.pyd base=0x7ff903950000 size=0x6e000
+00:24:16.799 poll LOADED   _slsqp.cp311-win_amd64.pyd base=0x7ff903920000 size=0x22000
+00:24:16.799 poll LOADED   _minpack.cp311-win_amd64.pyd base=0x7ff9038f0000 size=0x22000
+00:24:16.819 poll LOADED   givens_elimination.cp311-win_amd64.pyd base=0x7ff9038b0000 size=0x3c000
+00:24:16.821 poll LOADED   _zeros.cp311-win_amd64.pyd base=0x7ff9b9140000 size=0xe000
+00:24:16.821 poll LOADED   _highs_wrapper.cp311-win_amd64.pyd base=0x7ff903440000 size=0x469000
+00:24:16.822 poll LOADED   _highs_constants.cp311-win_amd64.pyd base=0x7ff903350000 size=0xef000
+00:24:16.822 poll LOADED   _interpolative.cp311-win_amd64.pyd base=0x7ff903270000 size=0xdf000
+00:24:16.843 poll LOADED   _bglu_dense.cp311-win_amd64.pyd base=0x7ff903210000 size=0x57000
+00:24:16.844 poll LOADED   _lsap.cp311-win_amd64.pyd base=0x7ff9031d0000 size=0x33000
+00:24:16.844 poll LOADED   _pava_pybind.cp311-win_amd64.pyd base=0x7ff903180000 size=0x50000
+00:24:16.845 poll LOADED   _direct.cp311-win_amd64.pyd base=0x7ff90bd00000 size=0x19000
+00:24:16.867 poll LOADED   _odepack.cp311-win_amd64.pyd base=0x7ff9030f0000 size=0x8b000
+00:24:16.868 poll LOADED   _quadpack.cp311-win_amd64.pyd base=0x7ff903050000 size=0x94000
+00:24:16.868 poll LOADED   _vode.cp311-win_amd64.pyd base=0x7ff902fb0000 size=0xa0000
+00:24:16.869 poll LOADED   _dop.cp311-win_amd64.pyd base=0x7ff902f30000 size=0x72000
+00:24:16.869 poll LOADED   _lsoda.cp311-win_amd64.pyd base=0x7ff902ea0000 size=0x90000
+00:24:16.892 poll LOADED   _fitpack.cp311-win_amd64.pyd base=0x7ff902e30000 size=0x6f000
+00:24:16.892 poll LOADED   _dfitpack.cp311-win_amd64.pyd base=0x7ff902d80000 size=0xaa000
+00:24:16.893 poll LOADED   _bspl.cp311-win_amd64.pyd base=0x7ff902ce0000 size=0x95000
+00:24:16.893 poll LOADED   _ppoly.cp311-win_amd64.pyd base=0x7ff902c60000 size=0x74000
+00:24:16.934 poll LOADED   interpnd.cp311-win_amd64.pyd base=0x7ff902bf0000 size=0x6d000
+00:24:16.935 poll LOADED   _rbfinterp_pythran.cp311-win_amd64.pyd base=0x7ff902a70000 size=0x123000
+00:24:16.936 poll LOADED   _rgi_cython.cp311-win_amd64.pyd base=0x7ff9023d0000 size=0x4b000
+00:24:16.944 poll LOADED   _stats.cp311-win_amd64.pyd base=0x7ff902310000 size=0xb3000
+00:24:16.965 poll LOADED   cython_special.cp311-win_amd64.pyd base=0x7ff900740000 size=0x317000
+00:24:16.965 poll LOADED   _biasedurn.cp311-win_amd64.pyd base=0x7ff9022a0000 size=0x62000
+00:24:16.966 poll LOADED   levyst.cp311-win_amd64.pyd base=0x7ff902280000 size=0x16000
+00:24:16.966 poll LOADED   _stats_pythran.cp311-win_amd64.pyd base=0x7ff8ff3a0000 size=0x10d000
+00:24:16.966 poll LOADED   _uarray.cp311-win_amd64.pyd base=0x7ff902240000 size=0x40000
+00:24:16.991 poll LOADED   pypocketfft.cp311-win_amd64.pyd base=0x7ff8ff290000 size=0x110000
+00:24:17.013 poll LOADED   _ansari_swilk_statistics.cp311-win_amd64.pyd base=0x7ff9021f0000 size=0x47000
+00:24:17.014 poll LOADED   _sobol.cp311-win_amd64.pyd base=0x7ff8fef60000 size=0x62000
+00:24:17.014 poll LOADED   _qmc_cy.cp311-win_amd64.pyd base=0x7ff8feef0000 size=0x6d000
+00:24:17.061 poll LOADED   _mvn.cp311-win_amd64.pyd base=0x7ff8fedd0000 size=0x11a000
+00:24:17.062 poll LOADED   rcont.cp311-win_amd64.pyd base=0x7ff9006f0000 size=0x43000
+00:24:17.084 poll LOADED   unuran_wrapper.cp311-win_amd64.pyd base=0x7ff8fec60000 size=0x170000
+00:24:17.084 poll LOADED   _nd_image.cp311-win_amd64.pyd base=0x7ff8fec20000 size=0x32000
+00:24:17.085 poll LOADED   _ni_label.cp311-win_amd64.pyd base=0x7ff8febb0000 size=0x6d000
+00:24:17.126 poll LOADED   _isfinite.cp311-win_amd64.pyd base=0x7ff8feb70000 size=0x36000
+00:24:17.127 poll LOADED   sparsefuncs_fast.cp311-win_amd64.pyd base=0x7ff8fead0000 size=0x9e000
+00:24:17.149 poll LOADED   murmurhash.cp311-win_amd64.pyd base=0x7ff8feaa0000 size=0x2f000
+00:24:17.149 poll LOADED   _openmp_helpers.cp311-win_amd64.pyd base=0x7ff9b8760000 size=0xf000
+00:24:17.150 poll LOADED   _expected_mutual_info_fast.cp311-win_amd64.pyd base=0x7ff8fea70000 size=0x2e000
+00:24:17.171 poll LOADED   _csr_polynomial_expansion.cp311-win_amd64.pyd base=0x7ff8fea10000 size=0x5b000
+00:24:17.172 poll LOADED   _target_encoder_fast.cp311-win_amd64.pyd base=0x7ff8fe9a0000 size=0x66000
+00:24:17.172 poll LOADED   _dist_metrics.cp311-win_amd64.pyd base=0x7ff8fe910000 size=0x8b000
+00:24:17.173 poll LOADED   _argkmin.cp311-win_amd64.pyd base=0x7ff8fe8c0000 size=0x41000
+00:24:17.174 poll LOADED   _base.cp311-win_amd64.pyd base=0x7ff8fe880000 size=0x3a000
+00:24:17.174 poll LOADED   _datasets_pair.cp311-win_amd64.pyd base=0x7ff8fe820000 size=0x56000
+00:24:17.175 poll LOADED   _cython_blas.cp311-win_amd64.pyd base=0x7ff8fe7b0000 size=0x61000
+00:24:17.175 poll LOADED   _middle_term_computer.cp311-win_amd64.pyd base=0x7ff8fe750000 size=0x58000
+00:24:17.176 poll LOADED   _heap.cp311-win_amd64.pyd base=0x7ff9b86b0000 size=0x9000
+00:24:17.176 poll LOADED   _sorting.cp311-win_amd64.pyd base=0x7ff9b3240000 size=0x9000
+00:24:17.177 poll LOADED   _argkmin_classmode.cp311-win_amd64.pyd base=0x7ff8fe710000 size=0x34000
+00:24:17.177 poll LOADED   _radius_neighbors.cp311-win_amd64.pyd base=0x7ff8fe6c0000 size=0x44000
+00:24:17.178 poll LOADED   _vector_sentinel.cp311-win_amd64.pyd base=0x7ff8ff270000 size=0x1e000
+00:24:17.178 poll LOADED   _radius_neighbors_classmode.cp311-win_amd64.pyd base=0x7ff8fe200000 size=0x37000
+00:24:17.182 poll LOADED   _pairwise_fast.cp311-win_amd64.pyd base=0x7ff8fe1c0000 size=0x37000
+00:24:17.204 poll LOADED   _criterion.cp311-win_amd64.pyd base=0x7ff8fe180000 size=0x40000
+00:24:17.204 poll LOADED   _splitter.cp311-win_amd64.pyd base=0x7ff8fe130000 size=0x45000
+00:24:17.205 poll LOADED   _tree.cp311-win_amd64.pyd base=0x7ff8fe0c0000 size=0x6e000
+00:24:17.205 poll LOADED   _ball_tree.cp311-win_amd64.pyd base=0x7ff8fce80000 size=0x8b000
+00:24:17.206 poll LOADED   _partition_nodes.cp311-win_amd64.pyd base=0x7ff9b2bc0000 size=0xa000
+00:24:17.206 poll LOADED   _kd_tree.cp311-win_amd64.pyd base=0x7ff8fcdf0000 size=0x8a000
+00:24:17.207 poll LOADED   arrayfuncs.cp311-win_amd64.pyd base=0x7ff8fe080000 size=0x3d000
+00:24:17.209 poll LOADED   _seq_dataset.cp311-win_amd64.pyd base=0x7ff8fcc60000 size=0x3d000
+00:24:17.210 poll LOADED   _random.cp311-win_amd64.pyd base=0x7ff8fcc10000 size=0x41000
+00:24:17.231 poll LOADED   _cd_fast.cp311-win_amd64.pyd base=0x7ff8fcbb0000 size=0x5c000
+00:24:17.232 poll LOADED   _loss.cp311-win_amd64.pyd base=0x7ff8fc9c0000 size=0x1ec000
+00:24:17.253 poll LOADED   _liblinear.cp311-win_amd64.pyd base=0x7ff8fc980000 size=0x3b000
+00:24:17.254 poll LOADED   _libsvm.cp311-win_amd64.pyd base=0x7ff8fc920000 size=0x5b000
+00:24:17.254 poll LOADED   _libsvm_sparse.cp311-win_amd64.pyd base=0x7ff8fc8c0000 size=0x53000
+00:24:17.255 poll LOADED   _sag_fast.cp311-win_amd64.pyd base=0x7ff8fc880000 size=0x3c000
+00:24:17.256 poll LOADED   _sgd_fast.cp311-win_amd64.pyd base=0x7ff8fc830000 size=0x45000
+00:24:17.256 poll LOADED   _weight_vector.cp311-win_amd64.pyd base=0x7ff8fc800000 size=0x29000
+00:24:17.278 poll LOADED   _online_lda_fast.cp311-win_amd64.pyd base=0x7ff8fc7c0000 size=0x38000
+00:24:17.279 poll LOADED   _cdnmf_fast.cp311-win_amd64.pyd base=0x7ff8fc790000 size=0x30000
+00:24:17.280 poll LOADED   _quad_tree.cp311-win_amd64.pyd base=0x7ff8fc750000 size=0x3c000
+00:24:17.280 poll LOADED   _utils.cp311-win_amd64.pyd base=0x7ff8fc710000 size=0x31000
+00:24:17.281 poll LOADED   _gradient_boosting.cp311-win_amd64.pyd base=0x7ff8fc6d0000 size=0x31000
+00:24:17.302 poll LOADED   _gradient_boosting.cp311-win_amd64.pyd base=0x7ff8fc6a0000 size=0x2a000
+00:24:17.303 poll LOADED   common.cp311-win_amd64.pyd base=0x7ff8fe060000 size=0x1a000
+00:24:17.304 poll LOADED   _binning.cp311-win_amd64.pyd base=0x7ff8fc670000 size=0x29000
+00:24:17.304 poll LOADED   _bitset.cp311-win_amd64.pyd base=0x7ff8fc640000 size=0x29000
+00:24:17.306 poll LOADED   histogram.cp311-win_amd64.pyd base=0x7ff8fc600000 size=0x3e000
+00:24:17.306 poll LOADED   _predictor.cp311-win_amd64.pyd base=0x7ff8fc5d0000 size=0x2f000
+00:24:17.307 poll LOADED   splitting.cp311-win_amd64.pyd base=0x7ff8fc580000 size=0x44000
+00:24:17.328 poll LOADED   _fast_dict.cp311-win_amd64.pyd base=0x7ff8fc540000 size=0x34000
+00:24:17.349 poll LOADED   _hierarchical_fast.cp311-win_amd64.pyd base=0x7ff8fc500000 size=0x3d000
+00:24:17.350 poll LOADED   _k_means_common.cp311-win_amd64.pyd base=0x7ff8fc4a0000 size=0x5d000
+00:24:17.350 poll LOADED   _k_means_elkan.cp311-win_amd64.pyd base=0x7ff8fc440000 size=0x5d000
+00:24:17.351 poll LOADED   _k_means_lloyd.cp311-win_amd64.pyd base=0x7ff8fc3f0000 size=0x45000
+00:24:17.351 poll LOADED   _k_means_minibatch.cp311-win_amd64.pyd base=0x7ff8fc3b0000 size=0x3a000
+00:24:17.373 poll LOADED   _dbscan_inner.cp311-win_amd64.pyd base=0x7ff8fc380000 size=0x2b000
+00:24:17.374 poll LOADED   _linkage.cp311-win_amd64.pyd base=0x7ff8fc340000 size=0x33000
+00:24:17.374 poll LOADED   _tree.cp311-win_amd64.pyd base=0x7ff8fc2f0000 size=0x4b000
+00:24:17.375 poll LOADED   _reachability.cp311-win_amd64.pyd base=0x7ff8fbf50000 size=0x45000
+00:24:17.396 poll LOADED   _isotonic.cp311-win_amd64.pyd base=0x7ff8fbf10000 size=0x39000
+00:24:17.397 poll LOADED   _barnes_hut_tsne.cp311-win_amd64.pyd base=0x7ff8fbee0000 size=0x2f000
+00:24:17.398 poll LOADED   _utils.cp311-win_amd64.pyd base=0x7ff8fbeb0000 size=0x29000
+00:24:17.465 poll LOADED   _win32sysloader.pyd base=0x7ff9a1000000 size=0x9000
+00:24:17.465 poll LOADED   pywintypes311.dll base=0x7ff8fbe80000 size=0x25000
+00:24:17.466 poll LOADED   pythoncom311.dll base=0x7ff8fbdc0000 size=0xb2000
+00:24:17.466 poll LOADED   urlmon.dll base=0x7ff9cf830000 size=0x1de000
+00:24:17.466 poll LOADED   OLEACC.dll base=0x7ff9d2e00000 size=0x75000
+00:24:17.468 poll LOADED   windows.storage.dll base=0x7ff9ea990000 size=0x8ae000
+00:24:17.468 poll LOADED   iertutil.dll base=0x7ff9cf560000 size=0x2c4000
+00:24:17.468 poll LOADED   srvcli.dll base=0x7ff9ceeb0000 size=0x29000
+00:24:17.469 poll LOADED   netutils.dll base=0x7ff9eb520000 size=0xd000
+00:24:17.490 poll LOADED   uxtheme.dll base=0x7ff9e98a0000 size=0xa7000
+00:24:17.491 poll LOADED   AsusWallpaperSettingHook.dll base=0x7ff9c21d0000 size=0x46000
+00:24:17.491 poll LOADED   SHLWAPI.dll base=0x7ff9ee7f0000 size=0x66000
+00:24:17.493 poll LOADED   win32api.pyd base=0x7ff8fbd90000 size=0x26000
+00:24:17.493 poll LOADED   Secur32.dll base=0x7ff9e6cb0000 size=0xd000
+00:24:17.496 poll LOADED   SSPICLI.DLL base=0x7ff9ebe90000 size=0x4a000
+00:24:17.690 poll LOADED   msvcp140_1.dll base=0x7ff9da040000 size=0x9000
+00:24:17.691 poll LOADED   _pywrap_tensorflow_internal.pyd base=0x7ff8861d0000 size=0x3b02a000
+00:24:17.691 poll LOADED   Normaliz.dll base=0x7ff9efc20000 size=0x8000
+00:24:17.691 poll LOADED   dbghelp.dll base=0x7ff9ea400000 size=0x24c000
+00:24:17.754 poll LOADED   _pywrap_tf2.pyd base=0x7ff8fb980000 size=0x40f000
+00:24:17.817 poll LOADED   _message.pyd base=0x739d0000 size=0xa8000
+00:24:17.861 poll LOADED   _pywrap_tfe.pyd base=0x7ff8fb8d0000 size=0xae000
+00:24:17.882 poll LOADED   _pywrap_tf_session.pyd base=0x7ff8fb3c0000 size=0x504000
+00:24:17.882 poll LOADED   _tf_stack.pyd base=0x7ff8fb240000 size=0x17c000
+00:24:17.905 poll LOADED   _pywrap_py_exception_registry.pyd base=0x7ff8fb200000 size=0x3c000
+00:24:17.905 poll LOADED   _ml_dtypes_ext.cp311-win_amd64.pyd base=0x7ff8fb190000 size=0x65000
+00:24:17.927 poll LOADED   _dtypes.pyd base=0x7ff8faed0000 size=0x2b3000
+00:24:17.995 poll LOADED   _pywrap_nest.pyd base=0x7ff8faea0000 size=0x23000
+00:24:17.995 poll LOADED   _pywrap_utils.pyd base=0x7ff8fa9d0000 size=0x4ca000
+00:24:18.017 poll LOADED   _wrappers.cp311-win_amd64.pyd base=0x7ff8fa9b0000 size=0x12000
+00:24:18.059 poll LOADED   _pywrap_traceme.pyd base=0x7ff8fa980000 size=0x2e000
+00:24:18.060 poll LOADED   flags_pybind.pyd base=0x7ff8fa6c0000 size=0x2b3000
+00:24:18.082 poll LOADED   _pywrap_determinism.pyd base=0x7ff8fa690000 size=0x24000
+00:24:18.083 poll LOADED   _pywrap_tensor_float_32_execution.pyd base=0x7ff8fa660000 size=0x24000
+00:24:18.083 poll LOADED   _pywrap_dtensor_device.pyd base=0x7ff8fa360000 size=0x300000
+00:24:18.114 poll LOADED   _op_def_registry.pyd base=0x7ff8f9f50000 size=0x40d000
+00:24:18.114 poll LOADED   _op_def_library_pybind.pyd base=0x7ff8f9b30000 size=0x41e000
+00:24:18.115 poll LOADED   _pywrap_python_api_dispatcher.pyd base=0x7ff8f9ae0000 size=0x4b000
+00:24:18.471 poll LOADED   _pywrap_device_lib.pyd base=0x7ff8f96d0000 size=0x40d000
+00:24:18.512 poll LOADED   _pywrap_record_io.pyd base=0x7ff8f9280000 size=0x441000
+00:24:18.534 poll LOADED   _proto_comparators.pyd base=0x7ff8f8da0000 size=0x4d8000
+00:24:18.769 poll LOADED   _pywrap_parallel_device.pyd base=0x7ff8f88c0000 size=0x4d4000
+00:24:18.966 poll LOADED   _pywrap_server_lib.pyd base=0x7ff8f8490000 size=0x428000
+00:24:18.967 poll LOADED   _pywrap_utils_exp.pyd base=0x7ff8f7aa0000 size=0x9e6000
+00:24:19.031 poll LOADED   _pywrap_file_io.pyd base=0x7ff8f7670000 size=0x429000
+00:24:19.052 poll LOADED   pywrap_saved_model.pyd base=0x7ff8f70e0000 size=0x58d000
+00:24:19.053 poll LOADED   _pywrap_checkpoint_reader.pyd base=0x7ff8f6c10000 size=0x4cb000
+00:24:19.074 poll LOADED   _pywrap_py_func.pyd base=0x7ff8f6be0000 size=0x23000
+00:24:19.136 poll LOADED   _pywrap_profiler.pyd base=0x7ff8d6d10000 size=0x8b2000
+00:24:19.280 poll LOADED   _pywrap_sanitizers.pyd base=0x7ff8f6bb0000 size=0x23000
+00:24:19.280 poll LOADED   _test_metrics_util.pyd base=0x7ff8d6840000 size=0x4c3000
+00:24:19.302 poll LOADED   _pywrap_stacktrace_handler.pyd base=0x7ff8f6b80000 size=0x23000
+00:24:19.304 poll LOADED   _pywrap_util_port.pyd base=0x7ff8f6a40000 size=0x13c000
+00:24:19.345 poll LOADED   _pywrap_events_writer.pyd base=0x7ff8d6420000 size=0x415000
+00:24:19.640 poll LOADED   _pywrap_py_utils.pyd base=0x7ff8d5f50000 size=0x4c3000
+00:24:19.641 poll LOADED   _pywrap_tf_optimizer.pyd base=0x7ff8d5a70000 size=0x4d5000
+00:24:19.663 poll LOADED   _pywrap_tf_cluster.pyd base=0x7ff8d5580000 size=0x4e5000
+00:24:19.705 poll LOADED   _errors.cp311-win_amd64.pyd base=0x7ff8f6a20000 size=0x11000
+00:24:19.706 poll LOADED   hdf5.dll base=0x7ff8d5190000 size=0x3e8000
+00:24:19.707 poll LOADED   z.dll base=0x7ff8f6a00000 size=0x1a000
+00:24:19.707 poll LOADED   h5.cp311-win_amd64.pyd base=0x7ff8f69e0000 size=0x19000
+00:24:19.707 poll LOADED   defs.cp311-win_amd64.pyd base=0x7ff8d5160000 size=0x29000
+00:24:19.709 poll LOADED   hdf5_hl.dll base=0x7ff8d5130000 size=0x25000
+00:24:19.730 poll LOADED   _objects.cp311-win_amd64.pyd base=0x7ff8d5100000 size=0x21000
+00:24:19.731 poll LOADED   _conv.cp311-win_amd64.pyd base=0x7ff8d50d0000 size=0x2f000
+00:24:19.731 poll LOADED   h5r.cp311-win_amd64.pyd base=0x7ff8f69c0000 size=0x14000
+00:24:19.732 poll LOADED   h5p.cp311-win_amd64.pyd base=0x7ff8d5070000 size=0x52000
+00:24:19.732 poll LOADED   h5t.cp311-win_amd64.pyd base=0x7ff8d5010000 size=0x58000
+00:24:19.733 poll LOADED   utils.cp311-win_amd64.pyd base=0x7ff8d4ff0000 size=0x12000
+00:24:19.735 poll LOADED   h5s.cp311-win_amd64.pyd base=0x7ff8d4fc0000 size=0x21000
+00:24:19.735 poll LOADED   h5ac.cp311-win_amd64.pyd base=0x7ff8d4fa0000 size=0x12000
+00:24:19.736 poll LOADED   _proxy.cp311-win_amd64.pyd base=0x7ff985360000 size=0xf000
+00:24:19.736 poll LOADED   h5z.cp311-win_amd64.pyd base=0x7ff8d4f80000 size=0x12000
+00:24:19.737 poll LOADED   h5a.cp311-win_amd64.pyd base=0x7ff8d4f50000 size=0x21000
+00:24:19.737 poll LOADED   h5d.cp311-win_amd64.pyd base=0x7ff8d4f10000 size=0x3c000
+00:24:19.738 poll LOADED   h5ds.cp311-win_amd64.pyd base=0x7ff8d4ef0000 size=0x17000
+00:24:19.739 poll LOADED   h5f.cp311-win_amd64.pyd base=0x7ff8d4ec0000 size=0x24000
+00:24:19.739 poll LOADED   h5g.cp311-win_amd64.pyd base=0x7ff8d4e90000 size=0x25000
+00:24:19.740 poll LOADED   h5i.cp311-win_amd64.pyd base=0x7ff8d4e70000 size=0x13000
+00:24:19.740 poll LOADED   h5o.cp311-win_amd64.pyd base=0x7ff8d4e50000 size=0x20000
+00:24:19.741 poll LOADED   h5fd.cp311-win_amd64.pyd base=0x7ff8d4e20000 size=0x25000
+00:24:19.741 poll LOADED   h5pl.cp311-win_amd64.pyd base=0x7ff8d4e00000 size=0x11000
+00:24:19.764 poll LOADED   h5l.cp311-win_amd64.pyd base=0x7ff8d4de0000 size=0x1b000
+00:24:19.764 poll LOADED   _selector.cp311-win_amd64.pyd base=0x7ff8d4db0000 size=0x24000
+00:24:19.806 poll LOADED   fast_module_type.pyd base=0x7ff8d4d80000 size=0x29000
+00:24:19.868 poll LOADED   _pywrap_debug_events_writer.pyd base=0x7ff8d4960000 size=0x415000
+00:24:19.911 poll LOADED   _pywrap_python_op_gen.pyd base=0x7ff8d46b0000 size=0x2a7000
+00:24:19.975 poll LOADED   _pywrap_converter_api.pyd base=0x7ff8d43d0000 size=0x2d7000
+00:24:19.997 poll LOADED   pywrap_function_lib.pyd base=0x7ff8d40e0000 size=0x2e5000
+00:24:20.020 poll LOADED   _pywrap_tensorflow_lite_metrics_wrapper.pyd base=0x7ff8d3f20000 size=0x131000
+00:24:20.048 poll LOADED   _audio_microfrontend_op.so base=0x7ff8d3ee0000 size=0x3c000
+00:24:20.069 poll LOADED   _pywrap_tensorflow_interpreter_wrapper.pyd base=0x7ff8d3a00000 size=0x4e0000
+00:24:20.070 poll LOADED   _pywrap_analyzer_wrapper.pyd base=0x7ff8d3520000 size=0x4db000
+00:24:20.091 poll LOADED   _pywrap_mlir.pyd base=0x7ff8d3100000 size=0x413000
+00:24:20.132 poll LOADED   _pywrap_tfprof.pyd base=0x7ff8cf500000 size=0x4c4000
+00:24:20.133 poll LOADED   pywrap_quantize_model.pyd base=0x7ff8cf1f0000 size=0x308000
+00:24:20.216 poll LOADED   _pywrap_sparse_core_layout.pyd base=0x7ff8cedc0000 size=0x42c000
+00:24:20.258 poll LOADED   _pywrap_quantize_training.pyd base=0x7ff8ce9b0000 size=0x40d000
+00:24:20.549 poll LOADED   _C.cp311-win_amd64.pyd base=0x7ff8d3050000 size=0xaa000
+00:24:20.549 poll LOADED   msvcp140-a4c2229bdc2a2a630acdc095b4d86008.dll base=0x7ff8d2d00000 size=0x8d000
+00:24:20.591 poll LOADED   _imaging.cp311-win_amd64.pyd base=0x7ff8ce400000 size=0x268000
+00:24:21.109 poll LOADED   _cffi_backend.cp311-win_amd64.pyd base=0x7ff8d3010000 size=0x31000
+00:24:21.110 poll LOADED   _wrapper.pyd base=0x7ff985330000 size=0xf000
+00:24:21.133 poll LOADED   libcurl-impersonate-1172405423dc93b7aeed557f2a2ca325.dll base=0x7ff8ce040000 size=0x3bc000
+00:24:21.328 poll LOADED   etree.cp311-win_amd64.pyd base=0x7ff8cd8a0000 size=0x3e9000
+00:24:21.351 poll LOADED   _elementpath.cp311-win_amd64.pyd base=0x7ff8d40b0000 size=0x29000
+00:24:21.373 poll LOADED   _sqlite3.pyd base=0x7ff8d2ff0000 size=0x1e000
+00:24:21.374 poll LOADED   sqlite3.dll base=0x7ff8d1a40000 size=0x178000
+00:24:21.395 poll LOADED   pq.cp311-win_amd64.pyd base=0x7ff8d2eb0000 size=0x4c000
+00:24:21.396 poll LOADED   libpq-de0d6d7eef3cda3760db155fac0f1d34.dll base=0x180000000 size=0x50000
+00:24:21.396 poll LOADED   WLDAP32.dll base=0x7ff9ee860000 size=0x74000
+00:24:21.417 poll LOADED   libssl-1_1-x64-56850767f4919548e5b00c9d311d045e.dll base=0x7ff8d2c50000 size=0xad000
+00:24:21.418 poll LOADED   libcrypto-1_1-x64-15ec4b7b2d8017a72acf488cff1a1c38.dll base=0x7ff8cdd70000 size=0x2c8000
+00:24:21.419 poll LOADED   libintl-9-6b2fa35014185f5e79c4c76df54d19ae.dll base=0x68280000 size=0x70000
+00:24:21.419 poll LOADED   libiconv-2.dll base=0x66000000 size=0x1bd000
+00:24:21.420 poll LOADED   libwinpthread-1.dll base=0x64940000 size=0x15000
+00:24:21.441 poll LOADED   _psycopg.cp311-win_amd64.pyd base=0x7ff8ce900000 size=0xad000
+00:24:21.525 poll LOADED   SHCORE.dll base=0x7ff9ef810000 size=0xf9000
+00:24:21.547 poll LOADED   speedups.cp311-win_amd64.pyd base=0x7ff9852e0000 size=0x8000
+00:24:21.610 poll LOADED   collections.cp311-win_amd64.pyd base=0x7ff8d2c20000 size=0x30000
+00:24:21.611 poll LOADED   immutabledict.cp311-win_amd64.pyd base=0x7ff8d2e90000 size=0x16000
+00:24:21.611 poll LOADED   processors.cp311-win_amd64.pyd base=0x7ff8d1a20000 size=0x14000
+00:24:21.612 poll LOADED   resultproxy.cp311-win_amd64.pyd base=0x7ff8d1a00000 size=0x14000
+00:24:21.612 poll LOADED   util.cp311-win_amd64.pyd base=0x7ff8ce8e0000 size=0x17000
+00:24:21.614 poll LOADED   _greenlet.cp311-win_amd64.pyd base=0x7ff8ce8a0000 size=0x3a000
+00:24:21.936 poll LOADED   _yaml.cp311-win_amd64.pyd base=0x7ff8ce850000 size=0x49000
+00:24:21.957 poll LOADED   llvmlite.dll base=0x7ff8c43a0000 size=0x7369000
+00:24:21.958 poll LOADED   msvcp140-8f141b4454fa78db34bc1f28c571b4da.dll base=0x7ff8ce7c0000 size=0x89000
+00:24:22.126 poll LOADED   _typeconv.cp311-win_amd64.pyd base=0x7ff97b3a0000 size=0xa000
+00:24:22.168 poll LOADED   _helperlib.cp311-win_amd64.pyd base=0x7ff8ce6c0000 size=0x36000
+00:24:22.190 poll LOADED   _dynfunc.cp311-win_amd64.pyd base=0x7ff976180000 size=0x9000
+00:24:22.210 poll LOADED   _dispatcher.cp311-win_amd64.pyd base=0x7ff9751b0000 size=0xe000
+00:24:22.212 poll LOADED   _devicearray.cp311-win_amd64.pyd base=0x7ff974b80000 size=0x8000
+00:24:22.275 poll LOADED   _nrt_python.cp311-win_amd64.pyd base=0x7ff974a40000 size=0xa000
+00:24:22.317 poll LOADED   _internal.cp311-win_amd64.pyd base=0x7ff974a00000 size=0xa000
+00:24:22.318 poll LOADED   _box.cp311-win_amd64.pyd base=0x7ff973590000 size=0x8000
+00:24:22.442 poll LOADED   recursions.cp311-win_amd64.pyd base=0x7ff8cd830000 size=0x63000
+00:24:22.463 poll LOADED   _initialization.cp311-win_amd64.pyd base=0x7ff8cd7e0000 size=0x4a000
+00:24:22.464 poll LOADED   _representation.cp311-win_amd64.pyd base=0x7ff8cd730000 size=0xaf000
+00:24:22.466 poll LOADED   _kalman_filter.cp311-win_amd64.pyd base=0x7ff8cd670000 size=0xb4000
+00:24:22.466 poll LOADED   _kalman_smoother.cp311-win_amd64.pyd base=0x7ff8cd5f0000 size=0x79000
+00:24:22.467 poll LOADED   _conventional.cp311-win_amd64.pyd base=0x7ff8cdd40000 size=0x2b000
+00:24:22.490 poll LOADED   _univariate.cp311-win_amd64.pyd base=0x7ff8cd5c0000 size=0x2f000
+00:24:22.491 poll LOADED   _univariate_diffuse.cp311-win_amd64.pyd base=0x7ff8cd580000 size=0x34000
+00:24:22.491 poll LOADED   _classical.cp311-win_amd64.pyd base=0x7ff8cd550000 size=0x2c000
+00:24:22.494 poll LOADED   _alternative.cp311-win_amd64.pyd base=0x7ff8cd520000 size=0x2a000
+00:24:22.495 poll LOADED   _conventional.cp311-win_amd64.pyd base=0x7ff8cd4f0000 size=0x2c000
+00:24:22.495 poll LOADED   _univariate.cp311-win_amd64.pyd base=0x7ff8cd470000 size=0x35000
+00:24:22.497 poll LOADED   _univariate_diffuse.cp311-win_amd64.pyd base=0x7ff8cd440000 size=0x2c000
+00:24:22.498 poll LOADED   _inversions.cp311-win_amd64.pyd base=0x7ff8cd400000 size=0x35000
+00:24:22.498 poll LOADED   _tools.cp311-win_amd64.pyd base=0x7ff8cd360000 size=0x93000
+00:24:22.519 poll LOADED   _simulation_smoother.cp311-win_amd64.pyd base=0x7ff8cd2d0000 size=0x81000
+00:24:22.520 poll LOADED   _cfa_simulation_smoother.cp311-win_amd64.pyd base=0x7ff8cd260000 size=0x65000
+00:24:22.541 poll LOADED   _sigtools.cp311-win_amd64.pyd base=0x7ff8cd230000 size=0x26000
+00:24:22.543 poll LOADED   _max_len_seq_inner.cp311-win_amd64.pyd base=0x7ff8cd130000 size=0xfd000
+00:24:22.543 poll LOADED   _upfirdn_apply.cp311-win_amd64.pyd base=0x7ff8cd0c0000 size=0x62000
+00:24:22.544 poll LOADED   _spline.cp311-win_amd64.pyd base=0x7ff8cd4d0000 size=0x1d000
+00:24:22.566 poll LOADED   _sosfilt.cp311-win_amd64.pyd base=0x7ff8cd070000 size=0x4c000
+00:24:22.566 poll LOADED   _spectral.cp311-win_amd64.pyd base=0x7ff8ccf70000 size=0xfd000
+00:24:22.567 poll LOADED   _peak_finding_utils.cp311-win_amd64.pyd base=0x7ff8ccf20000 size=0x4b000
+00:24:22.589 poll LOADED   _arma_innovations.cp311-win_amd64.pyd base=0x7ff8ccec0000 size=0x5f000
+00:24:22.611 poll LOADED   _innovations.cp311-win_amd64.pyd base=0x7ff8cce90000 size=0x2f000
+00:24:22.633 poll LOADED   _vq.cp311-win_amd64.pyd base=0x7ff8cce60000 size=0x23000
+00:24:22.654 poll LOADED   _hierarchy.cp311-win_amd64.pyd base=0x7ff8ccdf0000 size=0x65000
+00:24:22.655 poll LOADED   _optimal_leaf_ordering.cp311-win_amd64.pyd base=0x7ff8ccd90000 size=0x58000
+00:24:22.697 poll LOADED   xgboost.dll base=0x7ff87b8b0000 size=0xa91b000
+00:24:22.867 poll LOADED   _cext.cp311-win_amd64.pyd base=0x7ff96f890000 size=0x10000
+00:24:22.890 poll LOADED   _mio_utils.cp311-win_amd64.pyd base=0x7ff8cc040000 size=0x17000
+00:24:22.891 poll LOADED   _mio5_utils.cp311-win_amd64.pyd base=0x7ff8cc000000 size=0x3c000
+00:24:22.892 poll LOADED   _streams.cp311-win_amd64.pyd base=0x7ff8cbfd0000 size=0x23000
+00:24:22.935 poll LOADED   _svmlight_format_fast.cp311-win_amd64.pyd base=0x7ff8cbf60000 size=0x6c000
+00:24:22.957 poll LOADED   _hashing_fast.cp311-win_amd64.pyd base=0x7ff8cbf40000 size=0x15000
+00:24:23.332 TEST tests/training/behaviour/test_artifacts.py::test_isolation_forest_round_trip
+00:24:23.699 TEST tests/training/behaviour/test_artifacts.py::test_thresholds_json_round_trip
+00:24:23.708 TEST tests/training/behaviour/test_detection.py::test_zscore_is_nan_before_minimum_prior_history
+00:24:23.747 TEST tests/training/behaviour/test_detection.py::test_zscore_detects_a_real_spike
+00:24:23.753 TEST tests/training/behaviour/test_detection.py::test_zscore_never_uses_future_months
+00:24:23.777 TEST tests/training/behaviour/test_detection.py::test_zscore_handles_zero_variance_denominator_without_crashing
+00:24:23.782 TEST tests/training/behaviour/test_detection.py::test_customer_with_only_two_months_never_gets_a_baseline
+00:24:23.786 TEST tests/training/behaviour/test_detection.py::test_cusum_alarms_on_sustained_drift_not_single_point_noise
+00:24:23.791 TEST tests/training/behaviour/test_detection.py::test_isolation_forest_flags_a_clear_multivariate_outlier
+00:24:24.118 TEST tests/training/behaviour/test_detection.py::test_detect_risk_profile_changes_flags_real_changes_and_ignores_stable_customers
+00:24:24.137 TEST tests/training/behaviour/test_panel.py::test_panel_aggregates_correctly_per_customer_month
+00:24:24.169 TEST tests/training/behaviour/test_panel.py::test_panel_has_no_row_for_months_with_no_activity
+00:24:24.185 TEST tests/training/behaviour/test_panel.py::test_panel_handles_missing_asset_category_as_unknown_not_dropped
+00:24:24.201 TEST tests/training/expense/test_artifacts.py::test_scaler_and_kmeans_round_trip
+00:24:24.350 TEST tests/training/expense/test_artifacts.py::test_profile_clusters_uses_actual_computed_statistics_not_fabricated
+00:24:24.401 TEST tests/training/expense/test_clustering.py::test_kmeans_sweep_recovers_the_known_cluster_count
+00:24:24.875 TEST tests/training/expense/test_clustering.py::test_ward_sweep_recovers_the_known_cluster_count
+00:24:24.944 TEST tests/training/expense/test_clustering.py::test_gmm_sweep_selects_by_bic_not_silhouette
+00:24:27.267 TEST tests/training/expense/test_clustering.py::test_kmeans_sweep_is_deterministic
+00:24:28.560 TEST tests/training/expense/test_features.py::test_income_normalization_not_raw_currency
+00:24:28.567 TEST tests/training/expense/test_features.py::test_zero_and_negative_income_rows_are_excluded_not_fabricated
+00:24:28.573 TEST tests/training/expense/test_features.py::test_feature_columns_present_and_finite
+00:24:28.580 TEST tests/training/expense/test_features.py::test_emi_ratio_is_log1p_transformed
+00:24:28.587 TEST tests/training/market/test_artifacts.py::test_lstm_model_and_scaler_round_trip
+00:24:41.507 TEST tests/training/market/test_artifacts.py::test_gru_model_and_scaler_round_trip
+00:24:51.777 TEST tests/training/market/test_artifacts.py::test_naive_arima_garch_config_json_round_trip
+00:24:51.790 TEST tests/training/market/test_artifacts.py::test_regime_config_json_round_trip
+00:24:51.813 TEST tests/training/market/test_dl_models.py::test_make_sequences_is_chronological_not_shuffled
+00:24:51.826 TEST tests/training/market/test_dl_models.py::test_make_sequences_target_never_appears_inside_its_own_input
+00:24:51.829 TEST tests/training/market/test_dl_models.py::test_scaler_is_fit_only_on_training_window
+00:25:11.921 TEST tests/training/market/test_dl_models.py::test_sequence_length_is_selected_from_the_documented_grid
+00:25:22.624 TEST tests/training/market/test_dl_models.py::test_insufficient_training_data_returns_nan_not_a_fabricated_forecast
+00:25:22.636 TEST tests/training/market/test_dl_models.py::test_forecast_uses_real_context_values_not_the_models_own_predictions
+00:25:44.132 TEST tests/training/market/test_evaluate.py::test_rmse_known_value
+00:25:44.134 TEST tests/training/market/test_evaluate.py::test_rmse_zero_for_perfect_forecast
+00:25:44.136 TEST tests/training/market/test_evaluate.py::test_mae_known_value
+00:25:44.138 TEST tests/training/market/test_evaluate.py::test_directional_accuracy_all_correct
+00:25:44.139 TEST tests/training/market/test_evaluate.py::test_directional_accuracy_all_wrong
+00:25:44.141 TEST tests/training/market/test_evaluate.py::test_directional_accuracy_nonzero_true_vs_zero_pred_is_a_mismatch
+00:25:44.143 TEST tests/training/market/test_evaluate.py::test_directional_accuracy_both_zero_is_never_counted_as_a_lucky_match
+00:25:44.145 TEST tests/training/market/test_evaluate.py::test_diebold_mariano_returns_zero_statistic_for_identical_errors
+00:25:44.147 TEST tests/training/market/test_evaluate.py::test_diebold_mariano_detects_clearly_worse_model
+00:25:44.152 TEST tests/training/market/test_evaluate.py::test_diebold_mariano_handles_too_few_observations_gracefully
+00:25:44.156 TEST tests/training/market/test_evaluate.py::test_diebold_mariano_is_symmetric_in_sign
+00:25:44.159 TEST tests/training/market/test_models.py::test_naive_forecast_is_always_zero
+00:25:44.160 TEST tests/training/market/test_models.py::test_naive_forecast_ignores_training_data_content
+00:25:44.163 TEST tests/training/market/test_models.py::test_arima_order_selected_from_training_data_only
+00:25:45.854 TEST tests/training/market/test_models.py::test_arima_forecast_uses_selected_order_when_none_given
+00:25:47.760 TEST tests/training/market/test_models.py::test_arima_forecast_respects_explicit_order
+00:25:47.799 TEST tests/training/market/test_models.py::test_arima_forecast_does_not_see_future_data
+00:25:47.861 TEST tests/training/market/test_models.py::test_garch_forecast_produces_positive_volatility
+00:25:47.878 TEST tests/training/market/test_models.py::test_garch_forecast_is_deterministic_given_same_training_data
+00:25:47.899 TEST tests/training/market/test_models.py::test_garch_forecast_scale_matches_realized_volatility_scale
+00:25:47.910 TEST tests/training/market/test_preprocessing.py::test_returns_are_simple_not_log
+00:25:47.923 TEST tests/training/market/test_preprocessing.py::test_returns_never_forward_filled_for_missing_days
+00:25:47.931 TEST tests/training/market/test_preprocessing.py::test_validate_chronological_order_accepts_sorted_index
+00:25:47.934 TEST tests/training/market/test_preprocessing.py::test_validate_chronological_order_rejects_unsorted_index
+00:25:47.938 TEST tests/training/market/test_preprocessing.py::test_validate_chronological_order_rejects_duplicate_dates
+00:25:47.940 TEST tests/training/market/test_preprocessing.py::test_realized_volatility_target_uses_only_trailing_window
+00:25:47.942 TEST tests/training/market/test_preprocessing.py::test_realized_volatility_target_requires_full_window
+00:25:47.944 TEST tests/training/market/test_regime.py::test_regime_features_use_only_trailing_window
+00:25:47.947 TEST tests/training/market/test_regime.py::test_thresholds_computed_only_from_training_slice
+00:25:47.955 TEST tests/training/market/test_regime.py::test_classification_precedence_volatile_before_trending
+00:25:47.958 TEST tests/training/market/test_regime.py::test_classification_produces_trending_when_only_trend_is_extreme
+00:25:47.962 TEST tests/training/market/test_regime.py::test_classification_produces_range_bound_when_neither_extreme
+00:25:47.968 TEST tests/training/market/test_regime.py::test_nan_rows_produce_nan_regime_not_a_fabricated_label
+00:25:47.971 TEST tests/training/market/test_regime.py::test_thresholds_are_reproducible_given_same_training_data
+00:25:47.980 TEST tests/training/market/test_walkforward.py::test_windows_expand_chronologically_from_a_fixed_start
+00:25:47.981 TEST tests/training/market/test_walkforward.py::test_embargo_gap_is_enforced_between_train_and_test
+00:25:47.983 TEST tests/training/market/test_walkforward.py::test_test_window_size_is_respected
+00:25:47.985 TEST tests/training/market/test_walkforward.py::test_no_window_exceeds_available_observations
+00:25:47.986 TEST tests/training/market/test_walkforward.py::test_train_and_test_never_overlap_and_test_never_precedes_train
+00:25:47.988 TEST tests/training/market/test_walkforward.py::test_insufficient_data_produces_no_windows
+00:25:47.989 TEST tests/training/market/test_walkforward.py::test_exactly_enough_data_for_one_window
+00:25:47.991 TEST tests/training/portfolio/test_artifacts.py::test_ledoit_wolf_pickle_reloads_and_reproduces_the_saved_covariance
+00:25:47.994 TEST tests/training/portfolio/test_artifacts.py::test_mvo_json_reloads_with_weights_summing_to_one_and_within_bounds
+00:25:47.996 TEST tests/training/portfolio/test_artifacts.py::test_hrp_json_reloads_with_weights_summing_to_one
+00:25:47.998 TEST tests/training/portfolio/test_artifacts.py::test_frontier_json_reloads_with_finite_monotonic_ish_structure
+00:25:48.001 TEST tests/training/portfolio/test_artifacts.py::test_backtest_json_reloads_with_all_six_strategies
+00:25:48.004 TEST tests/training/portfolio/test_artifacts.py::test_config_json_reloads_with_documented_methodology
+00:25:48.006 TEST tests/training/portfolio/test_common.py::test_returns_are_simple_pct_change
+00:25:48.009 TEST tests/training/portfolio/test_common.py::test_rejects_unsorted_price_index
+00:25:48.012 TEST tests/training/portfolio/test_common.py::test_rejects_duplicate_dates
+00:25:48.014 TEST tests/training/portfolio/test_common.py::test_rows_with_any_missing_asset_are_dropped_not_imputed
+00:25:48.018 TEST tests/training/portfolio/test_common.py::test_fully_aligned_matrix_keeps_every_row
+00:25:48.022 TEST tests/training/portfolio/test_common.py::test_column_order_is_preserved
+00:25:48.025 TEST tests/training/risk/test_artifact_roundtrip.py::test_preprocessor_and_sklearn_model_round_trip
+00:25:48.063 TEST tests/training/risk/test_artifact_roundtrip.py::test_random_forest_round_trip
+00:25:48.128 TEST tests/training/risk/test_artifact_roundtrip.py::test_xgboost_wrapper_round_trip
+00:25:48.154 poll LOADED   nvcuda.dll base=0x7ff913260000 size=0x39e000
+00:25:48.155 poll LOADED   dxcore.dll base=0x7ff9e9b80000 size=0x44000
+00:25:48.176 poll LOADED   nvcuda64.dll base=0x7ff8cc3e0000 size=0x9a5000
+00:25:48.198 poll LOADED   msasn1.dll base=0x7ff9ec500000 size=0x13000
+00:25:48.198 poll LOADED   cryptnet.dll base=0x7ff9db870000 size=0x3b000
+00:25:48.199 poll LOADED   wldp.dll base=0x7ff9ec580000 size=0x81000
+00:25:48.199 poll LOADED   drvstore.dll base=0x7ff9db540000 size=0x17a000
+00:25:48.201 poll LOADED   devobj.dll base=0x7ff9eca40000 size=0x2f000
+00:25:48.201 poll LOADED   cfgmgr32.dll base=0x7ff9eca80000 size=0x52000
+00:25:48.201 poll LOADED   nvapi64.dll base=0x7ff9d6460000 size=0x6e1000
+00:25:48.202 poll LOADED   SETUPAPI.dll base=0x7ff9ee360000 size=0x487000
+00:25:48.347 TEST tests/training/risk/test_artifact_roundtrip.py::test_mlp_keras_native_save_round_trip
+00:25:50.119 TEST tests/training/risk/test_deterministic.py::test_logistic_regression_is_deterministic
+00:25:54.830 TEST tests/training/risk/test_deterministic.py::test_random_forest_is_deterministic
+00:26:22.725 TEST tests/training/risk/test_label_filtering.py::test_load_training_table_accepts_only_genuine_labels
+00:26:22.729 TEST tests/training/risk/test_label_filtering.py::test_load_training_table_rejects_predicted_star
+00:26:22.732 TEST tests/training/risk/test_label_filtering.py::test_load_training_table_rejects_not_available
+00:26:22.735 TEST tests/training/risk/test_metrics_output.py::test_model_evaluation_to_dict_is_json_serializable
+00:26:22.737 TEST tests/training/risk/test_metrics_output.py::test_write_metrics_json_merges_with_existing_content
+00:26:22.751 TEST tests/training/risk/test_preprocessing_isolation.py::test_preprocessor_is_never_fit_on_the_full_dataset_during_cv
+00:26:22.825 TEST tests/training/risk/test_preprocessing_isolation.py::test_preprocessor_never_sees_a_folds_held_out_rows
+00:26:22.888 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_the_mode_evaluates_the_rules_baseline_on_the_held_out_split_and_writes_one_report
+00:26:22.994 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_the_report_and_the_printout_contain_no_record_text_and_no_record_id
+00:26:23.101 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_the_exit_status_never_depends_on_a_target
+00:26:24.970 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_precomputed_predictions_are_evaluated_and_compared_with_the_rules_baseline_without_naming_a_winner
+00:26:25.864 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_a_tampered_set_is_refused_before_anything_is_evaluated_and_nothing_is_written
+00:26:25.890 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_a_model_artifact_candidate_is_refused_in_this_mode
+00:26:25.947 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_predictions_that_do_not_cover_the_held_out_ids_are_refused_without_echoing_the_file
+00:26:26.160 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_the_five_frozen_arguments_are_all_required_and_cannot_be_mixed_with_the_ordinary_mode
+00:26:26.184 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_there_is_no_command_line_way_to_state_the_evidence_or_to_approve_a_set
+00:26:26.192 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_the_script_reaches_the_statistics_only_through_the_frozen_interface_and_not_the_api_settings_agents_or_activation
+00:26:26.202 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_a_probability_bearing_file_makes_calibration_evaluable_and_the_label_only_file_does_not
+00:26:27.840 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_malformed_probability_files_are_refused_without_echoing_the_file[mixed]
+00:26:28.663 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_malformed_probability_files_are_refused_without_echoing_the_file[extra_key]
+00:26:29.609 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_malformed_probability_files_are_refused_without_echoing_the_file[missing_class]
+00:26:30.454 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_malformed_probability_files_are_refused_without_echoing_the_file[not_summing]
+00:26:31.113 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_malformed_probability_files_are_refused_without_echoing_the_file[negative_value]
+00:26:31.736 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_malformed_probability_files_are_refused_without_echoing_the_file[boolean_value]
+00:26:32.367 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_malformed_probability_files_are_refused_without_echoing_the_file[nan]
+00:26:32.997 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_malformed_probability_files_are_refused_without_echoing_the_file[label_not_argmax]
+00:26:33.659 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_malformed_probability_files_are_refused_without_echoing_the_file[label_outside]
+00:26:34.294 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_malformed_probability_files_are_refused_without_echoing_the_file[string_value]
+00:26:34.944 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_malformed_probability_files_are_refused_without_echoing_the_file[list_entry]
+00:26:35.635 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_the_rules_baseline_never_carries_probabilities_so_it_can_never_be_validated
+00:26:36.039 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_load_predictions_returns_labels_and_probabilities_separately
+00:26:36.050 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_the_loader_itself_refuses_unusable_probabilities_not_only_the_evaluator_behind_it[scores0]
+00:26:36.053 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_the_loader_itself_refuses_unusable_probabilities_not_only_the_evaluator_behind_it[scores1]
+00:26:36.059 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_the_loader_itself_refuses_unusable_probabilities_not_only_the_evaluator_behind_it[scores2]
+00:26:36.063 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_the_loader_itself_refuses_unusable_probabilities_not_only_the_evaluator_behind_it[scores3]
+00:26:36.067 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_the_loader_itself_refuses_unusable_probabilities_not_only_the_evaluator_behind_it[scores4]
+00:26:36.072 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_a_verified_local_directory_is_evaluated_with_probabilities_and_only_provenance_is_reported
+00:26:36.966 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_a_tampered_or_extra_file_in_the_local_directory_is_refused_before_any_model_is_loaded
+00:26:37.110 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_a_local_model_needs_its_manifest_a_clean_name_and_never_a_hub_identifier
+00:26:37.430 TEST tests/training/sentiment/test_evaluate_frozen_mode.py::test_the_evaluation_script_imports_the_local_loader_but_no_hub_network_deep_learning_or_pickle_module
+00:26:37.440 TEST tests/training/sentiment/test_frozen_evaluation.py::test_a_complete_set_loads_with_every_check_true_and_an_eligible_evidence_basis
+00:26:37.501 TEST tests/training/sentiment/test_frozen_evaluation.py::test_an_unapproved_synthetic_fixture_or_unfrozen_set_loads_but_is_never_validation_evidence[kwargs0-the dataset is not approved]
+00:26:37.566 TEST tests/training/sentiment/test_frozen_evaluation.py::test_an_unapproved_synthetic_fixture_or_unfrozen_set_loads_but_is_never_validation_evidence[kwargs1-the data is a development fixture]
+00:26:37.630 TEST tests/training/sentiment/test_frozen_evaluation.py::test_an_unapproved_synthetic_fixture_or_unfrozen_set_loads_but_is_never_validation_evidence[kwargs2-the data is synthetic]
+00:26:37.691 TEST tests/training/sentiment/test_frozen_evaluation.py::test_an_unapproved_synthetic_fixture_or_unfrozen_set_loads_but_is_never_validation_evidence[kwargs3-the rubric is not frozen]
+00:26:37.753 TEST tests/training/sentiment/test_frozen_evaluation.py::test_an_unapproved_synthetic_fixture_or_unfrozen_set_loads_but_is_never_validation_evidence[kwargs4-the rubric is not frozen]
+00:26:37.814 TEST tests/training/sentiment/test_frozen_evaluation.py::test_an_unapproved_synthetic_fixture_or_unfrozen_set_loads_but_is_never_validation_evidence[kwargs5-the rubric is not frozen]
+00:26:37.877 TEST tests/training/sentiment/test_frozen_evaluation.py::test_an_unapproved_synthetic_fixture_or_unfrozen_set_loads_but_is_never_validation_evidence[kwargs6-annotator independence is not attested]
+00:26:37.940 TEST tests/training/sentiment/test_frozen_evaluation.py::test_a_draft_labelled_rubric_is_not_frozen_even_if_the_manifest_says_frozen_and_approved
+00:26:37.996 TEST tests/training/sentiment/test_frozen_evaluation.py::test_a_manifest_cannot_claim_more_evidence_than_the_checks_support
+00:26:38.114 TEST tests/training/sentiment/test_frozen_evaluation.py::test_a_missing_or_unknown_schema_version_is_refused_before_anything_else
+00:26:38.209 TEST tests/training/sentiment/test_frozen_evaluation.py::test_a_manifest_changed_after_it_was_frozen_is_refused
+00:26:38.229 TEST tests/training/sentiment/test_frozen_evaluation.py::test_a_changed_file_does_not_match_its_manifest_hash[records.jsonl-records file does not match]
+00:26:38.258 TEST tests/training/sentiment/test_frozen_evaluation.py::test_a_changed_file_does_not_match_its_manifest_hash[rubric.md-rubric does not match]
+00:26:38.280 TEST tests/training/sentiment/test_frozen_evaluation.py::test_a_changed_file_does_not_match_its_manifest_hash[annotators.json-annotator manifest does not match]
+00:26:38.303 TEST tests/training/sentiment/test_frozen_evaluation.py::test_a_changed_file_does_not_match_its_manifest_hash[adjudication_log.txt-adjudication log does not match]
+00:26:38.325 TEST tests/training/sentiment/test_frozen_evaluation.py::test_the_record_level_hashes_are_recomputed_not_trusted
+00:26:38.566 TEST tests/training/sentiment/test_frozen_evaluation.py::test_a_label_changed_in_the_records_with_a_consistent_file_hash_still_breaks_the_label_hash
+00:26:38.633 TEST tests/training/sentiment/test_frozen_evaluation.py::test_a_missing_file_is_reported_not_skipped
+00:26:38.653 TEST tests/training/sentiment/test_frozen_evaluation.py::test_hashes_are_line_ending_independent
+00:26:38.717 TEST tests/training/sentiment/test_frozen_evaluation.py::test_every_required_field_is_enforced_including_the_ones_the_owner_added
+00:26:38.866 TEST tests/training/sentiment/test_frozen_evaluation.py::test_malformed_manifest_values_are_refused_with_the_field_named
+00:26:39.178 TEST tests/training/sentiment/test_frozen_evaluation.py::test_personal_data_markers_in_the_manifest_are_refused_without_echoing_them
+00:26:39.315 TEST tests/training/sentiment/test_frozen_evaluation.py::test_a_manifest_that_is_not_json_is_refused_without_echoing_it
+00:26:39.336 TEST tests/training/sentiment/test_frozen_evaluation.py::test_the_annotator_manifest_must_agree_with_the_manifest
+00:26:39.391 TEST tests/training/sentiment/test_frozen_evaluation.py::test_invalid_records_are_counted_by_kind_and_their_text_is_never_in_the_message
+00:26:39.450 TEST tests/training/sentiment/test_frozen_evaluation.py::test_declared_counts_must_match_the_records
+00:26:39.639 TEST tests/training/sentiment/test_frozen_evaluation.py::test_all_three_splits_are_required[train]
+00:26:39.671 TEST tests/training/sentiment/test_frozen_evaluation.py::test_all_three_splits_are_required[calibration]
+00:26:39.716 TEST tests/training/sentiment/test_frozen_evaluation.py::test_all_three_splits_are_required[heldout]
+00:26:39.753 TEST tests/training/sentiment/test_frozen_evaluation.py::test_an_exact_duplicate_across_splits_or_inside_a_split_is_refused_even_if_the_manifest_claims_none
+00:26:39.875 TEST tests/training/sentiment/test_frozen_evaluation.py::test_the_boundary_pair_has_exactly_the_approved_similarity
+00:26:39.876 TEST tests/training/sentiment/test_frozen_evaluation.py::test_a_cross_split_pair_exactly_at_the_approved_threshold_is_a_near_duplicate
+00:26:39.938 TEST tests/training/sentiment/test_frozen_evaluation.py::test_a_cross_split_pair_just_below_the_approved_threshold_is_accepted
+00:26:40.000 TEST tests/training/sentiment/test_frozen_evaluation.py::test_a_pair_just_above_the_approved_threshold_is_refused
+00:26:40.063 TEST tests/training/sentiment/test_frozen_evaluation.py::test_normalization_makes_unicode_case_and_whitespace_variants_exact_duplicates
+00:26:40.129 TEST tests/training/sentiment/test_frozen_evaluation.py::test_character_ngrams_of_short_and_empty_texts_are_defined
+00:26:40.130 TEST tests/training/sentiment/test_frozen_evaluation.py::test_a_manifest_must_declare_exactly_the_approved_method_and_threshold
+00:26:40.189 TEST tests/training/sentiment/test_frozen_evaluation.py::test_predictions_must_cover_exactly_the_held_out_ids
+00:26:40.253 TEST tests/training/sentiment/test_frozen_evaluation.py::test_the_pre_adjudication_ratings_are_returned_in_item_order_and_must_be_complete
+00:26:40.374 TEST tests/training/sentiment/test_frozen_evaluation.py::test_a_complete_set_with_too_few_held_out_examples_is_insufficient_support_never_validated
+00:26:40.454 TEST tests/training/sentiment/test_frozen_evaluation.py::test_the_full_chain_reaches_validated_only_when_every_condition_is_stated_true_and_met_which_is_a_logic_test_not_evidence
+00:26:41.611 TEST tests/training/sentiment/test_frozen_evaluation.py::test_no_report_contains_record_text_or_record_ids
+00:26:41.677 TEST tests/training/sentiment/test_frozen_evaluation.py::test_the_report_is_reproducible
+00:26:41.805 TEST tests/training/sentiment/test_frozen_evaluation.py::test_the_module_stays_offline_unlogged_and_unconnected_to_activation
+00:26:41.832 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_the_manifest_carries_the_register_calibration_group_and_duplicate_metadata_and_is_schema_2
+00:26:41.894 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_a_schema_1_manifest_is_refused_as_unknown
+00:26:41.916 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_a_missing_new_field_is_refused[data_status]
+00:26:41.939 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_a_missing_new_field_is_refused[participant_register]
+00:26:41.961 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_a_missing_new_field_is_refused[calibration]
+00:26:41.989 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_missing_malformed_or_inconsistent_metadata_is_refused_with_the_existing_fixed_behaviour[bins]
+00:26:42.012 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_missing_malformed_or_inconsistent_metadata_is_refused_with_the_existing_fixed_behaviour[bins_bool]
+00:26:42.032 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_missing_malformed_or_inconsistent_metadata_is_refused_with_the_existing_fixed_behaviour[calibration_extra]
+00:26:42.053 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_missing_malformed_or_inconsistent_metadata_is_refused_with_the_existing_fixed_behaviour[calibration_missing]
+00:26:42.075 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_missing_malformed_or_inconsistent_metadata_is_refused_with_the_existing_fixed_behaviour[consent_hash_malformed]
+00:26:42.095 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_missing_malformed_or_inconsistent_metadata_is_refused_with_the_existing_fixed_behaviour[consented_without_consent_hash]
+00:26:42.120 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_missing_malformed_or_inconsistent_metadata_is_refused_with_the_existing_fixed_behaviour[exact_method]
+00:26:42.142 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_missing_malformed_or_inconsistent_metadata_is_refused_with_the_existing_fixed_behaviour[fit_split]
+00:26:42.162 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_missing_malformed_or_inconsistent_metadata_is_refused_with_the_existing_fixed_behaviour[group_unapproved]
+00:26:42.185 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_missing_malformed_or_inconsistent_metadata_is_refused_with_the_existing_fixed_behaviour[invalid_status]
+00:26:42.212 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_missing_malformed_or_inconsistent_metadata_is_refused_with_the_existing_fixed_behaviour[method]
+00:26:42.236 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_missing_malformed_or_inconsistent_metadata_is_refused_with_the_existing_fixed_behaviour[min_scored]
+00:26:42.259 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_missing_malformed_or_inconsistent_metadata_is_refused_with_the_existing_fixed_behaviour[ngram_bool]
+00:26:42.280 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_missing_malformed_or_inconsistent_metadata_is_refused_with_the_existing_fixed_behaviour[ngram_size]
+00:26:42.303 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_missing_malformed_or_inconsistent_metadata_is_refused_with_the_existing_fixed_behaviour[policy_version]
+00:26:42.326 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_missing_malformed_or_inconsistent_metadata_is_refused_with_the_existing_fixed_behaviour[register_extra_key]
+00:26:42.348 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_missing_malformed_or_inconsistent_metadata_is_refused_with_the_existing_fixed_behaviour[register_hash_not_hex]
+00:26:42.374 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_missing_malformed_or_inconsistent_metadata_is_refused_with_the_existing_fixed_behaviour[register_not_object]
+00:26:42.406 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_missing_malformed_or_inconsistent_metadata_is_refused_with_the_existing_fixed_behaviour[split_hash]
+00:26:42.439 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_missing_malformed_or_inconsistent_metadata_is_refused_with_the_existing_fixed_behaviour[status_vs_flag]
+00:26:42.472 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_missing_malformed_or_inconsistent_metadata_is_refused_with_the_existing_fixed_behaviour[train_split]
+00:26:42.499 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_missing_malformed_or_inconsistent_metadata_is_refused_with_the_existing_fixed_behaviour[verifier_hash_missing]
+00:26:42.522 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_the_synthetic_status_pairs_with_a_synthetic_register_and_no_consent_hash
+00:26:42.562 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_the_manifest_hash_still_covers_the_new_fields
+00:26:42.633 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_a_changed_register_file_does_not_match_its_manifest_hash
+00:26:42.658 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_an_unreadable_register_is_refused_without_echoing_it
+00:26:42.689 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_an_invalid_register_is_refused_at_load_with_the_register_s_own_sanitized_message
+00:26:42.719 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_register_defects_stop_the_load[no_independence-<lambda>-participant 3 has no independence attestation]
+00:26:42.741 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_register_defects_stop_the_load[production_service-<lambda>-production services cannot receive dataset access]
+00:26:42.764 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_register_defects_stop_the_load[no_deletion-<lambda>-a deletion authorization is required]
+00:26:42.785 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_register_defects_stop_the_load[duplicate_codes-<lambda>-codes must be unique]
+00:26:42.812 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_register_defects_stop_the_load[verifier_unauthorized-<lambda>-participant 5 has no granted access authorization]
+00:26:42.836 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_the_authorization_must_be_valid_on_the_freezing_day_and_on_an_explicit_evaluation_day
+00:26:42.945 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_a_register_that_disagrees_with_the_manifest_is_refused[data_status-<lambda>-the data status]
+00:26:42.969 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_a_register_that_disagrees_with_the_manifest_is_refused[scope-<lambda>-the permitted dataset scope]
+00:26:42.992 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_a_register_that_disagrees_with_the_manifest_is_refused[verifier_hash-<lambda>-the de-identification verifier hash]
+00:26:43.014 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_a_register_that_disagrees_with_the_manifest_is_refused[consent_hash-<lambda>-the consent wording hash]
+00:26:43.036 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_registered_annotator_codes_must_match_the_manifest_s_annotators_and_adjudicator
+00:26:43.074 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_a_register_edit_cannot_hide_behind_the_fixture_hash
+00:26:43.096 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_the_calibration_split_hash_is_recomputed_from_the_records
+00:26:43.216 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_the_report_fits_the_temperature_on_the_calibration_split_and_applies_it_to_the_heldout_split_only
+00:26:43.336 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_a_calibration_split_below_the_minimum_is_descriptive_only
+00:26:43.480 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_calibration_probabilities_must_cover_exactly_the_calibration_ids_and_name_no_id
+00:26:43.545 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_heldout_ids_cannot_be_used_as_calibration_data_and_the_two_sets_stay_apart
+00:26:43.608 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_a_probability_that_names_a_wrong_label_or_does_not_sum_to_one_is_refused_without_echoing_an_id
+00:26:43.717 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_the_labels_only_rules_baseline_is_not_calibrated_changed_or_validated
+00:26:44.111 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_synthetic_evidence_never_produces_validated_even_with_a_fitted_temperature
+00:26:44.486 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_the_report_holds_no_record_text_id_or_register_content
+00:26:44.567 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_the_command_line_needs_the_participant_register
+00:26:44.587 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_a_predictions_file_that_also_answers_the_calibration_split_is_calibrated_by_the_command_line
+00:26:45.498 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_a_probability_file_that_answers_only_the_heldout_split_is_reported_without_a_temperature
+00:26:46.353 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_a_partial_calibration_answer_or_a_stray_id_is_refused_without_echoing_it
+00:26:47.469 TEST tests/training/sentiment/test_frozen_register_and_calibration.py::test_a_labels_only_file_that_also_names_calibration_ids_is_refused
+00:26:48.172 TEST tests/training/sentiment/test_hub_fetch.py::test_a_complete_query_makes_three_requests_to_one_host_and_returns_a_sanitized_record
+00:26:48.174 TEST tests/training/sentiment/test_hub_fetch.py::test_the_query_never_requests_weights_tokenizer_files_configuration_or_datasets
+00:26:48.176 TEST tests/training/sentiment/test_hub_fetch.py::test_without_a_proposed_revision_the_main_revision_is_discovered_and_reported_for_confirmation
+00:26:48.179 TEST tests/training/sentiment/test_hub_fetch.py::test_the_model_card_is_hashed_and_summarised_never_stored_whole_and_secrets_are_masked
+00:26:48.181 TEST tests/training/sentiment/test_hub_fetch.py::test_licence_matching_ignores_case_spacing_and_punctuation_and_a_matching_provisional_record_is_not_a_conflict
+00:26:48.183 TEST tests/training/sentiment/test_hub_fetch.py::test_stop_1_the_identifier_differs
+00:26:48.184 TEST tests/training/sentiment/test_hub_fetch.py::test_stop_2_the_revision_differs_from_the_proposed_value
+00:26:48.187 TEST tests/training/sentiment/test_hub_fetch.py::test_stop_3_the_licence_conflicts_with_the_provisional_record_and_nothing_further_is_requested
+00:26:48.188 TEST tests/training/sentiment/test_hub_fetch.py::test_stop_4_an_unapproved_host_appears_in_a_redirect
+00:26:48.189 TEST tests/training/sentiment/test_hub_fetch.py::test_stop_5_a_request_would_access_a_file
+00:26:48.191 TEST tests/training/sentiment/test_hub_fetch.py::test_stop_6_the_api_requires_authentication[401]
+00:26:48.192 TEST tests/training/sentiment/test_hub_fetch.py::test_stop_6_the_api_requires_authentication[403]
+00:26:48.194 TEST tests/training/sentiment/test_hub_fetch.py::test_stop_7_the_request_count_would_exceed_the_limit
+00:26:48.196 TEST tests/training/sentiment/test_hub_fetch.py::test_a_stopped_record_has_no_later_fields_and_says_nothing_was_downloaded
+00:26:48.197 TEST tests/training/sentiment/test_hub_fetch.py::test_a_redirect_to_a_named_host_and_an_allowed_url_is_followed_and_recorded_and_a_loop_stops
+00:26:48.200 TEST tests/training/sentiment/test_hub_fetch.py::test_malformed_or_oversized_answers_stop_the_query_with_a_fixed_code[not json-malformed_response]
+00:26:48.201 TEST tests/training/sentiment/test_hub_fetch.py::test_malformed_or_oversized_answers_stop_the_query_with_a_fixed_code[[1, 2]-malformed_response]
+00:26:48.203 TEST tests/training/sentiment/test_hub_fetch.py::test_malformed_or_oversized_answers_stop_the_query_with_a_fixed_code[{"id": "acme/finance-sentiment", "modelId": "acme/finance-sentiment", "sha": "main", "cardData": {"license": "cc-by-nc-sa-4.0"}, "tags": ["license:cc-by-nc-sa-4.0", "text-classification"], "gated": false, "library_name": "transformers", "pipeline_tag": "text-classification", "config": {"architectures": ["BertForSequenceClassification"]}, "siblings": [{"rfilename": "model.safetensors", "size": 3000, "lfs": {"sha256": "978ffb132af069f09bfe8a5271b26cc9ebf9432f9ec54c0731cf1df48e5619f6"}}, {"rfilename": "vocab.txt", "size": 20}, {"rfilename": "tokenizer_config.json"}, {"rfilename": "config.json"}, {"rfilename": "pytorch_model.bin"}, {"rfilename": "training_args.bin"}, {"rfilename": "README.md"}]}-malformed_response]
+00:26:48.205 TEST tests/training/sentiment/test_hub_fetch.py::test_malformed_or_oversized_answers_stop_the_query_with_a_fixed_code[{"id": "acme/finance-sentiment", "modelId": "acme/finance-sentiment", "sha": null, "cardData": {"license": "cc-by-nc-sa-4.0"}, "tags": ["license:cc-by-nc-sa-4.0", "text-classification"], "gated": false, "library_name": "transformers", "pipeline_tag": "text-classification", "config": {"architectures": ["BertForSequenceClassification"]}, "siblings": [{"rfilename": "model.safetensors", "size": 3000, "lfs": {"sha256": "978ffb132af069f09bfe8a5271b26cc9ebf9432f9ec54c0731cf1df48e5619f6"}}, {"rfilename": "vocab.txt", "size": 20}, {"rfilename": "tokenizer_config.json"}, {"rfilename": "config.json"}, {"rfilename": "pytorch_model.bin"}, {"rfilename": "training_args.bin"}, {"rfilename": "README.md"}]}-malformed_response]
+00:26:48.206 TEST tests/training/sentiment/test_hub_fetch.py::test_malformed_or_oversized_answers_stop_the_query_with_a_fixed_code[{"id": "acme/finance-sentiment", "modelId": "acme/finance-sentiment", "sha": "0123456789abcdef0123456789abcdef01234567", "cardData": {"license": "cc-by-nc-sa-4.0"}, "tags": ["license:cc-by-nc-sa-4.0", "text-classification"], "gated": false, "library_name": "transformers", "pipeline_tag": "text-classification", "config": {"architectures": ["BertForSequenceClassification"]}, "siblings": "no"}-malformed_response]
+00:26:48.208 TEST tests/training/sentiment/test_hub_fetch.py::test_malformed_or_oversized_answers_stop_the_query_with_a_fixed_code[{"id": "acme/finance-sentiment", "modelId": "acme/finance-sentiment", "sha": "0123456789abcdef0123456789abcdef01234567", "cardData": {"license": "cc-by-nc-sa-4.0"}, "tags": ["license:cc-by-nc-sa-4.0", "text-classification"], "gated": false, "library_name": "transformers", "pipeline_tag": "text-classification", "config": {"architectures": ["BertForSequenceClassification"]}, "siblings": [{"rfilename": "../etc/passwd"}]}-malformed_response]
+00:26:48.209 TEST tests/training/sentiment/test_hub_fetch.py::test_malformed_or_oversized_answers_stop_the_query_with_a_fixed_code[{"id": "acme/finance-sentiment", "modelId": "acme/finance-sentiment", "sha": "0123456789abcdef0123456789abcdef01234567", "cardData": {"license": "cc-by-nc-sa-4.0"}, "tags": ["license:cc-by-nc-sa-4.0", "text-classification"], "gated": false, "library_name": "transformers", "pipeline_tag": "text-classification", "config": {"architectures": ["BertForSequenceClassification"]}, "siblings": [{"rfilename": "a b.txt"}]}-malformed_response]
+00:26:48.211 TEST tests/training/sentiment/test_hub_fetch.py::test_malformed_or_oversized_answers_stop_the_query_with_a_fixed_code[oversized]
+00:26:48.229 TEST tests/training/sentiment/test_hub_fetch.py::test_a_non_200_status_is_an_unexpected_status
+00:26:48.231 TEST tests/training/sentiment/test_hub_fetch.py::test_an_invalid_identifier_is_refused_before_any_request[]
+00:26:48.232 TEST tests/training/sentiment/test_hub_fetch.py::test_an_invalid_identifier_is_refused_before_any_request[model]
+00:26:48.234 TEST tests/training/sentiment/test_hub_fetch.py::test_an_invalid_identifier_is_refused_before_any_request[a/b/c]
+00:26:48.236 TEST tests/training/sentiment/test_hub_fetch.py::test_an_invalid_identifier_is_refused_before_any_request[../x/y]
+00:26:48.237 TEST tests/training/sentiment/test_hub_fetch.py::test_an_invalid_identifier_is_refused_before_any_request[a/..]
+00:26:48.239 TEST tests/training/sentiment/test_hub_fetch.py::test_an_invalid_identifier_is_refused_before_any_request[a b/c]
+00:26:48.240 TEST tests/training/sentiment/test_hub_fetch.py::test_an_invalid_identifier_is_refused_before_any_request[https://hub.test/a/b]
+00:26:48.241 TEST tests/training/sentiment/test_hub_fetch.py::test_an_invalid_identifier_is_refused_before_any_request[a/b?x=1]
+00:26:48.243 TEST tests/training/sentiment/test_hub_fetch.py::test_an_invalid_identifier_is_refused_before_any_request[a/b#f]
+00:26:48.245 TEST tests/training/sentiment/test_hub_fetch.py::test_an_invalid_identifier_is_refused_before_any_request[-a/b]
+00:26:48.246 TEST tests/training/sentiment/test_hub_fetch.py::test_an_invalid_identifier_is_refused_before_any_request[a\\b]
+00:26:48.248 TEST tests/training/sentiment/test_hub_fetch.py::test_an_invalid_identifier_is_refused_before_any_request[a/b/]
+00:26:48.250 TEST tests/training/sentiment/test_hub_fetch.py::test_an_invalid_identifier_is_refused_before_any_request[\xe9/\xe9]
+00:26:48.252 TEST tests/training/sentiment/test_hub_fetch.py::test_a_floating_or_malformed_revision_is_refused_before_any_request[main]
+00:26:48.253 TEST tests/training/sentiment/test_hub_fetch.py::test_a_floating_or_malformed_revision_is_refused_before_any_request[v1.0]
+00:26:48.254 TEST tests/training/sentiment/test_hub_fetch.py::test_a_floating_or_malformed_revision_is_refused_before_any_request[0123456]
+00:26:48.256 TEST tests/training/sentiment/test_hub_fetch.py::test_a_floating_or_malformed_revision_is_refused_before_any_request[0123456789ABCDEF0123456789ABCDEF01234567]
+00:26:48.257 TEST tests/training/sentiment/test_hub_fetch.py::test_a_floating_or_malformed_revision_is_refused_before_any_request[0123456789abcdef0123456789abcdef0123456]
+00:26:48.259 TEST tests/training/sentiment/test_hub_fetch.py::test_a_floating_or_malformed_revision_is_refused_before_any_request[0123456789abcdef0123456789abcdef012345670]
+00:26:48.261 TEST tests/training/sentiment/test_hub_fetch.py::test_a_floating_or_malformed_revision_is_refused_before_any_request[]
+00:26:48.263 TEST tests/training/sentiment/test_hub_fetch.py::test_a_floating_or_malformed_revision_is_refused_before_any_request[refs/pr/1]
+00:26:48.265 TEST tests/training/sentiment/test_hub_fetch.py::test_the_policy_has_no_defaults_and_validates_every_field
+00:26:48.267 TEST tests/training/sentiment/test_hub_fetch.py::test_plain_http_and_credentials_in_a_url_are_refused
+00:26:48.269 TEST tests/training/sentiment/test_hub_fetch.py::test_a_complete_fetch_writes_exactly_the_named_files_verifies_every_hash_and_returns_the_provenance
+00:26:48.279 TEST tests/training/sentiment/test_hub_fetch.py::test_a_hash_mismatch_aborts_deletes_everything_it_created_and_touches_nothing_else
+00:26:48.287 TEST tests/training/sentiment/test_hub_fetch.py::test_every_failure_rolls_back_the_destination[size-size_mismatch]
+00:26:48.296 TEST tests/training/sentiment/test_hub_fetch.py::test_every_failure_rolls_back_the_destination[big-response_too_large]
+00:26:48.304 TEST tests/training/sentiment/test_hub_fetch.py::test_every_failure_rolls_back_the_destination[status-unexpected_status]
+00:26:48.310 TEST tests/training/sentiment/test_hub_fetch.py::test_every_failure_rolls_back_the_destination[auth-authentication_required]
+00:26:48.319 TEST tests/training/sentiment/test_hub_fetch.py::test_every_failure_rolls_back_the_destination[host-unapproved_host]
+00:26:48.325 TEST tests/training/sentiment/test_hub_fetch.py::test_every_failure_rolls_back_the_destination[loop-redirect_limit]
+00:26:48.333 TEST tests/training/sentiment/test_hub_fetch.py::test_the_request_budget_covers_redirects_and_a_breach_rolls_back
+00:26:48.345 TEST tests/training/sentiment/test_hub_fetch.py::test_pickle_capable_and_unknown_formats_are_refused_before_any_request[pytorch_model.bin]
+00:26:48.352 TEST tests/training/sentiment/test_hub_fetch.py::test_pickle_capable_and_unknown_formats_are_refused_before_any_request[model.pt]
+00:26:48.357 TEST tests/training/sentiment/test_hub_fetch.py::test_pickle_capable_and_unknown_formats_are_refused_before_any_request[model.pth]
+00:26:48.364 TEST tests/training/sentiment/test_hub_fetch.py::test_pickle_capable_and_unknown_formats_are_refused_before_any_request[model.pt2]
+00:26:48.369 TEST tests/training/sentiment/test_hub_fetch.py::test_pickle_capable_and_unknown_formats_are_refused_before_any_request[weights.pkl]
+00:26:48.374 TEST tests/training/sentiment/test_hub_fetch.py::test_pickle_capable_and_unknown_formats_are_refused_before_any_request[x.pickle]
+00:26:48.381 TEST tests/training/sentiment/test_hub_fetch.py::test_pickle_capable_and_unknown_formats_are_refused_before_any_request[tf_model.h5]
+00:26:48.386 TEST tests/training/sentiment/test_hub_fetch.py::test_pickle_capable_and_unknown_formats_are_refused_before_any_request[flax_model.msgpack]
+00:26:48.390 TEST tests/training/sentiment/test_hub_fetch.py::test_pickle_capable_and_unknown_formats_are_refused_before_any_request[training_args.bin]
+00:26:48.393 TEST tests/training/sentiment/test_hub_fetch.py::test_pickle_capable_and_unknown_formats_are_refused_before_any_request[model.ckpt]
+00:26:48.398 TEST tests/training/sentiment/test_hub_fetch.py::test_pickle_capable_and_unknown_formats_are_refused_before_any_request[model.onnx]
+00:26:48.402 TEST tests/training/sentiment/test_hub_fetch.py::test_pickle_capable_and_unknown_formats_are_refused_before_any_request[code.py]
+00:26:48.405 TEST tests/training/sentiment/test_hub_fetch.py::test_pickle_capable_and_unknown_formats_are_refused_before_any_request[archive.zip]
+00:26:48.408 TEST tests/training/sentiment/test_hub_fetch.py::test_pickle_capable_and_unknown_formats_are_refused_before_any_request[weights.npz]
+00:26:48.412 TEST tests/training/sentiment/test_hub_fetch.py::test_pickle_capable_and_unknown_formats_are_refused_before_any_request[MODEL.BIN]
+00:26:48.417 TEST tests/training/sentiment/test_hub_fetch.py::test_invalid_file_names_are_refused_before_any_request[../x.txt-invalid_file]
+00:26:48.421 TEST tests/training/sentiment/test_hub_fetch.py::test_invalid_file_names_are_refused_before_any_request[a/b.txt-invalid_file]
+00:26:48.425 TEST tests/training/sentiment/test_hub_fetch.py::test_invalid_file_names_are_refused_before_any_request[a\\b.txt-invalid_file]
+00:26:48.431 TEST tests/training/sentiment/test_hub_fetch.py::test_invalid_file_names_are_refused_before_any_request[-invalid_file]
+00:26:48.435 TEST tests/training/sentiment/test_hub_fetch.py::test_invalid_file_names_are_refused_before_any_request[.hidden.txt-invalid_file]
+00:26:48.440 TEST tests/training/sentiment/test_hub_fetch.py::test_invalid_file_names_are_refused_before_any_request[noextension-forbidden_file_format]
+00:26:48.443 TEST tests/training/sentiment/test_hub_fetch.py::test_invalid_file_names_are_refused_before_any_request[weights.safetensors.exe-forbidden_file_format]
+00:26:48.449 TEST tests/training/sentiment/test_hub_fetch.py::test_invalid_file_names_are_refused_before_any_request[name with space.txt-invalid_file]
+00:26:48.453 TEST tests/training/sentiment/test_hub_fetch.py::test_a_missing_or_malformed_expected_hash_and_duplicate_names_are_refused_before_any_request
+00:26:48.456 TEST tests/training/sentiment/test_hub_fetch.py::test_the_fetch_step_refuses_a_floating_revision[main]
+00:26:48.460 TEST tests/training/sentiment/test_hub_fetch.py::test_the_fetch_step_refuses_a_floating_revision[v1]
+00:26:48.465 TEST tests/training/sentiment/test_hub_fetch.py::test_the_fetch_step_refuses_a_floating_revision[0123456789ABCDEF0123456789ABCDEF01234567]
+00:26:48.469 TEST tests/training/sentiment/test_hub_fetch.py::test_the_fetch_step_refuses_a_floating_revision[0123456789]
+00:26:48.472 TEST tests/training/sentiment/test_hub_fetch.py::test_the_fetch_step_refuses_a_floating_revision[]
+00:26:48.476 TEST tests/training/sentiment/test_hub_fetch.py::test_the_destination_must_be_new_absolute_outside_the_repository_and_under_an_existing_parent
+00:26:48.484 TEST tests/training/sentiment/test_hub_fetch.py::test_the_listing_check_reports_an_unexpected_and_a_missing_file
+00:26:48.488 TEST tests/training/sentiment/test_hub_fetch.py::test_the_fetch_writes_nowhere_else_and_never_touches_a_cache_directory
+00:26:48.496 TEST tests/training/sentiment/test_hub_fetch.py::test_an_error_carries_only_its_fixed_code_never_a_url_or_content
+00:26:48.503 TEST tests/training/sentiment/test_hub_fetch.py::test_the_real_transport_returns_redirects_and_errors_as_responses_and_sends_nothing_but_a_fixed_user_agent
+00:26:48.520 poll LOADED   napinsp.dll base=0x7ff9c6400000 size=0x18000
+00:26:48.521 poll LOADED   DNSAPI.dll base=0x7ff9eb690000 size=0x158000
+00:26:48.522 poll LOADED   DSPARSE.dll base=0x7ff9ebf90000 size=0xd000
+00:26:48.522 poll LOADED   NSI.dll base=0x7ff9eec30000 size=0xa000
+00:26:48.523 poll LOADED   winrnr.dll base=0x7ff9c63a0000 size=0x13000
+00:26:48.523 poll LOADED   nlansp_c.dll base=0x7ff9c5b60000 size=0x27000
+00:26:48.524 poll LOADED   wshbth.dll base=0x7ff9c5b40000 size=0x16000
+00:26:49.534 TEST tests/training/sentiment/test_hub_fetch.py::test_the_real_transport_reports_a_refused_connection_as_a_fixed_code
+00:26:51.545 TEST tests/training/sentiment/test_hub_fetch.py::test_the_whole_metadata_query_and_the_whole_fetch_run_against_a_loopback_hub_with_the_real_transport
+00:26:52.635 TEST tests/training/sentiment/test_hub_fetch.py::test_a_loopback_redirect_to_an_unlisted_server_is_refused_before_it_is_contacted
+00:26:54.153 TEST tests/training/sentiment/test_hub_fetch.py::test_the_module_is_standard_library_only_unlogged_hostless_and_unconnected_to_the_application
+00:26:54.172 TEST tests/training/sentiment/test_hub_fetch.py::test_every_failure_code_is_a_fixed_lowercase_token_and_the_module_raises_only_known_codes
+00:26:54.174 TEST tests/training/sentiment/test_hub_fetch.py::test_the_request_gate_itself_refuses_a_metadata_url_of_another_kind_even_if_a_caller_passes_one
+00:26:54.176 TEST tests/training/sentiment/test_hub_fetch.py::test_a_stray_file_that_appears_in_the_destination_during_the_download_fails_the_fetch_and_rolls_back
+00:26:54.183 TEST tests/training/sentiment/test_hub_fetch.py::test_a_listing_with_the_dot_file_every_repository_has_is_accepted_and_traversal_names_are_still_refused
+00:26:54.185 TEST tests/training/sentiment/test_local_model_dir.py::test_a_directory_with_exactly_the_five_approved_files_verifies_against_its_own_manifest
+00:26:54.207 TEST tests/training/sentiment/test_local_model_dir.py::test_any_other_file_is_refused_and_pickle_capable_formats_get_their_own_code[pytorch_model.bin-forbidden_file_format]
+00:26:54.220 TEST tests/training/sentiment/test_local_model_dir.py::test_any_other_file_is_refused_and_pickle_capable_formats_get_their_own_code[tf_model.h5-forbidden_file_format]
+00:26:54.231 TEST tests/training/sentiment/test_local_model_dir.py::test_any_other_file_is_refused_and_pickle_capable_formats_get_their_own_code[flax_model.msgpack-forbidden_file_format]
+00:26:54.244 TEST tests/training/sentiment/test_local_model_dir.py::test_any_other_file_is_refused_and_pickle_capable_formats_get_their_own_code[training_args.bin-forbidden_file_format]
+00:26:54.256 TEST tests/training/sentiment/test_local_model_dir.py::test_any_other_file_is_refused_and_pickle_capable_formats_get_their_own_code[remote_code.py-forbidden_file_format]
+00:26:54.268 TEST tests/training/sentiment/test_local_model_dir.py::test_any_other_file_is_refused_and_pickle_capable_formats_get_their_own_code[MODEL.BIN-forbidden_file_format]
+00:26:54.281 TEST tests/training/sentiment/test_local_model_dir.py::test_any_other_file_is_refused_and_pickle_capable_formats_get_their_own_code[README.md-unexpected_file]
+00:26:54.292 TEST tests/training/sentiment/test_local_model_dir.py::test_any_other_file_is_refused_and_pickle_capable_formats_get_their_own_code[.gitattributes-unexpected_file]
+00:26:54.305 TEST tests/training/sentiment/test_local_model_dir.py::test_any_other_file_is_refused_and_pickle_capable_formats_get_their_own_code[notes.txt-unexpected_file]
+00:26:54.318 TEST tests/training/sentiment/test_local_model_dir.py::test_a_sub_directory_a_missing_file_and_a_non_directory_are_refused
+00:26:54.335 TEST tests/training/sentiment/test_local_model_dir.py::test_a_changed_byte_is_a_hash_mismatch_and_a_changed_length_a_size_mismatch
+00:26:54.361 TEST tests/training/sentiment/test_local_model_dir.py::test_a_tampered_or_malformed_manifest_is_refused_before_the_directory_is_trusted
+00:26:54.372 TEST tests/training/sentiment/test_local_model_dir.py::test_a_floating_or_malformed_revision_is_refused_everywhere[main]
+00:26:54.384 TEST tests/training/sentiment/test_local_model_dir.py::test_a_floating_or_malformed_revision_is_refused_everywhere[v1.0]
+00:26:54.396 TEST tests/training/sentiment/test_local_model_dir.py::test_a_floating_or_malformed_revision_is_refused_everywhere[0123456]
+00:26:54.408 TEST tests/training/sentiment/test_local_model_dir.py::test_a_floating_or_malformed_revision_is_refused_everywhere[0123456789ABCDEF0123456789ABCDEF01234567]
+00:26:54.420 TEST tests/training/sentiment/test_local_model_dir.py::test_a_floating_or_malformed_revision_is_refused_everywhere[0123456789abcdef0123456789abcdef0123456]
+00:26:54.431 TEST tests/training/sentiment/test_local_model_dir.py::test_a_floating_or_malformed_revision_is_refused_everywhere[0123456789abcdef0123456789abcdef012345678]
+00:26:54.443 TEST tests/training/sentiment/test_local_model_dir.py::test_a_floating_or_malformed_revision_is_refused_everywhere[]
+00:26:54.454 TEST tests/training/sentiment/test_local_model_dir.py::test_a_floating_or_malformed_revision_is_refused_everywhere[None]
+00:26:54.466 TEST tests/training/sentiment/test_local_model_dir.py::test_the_caller_can_pin_the_identifier_and_the_revision_it_approved
+00:26:54.477 TEST tests/training/sentiment/test_local_model_dir.py::test_a_link_is_refused
+00:26:54.490 TEST tests/training/sentiment/test_local_model_dir.py::test_errors_carry_a_fixed_code_and_never_a_path_a_hash_or_content
+00:26:54.505 TEST tests/training/sentiment/test_local_model_dir.py::test_the_label_order_comes_from_the_verified_config_and_nothing_is_assumed
+00:26:54.519 TEST tests/training/sentiment/test_local_model_dir.py::test_an_unusable_label_map_is_refused[config0]
+00:26:54.537 TEST tests/training/sentiment/test_local_model_dir.py::test_an_unusable_label_map_is_refused[config1]
+00:26:54.552 TEST tests/training/sentiment/test_local_model_dir.py::test_an_unusable_label_map_is_refused[config2]
+00:26:54.567 TEST tests/training/sentiment/test_local_model_dir.py::test_an_unusable_label_map_is_refused[config3]
+00:26:54.581 TEST tests/training/sentiment/test_local_model_dir.py::test_an_unusable_label_map_is_refused[config4]
+00:26:54.594 TEST tests/training/sentiment/test_local_model_dir.py::test_an_unusable_label_map_is_refused[config5]
+00:26:54.607 TEST tests/training/sentiment/test_local_model_dir.py::test_an_unusable_label_map_is_refused[config6]
+00:26:54.620 TEST tests/training/sentiment/test_local_model_dir.py::test_a_reordered_or_capitalised_label_map_is_read_as_given
+00:26:54.634 TEST tests/training/sentiment/test_local_model_dir.py::test_softmax_is_stable_normalised_monotone_and_refuses_non_finite_values
+00:26:54.635 TEST tests/training/sentiment/test_local_model_dir.py::test_loading_passes_only_the_local_directory_with_the_safe_parameters_and_uses_the_cpu
+00:26:54.653 TEST tests/training/sentiment/test_local_model_dir.py::test_the_directory_is_verified_again_immediately_before_the_load_and_nothing_is_loaded_if_it_changed
+00:26:54.670 TEST tests/training/sentiment/test_local_model_dir.py::test_a_library_failure_during_loading_is_a_fixed_code_without_the_library_message
+00:26:54.688 TEST tests/training/sentiment/test_local_model_dir.py::test_the_payload_is_the_e2_format_and_the_evaluation_script_accepts_it
+00:26:54.706 TEST tests/training/sentiment/test_local_model_dir.py::test_the_label_is_always_the_most_probable_class_and_a_tie_is_broken_by_the_fixed_label_order
+00:26:54.736 TEST tests/training/sentiment/test_local_model_dir.py::test_batches_cover_every_item_exactly_once_in_order
+00:26:54.755 TEST tests/training/sentiment/test_local_model_dir.py::test_invalid_input_texts_are_refused_without_echo[texts0]
+00:26:54.775 TEST tests/training/sentiment/test_local_model_dir.py::test_invalid_input_texts_are_refused_without_echo[texts1]
+00:26:54.792 TEST tests/training/sentiment/test_local_model_dir.py::test_invalid_input_texts_are_refused_without_echo[texts2]
+00:26:54.812 TEST tests/training/sentiment/test_local_model_dir.py::test_invalid_input_texts_are_refused_without_echo[texts3]
+00:26:54.833 TEST tests/training/sentiment/test_local_model_dir.py::test_invalid_input_texts_are_refused_without_echo[a string]
+00:26:54.851 TEST tests/training/sentiment/test_local_model_dir.py::test_invalid_input_texts_are_refused_without_echo[None]
+00:26:54.871 TEST tests/training/sentiment/test_local_model_dir.py::test_invalid_input_texts_are_refused_without_echo[texts6]
+00:26:54.889 TEST tests/training/sentiment/test_local_model_dir.py::test_invalid_payload_requests_are_refused[items0-4]
+00:26:54.906 TEST tests/training/sentiment/test_local_model_dir.py::test_invalid_payload_requests_are_refused[None-4]
+00:26:54.925 TEST tests/training/sentiment/test_local_model_dir.py::test_invalid_payload_requests_are_refused[items2-0]
+00:26:54.942 TEST tests/training/sentiment/test_local_model_dir.py::test_invalid_payload_requests_are_refused[items3-True]
+00:26:54.959 TEST tests/training/sentiment/test_local_model_dir.py::test_invalid_payload_requests_are_refused[items4-4]
+00:26:54.976 TEST tests/training/sentiment/test_local_model_dir.py::test_a_model_that_returns_the_wrong_shape_or_non_finite_logits_is_a_fixed_code_without_the_text
+00:26:55.030 TEST tests/training/sentiment/test_local_model_dir.py::test_the_module_is_standard_library_only_at_import_time_and_cannot_reach_a_network_a_hub_pickle_or_the_environment
+00:26:55.037 TEST tests/training/sentiment/test_local_model_dir.py::test_only_the_trainer_and_the_evaluation_script_import_the_module_never_the_backend_a_route_a_setting_or_a_script
+00:26:55.127 TEST tests/training/sentiment/test_local_model_dir.py::test_a_link_is_refused_even_where_this_account_cannot_create_one
+00:26:55.138 TEST tests/training/sentiment/test_no_fixture_is_real_evidence.py::test_every_fixture_is_visibly_invented
+00:26:55.172 TEST tests/training/sentiment/test_no_fixture_is_real_evidence.py::test_a_report_on_a_fixture_names_the_invented_dataset_so_it_cannot_pass_as_real
+00:26:55.488 TEST tests/training/sentiment/test_no_fixture_is_real_evidence.py::test_the_repository_holds_no_real_frozen_manifest_register_or_records_file
+00:26:55.584 TEST tests/training/sentiment/test_no_fixture_is_real_evidence.py::test_agreement_alone_never_produces_validated
+00:26:56.419 TEST tests/training/sentiment/test_no_fixture_is_real_evidence.py::test_a_good_calibration_alone_never_produces_validated_on_synthetic_data
+00:26:56.784 TEST tests/training/sentiment/test_no_fixture_is_real_evidence.py::test_the_register_fixture_is_synthetic_by_default
+00:26:56.787 TEST tests/training/sentiment/test_participant_register.py::test_a_valid_synthetic_register_is_accepted_and_summarised_by_codes_only
+00:26:56.790 TEST tests/training/sentiment/test_participant_register.py::test_a_valid_consented_register_with_consent_metadata_is_accepted
+00:26:56.792 TEST tests/training/sentiment/test_participant_register.py::test_a_non_production_evaluator_service_is_accepted
+00:26:56.794 TEST tests/training/sentiment/test_participant_register.py::test_the_schema_constants_follow_the_owner_decisions
+00:26:56.796 TEST tests/training/sentiment/test_participant_register.py::test_a_register_that_is_not_an_object_is_refused[None]
+00:26:56.797 TEST tests/training/sentiment/test_participant_register.py::test_a_register_that_is_not_an_object_is_refused[bad1]
+00:26:56.799 TEST tests/training/sentiment/test_participant_register.py::test_a_register_that_is_not_an_object_is_refused[register]
+00:26:56.801 TEST tests/training/sentiment/test_participant_register.py::test_a_register_that_is_not_an_object_is_refused[5]
+00:26:56.802 TEST tests/training/sentiment/test_participant_register.py::test_an_unknown_schema_version_is_refused[0]
+00:26:56.804 TEST tests/training/sentiment/test_participant_register.py::test_an_unknown_schema_version_is_refused[2]
+00:26:56.807 TEST tests/training/sentiment/test_participant_register.py::test_an_unknown_schema_version_is_refused[1]
+00:26:56.809 TEST tests/training/sentiment/test_participant_register.py::test_an_unknown_schema_version_is_refused[None]
+00:26:56.811 TEST tests/training/sentiment/test_participant_register.py::test_an_unknown_schema_version_is_refused[True]
+00:26:56.813 TEST tests/training/sentiment/test_participant_register.py::test_a_missing_register_field_is_refused_and_counted
+00:26:56.815 TEST tests/training/sentiment/test_participant_register.py::test_an_unknown_register_field_is_refused_without_naming_it
+00:26:56.816 TEST tests/training/sentiment/test_participant_register.py::test_participants_must_be_a_non_empty_list_of_complete_objects
+00:26:56.819 TEST tests/training/sentiment/test_participant_register.py::test_duplicate_codes_are_refused_even_across_case
+00:26:56.823 TEST tests/training/sentiment/test_participant_register.py::test_an_invalid_role_is_refused[reviewer]
+00:26:56.826 TEST tests/training/sentiment/test_participant_register.py::test_an_invalid_role_is_refused[Annotator]
+00:26:56.828 TEST tests/training/sentiment/test_participant_register.py::test_an_invalid_role_is_refused[]
+00:26:56.834 TEST tests/training/sentiment/test_participant_register.py::test_an_invalid_role_is_refused[None]
+00:26:56.837 TEST tests/training/sentiment/test_participant_register.py::test_an_invalid_role_is_refused[7]
+00:26:56.839 TEST tests/training/sentiment/test_participant_register.py::test_an_invalid_role_is_refused[admin]
+00:26:56.841 TEST tests/training/sentiment/test_participant_register.py::test_the_role_counts_are_exactly_the_owner_approved_ones
+00:26:56.844 TEST tests/training/sentiment/test_participant_register.py::test_a_malformed_code_is_refused[]
+00:26:56.847 TEST tests/training/sentiment/test_participant_register.py::test_a_malformed_code_is_refused[has space]
+00:26:56.849 TEST tests/training/sentiment/test_participant_register.py::test_a_malformed_code_is_refused[xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx]
+00:26:56.851 TEST tests/training/sentiment/test_participant_register.py::test_a_malformed_code_is_refused[ann/a]
+00:26:56.853 TEST tests/training/sentiment/test_participant_register.py::test_a_malformed_code_is_refused[5]
+00:26:56.856 TEST tests/training/sentiment/test_participant_register.py::test_a_malformed_code_is_refused[None]
+00:26:56.858 TEST tests/training/sentiment/test_participant_register.py::test_a_code_that_looks_like_a_production_user_identifier_is_refused[123456]
+00:26:56.861 TEST tests/training/sentiment/test_participant_register.py::test_a_code_that_looks_like_a_production_user_identifier_is_refused[customer-17]
+00:26:56.863 TEST tests/training/sentiment/test_participant_register.py::test_a_code_that_looks_like_a_production_user_identifier_is_refused[user_42]
+00:26:56.865 TEST tests/training/sentiment/test_participant_register.py::test_a_code_that_looks_like_a_production_user_identifier_is_refused[profile9]
+00:26:56.867 TEST tests/training/sentiment/test_participant_register.py::test_a_code_that_looks_like_a_production_user_identifier_is_refused[acct-1]
+00:26:56.869 TEST tests/training/sentiment/test_participant_register.py::test_a_code_that_looks_like_a_production_user_identifier_is_refused[uid]
+00:26:56.873 TEST tests/training/sentiment/test_participant_register.py::test_missing_or_non_boolean_independence_is_refused[False]
+00:26:56.875 TEST tests/training/sentiment/test_participant_register.py::test_missing_or_non_boolean_independence_is_refused[None]
+00:26:56.878 TEST tests/training/sentiment/test_participant_register.py::test_missing_or_non_boolean_independence_is_refused[yes]
+00:26:56.881 TEST tests/training/sentiment/test_participant_register.py::test_missing_or_non_boolean_independence_is_refused[1]
+00:26:56.883 TEST tests/training/sentiment/test_participant_register.py::test_missing_or_non_boolean_independence_is_refused[true]
+00:26:56.887 TEST tests/training/sentiment/test_participant_register.py::test_every_role_needs_an_independence_attestation
+00:26:56.892 TEST tests/training/sentiment/test_participant_register.py::test_an_invalid_attestation_date_is_refused[]
+00:26:56.895 TEST tests/training/sentiment/test_participant_register.py::test_an_invalid_attestation_date_is_refused[2026-13-01]
+00:26:56.898 TEST tests/training/sentiment/test_participant_register.py::test_an_invalid_attestation_date_is_refused[01/02/2026]
+00:26:56.900 TEST tests/training/sentiment/test_participant_register.py::test_an_invalid_attestation_date_is_refused[None]
+00:26:56.902 TEST tests/training/sentiment/test_participant_register.py::test_an_invalid_attestation_date_is_refused[2026-1-1]
+00:26:56.907 TEST tests/training/sentiment/test_participant_register.py::test_an_invalid_attestation_date_is_refused[20260101]
+00:26:56.909 TEST tests/training/sentiment/test_participant_register.py::test_a_future_attestation_date_is_refused
+00:26:56.912 TEST tests/training/sentiment/test_participant_register.py::test_the_verifier_code_must_name_a_verifier
+00:26:56.914 TEST tests/training/sentiment/test_participant_register.py::test_at_least_one_verifier_is_required
+00:26:56.917 TEST tests/training/sentiment/test_participant_register.py::test_a_verifier_without_a_valid_authorization_is_refused
+00:26:56.921 TEST tests/training/sentiment/test_participant_register.py::test_consented_data_without_consent_metadata_is_refused
+00:26:56.924 TEST tests/training/sentiment/test_participant_register.py::test_synthetic_data_needs_no_consent_but_must_not_claim_it_and_must_be_marked_synthetic
+00:26:56.928 TEST tests/training/sentiment/test_participant_register.py::test_a_production_service_cannot_receive_dataset_access_in_any_role
+00:26:56.932 TEST tests/training/sentiment/test_participant_register.py::test_evaluator_access_cannot_be_granted_to_a_production_service
+00:26:56.934 TEST tests/training/sentiment/test_participant_register.py::test_only_the_evaluator_may_be_a_non_production_service
+00:26:56.937 TEST tests/training/sentiment/test_participant_register.py::test_an_annotator_cannot_receive_anything_beyond_the_text_its_id_and_its_own_labels[model_output]
+00:26:56.940 TEST tests/training/sentiment/test_participant_register.py::test_an_annotator_cannot_receive_anything_beyond_the_text_its_id_and_its_own_labels[rules_output]
+00:26:56.942 TEST tests/training/sentiment/test_participant_register.py::test_an_annotator_cannot_receive_anything_beyond_the_text_its_id_and_its_own_labels[risk_profile]
+00:26:56.945 TEST tests/training/sentiment/test_participant_register.py::test_an_annotator_cannot_receive_anything_beyond_the_text_its_id_and_its_own_labels[recommendations]
+00:26:56.947 TEST tests/training/sentiment/test_participant_register.py::test_an_annotator_cannot_receive_anything_beyond_the_text_its_id_and_its_own_labels[adjudicated_labels]
+00:26:56.948 TEST tests/training/sentiment/test_participant_register.py::test_an_annotator_cannot_receive_anything_beyond_the_text_its_id_and_its_own_labels[other_annotator_labels]
+00:26:56.951 TEST tests/training/sentiment/test_participant_register.py::test_an_annotator_cannot_receive_anything_beyond_the_text_its_id_and_its_own_labels[metrics]
+00:26:56.952 TEST tests/training/sentiment/test_participant_register.py::test_nobody_is_ever_given_a_risk_profile_or_a_recommendation[risk_profile]
+00:26:56.956 TEST tests/training/sentiment/test_participant_register.py::test_nobody_is_ever_given_a_risk_profile_or_a_recommendation[recommendations]
+00:26:56.958 TEST tests/training/sentiment/test_participant_register.py::test_an_unknown_kind_of_material_or_a_malformed_view_list_is_refused
+00:26:56.960 TEST tests/training/sentiment/test_participant_register.py::test_the_evaluator_may_see_model_and_rules_output_but_the_verifier_may_not
+00:26:56.962 TEST tests/training/sentiment/test_participant_register.py::test_access_that_is_not_granted_or_has_the_wrong_scope_is_refused
+00:26:56.964 TEST tests/training/sentiment/test_participant_register.py::test_an_expired_authorization_is_refused_and_the_day_of_expiry_is_still_valid
+00:26:56.966 TEST tests/training/sentiment/test_participant_register.py::test_an_authorization_that_has_not_started_or_has_an_inverted_window_is_refused
+00:26:56.970 TEST tests/training/sentiment/test_participant_register.py::test_missing_or_malformed_authorization_dates_are_refused[-starts_on]
+00:26:56.972 TEST tests/training/sentiment/test_participant_register.py::test_missing_or_malformed_authorization_dates_are_refused[-expires_on]
+00:26:56.974 TEST tests/training/sentiment/test_participant_register.py::test_missing_or_malformed_authorization_dates_are_refused[tomorrow-starts_on]
+00:26:56.976 TEST tests/training/sentiment/test_participant_register.py::test_missing_or_malformed_authorization_dates_are_refused[tomorrow-expires_on]
+00:26:56.977 TEST tests/training/sentiment/test_participant_register.py::test_missing_or_malformed_authorization_dates_are_refused[2026-02-30-starts_on]
+00:26:56.979 TEST tests/training/sentiment/test_participant_register.py::test_missing_or_malformed_authorization_dates_are_refused[2026-02-30-expires_on]
+00:26:56.980 TEST tests/training/sentiment/test_participant_register.py::test_missing_or_malformed_authorization_dates_are_refused[None-starts_on]
+00:26:56.982 TEST tests/training/sentiment/test_participant_register.py::test_missing_or_malformed_authorization_dates_are_refused[None-expires_on]
+00:26:56.985 TEST tests/training/sentiment/test_participant_register.py::test_missing_or_malformed_authorization_dates_are_refused[2026/01/01-starts_on]
+00:26:56.986 TEST tests/training/sentiment/test_participant_register.py::test_missing_or_malformed_authorization_dates_are_refused[2026/01/01-expires_on]
+00:26:56.988 TEST tests/training/sentiment/test_participant_register.py::test_the_deletion_retention_rollback_and_completion_policy_are_the_owner_decisions
+00:26:56.997 TEST tests/training/sentiment/test_participant_register.py::test_a_deletion_authorization_is_required_and_must_be_complete
+00:26:57.007 TEST tests/training/sentiment/test_participant_register.py::test_a_personal_data_marker_in_any_string_is_refused_and_never_echoed[alice.smith@example.com]
+00:26:57.011 TEST tests/training/sentiment/test_participant_register.py::test_a_personal_data_marker_in_any_string_is_refused_and_never_echoed[https://example.org/alice]
+00:26:57.014 TEST tests/training/sentiment/test_participant_register.py::test_a_personal_data_marker_in_any_string_is_refused_and_never_echoed[+44 7700 900123]
+00:26:57.017 TEST tests/training/sentiment/test_participant_register.py::test_a_personal_data_marker_in_any_string_is_refused_and_never_echoed[4111 1111 1111 1111]
+00:26:57.021 TEST tests/training/sentiment/test_participant_register.py::test_a_credential_in_any_string_is_refused_and_never_echoed[password=hunter2]
+00:26:57.024 TEST tests/training/sentiment/test_participant_register.py::test_a_credential_in_any_string_is_refused_and_never_echoed[api_key sk-12345]
+00:26:57.026 TEST tests/training/sentiment/test_participant_register.py::test_a_credential_in_any_string_is_refused_and_never_echoed[bearer abc]
+00:26:57.027 TEST tests/training/sentiment/test_participant_register.py::test_an_unexpected_field_holding_contact_details_is_refused_without_echoing_its_name_or_value
+00:26:57.029 TEST tests/training/sentiment/test_participant_register.py::test_dates_and_hashes_are_not_mistaken_for_personal_data
+00:26:57.032 TEST tests/training/sentiment/test_participant_register.py::test_every_message_is_built_from_fixed_text_counts_and_positions
+00:26:57.034 TEST tests/training/sentiment/test_participant_register.py::test_register_problems_never_raises_on_hostile_input
+00:26:57.038 TEST tests/training/sentiment/test_participant_register.py::test_as_of_must_be_a_date
+00:26:57.039 TEST tests/training/sentiment/test_participant_register.py::test_the_verifier_hash_is_deterministic_and_changes_with_the_verifier_entry_only
+00:26:57.041 TEST tests/training/sentiment/test_participant_register.py::test_the_module_is_offline_clockless_and_imports_nothing_that_reads_a_model_or_the_network
+00:26:57.050 TEST tests/training/sentiment/test_sentiment_dataset.py::test_the_shipped_template_is_not_an_approved_dataset
+00:26:57.051 TEST tests/training/sentiment/test_sentiment_dataset.py::test_an_unapproved_dataset_is_refused_for_training
+00:26:57.053 TEST tests/training/sentiment/test_sentiment_dataset.py::test_an_approved_dataset_must_name_who_approved_it_and_a_fixture_is_only_for_tests
+00:26:57.055 TEST tests/training/sentiment/test_sentiment_dataset.py::test_every_documentation_field_is_required[license]
+00:26:57.056 TEST tests/training/sentiment/test_sentiment_dataset.py::test_every_documentation_field_is_required[source]
+00:26:57.058 TEST tests/training/sentiment/test_sentiment_dataset.py::test_every_documentation_field_is_required[url]
+00:26:57.059 TEST tests/training/sentiment/test_sentiment_dataset.py::test_every_documentation_field_is_required[language]
+00:26:57.061 TEST tests/training/sentiment/test_sentiment_dataset.py::test_every_documentation_field_is_required[preprocessing]
+00:26:57.063 TEST tests/training/sentiment/test_sentiment_dataset.py::test_every_documentation_field_is_required[duplicate_policy]
+00:26:57.065 TEST tests/training/sentiment/test_sentiment_dataset.py::test_every_documentation_field_is_required[domain_note]
+00:26:57.067 TEST tests/training/sentiment/test_sentiment_dataset.py::test_every_documentation_field_is_required[label_definitions]
+00:26:57.070 TEST tests/training/sentiment/test_sentiment_dataset.py::test_every_documentation_field_is_required[label_map]
+00:26:57.073 TEST tests/training/sentiment/test_sentiment_dataset.py::test_every_documentation_field_is_required[split_policy]
+00:26:57.075 TEST tests/training/sentiment/test_sentiment_dataset.py::test_every_documentation_field_is_required[limitations]
+00:26:57.078 TEST tests/training/sentiment/test_sentiment_dataset.py::test_invalid_documentation_is_refused[change0]
+00:26:57.081 TEST tests/training/sentiment/test_sentiment_dataset.py::test_invalid_documentation_is_refused[change1]
+00:26:57.083 TEST tests/training/sentiment/test_sentiment_dataset.py::test_invalid_documentation_is_refused[change2]
+00:26:57.086 TEST tests/training/sentiment/test_sentiment_dataset.py::test_invalid_documentation_is_refused[change3]
+00:26:57.089 TEST tests/training/sentiment/test_sentiment_dataset.py::test_invalid_documentation_is_refused[change4]
+00:26:57.091 TEST tests/training/sentiment/test_sentiment_dataset.py::test_invalid_documentation_is_refused[change5]
+00:26:57.094 TEST tests/training/sentiment/test_sentiment_dataset.py::test_intensity_labels_must_say_how_they_were_obtained
+00:26:57.096 TEST tests/training/sentiment/test_sentiment_dataset.py::test_an_unreadable_manifest_is_a_manifest_error_without_its_content
+00:26:57.103 TEST tests/training/sentiment/test_sentiment_dataset.py::test_labels_are_mapped_through_the_manifest_and_invalid_lines_are_counted_never_echoed
+00:26:57.112 TEST tests/training/sentiment/test_sentiment_dataset.py::test_text_is_normalised_exactly_like_user_text
+00:26:57.119 TEST tests/training/sentiment/test_sentiment_dataset.py::test_exact_duplicates_are_kept_once_and_conflicting_labels_are_removed
+00:26:57.129 TEST tests/training/sentiment/test_sentiment_dataset.py::test_intensity_is_accepted_only_when_the_manifest_has_it_and_only_within_range
+00:26:57.153 TEST tests/training/sentiment/test_sentiment_dataset.py::test_the_split_is_reproducible_and_independent_of_input_order
+00:26:57.201 TEST tests/training/sentiment/test_sentiment_dataset.py::test_the_split_has_every_class_in_every_part_keeps_groups_whole_and_is_leak_free
+00:26:57.224 TEST tests/training/sentiment/test_sentiment_dataset.py::test_a_leak_between_splits_is_detected
+00:26:57.227 TEST tests/training/sentiment/test_sentiment_dataset.py::test_invalid_fractions_are_refused
+00:26:57.245 TEST tests/training/sentiment/test_sentiment_dataset.py::test_the_label_counts_cover_exactly_the_three_classes
+00:26:57.253 TEST tests/training/sentiment/test_sentiment_metrics.py::test_the_confusion_matrix_has_true_classes_as_rows
+00:26:57.256 TEST tests/training/sentiment/test_sentiment_metrics.py::test_the_classification_report_matches_a_hand_computation
+00:26:57.258 TEST tests/training/sentiment/test_sentiment_metrics.py::test_a_class_that_never_occurs_does_not_divide_by_zero
+00:26:57.259 TEST tests/training/sentiment/test_sentiment_metrics.py::test_softmax_rows_sum_to_one_and_temperature_flattens
+00:26:57.262 TEST tests/training/sentiment/test_sentiment_metrics.py::test_ece_is_zero_for_a_perfectly_calibrated_set_and_large_for_an_overconfident_one
+00:26:57.263 TEST tests/training/sentiment/test_sentiment_metrics.py::test_temperature_scaling_fixes_an_overconfident_model_and_leaves_a_calibrated_one_alone
+00:26:57.328 TEST tests/training/sentiment/test_sentiment_metrics.py::test_temperature_needs_examples
+00:26:57.330 TEST tests/training/sentiment/test_sentiment_metrics.py::test_the_abstention_threshold_is_derived_from_the_owners_targets_never_invented
+00:26:57.332 TEST tests/training/sentiment/test_sentiment_metrics.py::test_regression_metrics_match_a_hand_computation_and_r2_is_null_when_the_target_is_constant
+00:26:57.335 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_the_owner_approved_policy_holds_exactly_the_decided_values_and_none_is_an_explicit_choice
+00:26:57.337 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_approved_true_is_refused_for_any_other_value_and_every_field_is_required
+00:26:57.339 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_maximum_abstention_must_be_the_derived_one_and_the_primary_statistic_must_be_cohens_kappa
+00:26:57.340 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_everything_complete_and_every_gate_met_is_the_only_way_to_the_word_validated
+00:26:57.384 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_any_missing_evidence_condition_gives_not_validation_evidence[dataset_approved]
+00:26:57.397 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_any_missing_evidence_condition_gives_not_validation_evidence[rubric_frozen]
+00:26:57.409 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_any_missing_evidence_condition_gives_not_validation_evidence[manifest_hashes_verified]
+00:26:57.421 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_any_missing_evidence_condition_gives_not_validation_evidence[independence_attested]
+00:26:57.431 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_any_missing_evidence_condition_gives_not_validation_evidence[duplicates_excluded]
+00:26:57.443 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_any_missing_evidence_condition_gives_not_validation_evidence[splits_separate]
+00:26:57.452 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_fixture_and_synthetic_data_give_not_validation_evidence[development_fixture]
+00:26:57.464 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_fixture_and_synthetic_data_give_not_validation_evidence[synthetic]
+00:26:57.476 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_a_hand_built_plan_or_policy_is_not_an_approval_and_stops_at_descriptive_only
+00:26:57.510 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_a_held_out_set_below_the_minimum_is_insufficient_support_even_when_every_class_is_large_enough
+00:26:57.531 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_a_primary_class_below_the_minimum_is_insufficient_support
+00:26:57.551 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_no_examples_is_insufficient_support_with_every_target_not_evaluable_and_no_value_invented
+00:26:57.553 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_errors_that_push_macro_f1_and_precision_below_their_targets_are_not_met_and_the_word_is_descriptive_only
+00:26:57.564 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_high_precision_reached_by_abstaining_is_not_enough_because_coverage_and_abstention_are_gated
+00:26:57.579 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_the_coverage_and_abstention_boundaries_are_inclusive
+00:26:57.605 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_the_strict_view_decides_the_macro_f1_gate_and_is_never_above_the_selective_view_which_is_only_reported
+00:26:57.648 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_a_per_class_recall_floor_is_evaluated_only_when_a_floor_exists
+00:26:57.671 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_calibration_is_report_only_descriptive_below_the_sample_and_not_evaluable_without_a_report
+00:26:57.702 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_the_calibration_sample_boundary_is_inclusive_at_exactly_the_minimum
+00:26:57.715 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_an_ece_ceiling_is_evaluated_only_when_one_exists
+00:26:57.735 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_the_strict_and_accepted_only_calibration_views_stay_distinct
+00:26:57.742 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_agreement_uses_cohens_kappa_as_primary_reports_secondary_statistics_and_defers_multi_label
+00:26:57.760 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_agreement_with_an_undefined_kappa_is_not_evaluable_and_a_floor_is_applied_only_when_one_exists
+00:26:57.769 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_an_agreement_report_that_does_not_use_the_approved_statistic_is_refused
+00:26:57.778 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_a_report_on_another_label_set_cannot_be_assessed_and_is_reported_as_secondary
+00:26:57.786 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_the_wording_is_always_one_of_the_four_approved_words_and_the_informational_gates_say_what_is_not_approved
+00:26:57.829 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_the_assessment_is_deterministic_and_its_gates_keep_a_fixed_order
+00:26:57.848 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_only_the_approved_choice_of_each_newly_decided_option_is_accepted_even_for_a_hand_built_policy[macro_f1_deciding_view-selective]
+00:26:57.852 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_only_the_approved_choice_of_each_newly_decided_option_is_accepted_even_for_a_hand_built_policy[lower_bound_rule-LOWER_BOUND_MUST_CLEAR_TARGET]
+00:26:57.855 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_only_the_approved_choice_of_each_newly_decided_option_is_accepted_even_for_a_hand_built_policy[lower_bound_rule-LOWER_BOUND_DESCRIPTIVE_ONLY]
+00:26:57.859 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_only_the_approved_choice_of_each_newly_decided_option_is_accepted_even_for_a_hand_built_policy[multi_label_agreement-JACCARD_PER_ITEM]
+00:26:57.862 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_only_the_approved_choice_of_each_newly_decided_option_is_accepted_even_for_a_hand_built_policy[multi_label_agreement-MICRO_MACRO_F1]
+00:26:57.865 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_only_the_approved_choice_of_each_newly_decided_option_is_accepted_even_for_a_hand_built_policy[kappa_interval-STRATIFY_BY_ADJUDICATED_CLASS]
+00:26:57.868 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_only_the_approved_choice_of_each_newly_decided_option_is_accepted_even_for_a_hand_built_policy[kappa_interval-STRATIFY_BY_ANNOTATOR_AGREEMENT]
+00:26:57.870 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_the_new_fields_are_required
+00:26:57.873 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_no_report_recommends_activation_and_a_validated_word_still_recommends_nothing
+00:26:57.927 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_a_point_estimate_that_passes_does_not_make_a_report_validated_when_any_other_condition_fails
+00:26:57.960 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_the_agreement_report_states_the_multi_label_and_kappa_interval_decisions
+00:26:57.965 TEST tests/training/sentiment/test_sentiment_policy_gates.py::test_an_informational_gate_never_appears_among_the_unmet_or_missing_conditions_even_when_it_is_not_evaluable
+00:26:57.977 TEST tests/training/sentiment/test_sentiment_statistics.py::test_a_perfect_candidate_has_accuracy_and_macro_f1_of_one_and_degenerate_bootstrap_intervals
+00:26:57.981 TEST tests/training/sentiment/test_sentiment_statistics.py::test_the_worked_example_matches_a_hand_computation
+00:26:57.985 TEST tests/training/sentiment/test_sentiment_statistics.py::test_intervals_surround_their_point_estimates_and_stay_inside_the_unit_interval
+00:26:57.990 TEST tests/training/sentiment/test_sentiment_statistics.py::test_abstention_is_a_miss_in_the_strict_view_and_invisible_in_the_selective_view_and_coverage_is_reported_beside_it
+00:26:57.994 TEST tests/training/sentiment/test_sentiment_statistics.py::test_a_candidate_that_abstains_on_everything_has_no_accepted_precision_and_no_selective_macro_f1_rather_than_a_default
+00:26:57.997 TEST tests/training/sentiment/test_sentiment_statistics.py::test_empty_input_is_no_data_and_contains_no_number
+00:26:58.000 TEST tests/training/sentiment/test_sentiment_statistics.py::test_a_one_class_sample_reports_accuracy_but_no_macro_f1
+00:26:58.004 TEST tests/training/sentiment/test_sentiment_statistics.py::test_a_class_never_true_and_never_predicted_has_no_f1_but_one_predicted_without_support_has_f1_zero
+00:26:58.013 TEST tests/training/sentiment/test_sentiment_statistics.py::test_the_minimum_support_boundary_is_inclusive_and_an_undersized_sample_has_no_intervals
+00:26:58.020 TEST tests/training/sentiment/test_sentiment_statistics.py::test_group_support_is_reported_explicitly_and_a_required_but_absent_group_is_listed_as_no_data
+00:26:58.028 TEST tests/training/sentiment/test_sentiment_statistics.py::test_a_bare_string_group_value_is_refused_instead_of_being_split_into_characters
+00:26:58.030 TEST tests/training/sentiment/test_sentiment_statistics.py::test_the_report_is_identical_across_runs_and_independent_of_input_order
+00:26:58.051 TEST tests/training/sentiment/test_sentiment_statistics.py::test_the_seed_changes_only_the_bootstrap_intervals_never_the_point_estimates
+00:26:58.061 TEST tests/training/sentiment/test_sentiment_statistics.py::test_duplicate_item_ids_and_unknown_labels_are_errors_not_silent_classes
+00:26:58.065 TEST tests/training/sentiment/test_sentiment_statistics.py::test_the_wilson_interval_matches_known_values_and_its_boundaries_are_exact
+00:26:58.068 TEST tests/training/sentiment/test_sentiment_statistics.py::test_the_plan_validates_every_choice_and_approved_is_refused_for_any_value_but_the_owners
+00:26:58.076 TEST tests/training/sentiment/test_sentiment_statistics.py::test_an_undersized_class_is_flagged_only_when_a_class_threshold_is_set
+00:26:58.089 TEST tests/training/sentiment/test_sentiment_statistics.py::test_cohen_kappa_matches_the_textbook_hand_computation
+00:26:58.092 TEST tests/training/sentiment/test_sentiment_statistics.py::test_kappa_is_undefined_not_defaulted_when_chance_agreement_is_one_and_unlabelled_items_are_excluded
+00:26:58.095 TEST tests/training/sentiment/test_sentiment_statistics.py::test_krippendorff_alpha_matches_the_hand_computation_and_handles_missing_ratings
+00:26:58.097 TEST tests/training/sentiment/test_sentiment_statistics.py::test_specific_agreement_is_per_label_and_none_for_an_unused_label
+00:26:58.099 TEST tests/training/sentiment/test_sentiment_statistics.py::test_the_agreement_report_orders_pairs_by_name_withholds_intervals_when_small_and_refuses_unequal_ratings
+00:26:58.107 TEST tests/training/sentiment/test_sentiment_statistics.py::test_calibration_bins_and_ece_match_a_hand_computation
+00:26:58.110 TEST tests/training/sentiment/test_sentiment_statistics.py::test_calibration_over_accepted_predictions_only_and_a_well_supported_bin_gets_a_wilson_interval
+00:26:58.114 TEST tests/training/sentiment/test_sentiment_statistics.py::test_a_perfectly_confident_and_correct_model_has_zero_ece_and_nothing_is_ever_called_validated
+00:26:58.116 TEST tests/training/sentiment/test_sentiment_statistics.py::test_calibration_with_no_probabilities_or_no_accepted_prediction_reports_that_instead_of_a_number
+00:26:58.119 TEST tests/training/sentiment/test_sentiment_statistics.py::test_malformed_probabilities_are_errors_not_repaired
+00:26:58.122 TEST tests/training/sentiment/test_sentiment_statistics.py::test_the_comparison_reports_discordance_and_a_paired_difference_with_an_interval_and_no_winner
+00:26:58.130 TEST tests/training/sentiment/test_sentiment_statistics.py::test_the_comparison_reverses_its_sign_with_the_candidates_and_is_deterministic
+00:26:58.143 TEST tests/training/sentiment/test_sentiment_statistics.py::test_a_small_comparison_is_descriptive_only_with_no_difference_interval
+00:26:58.147 TEST tests/training/sentiment/test_sentiment_statistics.py::test_only_a_fully_prepared_approved_non_fixture_non_synthetic_dataset_is_even_eligible_for_review[evidence0-not_validation_evidence]
+00:26:58.151 TEST tests/training/sentiment/test_sentiment_statistics.py::test_only_a_fully_prepared_approved_non_fixture_non_synthetic_dataset_is_even_eligible_for_review[evidence1-not_validation_evidence]
+00:26:58.157 TEST tests/training/sentiment/test_sentiment_statistics.py::test_only_a_fully_prepared_approved_non_fixture_non_synthetic_dataset_is_even_eligible_for_review[evidence2-not_validation_evidence]
+00:26:58.162 TEST tests/training/sentiment/test_sentiment_statistics.py::test_only_a_fully_prepared_approved_non_fixture_non_synthetic_dataset_is_even_eligible_for_review[evidence3-not_validation_evidence]
+00:26:58.166 TEST tests/training/sentiment/test_sentiment_statistics.py::test_only_a_fully_prepared_approved_non_fixture_non_synthetic_dataset_is_even_eligible_for_review[evidence4-not_validation_evidence]
+00:26:58.170 TEST tests/training/sentiment/test_sentiment_statistics.py::test_only_a_fully_prepared_approved_non_fixture_non_synthetic_dataset_is_even_eligible_for_review[evidence5-eligible_for_owner_review]
+00:26:58.175 TEST tests/training/sentiment/test_sentiment_statistics.py::test_no_report_enables_ranks_or_selects_a_model_and_stand_in_data_is_never_called_validated
+00:26:58.182 TEST tests/training/sentiment/test_sentiment_statistics.py::test_every_unavailable_number_is_none_with_a_reason_and_never_nan_or_zero
+00:26:58.187 TEST tests/training/sentiment/test_sentiment_statistics.py::test_the_module_adds_no_dependency_and_does_not_touch_the_network_or_files
+00:26:58.244 TEST tests/training/sentiment/test_sentiment_statistics.py::test_the_older_classification_report_is_unchanged_and_still_returns_zero_for_an_undefined_precision
+00:26:58.246 TEST tests/training/sentiment/test_sentiment_training_pipeline.py::test_a_development_fixture_run_writes_an_unvalidated_artifact_with_the_reasons
+00:26:58.310 TEST tests/training/sentiment/test_sentiment_training_pipeline.py::test_the_application_refuses_that_artifact_as_primary_even_though_it_verifies
+00:26:58.375 TEST tests/training/sentiment/test_sentiment_training_pipeline.py::test_the_metrics_file_has_the_per_class_matrix_and_calibration_numbers
+00:26:58.423 TEST tests/training/sentiment/test_sentiment_training_pipeline.py::test_the_same_inputs_give_the_same_metrics_and_splits
+00:26:58.514 TEST tests/training/sentiment/test_sentiment_training_pipeline.py::test_a_complete_evidence_set_validates_and_the_loader_then_accepts_the_model
+00:26:58.649 TEST tests/training/sentiment/test_sentiment_training_pipeline.py::test_the_owners_targets_decide_whether_a_threshold_exists
+00:26:58.765 TEST tests/training/sentiment/test_sentiment_training_pipeline.py::test_validation_is_refused_for_each_missing_piece_of_evidence
+00:26:58.768 TEST tests/training/sentiment/test_sentiment_training_pipeline.py::test_an_unapproved_dataset_never_trains
+00:26:58.780 TEST tests/training/sentiment/test_sentiment_training_pipeline.py::test_only_a_documented_candidate_can_be_the_base_model
+00:26:58.791 TEST tests/training/sentiment/test_sentiment_training_pipeline.py::test_the_command_line_refuses_without_the_packages_the_targets_or_with_regression
+00:26:58.804 TEST tests/training/sentiment/test_sentiment_training_pipeline.py::test_importing_the_training_modules_loads_no_deep_learning_package_and_the_backend_never_imports_training
+00:26:59.314 TEST tests/training/sentiment/test_sentiment_training_pipeline.py::test_the_rules_baseline_is_evaluated_on_exactly_the_held_out_test_split
+00:26:59.404 TEST tests/training/sentiment/test_sentiment_training_pipeline.py::test_the_evaluation_command_writes_a_report_that_makes_no_selection
+00:26:59.433 TEST tests/training/sentiment/test_sentiment_training_pipeline.py::test_a_model_trained_on_another_dataset_is_not_evaluated_on_this_one
+00:26:59.521 TEST tests/training/sentiment/test_temperature_calibration.py::test_the_temperature_is_fitted_on_the_calibration_records_and_is_deterministic
+00:26:59.536 TEST tests/training/sentiment/test_temperature_calibration.py::test_exactly_20_scored_examples_are_fitted_and_19_are_descriptive_only
+00:26:59.542 TEST tests/training/sentiment/test_temperature_calibration.py::test_records_without_probabilities_are_counted_but_never_fitted_or_invented
+00:26:59.545 TEST tests/training/sentiment/test_temperature_calibration.py::test_an_abstention_that_carries_probabilities_is_a_scored_calibration_example
+00:26:59.555 TEST tests/training/sentiment/test_temperature_calibration.py::test_a_well_calibrated_set_gets_a_temperature_near_one_and_an_underconfident_set_below_one
+00:26:59.575 TEST tests/training/sentiment/test_temperature_calibration.py::test_a_probability_of_zero_stays_zero_and_the_fit_stays_finite
+00:26:59.582 TEST tests/training/sentiment/test_temperature_calibration.py::test_the_calibration_split_alone_decides_the_temperature_and_the_heldout_records_do_not
+00:26:59.619 TEST tests/training/sentiment/test_temperature_calibration.py::test_the_fit_function_is_only_ever_handed_the_calibration_records
+00:26:59.633 TEST tests/training/sentiment/test_temperature_calibration.py::test_overlapping_calibration_and_heldout_ids_are_refused
+00:26:59.638 TEST tests/training/sentiment/test_temperature_calibration.py::test_the_temperature_is_applied_to_heldout_probabilities_only_and_never_changes_a_label
+00:26:59.665 TEST tests/training/sentiment/test_temperature_calibration.py::test_apply_temperature_keeps_the_argmax_the_sum_and_moves_confidence_the_right_way
+00:26:59.669 TEST tests/training/sentiment/test_temperature_calibration.py::test_an_invalid_temperature_is_refused[0.0]
+00:26:59.673 TEST tests/training/sentiment/test_temperature_calibration.py::test_an_invalid_temperature_is_refused[-1.0]
+00:26:59.677 TEST tests/training/sentiment/test_temperature_calibration.py::test_an_invalid_temperature_is_refused[nan]
+00:26:59.680 TEST tests/training/sentiment/test_temperature_calibration.py::test_an_invalid_temperature_is_refused[inf]
+00:26:59.684 TEST tests/training/sentiment/test_temperature_calibration.py::test_an_invalid_temperature_is_refused[1]
+00:26:59.688 TEST tests/training/sentiment/test_temperature_calibration.py::test_an_invalid_temperature_is_refused[1.0]
+00:26:59.691 TEST tests/training/sentiment/test_temperature_calibration.py::test_an_invalid_temperature_is_refused[None]
+00:26:59.693 TEST tests/training/sentiment/test_temperature_calibration.py::test_there_are_ten_equal_width_bins_with_the_documented_boundaries
+00:26:59.696 TEST tests/training/sentiment/test_temperature_calibration.py::test_a_confidence_exactly_on_a_boundary_belongs_to_the_bin_ending_there_and_one_belongs_to_the_last
+00:26:59.699 TEST tests/training/sentiment/test_temperature_calibration.py::test_empty_bins_are_reported_with_none_not_zero_and_the_counts_add_up
+00:26:59.705 TEST tests/training/sentiment/test_temperature_calibration.py::test_strict_and_accepted_only_views_are_both_reported_and_abstentions_leave_only_the_accepted_view
+00:26:59.710 TEST tests/training/sentiment/test_temperature_calibration.py::test_below_the_minimum_the_heldout_calibration_is_descriptive_only_and_exactly_the_minimum_is_supported
+00:26:59.714 TEST tests/training/sentiment/test_temperature_calibration.py::test_invalid_nan_infinite_or_malformed_probabilities_are_refused_by_the_fit_and_the_report[probabilities0]
+00:26:59.721 TEST tests/training/sentiment/test_temperature_calibration.py::test_invalid_nan_infinite_or_malformed_probabilities_are_refused_by_the_fit_and_the_report[probabilities1]
+00:26:59.728 TEST tests/training/sentiment/test_temperature_calibration.py::test_invalid_nan_infinite_or_malformed_probabilities_are_refused_by_the_fit_and_the_report[probabilities2]
+00:26:59.734 TEST tests/training/sentiment/test_temperature_calibration.py::test_invalid_nan_infinite_or_malformed_probabilities_are_refused_by_the_fit_and_the_report[probabilities3]
+00:26:59.742 TEST tests/training/sentiment/test_temperature_calibration.py::test_invalid_nan_infinite_or_malformed_probabilities_are_refused_by_the_fit_and_the_report[probabilities4]
+00:26:59.747 TEST tests/training/sentiment/test_temperature_calibration.py::test_invalid_nan_infinite_or_malformed_probabilities_are_refused_by_the_fit_and_the_report[probabilities5]
+00:26:59.754 TEST tests/training/sentiment/test_temperature_calibration.py::test_invalid_nan_infinite_or_malformed_probabilities_are_refused_by_the_fit_and_the_report[probabilities6]
+00:26:59.760 TEST tests/training/sentiment/test_temperature_calibration.py::test_invalid_nan_infinite_or_malformed_probabilities_are_refused_by_the_fit_and_the_report[probabilities7]
+00:26:59.766 TEST tests/training/sentiment/test_temperature_calibration.py::test_probabilities_that_do_not_sum_to_one_are_refused_and_the_tolerance_is_the_existing_one
+00:26:59.769 TEST tests/training/sentiment/test_temperature_calibration.py::test_a_predicted_label_that_is_not_the_most_probable_class_is_refused
+00:26:59.775 TEST tests/training/sentiment/test_temperature_calibration.py::test_a_true_label_outside_the_evaluated_labels_is_refused_without_echoing_it
+00:26:59.777 TEST tests/training/sentiment/test_temperature_calibration.py::test_a_labels_only_candidate_is_reported_as_nothing_to_calibrate_and_nothing_changes
+00:26:59.779 TEST tests/training/sentiment/test_temperature_calibration.py::test_a_probability_bearing_candidate_with_too_few_calibration_examples_is_descriptive_only_and_nothing_is_applied
+00:26:59.785 TEST tests/training/sentiment/test_temperature_calibration.py::test_the_calibration_report_never_validates_or_recommends_anything
+00:26:59.796 TEST tests/training/sentiment/test_temperature_calibration.py::test_a_fitted_temperature_adds_a_reported_gate_and_synthetic_evidence_still_cannot_be_validated
+00:26:59.897 TEST tests/training/sentiment/test_temperature_calibration.py::test_without_a_usable_temperature_fit_the_candidate_is_descriptive_only_even_on_eligible_evidence
+00:27:00.197 TEST tests/training/sentiment/test_temperature_calibration.py::test_the_existing_evaluation_report_is_unchanged_when_no_fit_is_supplied
+00:27:00.239 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_full_lowercase_commit_hash_is_accepted[0123456789abcdef0123456789abcdef01234567]
+00:27:00.243 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_full_lowercase_commit_hash_is_accepted[aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa]
+00:27:00.245 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_full_lowercase_commit_hash_is_accepted[0000000000000000000000000000000000000000]
+00:27:00.247 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_full_lowercase_commit_hash_is_accepted[9f8e7d6c5b4a39281706f5e4d3c2b1a098765432]
+00:27:00.250 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_branch_tag_short_hash_or_missing_value_is_refused[main]
+00:27:00.253 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_branch_tag_short_hash_or_missing_value_is_refused[master]
+00:27:00.256 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_branch_tag_short_hash_or_missing_value_is_refused[v1.0]
+00:27:00.258 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_branch_tag_short_hash_or_missing_value_is_refused[refs/heads/main]
+00:27:00.261 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_branch_tag_short_hash_or_missing_value_is_refused[refs/pr/1]
+00:27:00.264 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_branch_tag_short_hash_or_missing_value_is_refused[]
+00:27:00.266 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_branch_tag_short_hash_or_missing_value_is_refused[ ]
+00:27:00.272 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_branch_tag_short_hash_or_missing_value_is_refused[None]
+00:27:00.275 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_branch_tag_short_hash_or_missing_value_is_refused[123]
+00:27:00.277 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_branch_tag_short_hash_or_missing_value_is_refused[0000000000000000000000000000000000000000]
+00:27:00.279 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_branch_tag_short_hash_or_missing_value_is_refused[bad10]
+00:27:00.281 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_branch_tag_short_hash_or_missing_value_is_refused[0123456]
+00:27:00.283 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_branch_tag_short_hash_or_missing_value_is_refused[0123456789abcdef0123456789abcdef0123456]
+00:27:00.287 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_branch_tag_short_hash_or_missing_value_is_refused[0123456789abcdef0123456789abcdef012345670]
+00:27:00.290 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_branch_tag_short_hash_or_missing_value_is_refused[0123456789ABCDEF0123456789ABCDEF01234567]
+00:27:00.292 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_branch_tag_short_hash_or_missing_value_is_refused[gggggggggggggggggggggggggggggggggggggggg]
+00:27:00.294 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_branch_tag_short_hash_or_missing_value_is_refused[0123456789abcdef0123456789abcdef01234567\n]
+00:27:00.296 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_branch_tag_short_hash_or_missing_value_is_refused[ 0123456789abcdef0123456789abcdef01234567]
+00:27:00.298 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_branch_tag_short_hash_or_missing_value_is_refused[0123456789abcdef0123456789abcdef01234567 ]
+00:27:00.301 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_branch_tag_short_hash_or_missing_value_is_refused[0x0123456789abcdef0123456789abcdef012345]
+00:27:00.304 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_revision_has_no_default_anywhere_and_no_hash_is_written_in_the_sources
+00:27:00.320 TEST tests/training/sentiment/test_transformer_training_seam.py::test_calling_the_trainer_without_a_revision_is_a_type_error
+00:27:00.323 TEST tests/training/sentiment/test_transformer_training_seam.py::test_an_invalid_revision_is_refused_before_any_package_is_imported[main]
+00:27:00.328 TEST tests/training/sentiment/test_transformer_training_seam.py::test_an_invalid_revision_is_refused_before_any_package_is_imported[]
+00:27:00.335 TEST tests/training/sentiment/test_transformer_training_seam.py::test_an_invalid_revision_is_refused_before_any_package_is_imported[None]
+00:27:00.341 TEST tests/training/sentiment/test_transformer_training_seam.py::test_an_invalid_revision_is_refused_before_any_package_is_imported[0123456]
+00:27:00.347 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_loading_keywords_pin_the_revision_refuse_remote_code_and_default_to_offline
+00:27:00.349 TEST tests/training/sentiment/test_transformer_training_seam.py::test_only_an_explicit_download_switch_turns_offline_loading_off_and_remote_code_stays_refused
+00:27:00.352 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_loading_keywords_validate_the_revision
+00:27:00.355 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_trainer_source_loads_with_the_shared_keywords_and_no_obsolete_serialization_argument
+00:27:00.362 TEST tests/training/sentiment/test_transformer_training_seam.py::test_no_other_call_in_the_training_package_loads_a_pretrained_model
+00:27:00.366 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_one_other_loader_loads_only_a_verified_local_directory_with_the_safe_parameters
+00:27:00.375 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_command_line_requires_a_revision_and_refuses_a_branch
+00:27:00.380 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_command_line_passes_the_revision_and_the_download_switch_to_the_trainer
+00:27:00.390 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_trainer_output_has_the_tokenizer_length_as_a_required_field
+00:27:00.392 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_artifact_records_the_tokenizer_length_apart_from_the_embedding_size_and_the_loader_accepts_the_padded_case
+00:27:00.462 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_writer_cannot_produce_an_artifact_the_loader_would_refuse
+00:27:00.723 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_trainer_output_requires_the_revisions_and_the_tokenizer_identifier
+00:27:00.725 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_artifact_carries_the_full_version_1_provenance_the_trainer_reported
+00:27:00.785 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_writer_refuses_missing_or_malformed_provenance_and_a_tokenizer_longer_than_the_matrix[base_model_revision-main]
+00:27:00.832 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_writer_refuses_missing_or_malformed_provenance_and_a_tokenizer_longer_than_the_matrix[base_model_revision-0123456]
+00:27:00.894 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_writer_refuses_missing_or_malformed_provenance_and_a_tokenizer_longer_than_the_matrix[base_model_revision-0123456789ABCDEF0123456789ABCDEF01234567]
+00:27:00.958 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_writer_refuses_missing_or_malformed_provenance_and_a_tokenizer_longer_than_the_matrix[base_model_revision-]
+00:27:01.025 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_writer_refuses_missing_or_malformed_provenance_and_a_tokenizer_longer_than_the_matrix[tokenizer_revision-v1.0]
+00:27:01.078 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_writer_refuses_missing_or_malformed_provenance_and_a_tokenizer_longer_than_the_matrix[tokenizer_revision-0123456789abcdef0123456789abcdef012345670]
+00:27:01.137 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_writer_refuses_missing_or_malformed_provenance_and_a_tokenizer_longer_than_the_matrix[tokenizer_revision-None]
+00:27:01.188 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_writer_refuses_missing_or_malformed_provenance_and_a_tokenizer_longer_than_the_matrix[tokenizer_identifier-]
+00:27:01.240 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_writer_refuses_missing_or_malformed_provenance_and_a_tokenizer_longer_than_the_matrix[tokenizer_identifier-None]
+00:27:01.290 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_writer_refuses_missing_or_malformed_provenance_and_a_tokenizer_longer_than_the_matrix[tokenizer_length-0]
+00:27:01.350 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_writer_refuses_missing_or_malformed_provenance_and_a_tokenizer_longer_than_the_matrix[tokenizer_length-None]
+00:27:01.416 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_writer_refuses_missing_or_malformed_provenance_and_a_tokenizer_longer_than_the_matrix[tokenizer_length-5001]
+00:27:01.482 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_writer_refuses_a_trainer_that_does_not_report_a_required_dependency_version[torch]
+00:27:01.544 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_writer_refuses_a_trainer_that_does_not_report_a_required_dependency_version[transformers]
+00:27:01.603 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_writer_refuses_a_trainer_that_does_not_report_a_required_dependency_version[tokenizers]
+00:27:01.655 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_writer_refuses_a_trainer_that_does_not_report_a_required_dependency_version[safetensors]
+00:27:01.714 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_trainer_reports_what_it_loaded_and_the_dependency_versions_of_all_four_packages
+00:27:01.719 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_trainer_has_no_second_copy_of_the_revision_rule
+00:27:01.723 TEST tests/training/sentiment/test_transformer_training_seam.py::test_no_migration_or_upgrade_code_exists_for_the_artifact_metadata
+00:27:01.770 TEST tests/training/sentiment/test_transformer_training_seam.py::test_artifacts_are_written_once_and_the_writer_has_no_in_place_edit_path
+00:27:01.773 TEST tests/training/sentiment/test_transformer_training_seam.py::test_a_verified_local_directory_replaces_the_hub_and_needs_no_revision_argument
+00:27:01.808 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_local_directory_is_refused_when_unverified_mismatched_or_combined_with_a_download
+00:27:01.873 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_trainer_function_refuses_a_local_directory_combined_with_a_download_or_another_revision
+00:27:01.904 TEST tests/training/sentiment/test_transformer_training_seam.py::test_the_local_branch_of_the_trainer_loads_offline_without_remote_code_and_never_passes_a_hub_identifier

@@ -23,6 +23,8 @@ dependencies = [
   "sqlalchemy==2.0.36",
   "alembic==1.14.0",
   "psycopg[binary]==3.2.3",
+  "cryptography==50.0.1",  # AES-256-GCM for sensitive-data protection (ADR-047). Already installed transitively
+  # (google-auth requires it); pinned here so a security control does not depend on a transitive dependency.
   "langgraph==0.2.53",
   "pyautogen==0.2.35",
   "google-genai==0.3.0",

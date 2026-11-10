@@ -44,6 +44,13 @@ class CustomerNotFoundError(ApiError):
     title = "Customer not found"
 
 
+class DemoModeDisabledError(ApiError):
+    """The fictional demonstration data is served only when `DEMO_MODE_ENABLED=true`; otherwise the route does not exist as far as a caller can tell (404, fail closed)."""
+
+    status_code = 404
+    title = "Demo mode is not enabled"
+
+
 class AnalysisNotFoundError(ApiError):
     status_code = 404
     title = "Analysis not found"
@@ -73,6 +80,23 @@ class HouseholdRecordNotFoundError(ApiError):
     title = "Household record not found"
 
 
+class MonthlyRecordNotFoundError(ApiError):
+    """No monthly financial record for this customer and month (Research
+    Enhancement Track B1). A month belonging to another customer is
+    unreachable by construction (every query is scoped by `customer_id`)."""
+
+    status_code = 404
+    title = "Monthly record not found"
+
+
+class UnprocessableRecordError(ApiError):
+    """A well-formed monthly record that violates a stated rule (for example it
+    contains no amount, or names an income basis without an income)."""
+
+    status_code = 422
+    title = "Record cannot be saved"
+
+
 class IdentityRequiredError(ApiError):
     """A household route was called without a usable `X-Customer-Id`
     (Phase 32). The prototype has no server session, so the client's
@@ -96,6 +120,22 @@ class ConflictError(ApiError):
     title = "Conflict"
 
 
+class ProtectedRecordNotFoundError(ApiError):
+    """A protected record that does not exist FOR THIS PROFILE (ADR-047). A record that belongs to another profile is
+    reported identically, so its existence is never revealed."""
+
+    status_code = 404
+    title = "Protected record not found"
+
+
+class ProtectedRecordIntegrityError(ApiError):
+    """A stored protected record failed authentication or could not be decrypted. Nothing about the record or the
+    cause is disclosed; the record is not returned."""
+
+    status_code = 500
+    title = "Protected record unreadable"
+
+
 class ServiceUnavailableError(ApiError):
     """A required backend component (a model artifact, the configured
     Gemini key) is missing or not ready -- section 20: 'missing
@@ -112,6 +152,22 @@ def problem_response(status_code: int, title: str, detail: str, *, type_: str = 
     return JSONResponse(status_code=status_code, media_type="application/problem+json", content=body)
 
 
+# Routes whose request body is text the user wrote (ADR-043). Pydantic's own error entries carry the offending `input` (and `ctx`), so for a wrongly typed body, e.g. {"text": ["my words"]}
+# or a bare JSON string, the default 422 detail would echo the user's text back. For these routes only the error type, location and message are reported; every other route keeps the
+# standard detail unchanged.
+USER_TEXT_ROUTE_SUFFIXES = ("/personalized-insights",)
+# Protected notes (ADR-047) have item routes (`.../protected-notes/{id}`), so they are matched by path segment.
+USER_TEXT_ROUTE_MARKERS = ("/protected-notes",)
+
+
+def _reportable_errors(request: Request, exc: RequestValidationError) -> list[dict]:
+    errors = exc.errors()
+    path = request.url.path
+    if path.endswith(USER_TEXT_ROUTE_SUFFIXES) or any(marker in path for marker in USER_TEXT_ROUTE_MARKERS):
+        return [{key: error[key] for key in ("type", "loc", "msg") if key in error} for error in errors]
+    return errors
+
+
 def register_exception_handlers(app: FastAPI) -> None:
     @app.exception_handler(ApiError)
     async def api_error_handler(request: Request, exc: ApiError) -> JSONResponse:
@@ -125,7 +181,7 @@ def register_exception_handlers(app: FastAPI) -> None:
     async def validation_exception_handler(request: Request, exc: RequestValidationError) -> JSONResponse:
         # `exc.errors()` is Pydantic's own structured validation error list
         # (field locations + messages) -- never a raw stack trace.
-        return problem_response(422, title="Validation error", detail=str(exc.errors()), instance=str(request.url.path))
+        return problem_response(422, title="Validation error", detail=str(_reportable_errors(request, exc)), instance=str(request.url.path))
 
     @app.exception_handler(Exception)
     async def unhandled_exception_handler(request: Request, exc: Exception) -> JSONResponse:

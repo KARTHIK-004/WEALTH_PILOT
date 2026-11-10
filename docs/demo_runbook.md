@@ -27,6 +27,34 @@ is exactly as binding as before (see "Why compliance cannot be bypassed"
 below) — the fail-closed REJECT path still exists and is still
 demonstrable (see step 12).
 
+## The full-pipeline demo (added 2026-10-23)
+
+Every page shows real results for one persona: **WealthPilot Demo — Full Pipeline** (`WPDEMO-E`).
+Sign in with **Use Full Pipeline Demo** (a third demo entry beside Individual and Family). It finds the
+persona by its exact name and never creates it; if it has not been seeded you get a message naming the
+command (`seed_demo_data.py setup`). What it shows, as computed by the application: a Balanced risk
+profile, three goals with feasibility results, twelve reported months of behaviour findings, an
+equal-weight recommendation that passed all compliance rules, and the plain-language explanation
+(the written Gemini explanation appears only where a Gemini key is configured). Data and the local
+set-up order are in `demo_data/README.md` sections 4 and 7.
+
+A page that says "not available yet" for another profile is the designed pending state, not a fault:
+the risk model reads a FAR-Trans history that only personas A, B, C and E are linked to.
+
+**Household, debts and spending for this account (ADR-051).** `seed_demo_data.py setup` also builds E's household ("WealthPilot Demo — Full Pipeline Household": E and its partner F):
+open **Customer Profile → Household** for the members, the financial summary (recurring income 155,000, spending 96,000, cash flow 59,000, net position 1,720,000, a sufficient
+emergency fund) and the Income / Expenses / Assets / Liabilities / Goals tabs, where the loans and EMIs live (car loan, education loan, a credit card at a stated 0). **Financial Health**
+shows the twelve months' spending findings under "Spending and expenses", and its "Debt & Commitments" card says an individual has no recorded loans (the household's liabilities are
+on the profile page). A spending *pattern* (the expense-persona model) is never available for a FAR-Trans customer, by design.
+
+**"0 reported months", no household, or "Spending pattern not available" on the Full Pipeline demo.** Check, in this order: (1) the header names "WealthPilot Demo — Full Pipeline" — "Sign In"
+and "Use Individual Demo" open persona A, which has no months and no household by design; (2) `python scripts/seed_demo_data.py verify` against the SAME database the backend uses prints, for
+persona E, "monthly records match the dataset (12 months)" and a passing household section — if not, run `setup` there (it only adds what is missing and never overwrites an edit);
+(3) a second customer with the exact same name makes the lowest id win in both the seed and the sign-in lookup — `verify` prints a NOTE when it finds one.
+
+**A local SQLite demo with two-member households.** `scripts/local_synthetic_backend.py` now gives SQLite the same partial unique index PostgreSQL has ("one PRIMARY member per household"); a
+`.db` file made by an older launcher is repaired when the launcher starts. Before that fix SQLite allowed only one member per household, so `setup-family` failed on a local database.
+
 ## Reaching each demo customer
 
 **Three things changed since this runbook was first written, each
@@ -66,11 +94,11 @@ rely on memory of an earlier version:**
   **"WealthPilot Demo Customer"** (the "Information Required" case) —
   both are legitimate, honestly-labeled demonstrations, never a
   fabricated substitute for one another.
-- **"WealthPilot Demo — Savings"** (29108, real `approved` + real
+- **"WealthPilot Demo — Savings"** (29111, real `approved` + real
   savings-first recommendation), **"WealthPilot Demo — Compliance"**
-  (29109, real `rejected` — the fail-closed demonstration), and —
+  (29112, real `rejected` — the fail-closed demonstration), and —
   whenever "Complete" is the one the login flow resolves to —
-  **"WealthPilot Demo Customer"** (29096, `pending_information`) remain
+  **"WealthPilot Demo Customer"** (29113, `pending_information`) remain
   fully preserved in the database (never deleted, never renamed) but are
   **not reachable through the authenticated UI**, since that UI
   deliberately shows only the one customer associated with the logged-in
@@ -110,8 +138,8 @@ The login page now offers two demo entries with the same credential (ADR-036):
 
 | Entry | Resolves to | Demonstrates |
 |---|---|---|
-| **Use Individual Demo** | "WealthPilot Demo — Complete" (29107) | one customer's own analysis — risk, financial health, goals, portfolio, recommendation, explanation, agent activity, scenarios |
-| **Use Family Demo** | "WealthPilot Demo — Savings" (29108), primary of "WealthPilot Demo Family" (household 8 in this environment) | household-level context — members, income, expenses, assets, liabilities, the financial summary and household goals |
+| **Use Individual Demo** | "WealthPilot Demo — Complete" (29110) | one customer's own analysis — risk, financial health, goals, portfolio, recommendation, explanation, agent activity, scenarios |
+| **Use Family Demo** | "WealthPilot Demo — Savings" (29111), primary of "WealthPilot Demo Family" (household 9 in this environment) | household-level context — members, income, expenses, assets, liabilities, the financial summary and household goals |
 
 Individual analysis is individual-level decision support; the household is
 household-level financial context. They are separate on purpose: household
@@ -173,12 +201,13 @@ after `setup`); see `reports/family_demo_report.md` and section 17 of
    even one whose own income/expense inputs are stored. The page also says
    that individual debts, cash flow and net position are not recorded or
    calculated; those exist only for a household (Family Demo).
-8. **Show Goals** (`/goals`): both goals show a real required monthly
+8. **Show Goals** (`/goals`): all three goals show a real required monthly
    contribution, contribution gap, Monte Carlo success probability, and
-   feasibility label — for this persona, Retirement is **Feasible**
-   (~94%, and its contribution gap is negative: the €1,000/month plan is
-   ahead of the ~€887 required) while House Purchase is **At Risk**
-   (~50%, and its gap is positive: ~€1,147 required vs €1,000 supplied) —
+   feasibility label — for this persona, Home Down Payment and Child Higher
+   Education are **Feasible** (~99% and ~100%, and their contribution gaps are
+   negative: the ₹30,000/month plan is ahead of the ~₹19,292 and ~₹12,648
+   required) while Retirement Corpus is **At Risk**
+   (~68%, and its gap is positive: ~₹30,565 required vs ₹30,000 supplied) —
    the probability and the deterministic gap agree in direction, which is
    a good thing to point out. Point out the numbers come from
    `core/goals.py`'s unmodified Phase 7 engine, fed by the financial inputs
@@ -315,8 +344,8 @@ after `setup`); see `reports/family_demo_report.md` and section 17 of
   API explorer, never a hidden in-app control.
 - Do not claim a goal result is "wrong" or "tuned": "At Risk" / "Not
   Feasible" at a given contribution/return/inflation assumption and
-  deadline is a real Monte Carlo result (e.g. the Savings persona's
-  Emergency Fund goal, due 2028, needs ~€795/month against €400 supplied),
+  deadline is a real Monte Carlo result (e.g. the Complete persona's
+  Retirement Corpus goal, due 2051, needs ~₹30,565/month against ₹30,000 supplied),
   and changing the assumptions on the Profile page changes it, live,
   because the math is real. Do not present the pre-Phase-29 all-0.0%
   results as legitimate — they were a frequency-mismatch bug (see
@@ -332,11 +361,11 @@ Audited against the live API for this environment; no demo record was changed.
 
 | Demo | Income | Expenses | Spending pattern | Behaviour | Emergency savings | Assets | Liabilities / net position |
 |---|---|---|---|---|---|---|---|
-| Complete (29107) | stored (annual) | stored (monthly essential) | unavailable — ADR-010 | computed (FAR-Trans) | computed — sufficient | liquid savings only | not recorded for individuals |
-| Savings (29108) | stored | stored | unavailable — ADR-010 | computed | computed — below target (savings first) | liquid savings only | not recorded for individuals |
-| Compliance (29109) | stored | not provided (by design) | unavailable — ADR-010 | computed | not checked (inputs absent) | not provided | not recorded; analysis stays **rejected** |
-| Pending (29096) | stored | not provided | not reached | not reached | not reached | not provided | analysis stays **pending information** |
-| Family (household 8) | 5 records (4 active) | 8 records, essential / non-essential split | household spending summary (not an ML result) | — | household summary — below target | 4 records, total + liquid | 2 records; cash flow and net position from the household summary |
+| Complete (29110) | stored (annual) | stored (monthly essential) | unavailable — ADR-010 | computed (FAR-Trans) | computed — sufficient | liquid savings only | not recorded for individuals |
+| Savings (29111) | stored | stored | unavailable — ADR-010 | computed | computed — below target (savings first) | liquid savings only | not recorded for individuals |
+| Compliance (29112) | stored | not provided (by design) | unavailable — ADR-010 | computed | not checked (inputs absent) | not provided (liquid savings) | not recorded; analysis stays **rejected** |
+| Pending (29113) | stored | stored (monthly essential) | not reached | not reached | not reached | liquid savings stored | analysis stays **pending information** |
+| Family (household 9) | 5 records (4 active) | 10 records, essential / non-essential split | household spending summary (not an ML result) | — | household summary — below target | 6 records, total + liquid | 2 records; cash flow and net position from the household summary |
 
 - **Spending pattern (expense persona)** stays unavailable for every demo
   persona. All individual personas with an analysis are FAR-Trans-linked, and
@@ -357,3 +386,31 @@ Audited against the live API for this environment; no demo record was changed.
   both were removed in the 2026-10-04 demo reset and the full demo population
   was reseeded under new ids (see above). `seed_demo_data.py verify-family`'s
   "individual-demo persona is in no household" check now passes.
+
+## Financial Behaviour & Sentiment demonstration mode (development only)
+
+`/financial-behaviour?demo=true` shows a walk-through with six clearly **fictional** months (March to August 2026), their calculated ratios and month-over-month changes, a chart and table, and a fictional sentence read by the rules baseline `user_text_rules_v1`.
+
+1. Backend `.env`: `DEMO_MODE_ENABLED=true` (the default is `false`; `.env.example` says so). Start the backend as usual (`PYTHONPATH=..` from `backend/`, see the README).
+2. Frontend: `npm run dev` (the query is honoured only by the Vite dev server, or a build made with `VITE_DEMO_MODE=true`; a production build ignores it).
+3. Sign in with the existing demo account (the page is still behind the prototype sign-in), then open `http://localhost:5173/financial-behaviour?demo=true`. The `?demo=true` survives the sign-in redirect.
+
+What is real and what is not: every figure beside the months is calculated by the existing behaviour-feature code and the sentence by the existing rules baseline; the months and the sentence are fixed fiction served by `POST /api/demo/financial-behaviour`, which takes no database session, writes nothing, logs no text, touches no ledger, and answers `404 Demo mode is not enabled` when the flag is off. A backend that is down shows "Service unavailable", never demo data. Without `?demo=true` the page is unchanged (no profile, no records, real records). `SENTIMENT_MODEL_ENABLED` stays false, the method stays `user_text_rules_v1`, confidence and intensity stay unavailable.
+
+### Family demonstration (`?demo=family`) and the real Financial Behaviour page (2026-11-02)
+
+`http://localhost:5173/financial-behaviour?demo=family` shows a **fictional family** ("Demo data — fictional family example"): a primary member, a partner and a dependent, each with their own months, trends, month-over-month changes, savings rate, investment behaviour, spending-pattern state and the "Not recorded for an individual" loan / EMI wording, plus the household's own totals (income, spending, assets, loans and EMIs) from the real household engine over invented household records. The optional note is the primary member's and is read by the rules baseline. It uses the same `DEMO_MODE_ENABLED=true` backend flag, the same dev-server-only front end rule and the same sign-in as `?demo=true`; both routes answer 404 when the flag is off and neither touches a database.
+
+**Real records (no `?demo`).** `/financial-behaviour` shows, for the signed-in profile: the overview (reported months, date range, income / spending / savings trends, savings rate, month-over-month changes, and why any value is missing), the profile's own months as a chart and table, investment behaviour (consistent, increasing, decreasing, unusual, or "Not enough investment history to compare."), the spending pattern ("Not available" unless the spending model returned one), the individual loan / EMI wording, and the optional note in simple English with the technical reading inside an optional "Detailed reading" disclosure. Months are added, corrected or deleted on **Customer Profile → Monthly records** (a month is stored once; amounts cannot be negative or have more than two decimals; a blank amount is "not provided", never zero). With no records the page shows "No monthly records yet" and a link there. Demo data is never used for a real profile or for an error.
+
+### If the page says "No monthly records yet" (diagnosed 2026-11-03)
+
+That sentence is the NORMAL page for a profile with no monthly records, so it appears whenever the demonstration was not reached. The demonstration itself works (verified in headless Chrome at `http://localhost:5173/financial-behaviour?demo=family`). The ways it was being lost, and what changed:
+
+1. **"Use Family Demo" on the sign-in page** always opened `/profile?household=open`, discarding the `?demo=family` you asked for; every sign-in button now returns to the address you were sent from.
+2. **The sidebar "Behaviour & Sentiment" link** is the plain path; inside a demonstration it now keeps the `demo` query.
+3. **A build or value that does not honour the parameter** (a production build, `?demo=Family`, `?demo=`) silently showed the normal page; it now says "Demonstration mode is not active" and why. No demo data is ever shown for a real profile.
+4. **A 404 from the demonstration route** is now explained as the flag or an older backend ("set `DEMO_MODE_ENABLED=true` and restart the backend": the setting is read once, at start-up), not "may not have been created yet".
+5. **The real empty page** now points developers (development builds only) at `?demo=family` and `?demo=true`.
+
+Checking it yourself: `frontend/tests/route-probe.mjs` drives headless Chrome against a LOCAL dev server and prints what rendered (`node frontend/tests/route-probe.mjs "http://localhost:5173/financial-behaviour?demo=family" --auth --expect="Demo data — fictional family example" --forbid="No monthly records yet"`); see its header for the mock and click options (it needs Chrome at the usual Windows path and never talks to anything but localhost).

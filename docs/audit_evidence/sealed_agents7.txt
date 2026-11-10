@@ -1,0 +1,18 @@
+C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pytest_asyncio\plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+ss.......ss....................................................          [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\langgraph\checkpoint\base\__init__.py:18
+  C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\langgraph\checkpoint\base\__init__.py:18: LangChainPendingDeprecationWarning: The default value of `allowed_objects` will change in a future version. Pass an explicit value (e.g., allowed_objects='messages' or allowed_objects='core') to suppress this warning.
+    from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+SKIPPED [1] tests\backend\agents\test_debate_gemini_client.py:63: GEMINI_API_KEY not configured
+SKIPPED [1] tests\backend\agents\test_debate_gemini_client.py:92: GEMINI_API_KEY not configured
+SKIPPED [1] tests\backend\agents\test_explanation_gemini_client.py:54: GEMINI_API_KEY not configured
+SKIPPED [1] tests\backend\agents\test_explanation_gemini_client.py:79: GEMINI_API_KEY not configured
+59 passed, 4 skipped, 1 warning in 5.87s
+NETGUARD external connection or lookup attempts: 0

@@ -1,0 +1,12 @@
+{
+  "demo_key": "WPDEMO-E",
+  "source": "synthetic_demo",
+  "financial_inputs": {
+    "annual_inflation_rate": 0.05,
+    "annual_return_rate": 0.08,
+    "contribution_periods_per_year": 12,
+    "contribution_amount": 20000,
+    "current_liquid_assets": 300000,
+    "monthly_essential_expenses": 38000
+  }
+}

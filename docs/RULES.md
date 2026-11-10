@@ -486,3 +486,33 @@ else (`docs/DECISIONS.md` ADR-034):
   primary creates/updates/deletes, a goal id of another household is a 404.
 - **Required fields cannot be cleared with `null`** (422), and numbers are
   finite and within their column's storage limit (422) — never a database 500.
+
+## Rule 36 — Sensitive-Data Protection Prototype (ADR-047)
+
+`wealthpilot/security/`, `protected_records` and `audit_ledger_events` are an academic security prototype
+(`docs/THREAT_MODEL.md`):
+
+- **Describe it exactly.** The ledger is a *local hash-chained audit log*. Never call it a blockchain,
+  decentralized, consensus-backed, immutable, tamper-proof or production-ready. The UI label is exactly
+  "Academic prototype — not a real blockchain." Never describe a successful local verification as proof the database was
+  not tampered with, and never claim encryption covers data it does not cover: only `protected_records` is encrypted;
+  every other table is plaintext until a reviewed migration says otherwise.
+- **Keys cross one boundary.** Key material is read only by `KeyProvider` implementations and used only by
+  `EncryptionService`. It never reaches the database, source control, the frontend, a response, a log, the ledger, an
+  exception message, an agent, an LLM prompt or a test file (tests generate random keys at run time). No default key, no
+  plaintext fallback: a missing or invalid key fails closed. An environment variable is not a managed KMS; do not say so.
+- **Encrypt, then persist; authorize, then decrypt.** Cryptography is AES-256-GCM with a fresh random nonce per operation, a
+  versioned envelope and associated data binding the record id, owner and purpose. Do not add a second cipher or a
+  hand-rolled scheme; add a new envelope version instead.
+- **Every protected route authorizes the acting identity against the path profile** (401/403) and scopes every query by
+  `customer_id`; an unknown, malformed and foreign record id are one identical 404. This is the prototype's asserted
+  identity (ADR-020/031), not authentication; do not build a second auth system without an explicit instruction.
+- **The ledger holds no sensitive content.** Event types come from a closed allow-list, a record is referenced only by its
+  random UUID, and there is no field for an amount, name, e-mail, text, token or key. Success events are written in the same
+  transaction as the data change (an audit failure aborts the operation). Hashing and verification share one canonical
+  serialization; changing it is a new schema version.
+- **User text is never echoed or logged.** New routes that accept it join `USER_TEXT_ROUTE_MARKERS` in `api/errors.py`.
+- **No blockchain code, wallet, cryptocurrency, tokenization, smart contract or public-chain upload.** Vendor code, if it
+  ever exists, sits behind `LedgerAnchor` and sees only a `LedgerCommitment` (sequence + head hash).
+- **A new migration touches only new tables** and ships with the DB-free migration-history test; existing data is never
+  encrypted or rewritten implicitly.

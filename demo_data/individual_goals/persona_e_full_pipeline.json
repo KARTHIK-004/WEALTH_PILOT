@@ -1,0 +1,27 @@
+{
+  "demo_key": "WPDEMO-E",
+  "source": "synthetic_demo",
+  "goals": [
+    {
+      "goal_type": "Home Down Payment",
+      "target_amount": 1200000,
+      "target_date": "2031-03-01",
+      "current_savings": 280000,
+      "priority": 1
+    },
+    {
+      "goal_type": "Child Higher Education",
+      "target_amount": 1800000,
+      "target_date": "2038-06-01",
+      "current_savings": 120000,
+      "priority": 2
+    },
+    {
+      "goal_type": "Retirement Corpus",
+      "target_amount": 9000000,
+      "target_date": "2056-01-01",
+      "current_savings": 350000,
+      "priority": 3
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{"env": "envA", "label": "clean_1", "exit_code": 3221225477, "crashed": true, "summary": "", "elapsed_s": 448.9, "imported_at_end": ""}
+{"env": "envB", "label": "clean_1", "exit_code": 3221225477, "crashed": true, "summary": "735 passed, 3 skipped, 144 warnings in 159.96s (0:02:39)", "elapsed_s": 162.3, "imported_at_end": "torch,tensorflow,xgboost,sklearn,joblib,shap,numba,scipy,statsmodels,arch,keras"}
+{"env": "envA", "label": "clean_2", "exit_code": 3221225477, "crashed": true, "summary": "774 passed, 1 skipped, 144 warnings in 171.24s (0:02:51)", "elapsed_s": 180.3, "imported_at_end": "torch,tensorflow,xgboost,sklearn,joblib,transformers,shap,numba,scipy,statsmodels,arch,keras"}
+{"env": "envB", "label": "clean_2", "exit_code": 0, "crashed": false, "summary": "735 passed, 3 skipped, 144 warnings in 164.28s (0:02:44)", "elapsed_s": 172.1, "imported_at_end": "tensorflow,xgboost,sklearn,joblib,shap,numba,scipy,statsmodels,arch,keras"}
+{"env": "envA", "label": "clean_3", "exit_code": 3221225477, "crashed": true, "summary": "", "elapsed_s": 428.0, "imported_at_end": ""}
+{"env": "envB", "label": "clean_3", "exit_code": 3221225477, "crashed": true, "summary": "", "elapsed_s": 441.3, "imported_at_end": ""}
+SERIES3-DONE

@@ -1,0 +1,17 @@
+00:23:30.140 poll LOADED   kernel.appcore.dll base=0x7ff9ebbd0000 size=0x1b000
+00:23:30.162 poll LOADED   _multiarray_umath.cp311-win_amd64.pyd base=0x7ff915000000 size=0x2d8000
+00:23:30.162 poll LOADED   libopenblas64__v0.3.23-293-gc2f4bdbb-gcc_10_3_0-2bde3a66a51006b2b53eb373ff767a3f.dll base=0x7ff90ec80000 size=0x20b6000
+00:23:30.204 poll LOADED   _multiarray_tests.cp311-win_amd64.pyd base=0x7ff9d1d70000 size=0x14000
+00:23:30.226 poll LOADED   _umath_linalg.cp311-win_amd64.pyd base=0x7ff9caca0000 size=0x1d000
+00:23:30.247 poll LOADED   _pocketfft_internal.cp311-win_amd64.pyd base=0x7ff9cac80000 size=0x1e000
+00:23:30.268 poll LOADED   mtrand.cp311-win_amd64.pyd base=0x7ff951be0000 size=0x97000
+00:23:30.268 poll LOADED   bit_generator.cp311-win_amd64.pyd base=0x7ff99c7b0000 size=0x2c000
+00:23:30.270 poll LOADED   _common.cp311-win_amd64.pyd base=0x7ff99c780000 size=0x2f000
+00:23:30.270 poll LOADED   _hashlib.pyd base=0x7ff9ccfb0000 size=0x11000
+00:23:30.270 poll LOADED   libcrypto-3.dll base=0x7ff900a60000 size=0x4f9000
+00:23:30.271 poll LOADED   _bounded_integers.cp311-win_amd64.pyd base=0x7ff951b90000 size=0x43000
+00:23:30.271 poll LOADED   _mt19937.cp311-win_amd64.pyd base=0x7ff9ae470000 size=0x16000
+00:23:30.272 poll LOADED   _philox.cp311-win_amd64.pyd base=0x7ff99c760000 size=0x15000
+00:23:30.272 poll LOADED   _pcg64.cp311-win_amd64.pyd base=0x7ff985470000 size=0x19000
+00:23:30.273 poll LOADED   _sfc64.cp311-win_amd64.pyd base=0x7ff9e0e00000 size=0x10000
+00:23:30.274 poll LOADED   _generator.cp311-win_amd64.pyd base=0x7ff9302f0000 size=0xaf000

@@ -6,11 +6,11 @@
   "demonstrates": "a liability with a recorded monthly payment and interest rate, and one recorded at a genuine 0 with no monthly payment recorded -- a known zero beside an unknown, never conflated",
   "records": [
     {
-      "interest_rate": 0.059,
+      "interest_rate": 0.0925,
       "liability_type": "vehicle_loan",
-      "monthly_payment": 9300,
+      "monthly_payment": 9500,
       "name": "Car loan",
-      "outstanding_amount": 234000
+      "outstanding_amount": 320000
     },
     {
       "liability_type": "credit_card",

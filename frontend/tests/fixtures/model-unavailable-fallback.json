@@ -1,0 +1,370 @@
+{
+  "customer_id": 1,
+  "analysis_timestamp": "2026-01-01T00:00:00Z",
+  "status": "complete",
+  "model_version": "personalized_insight_v2|behaviour_findings_v1|user_text_rules_v1",
+  "data_source": "monthly_financial_records+risk_assessments+user_text",
+  "behaviour": {
+    "version": "behaviour_findings_v1",
+    "history": "multiple_months",
+    "observation_count": 2,
+    "latest_period": "2026-02",
+    "findings": [
+      {
+        "code": "history_sufficiency",
+        "category": "coverage",
+        "status": "observed",
+        "statement": "2 months have been reported.",
+        "sources": [
+          "observation_count"
+        ],
+        "direction": null,
+        "values": {
+          "observation_count": 2.0
+        }
+      },
+      {
+        "code": "income_trend",
+        "category": "trend",
+        "status": "observed",
+        "statement": "Income was unchanged from the previous month.",
+        "sources": [
+          "income_change.absolute_change",
+          "income_change.relative_change"
+        ],
+        "direction": "unchanged",
+        "values": {
+          "absolute_change": 0.0,
+          "relative_change": 0.0
+        }
+      },
+      {
+        "code": "expenses_trend",
+        "category": "trend",
+        "status": "observed",
+        "statement": "Expenses increased by ₹1,000 compared with the previous month (25.0%).",
+        "sources": [
+          "expenses_change.absolute_change",
+          "expenses_change.relative_change"
+        ],
+        "direction": "increased",
+        "values": {
+          "absolute_change": 1000.0,
+          "relative_change": 0.25
+        }
+      },
+      {
+        "code": "savings_trend",
+        "category": "trend",
+        "status": "observed",
+        "statement": "Savings were unchanged from the previous month.",
+        "sources": [
+          "savings_change.absolute_change",
+          "savings_change.relative_change"
+        ],
+        "direction": "unchanged",
+        "values": {
+          "absolute_change": 0.0,
+          "relative_change": 0.0
+        }
+      },
+      {
+        "code": "investment_contribution_trend",
+        "category": "trend",
+        "status": "unavailable",
+        "statement": "Investment contributions: no month-on-month change is available. Investment contribution was not reported in both months.",
+        "sources": [
+          "investment_contribution_change.absolute_change",
+          "investment_contribution_change.relative_change"
+        ],
+        "direction": null,
+        "values": {}
+      },
+      {
+        "code": "savings_activity",
+        "category": "activity",
+        "status": "unavailable",
+        "statement": "Savings: Needs savings reported in at least 3 of the last 12 months; found 2.",
+        "sources": [
+          "savings_consistency.share_with_amount",
+          "savings_consistency.known_months"
+        ],
+        "direction": null,
+        "values": {
+          "known_months": 2.0
+        }
+      },
+      {
+        "code": "investment_contribution_activity",
+        "category": "activity",
+        "status": "unavailable",
+        "statement": "Investment contributions: Needs investment contribution reported in at least 3 of the last 12 months; found 0.",
+        "sources": [
+          "investment_contribution_consistency.share_with_amount",
+          "investment_contribution_consistency.known_months"
+        ],
+        "direction": null,
+        "values": {
+          "known_months": 0.0
+        }
+      },
+      {
+        "code": "expense_to_income_ratio",
+        "category": "ratio",
+        "status": "observed",
+        "statement": "In 2026-02, expenses were 50.0% of that month's reported income.",
+        "sources": [
+          "latest_ratios.expense_to_income"
+        ],
+        "direction": null,
+        "values": {
+          "ratio": 0.5
+        }
+      },
+      {
+        "code": "savings_to_income_ratio",
+        "category": "ratio",
+        "status": "observed",
+        "statement": "In 2026-02, savings were 20.0% of that month's reported income.",
+        "sources": [
+          "latest_ratios.savings_to_income"
+        ],
+        "direction": null,
+        "values": {
+          "ratio": 0.2
+        }
+      },
+      {
+        "code": "investment_contribution_to_income_ratio",
+        "category": "ratio",
+        "status": "unavailable",
+        "statement": "Investment contributions as a share of income: Investment contribution was not reported for this month.",
+        "sources": [
+          "latest_ratios.investment_contribution_to_income"
+        ],
+        "direction": null,
+        "values": {}
+      },
+      {
+        "code": "debt_burden",
+        "category": "coverage",
+        "status": "not_included",
+        "statement": "Debt and EMI burden is not computed: the monthly records hold no debt or EMI amounts, so nothing is assumed.",
+        "sources": [
+          "monthly_financial_records"
+        ],
+        "direction": null,
+        "values": {}
+      },
+      {
+        "code": "goal_progress",
+        "category": "coverage",
+        "status": "not_included",
+        "statement": "Goal progress is calculated by the existing goal analysis, not by this behaviour view.",
+        "sources": [
+          "financial_goals"
+        ],
+        "direction": null,
+        "values": {}
+      }
+    ],
+    "data_quality_notes": []
+  },
+  "user_sentiment": {
+    "status": "analysed",
+    "unavailable_reason": null,
+    "sentiment": "negative",
+    "emotional_tone": "concerned",
+    "financial_relevance": "relevant",
+    "topics": [
+      "market"
+    ],
+    "preferences": [],
+    "evidence": [
+      {
+        "label": "negative_cue",
+        "phrase": "I am nervous about the market"
+      }
+    ],
+    "confidence": null,
+    "confidence_band": "unavailable",
+    "requires_confirmation": false,
+    "abstained": false,
+    "abstain_reason": null,
+    "interpretation_state": "valid",
+    "fallback_used": true,
+    "fallback_reason": "dependencies_missing",
+    "method": "rules_baseline",
+    "model_name": null,
+    "model_version": "user_text_rules_v1",
+    "validation_status": "UNVALIDATED_BASELINE",
+    "class_probabilities": null,
+    "confidence_calibration_status": "not_applicable",
+    "sentiment_intensity": null,
+    "intensity_available": false,
+    "rules_baseline": {
+      "label": "negative",
+      "method": "rules_baseline",
+      "model_version": "user_text_rules_v1"
+    },
+    "disagreement": false,
+    "privacy_status": "in_memory_only",
+    "limitations": [
+      "rules baseline, not validated",
+      "English only: the language check is conservative (script and common English words), so other languages are not interpreted and very terse English can be declined",
+      "relevance is judged from a fixed list of personal-finance words, which can misjudge a word with two meanings",
+      "no sarcasm, irony or deep context; negation, quotation and third-person handling is basic",
+      "negated cues are not read as their opposite",
+      "confidence is not claimed",
+      "The trained sentiment model could not be used for this text, so the rules baseline answered."
+    ]
+  },
+  "risk_profile": {
+    "category": "Aggressive",
+    "source": "stored risk assessment of the latest analysis",
+    "assessed_at": null,
+    "remains_authoritative": true
+  },
+  "preference_confirmation": "Confirming a preference is not available yet: confirmed preferences are not stored (storing them needs a reviewed schema change). Until then an inferred preference is a suggestion only, and your risk assessment and questionnaire answers stay in force.",
+  "statements": [
+    {
+      "text": "2 months have been reported.",
+      "sources": [
+        "observation_count"
+      ],
+      "kind": "behaviour_fact"
+    },
+    {
+      "text": "Income was unchanged from the previous month.",
+      "sources": [
+        "income_change.absolute_change",
+        "income_change.relative_change"
+      ],
+      "kind": "behaviour_fact"
+    },
+    {
+      "text": "Expenses increased by ₹1,000 compared with the previous month (25.0%).",
+      "sources": [
+        "expenses_change.absolute_change",
+        "expenses_change.relative_change"
+      ],
+      "kind": "behaviour_fact"
+    },
+    {
+      "text": "Savings were unchanged from the previous month.",
+      "sources": [
+        "savings_change.absolute_change",
+        "savings_change.relative_change"
+      ],
+      "kind": "behaviour_fact"
+    },
+    {
+      "text": "In 2026-02, expenses were 50.0% of that month's reported income.",
+      "sources": [
+        "latest_ratios.expense_to_income"
+      ],
+      "kind": "behaviour_fact"
+    },
+    {
+      "text": "In 2026-02, savings were 20.0% of that month's reported income.",
+      "sources": [
+        "latest_ratios.savings_to_income"
+      ],
+      "kind": "behaviour_fact"
+    },
+    {
+      "text": "Your stored risk assessment is Aggressive (stored risk assessment of the latest analysis); it remains the profile in force.",
+      "sources": [
+        "risk_assessment"
+      ],
+      "kind": "risk_assessment"
+    },
+    {
+      "text": "From the text you wrote, the overall tone reads as negative; the wording suggests concerned. This is an automatic reading, not a fact about you, and not a risk score.",
+      "sources": [
+        "user_text.sentiment"
+      ],
+      "kind": "stated_by_user"
+    }
+  ],
+  "conflicts": [],
+  "caveats": [
+    "Investment contributions: no month-on-month change is available. Investment contribution was not reported in both months.",
+    "Savings: Needs savings reported in at least 3 of the last 12 months; found 2.",
+    "Investment contributions: Needs investment contribution reported in at least 3 of the last 12 months; found 0.",
+    "Investment contributions as a share of income: Investment contribution was not reported for this month.",
+    "Debt and EMI burden is not computed: the monthly records hold no debt or EMI amounts, so nothing is assumed.",
+    "Goal progress is calculated by the existing goal analysis, not by this behaviour view.",
+    "The validated sentiment model was unavailable. The result uses the rules baseline.",
+    "Text readings are informational only. The rules baseline is unvalidated and reports no confidence."
+  ],
+  "purpose": "Informational only. It does not change your risk profile, goals, allocation or any recommendation, and it is not financial advice.",
+  "transformer_research": {
+    "enabled": false,
+    "mode": "research_experimental",
+    "validation_status": "not_human_validated",
+    "production_effect": "none",
+    "rules_baseline": {
+      "label": "negative",
+      "method": "rules_baseline",
+      "model_version": "user_text_rules_v1"
+    },
+    "models": [
+      {
+        "slot": "financial",
+        "display_name": "Financial sentiment model",
+        "model_id": null,
+        "revision": null,
+        "availability": "unavailable",
+        "unavailable_reason": "no_candidate_approved",
+        "native_label": null,
+        "normalized_label": null,
+        "raw_scores": null,
+        "probabilities": null,
+        "probability_kind": null,
+        "processing_ms": null
+      },
+      {
+        "slot": "general",
+        "display_name": "General sentiment model",
+        "model_id": "Horizon-Labs/multilingual-sentiment-small",
+        "revision": "e60eb86fd9e5bdd8c097bf6d6e75dade85a1ccac",
+        "availability": "unavailable",
+        "unavailable_reason": "disabled",
+        "native_label": null,
+        "normalized_label": null,
+        "raw_scores": null,
+        "probabilities": null,
+        "probability_kind": null,
+        "processing_ms": null
+      }
+    ],
+    "comparison": {
+      "status": "model_unavailable",
+      "shared_label": null,
+      "explanation": "The pretrained model produced no result, so the rules-based reading is used on its own.",
+      "model_vs_rules": []
+    },
+    "overall_sentiment": "negative",
+    "overall_source": "rules_baseline_fallback",
+    "rules_relation": "not_compared",
+    "uncertainty_reason": "transformers_unavailable",
+    "model_versions": {
+      "general": "e60eb86fd9e5bdd8c097bf6d6e75dade85a1ccac"
+    },
+    "model_availability": {
+      "financial": "unavailable",
+      "general": "unavailable"
+    },
+    "processing_metadata": {
+      "total_ms": null,
+      "input_eligible": true,
+      "device": "cpu"
+    },
+    "notices": [
+      "Experimental pretrained model output — not human validated.",
+      "Model predictions are not financial advice.",
+      "Sentiment does not modify your financial risk profile or investment recommendations."
+    ]
+  }
+}

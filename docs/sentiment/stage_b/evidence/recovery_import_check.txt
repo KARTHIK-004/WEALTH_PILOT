@@ -1,0 +1,26 @@
+C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\langgraph\checkpoint\base\__init__.py:18: LangChainPendingDeprecationWarning: The default value of `allowed_objects` will change in a future version. Pass an explicit value (e.g., allowed_objects='messages' or allowed_objects='core') to suppress this warning.
+  from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
+setuptools 81.0.0
+  pkg_resources                        imports OK
+  tensorboard                          imports OK
+  tensorboard.default                  imports OK
+  tensorboard.data.server_ingester     imports OK
+  tensorboard.program                  imports OK
+  tensorboard.summary                  imports OK
+  tensorflow                           imports OK
+  keras                                imports OK
+  numpy                                imports OK
+  scipy                                imports OK
+  sklearn                              imports OK
+  pandas                               imports OK
+  xgboost                              imports OK
+  torch                                imports OK
+  transformers                         imports OK
+  safetensors                          imports OK
+  tokenizers                           imports OK
+  huggingface_hub                      imports OK
+  pytest                               imports OK
+  werkzeug                             imports OK
+  pytz                                 imports OK
+  wealthpilot.api.main                 imports OK
+failures: 0

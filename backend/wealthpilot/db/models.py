@@ -25,6 +25,8 @@ from sqlalchemy import (
     DateTime,
     ForeignKey,
     Index,
+    Integer,
+    LargeBinary,
     Numeric,
     String,
     Text,
@@ -66,6 +68,51 @@ class Customer(Base):
     risk_snapshots: Mapped[list["CustomerRiskSnapshot"]] = relationship(back_populates="customer")
     questionnaire_answers: Mapped[list["QuestionnaireAnswer"]] = relationship(back_populates="customer")
     financial_inputs: Mapped["FinancialInputs | None"] = relationship(back_populates="customer", uselist=False)
+
+
+class MonthlyFinancialRecord(Base):
+    """One customer-reported calendar month (Research Enhancement Track B1,
+    ADR-042) -- additive and separate from `financial_inputs`, which stays the
+    single snapshot the goal and emergency-fund engines read.
+
+    `period_month` is the FIRST day of the reported month; `(customer_id,
+    period_month)` is unique, so a month is stored once and a correction updates
+    it. Every amount is independently nullable: `NULL` means not reported, never
+    0, and a stored 0 is a value the customer entered. All amounts are monthly
+    rupee amounts. `income_basis` says whether the income is `net` or `gross`
+    and may only be set when an income is present. Nothing here feeds
+    `analysis_service.compute_profile_hash` or any calculation yet.
+    """
+
+    __tablename__ = "monthly_financial_records"
+    __table_args__ = (
+        UniqueConstraint("customer_id", "period_month", name="uq_monthly_records_customer_period"),
+        CheckConstraint("extract(day from period_month) = 1", name="ck_monthly_records_period_first_of_month"),
+        CheckConstraint("income IS NULL OR income >= 0", name="ck_monthly_records_income_non_negative"),
+        CheckConstraint("expenses IS NULL OR expenses >= 0", name="ck_monthly_records_expenses_non_negative"),
+        CheckConstraint("savings IS NULL OR savings >= 0", name="ck_monthly_records_savings_non_negative"),
+        CheckConstraint(
+            "investment_contribution IS NULL OR investment_contribution >= 0",
+            name="ck_monthly_records_investment_non_negative",
+        ),
+        CheckConstraint("income_basis IS NULL OR income_basis IN ('net', 'gross')", name="ck_monthly_records_income_basis"),
+        CheckConstraint("income_basis IS NULL OR income IS NOT NULL", name="ck_monthly_records_basis_needs_income"),
+        CheckConstraint(
+            "income IS NOT NULL OR expenses IS NOT NULL OR savings IS NOT NULL OR investment_contribution IS NOT NULL",
+            name="ck_monthly_records_has_an_amount",
+        ),
+    )
+
+    id: Mapped[int] = mapped_column(primary_key=True)
+    customer_id: Mapped[int] = mapped_column(ForeignKey("customers.id", ondelete="CASCADE"), index=True)
+    period_month: Mapped[date] = mapped_column(Date)
+    income: Mapped[float | None] = mapped_column(Numeric(14, 2), nullable=True)
+    expenses: Mapped[float | None] = mapped_column(Numeric(14, 2), nullable=True)
+    savings: Mapped[float | None] = mapped_column(Numeric(14, 2), nullable=True)
+    investment_contribution: Mapped[float | None] = mapped_column(Numeric(14, 2), nullable=True)
+    income_basis: Mapped[str | None] = mapped_column(String(10), nullable=True)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
 
 
 class CustomerRiskSnapshot(Base):
@@ -656,3 +703,48 @@ class HouseholdGoal(Base):
     updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
 
     household: Mapped["Household"] = relationship()
+
+
+class ProtectedRecord(Base):
+    """A customer-written private note, stored ONLY as an AES-256-GCM envelope (ADR-047).
+
+    The plaintext is never a column. `ciphertext` carries the GCM tag; `nonce`, `algorithm`, `envelope_version` and
+    `key_id` are the non-secret envelope metadata (the key itself lives only behind the `KeyProvider`). The row id,
+    owner and `purpose` are bound into the ciphertext as associated data, so a row copied to another owner or id fails
+    authentication. Every query is scoped by `customer_id`. This is the only table the prototype encrypts; the older
+    tables are unchanged and unprotected (docs/THREAT_MODEL.md, "Existing data").
+    """
+
+    __tablename__ = "protected_records"
+
+    id: Mapped[str] = mapped_column(String(36), primary_key=True)  # random UUID, also the opaque ledger reference
+    customer_id: Mapped[int] = mapped_column(ForeignKey("customers.id", ondelete="CASCADE"), index=True)
+    purpose: Mapped[str] = mapped_column(String(50))
+    envelope_version: Mapped[int] = mapped_column(Integer)
+    algorithm: Mapped[str] = mapped_column(String(20))
+    key_id: Mapped[str] = mapped_column(String(32))
+    nonce: Mapped[bytes] = mapped_column(LargeBinary)
+    ciphertext: Mapped[bytes] = mapped_column(LargeBinary)
+    created_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
+    updated_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now(), onupdate=func.now())
+
+
+class AuditLedgerEvent(Base):
+    """One event of the LOCAL hash-chained audit ledger (ADR-047). Academic prototype -- NOT a blockchain.
+
+    `sequence` is assigned by the ledger (1, 2, 3, ...), never by the database, so the chain order is explicit; the
+    unique constraints on `sequence` and `prev_hash` make a concurrent fork fail loudly instead of silently producing
+    two events with the same position. Contains no amount, name, e-mail, free text, token, password or key: only the
+    event type, a UTC timestamp, an opaque record reference (a random UUID, or NULL), the schema version and the two
+    hashes. Anyone with write access to this table can rewrite the whole chain and recompute every hash.
+    """
+
+    __tablename__ = "audit_ledger_events"
+
+    sequence: Mapped[int] = mapped_column(BigInteger, primary_key=True, autoincrement=False)
+    event_type: Mapped[str] = mapped_column(String(50))
+    occurred_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    record_ref: Mapped[str | None] = mapped_column(String(36), nullable=True)
+    schema_version: Mapped[int] = mapped_column(Integer)
+    prev_hash: Mapped[str] = mapped_column(String(64), unique=True)
+    event_hash: Mapped[str] = mapped_column(String(64), unique=True)

@@ -1,0 +1,126 @@
+﻿python.exe : C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pytest_asyncio\plugin.py:208: 
+PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+At line:6 char:1
++ & .\.venv\Scripts\python.exe -m pytest -p netguard tests/backend/core ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (C:\Users\Admini...cope" is unset.:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of 
+pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop 
+scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", 
+"class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+..........F...........................s....s............................ [  4%]
+.................................s...................................... [  9%]
+........................................................................ [ 13%]
+........................................................................ [ 18%]
+........................................................................ [ 22%]
+...................................................................s.... [ 27%]
+........................................................................ [ 32%]
+........................................................................ [ 36%]
+........................................................................ [ 41%]
+........................................................................ [ 45%]
+........................................................................ [ 50%]
+................F....................................................... [ 54%]
+........................................................................ [ 59%]
+........................................................................ [ 64%]
+........................................................................ [ 68%]
+........................................................................ [ 73%]
+s.....................................F................................. [ 77%]
+........................................................................ [ 82%]
+........................................................................ [ 87%]
+........................................................................ [ 91%]
+........................................................................ [ 96%]
+............................................................             [100%]
+================================== FAILURES ===================================
+____ test_nothing_was_installed_or_downloaded_and_production_is_unchanged _____
+
+    def test_nothing_was_installed_or_downloaded_and_production_is_unchanged():
+        assert not (ROOT / "models" / "sentiment_pretrained").exists()                                     # no weight directory (this assertion changes only when the owner approves a download)
+>       assert not any(importlib.util.find_spec(p) for p in ("torch", "transformers", "tokenizers", "safetensors"))
+E       assert not True
+E        +  where True = any(<generator object test_nothing_was_installed_or_downloaded_and_production_is_unchanged.<locals>.<genexpr> at 0x000001DF0CE7C740>)
+
+tests\backend\core\test_sentiment_candidate_reviews.py:151: AssertionError
+__________ test_the_frontend_fixtures_are_what_the_route_returns_now __________
+
+    def test_the_frontend_fixtures_are_what_the_route_returns_now():
+        done = subprocess.run([sys.executable, "-I", str(ROOT / "scripts" / "export_demo_fixtures.py"), "--check"], capture_output=True, text=True, cwd=ROOT, timeout=300)
+>       assert done.returncode == 0 and "fixtures match the backend" in done.stdout, done.stdout[-300:] + done.stderr[-300:]
+E       AssertionError: NFO", "logger": "httpx", "message": "HTTP Request: POST http://testserver/api/demo/family-financial-behaviour \"HTTP/1.1 200 OK\""}
+E         DRIFT: demo-records-only, demo-example-text, demo-quoted, demo-third-person, demo-hypothetical, demo-unrelated, family-records-only, family-example-text, family-quoted
+E         nit__.py:18: LangChainPendingDeprecationWarning: The default value of `allowed_objects` will change in a future version. Pass an explicit value (e.g., allowed_objects='messages' or allowed_objects='core') to suppress this warning.
+E           from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
+E         
+E       assert (1 == 0)
+E        +  where 1 = CompletedProcess(args=['C:\\Users\\Administrator\\Desktop\\Project\\TEST\\.venv\\Scripts\\python.exe', '-I', 'C:\\User...wed_objects='core') to suppress this warning.\n  from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer\n").returncode
+
+tests\backend\api\test_demo_financial_behaviour.py:188: AssertionError
+_ test_the_evaluation_script_runs_the_real_local_model_end_to_end_without_validating_it _
+
+tmp_path = WindowsPath('C:/Users/Administrator/AppData/Local/Temp/pytest-of-Administrator/pytest-836/test_the_evaluation_script_run0')
+
+    def test_the_evaluation_script_runs_the_real_local_model_end_to_end_without_validating_it(tmp_path):
+        directory, _ = build_standin(tmp_path)
+        manifest = tmp_path / "local_manifest.json"
+        manifest.write_text(json.dumps(lm.build_manifest(IDENTIFIER, REVISION, directory)), encoding="utf-8")
+        built = build(tmp_path / "set", train=270, calibration=90, heldout=300)
+        out = tmp_path / "report.json"
+>       code = ev.main(["--frozen-manifest", str(built.manifest_path), "--records", str(built.records_path), "--rubric", str(built.rubric_path), "--annotator-manifest", str(built.annotators_path),
+                        "--adjudication-log", str(built.log_path), "--output", str(out), "--local-model", f"standin={directory}", "--local-model-manifest", f"standin={manifest}"])
+
+tests\training\sentiment\test_local_model_dir_standin.py:171: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+training\sentiment\evaluate_sentiment_model.py:242: in main
+    parser.error("frozen-set mode needs all six of --frozen-manifest, --records, --rubric, --annotator-manifest, --adjudication-log and --participant-register, and cannot be combined with --manifest or --data")
+..\..\..\AppData\Local\Programs\Python\Python311\Lib\argparse.py:2640: in error
+    self.exit(2, _('%(prog)s: error: %(message)s\n') % args)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = ArgumentParser(prog='__main__.py', usage=None, description='Evaluate sentiment candidates on the HELD-OUT test split o... fixtures.\n', formatter_class=<class 'argparse.RawDescriptionHelpFormatter'>, conflict_handler='error', add_help=True)
+status = 2
+message = '__main__.py: error: frozen-set mode needs all six of --frozen-manifest, --records, --rubric, --annotator-manifest, --adjudication-log and --participant-register, and cannot be combined with --manifest or --data\n'
+
+    def exit(self, status=0, message=None):
+        if message:
+            self._print_message(message, _sys.stderr)
+>       _sys.exit(status)
+E       SystemExit: 2
+
+..\..\..\AppData\Local\Programs\Python\Python311\Lib\argparse.py:2627: SystemExit
+---------------------------- Captured stderr call -----------------------------
+
+Writing model shards:   0%|          | 0/1 [00:00<?, ?it/s]
+Writing model shards: 100%|██████████| 1/1 [00:00<00:00, 396.92it/s]
+usage: __main__.py [-h] [--manifest MANIFEST] [--data DATA]
+                   [--candidate CANDIDATE] --output OUTPUT
+                   [--frozen-manifest FROZEN_MANIFEST] [--records RECORDS]
+                   [--rubric RUBRIC] [--annotator-manifest ANNOTATOR_MANIFEST]
+                   [--adjudication-log ADJUDICATION_LOG]
+                   [--participant-register PARTICIPANT_REGISTER]
+                   [--predictions PREDICTIONS] [--local-model LOCAL_MODEL]
+                   [--local-model-manifest LOCAL_MODEL_MANIFEST]
+__main__.py: error: frozen-set mode needs all six of --frozen-manifest, --records, --rubric, --annotator-manifest, --adjudication-log and --participant-register, and cannot be combined with --manifest or --data
+============================== warnings summary ===============================
+.venv\Lib\site-packages\starlette\testclient.py:40
+  C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\starlette\testclient.py:40: DeprecationWarning: The anyio.abc.BlockingPortal alias is deprecated, use anyio.from_thread.BlockingPortal instead.
+    _PortalFactoryType = typing.Callable[[], typing.ContextManager[anyio.abc.BlockingPortal]]
+
+.venv\Lib\site-packages\langgraph\checkpoint\base\__init__.py:18
+  C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\langgraph\checkpoint\base\__init__.py:18: LangChainPendingDeprecationWarning: The default value of `allowed_objects` will change in a future version. Pass an explicit value (e.g., allowed_objects='messages' or allowed_objects='core') to suppress this warning.
+    from langgraph.checkpoint.serde.jsonplus import JsonPlusSerializer
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+=========================== short test summary info ===========================
+FAILED tests/backend/core/test_sentiment_candidate_reviews.py::test_nothing_was_installed_or_downloaded_and_production_is_unchanged
+FAILED tests/backend/api/test_demo_financial_behaviour.py::test_the_frontend_fixtures_are_what_the_route_returns_now
+FAILED tests/training/sentiment/test_local_model_dir_standin.py::test_the_evaluation_script_runs_the_real_local_model_end_to_end_without_validating_it
+SKIPPED [1] tests\backend\core\test_sentiment_research_pair.py:220: symbolic links are not available here
+SKIPPED [1] tests\backend\core\test_sentiment_research_pair.py:282: the packages are installed here
+SKIPPED [1] tests\backend\scripts\test_dry_run_package_adversarial.py:207: creating symlinks needs a privilege on this machine
+SKIPPED [1] tests\backend\core\test_sentiment_model.py:141: symbolic links are not permitted for this account
+SKIPPED [1] tests\training\sentiment\test_local_model_dir.py:124: symbolic links need a privilege this account does not have
+3 failed, 1564 passed, 5 skipped, 2 warnings in 149.93s (0:02:29)
+NETGUARD external connection or lookup attempts: 0

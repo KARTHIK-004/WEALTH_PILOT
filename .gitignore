@@ -25,6 +25,18 @@ models/**/*.keras
 models/**/*.joblib
 models/**/*.h5
 !models/metrics.json
+# Sentiment-model artifacts (ADR-052): weights and tokenizer binaries are never tracked; model_metadata.json, label_map.json and metrics are small and may be.
+models/sentiment/**/*.safetensors
+models/sentiment/**/*.bin
+models/sentiment/**/*.onnx
+models/sentiment/**/*.pt
+models/sentiment/**/*.pth
+models/sentiment/**/tokenizer.json
+models/sentiment/**/vocab.*
+models/sentiment/**/merges.txt
+models/sentiment/**/*.model
+# Pretrained research candidates (ADR-053/055, R2): the whole directory is local-only. Weights, tokenizer and the generated manifest are never tracked; the files are placed by an operator and verified by SHA-256.
+models/sentiment_pretrained/
 
 # OS
 .DS_Store
@@ -36,3 +48,5 @@ datasets/raw/*
 # Synthetic ML training dataset (ADR-039): large, regenerable CSVs are not tracked.
 # Regenerate: python scripts/generate_wealthpilot_synthetic_dataset.py (seed 42, byte-identical)
 datasets/generated/**/*.csv
+# A local copy of public market prices for the offline demo (scripts/load_local_market_data.py); third-party data, never committed.
+datasets/derived/market_data_snapshot*.csv

@@ -1,0 +1,41 @@
+{
+  "prototype_notice": "Academic prototype — not a real blockchain.",
+  "storage": "off_chain_private_database",
+  "protected_note_count": 0,
+  "encryption": {
+    "status": "not_configured",
+    "algorithm": "AES-256-GCM",
+    "self_test_passed": null,
+    "unavailable_reason": "No usable encryption key is configured, so protected notes cannot be saved or read."
+  },
+  "ledger": {
+    "kind": "local_hash_chain",
+    "verification": "empty",
+    "events_checked": 0,
+    "first_invalid_sequence": null,
+    "reason": null,
+    "note": "Internally consistent means the recorded chain links up. It does not prove the database was never tampered with."
+  },
+  "external_anchor": {
+    "state": "not_configured",
+    "detail": "No external permissioned ledger is configured; the audit chain is local only."
+  },
+  "existing_data": {
+    "encrypted": false,
+    "unprotected_categories": [
+      "Customer profile (name, age, income, employment status, risk inputs)",
+      "Financial inputs and monthly financial records",
+      "Questionnaire answers and financial goals",
+      "Household finance records and household goals",
+      "Risk assessments, recommendations, analysis runs and agent logs",
+      "Transactions and market data"
+    ],
+    "note": "Encryption applies only to protected notes. Everything listed here was stored before this feature and is not encrypted."
+  },
+  "limitations": [
+    "Identity is asserted by the client (X-Customer-Id); there is no server-side authentication, so a client that lies about its identity is not stopped.",
+    "The development key provider reads keys from the environment; it is not a managed key-management service.",
+    "The audit chain lives in the same database as the data: it detects accidental or partial edits, not a privileged attacker who rewrites the whole chain.",
+    "Only protected notes are encrypted; existing records stay in plaintext until they are deliberately migrated."
+  ]
+}

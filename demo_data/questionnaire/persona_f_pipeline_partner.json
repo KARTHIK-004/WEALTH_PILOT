@@ -1,0 +1,81 @@
+{
+  "demo_key": "WPDEMO-F",
+  "source": "synthetic_demo",
+  "definition": "Answers only. The questions and options are the application's own questionnaire (GET /api/questionnaire, read from datasets/raw/FAR-Trans/questionnaires.csv) and are never copied here. The questionnaire is the research instrument's own wording (its money bands are stated in euros); these answers use the approximate real-world equivalent of each persona's rupee figures. The application stores the answers but no analysis step reads them.",
+  "complete": false,
+  "answers_basis": "Curated to match the profile: 32, married, salaried, new to investing. Only the first three sections (demographics, knowledge and experience, financial independence) are answered; the risk-tolerance and objectives sections (questions 16 to 25) are intentionally left unanswered, which is part of why more information is needed.",
+  "unanswered_questions": [
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25
+  ],
+  "answers": [
+    {
+      "question_number": 1,
+      "option_key": "a"
+    },
+    {
+      "question_number": 2,
+      "option_key": "b"
+    },
+    {
+      "question_number": 3,
+      "option_key": "a"
+    },
+    {
+      "question_number": 4,
+      "option_key": "c"
+    },
+    {
+      "question_number": 5,
+      "option_key": "c"
+    },
+    {
+      "question_number": 6,
+      "option_key": "a"
+    },
+    {
+      "question_number": 7,
+      "option_key": "a"
+    },
+    {
+      "question_number": 8,
+      "option_key": "a"
+    },
+    {
+      "question_number": 9,
+      "option_key": "a"
+    },
+    {
+      "question_number": 10,
+      "option_key": "b"
+    },
+    {
+      "question_number": 11,
+      "option_key": "b"
+    },
+    {
+      "question_number": 12,
+      "option_key": "c"
+    },
+    {
+      "question_number": 13,
+      "option_key": "e"
+    },
+    {
+      "question_number": 14,
+      "option_key": "d"
+    },
+    {
+      "question_number": 15,
+      "option_key": "a"
+    }
+  ]
+}

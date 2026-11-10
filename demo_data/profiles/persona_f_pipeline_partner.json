@@ -1,0 +1,19 @@
+{
+  "demo_key": "WPDEMO-F",
+  "source": "synthetic_demo",
+  "persona": "F",
+  "demonstrates": "pending_information",
+  "customer_name": "WealthPilot Demo — Full Pipeline Partner",
+  "owned_by_seed": true,
+  "purpose": "The partner of WPDEMO-E, so that E's household has a real second member (a household member must be an existing customer). Synthetic identity only. The partner has shared a profile, a goal and the first part of the questionnaire, has no investment trading history and no risk-data link, so the existing pipeline honestly stops at 'pending information' for this customer (as for persona D): nothing downstream is produced or invented. The household's shared figures live in the household records, not here.",
+  "risk_data_link": null,
+  "risk_data_link_unavailable_reason": "Deliberately unlinked: this customer has no investment trading history, so the risk model has no input and the analysis asks for more information. Unknown is not guessed.",
+  "profile": {
+    "name": "WealthPilot Demo — Full Pipeline Partner",
+    "age": 32,
+    "income": 720000,
+    "employment_status": "Full-time",
+    "customer_type": "Mass",
+    "investment_capacity": "CAP_LT30K"
+  }
+}

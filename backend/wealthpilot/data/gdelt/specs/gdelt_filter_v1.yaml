@@ -1,0 +1,78 @@
+# gdelt_filter_v1: CANDIDATE filter for labelled review (B2-I). NOT an approved production filter.
+# Source: reports/phaseB2H_pre_acquisition_readiness.md section 4 (unchanged). No precision or recall is
+# claimed. Never tuned on returns, model outputs or test-period data. Any change is a new version file.
+version: gdelt_filter_v1
+status: candidate_for_labelled_review
+stream: english_gkg_only            # never *.translation.gkg.csv.zip
+title_hash_min_chars: 20
+
+normalisation:                      # title_norm: html-unescape, NFKC, casefold, [^a-z0-9&$] -> space, collapse
+  keep_characters: "a-z0-9&$"
+
+us_relevance:
+  location_types: [2, 3]            # V1LOCATIONS type 2 = US state, 3 = US city
+  country_code: US                  # field 3 of a V1LOCATIONS entry
+  title_phrases: [wall street, nasdaq, federal reserve, fomc, s&p 500, dow jones, u s, us economy, us stocks,
+                  us treasury, us treasuries, us inflation]
+us_market_orgs: [nasdaq, new york stock exchange, federal reserve, federal open market committee,
+                 securities and exchange commission]
+
+company_item:                       # company- and fund-level notices; flagged, excluded from every series
+  raw_title_tags: ["(nasdaq:", "(nyse:", "(nysearca:", "(nyseamerican:", "(lon:", "(tsx:", "(otcmkts:"]
+  raw_title_cashtag_regex: '\$[A-Z]{1,5}'
+  title_phrases: [shares bought by, shares sold by, stake in, position in, price target, coverage initiated,
+                  reiterated, upgraded, downgraded, insider buys, insider sells, insider acquires,
+                  insider purchases, director buys, director sells]
+
+flag_only_themes: [WB_2936_GOLD, ECON_INFLATION, ECON_DEBT, WB_1045_TREASURY, ACT_YIELD, EPU_CATS_MONETARY_POLICY,
+                   ECON_IPO, ECON_EARNINGSREPORT, ECON_BUBBLE]
+
+series:
+  EQUITY_US:
+    title_phrases: [nasdaq, nasdaq 100, wall street, s&p 500, dow jones, us stocks, u s stocks]
+    theme: ECON_STOCKMARKET
+    theme_min_mentions: 2           # V2ENHANCEDTHEMES entries; requires US relevance
+    us_conditional_title_phrases: [stock market, stock markets, equities]
+  RATES_US:
+    title_phrases: [federal reserve, fomc, treasury yield, treasury yields, us treasuries, u s treasuries]
+    specific_themes: [ECON_INTEREST_RATES, ECON_CENTRALBANK, EPU_POLICY_INTEREST_RATES, EPU_POLICY_INTEREST_RATE,
+                      EPU_POLICY_MONETARY_POLICY, WB_444_MONETARY_POLICY, WB_1125_INTEREST_RATE_POLICY,
+                      ECON_SOVEREIGN_DEBT, WB_335_GOVERNMENT_BOND_MARKETS, WB_333_NON_GOVERNMENT_BOND_MARKETS]
+    us_conditional_title_phrases: [bond yield, bond yields, bond market, bond markets, rate hike, rate hikes,
+                                   rate cut, rate cuts, interest rate, interest rates]
+  GOLD:                             # global market: no US requirement (us_relevant is still stored)
+    themes: [ECON_GOLDPRICE]
+    title_phrases: [gold price, gold prices, price of gold, spot gold, gold futures, bullion, gold market,
+                    gold markets]
+
+# Pre-registered sensitivity variants (B2-H 4.4). S1 = B2-F section 7 original rule: any core theme,
+# single mention, keywords in title or organisations, no company exclusion. S2 = title phrases alone
+# (this file's series title phrase lists, conditional ones included, no US requirement), company items
+# excluded: B2-H did not say, so the stricter reading is used and disclosed in the B2-K report.
+sensitivity:
+  S1:
+    EQUITY_US:
+      themes: [ECON_STOCKMARKET, ECON_IPO, ECON_EARNINGSREPORT, ECON_BUBBLE]
+      keywords: [nasdaq, nasdaq 100, wall street, s&p 500, dow jones, stock market, invesco qqq]
+    RATES_US:
+      themes: [ECON_INTEREST_RATES, ECON_CENTRALBANK, EPU_CATS_MONETARY_POLICY, EPU_POLICY_INTEREST_RATES,
+               EPU_POLICY_INTEREST_RATE, EPU_POLICY_MONETARY_POLICY, WB_444_MONETARY_POLICY,
+               WB_1125_INTEREST_RATE_POLICY, ECON_SOVEREIGN_DEBT, WB_335_GOVERNMENT_BOND_MARKETS,
+               WB_333_NON_GOVERNMENT_BOND_MARKETS]
+      keywords: [federal reserve, fomc, treasury yield, treasury yields, bond, bonds, rate hike, rate cut,
+                 interest rate, interest rates]
+    GOLD:
+      themes: [ECON_GOLDPRICE]
+      keywords: [gold price, gold prices, spot gold, gold futures, bullion, spdr gold]
+
+# Not a filter: the pre-registered near-miss cue (B2-I 4.3) used only to place uncaptured rows in
+# review cells C6/C7 and to describe the audit sample.
+near_miss_cue:
+  title_words: [stock, stocks, shares, equity, equities, dow, nyse, s&p, rally, selloff, sell off, futures,
+                investors, bond, bonds, yield, yields, treasury, treasuries, fed, rates, inflation, cpi, powell,
+                mortgage, monetary, gold, precious, ounce, xau]
+  theme_prefix: ECON_
+
+audit_sample:                       # uncaptured rows kept for later recall audits (B2-I)
+  seed: wealthpilot-gdelt-audit-v1
+  rate_denominator: 1000

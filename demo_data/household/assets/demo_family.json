@@ -7,26 +7,39 @@
   "records": [
     {
       "asset_type": "bank_account",
-      "current_value": 180000,
+      "current_value": 140000,
       "is_liquid": true,
       "name": "Joint current account"
     },
     {
       "asset_type": "bank_account",
-      "current_value": 285000,
+      "current_value": 220000,
       "is_liquid": true,
       "name": "Emergency savings account"
     },
     {
-      "asset_type": "investment",
-      "current_value": 660000,
-      "description": "Long-term holding",
+      "asset_type": "fixed_deposit",
+      "current_value": 400000,
+      "description": "Locked in until 2028",
       "is_liquid": false,
-      "name": "Index fund"
+      "name": "Fixed deposit"
+    },
+    {
+      "asset_type": "investment",
+      "current_value": 380000,
+      "description": "Monthly mutual fund SIPs",
+      "is_liquid": false,
+      "name": "Mutual fund portfolio"
+    },
+    {
+      "asset_type": "retirement",
+      "current_value": 550000,
+      "is_liquid": false,
+      "name": "Provident fund (EPF/PPF)"
     },
     {
       "asset_type": "vehicle",
-      "current_value": 360000,
+      "current_value": 450000,
       "is_liquid": false,
       "name": "Family car"
     }

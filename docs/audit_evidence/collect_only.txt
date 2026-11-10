@@ -1,0 +1,4 @@
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+4983 tests collected in 43.69s
+NETGUARD external connection or lookup attempts: 0

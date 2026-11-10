@@ -19,18 +19,21 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[3] / "backend" / "script
 
 from demo_data_package import (
     DEMO_DATA_DIR,
+    PIPELINE_HOUSEHOLD_KEY,
     REPO_ROOT,
     canonical_json,
     load_family,
     load_personas,
     read_json,
-    select_option,
 )
 from validate_demo_data import (
     DEMO_DATA_REFERENCE,
+    GUARD_EXCLUDED_RAW_SOURCES,
     build_manifest,
     check_training_data_guard,
+    guarded_raw_files,
     main,
+    training_data_hashes,
     validate,
     write_manifest,
 )
@@ -84,8 +87,11 @@ def test_the_manifest_counts_describe_the_dataset():
     counts = manifest["counts"]
     assert manifest["source"] == "synthetic_demo"
     assert "MUST NOT be used as additional ML training data" in manifest["not_for_training"]
-    assert (counts["individual_personas"], counts["households"], counts["household_members"]) == (4, 1, 2)
-    assert counts["questionnaire_answers"] == 4 * len([q for s in get_questionnaire_sections() for q in s["questions"]])
+    assert (counts["individual_personas"], counts["households"], counts["household_members"]) == (6, 2, 4)
+    assert (counts["monthly_record_sets"], counts["monthly_records"]) == (1, 12)   # only the full-pipeline persona reports months
+    questions = len([q for s in get_questionnaire_sections() for q in s["questions"]])
+    # Four personas answer every question; the two pending personas (D and the full-pipeline partner F) leave questions 16-25 unanswered.
+    assert counts["questionnaire_answers"] == 4 * questions + 2 * (questions - 10)
     assert counts["transactions"] == 0 and manifest["transactions"]["included"] is False
 
 
@@ -93,33 +99,87 @@ def test_the_manifest_guards_every_raw_training_file():
     raw = REPO_ROOT / "datasets" / "raw"
     if not raw.exists():
         pytest.skip("raw datasets are not present in this checkout")
-    present = {p.relative_to(REPO_ROOT).as_posix() for p in raw.rglob("*") if p.is_file() and p.name != ".gitkeep"}
-    assert set(read_json(DEMO_DATA_DIR / "manifest.json")["training_data_guard"]) == present
+    present = {p.relative_to(REPO_ROOT).as_posix() for p in raw.rglob("*") if p.is_file() and p.name != ".gitkeep" and p.relative_to(raw).parts[0] not in GUARD_EXCLUDED_RAW_SOURCES}
+    guarded = set(read_json(DEMO_DATA_DIR / "manifest.json")["training_data_guard"])
+    assert guarded == present                                       # every file in scope is guarded, nothing else is
+    assert not any(rel.startswith("datasets/raw/gdelt/") for rel in guarded)
+
+
+def test_the_guard_boundary_is_explicit_and_every_other_raw_source_is_guarded_by_default(tmp_path):
+    assert GUARD_EXCLUDED_RAW_SOURCES == frozenset({"gdelt"})        # widening this is a deliberate, reviewed change
+    raw = tmp_path / "datasets" / "raw"
+    for rel in ("FAR-Trans/a.csv", "kaggle/dir/b.csv", "some_new_source/c.csv", "gdelt/english_gkg_v1/manifest/manifest.sqlite", "gdelt/english_gkg_v1/manifest/manifest.sqlite-wal", "FAR-Trans/.gitkeep"):
+        (raw / rel).parent.mkdir(parents=True, exist_ok=True)
+        (raw / rel).write_bytes(rel.encode())
+    guarded = training_data_hashes(tmp_path)
+    assert sorted(guarded) == ["datasets/raw/FAR-Trans/a.csv", "datasets/raw/kaggle/dir/b.csv", "datasets/raw/some_new_source/c.csv"]    # a NEW raw source is guarded, gdelt is not
+    assert [p.relative_to(tmp_path).as_posix() for p in guarded_raw_files(tmp_path)] == sorted(guarded)
+    assert training_data_hashes(tmp_path / "missing") == {} and guarded_raw_files(tmp_path / "missing") == []
+
+
+def test_changing_a_gdelt_working_file_never_trips_the_guard_but_changing_a_guarded_file_does(tmp_path):
+    raw = tmp_path / "datasets" / "raw"
+    for rel in ("FAR-Trans/a.csv", "gdelt/english_gkg_v1/manifest/manifest.sqlite-wal"):
+        (raw / rel).parent.mkdir(parents=True, exist_ok=True)
+        (raw / rel).write_bytes(b"v1")
+    recorded = training_data_hashes(tmp_path)
+    (raw / "gdelt/english_gkg_v1/manifest/manifest.sqlite-wal").write_bytes(b"changed by the sentiment pipeline")      # a legitimate working-area write
+    assert check_training_data_guard(recorded, tmp_path) == ([], [])
+    (raw / "FAR-Trans/a.csv").write_bytes(b"v2")
+    errors, _ = check_training_data_guard(recorded, tmp_path)
+    assert errors and "FAR-Trans/a.csv changed" in errors[0]
 
 
 def test_the_loader_gives_the_seed_its_personas_and_family():
     personas = load_personas()
-    assert [p["demo_key"] for p in personas] == ["WPDEMO-A", "WPDEMO-B", "WPDEMO-C", "WPDEMO-D"]
-    assert [p["owned_by_seed"] for p in personas] == [True, True, True, False]
-    assert "financial_inputs" not in personas[2] and "financial_inputs" not in personas[3]  # absent, never zeros
+    assert [p["demo_key"] for p in personas] == ["WPDEMO-A", "WPDEMO-B", "WPDEMO-C", "WPDEMO-D", "WPDEMO-E", "WPDEMO-F"]
+    assert [p["owned_by_seed"] for p in personas] == [True, True, True, False, True, True]
+    # Only the full-pipeline persona reports months: the others have no such key, never an empty or zero-filled history.
+    assert ["monthly_records" in p for p in personas] == [False, False, False, False, True, False]
+    assert [r["period"] for r in personas[4]["monthly_records"]][0] == "2025-10" and len(personas[4]["monthly_records"]) == 12
+    # An unknown input is absent, never zero: the Compliance persona omits its emergency-fund inputs.
+    assert "monthly_essential_expenses" not in personas[2]["financial_inputs"]
+    assert "current_liquid_assets" not in personas[2]["financial_inputs"]
+    assert personas[0]["questionnaire_complete"] and personas[1]["questionnaire_complete"]
+    assert personas[2]["questionnaire_complete"] and not personas[3]["questionnaire_complete"]
     family = load_family()
     assert family["primary_name"] == personas[1]["name"]
     assert [m["name"] for m in family["members"]] == [personas[2]["name"]]  # the primary is the creator, not added
+    pipeline = load_family(household_key=PIPELINE_HOUSEHOLD_KEY)
+    assert (pipeline["demo_key"], pipeline["primary_name"]) == (PIPELINE_HOUSEHOLD_KEY, personas[4]["name"])   # E is the primary; F (the partner) is the only member added
+    assert [(m["name"], m["relationship"], m["role"]) for m in pipeline["members"]] == [(personas[5]["name"], "spouse", "member")]
+    assert set(pipeline["record_keys"]) == {"income", "expenses", "assets", "liabilities", "goals"} and all(pipeline[r] for r in pipeline["record_keys"])
 
 
-def test_every_answer_is_the_personas_own_position_rule():
+def test_every_answer_is_a_real_option_of_its_question():
     questions = {q["number"]: q for s in get_questionnaire_sections() for q in s["questions"]}
     for persona in load_personas():
         for answer in persona["answers"]:
-            options = questions[answer["question_number"]]["options"]
-            assert answer["option_key"] == select_option(options, persona["answer_offset"])
+            assert answer["option_key"] in {o["key"] for o in questions[answer["question_number"]]["options"]}
+        answered = {a["question_number"] for a in persona["answers"]}
+        if persona["questionnaire_complete"]:
+            assert answered == set(questions)
+        else:
+            assert persona["demo_key"] in ("WPDEMO-D", "WPDEMO-F") and answered == set(range(1, 16))
 
 
 # ---------------------------------------------------------------------------
 # Planted defects -- each must be reported
 # ---------------------------------------------------------------------------
 
+MR = "monthly_records/persona_e_full_pipeline.json"
+
 DEFECTS = [
+    ("a skipped reported month", MR, lambda o: o["records"].pop(3), "must be consecutive"),
+    ("a repeated reported month", MR, lambda o: o["records"][1].update(period=o["records"][0]["period"]), "must be consecutive"),
+    ("spending beyond income in a month", MR, lambda o: o["records"][0].update(expenses=90000), "exceed income"),
+    ("an invented monthly field", MR, lambda o: o["records"][0].update(notes="x"), "not a MonthlyRecordUpdate field"),
+    ("a negative monthly amount", MR, lambda o: o["records"][0].update(income=-1), "MonthlyRecordUpdate rejects"),
+    ("a missing amount zero-filled by omission", MR, lambda o: o["records"][0].update(savings=None), "every amount is reported"),
+    ("a month that is not YYYY-MM", MR, lambda o: o["records"][0].update(period="Oct 2025"), "must look like YYYY-MM"),
+    ("too few months for the behaviour findings", MR, lambda o: o.update(records=o["records"][:2]), "at least 3 reported months"),
+    ("months for an unknown persona", MR, lambda o: o.update(demo_key="WPDEMO-Z"), "is not a persona"),
+    ("income that contradicts the persona", MR, lambda o: [r.update(income=400000) for r in o["records"]], "does not fit the persona's annual income"),
     ("duplicate demo key", "profiles/persona_d_pending_information.json",
      lambda o: o.update(demo_key="WPDEMO-A"), "duplicate demo_key"),
     ("orphan household member", MEMBERS,
@@ -153,7 +213,7 @@ DEFECTS = [
     ("an option the question does not have", "questionnaire/persona_a_approved.json",
      lambda o: o["answers"][0].update(option_key="z"), "is not an option"),
     ("an unanswered question", "questionnaire/persona_b_savings_first.json",
-     lambda o: o["answers"].pop(), "every question"),
+     lambda o: o["answers"].pop(), "marked complete but questions"),
     ("a FAR-Trans link to nobody", A,
      lambda o: o["risk_data_link"].update(external_customer_id="0" * 20), "is not a FAR-Trans customer"),
     ("an unlinked persona without a reason", "profiles/persona_d_pending_information.json",
@@ -170,6 +230,18 @@ DEFECTS = [
      lambda o: o["expected"].update(sharpe_ratio=0.87), "unknown expected-state key"),
     ("an expected member count the data does not have", "expected_results/demo_family.json",
      lambda o: o["expected"].update(member_count=3), "member_count must equal"),
+    ("an EMI with no matching debt-payment expense", "household/expenses/pipeline_household.json",
+     lambda o: o["records"].pop(6), "monthly payments of its liabilities"),
+    ("a loan whose payment the expenses do not carry", "household/liabilities/pipeline_household.json",
+     lambda o: o["records"][0].update(monthly_payment=12000), "monthly payments of its liabilities"),
+    ("a persona in two households", "household/members/pipeline_household.json",
+     lambda o: o["members"].append({"demo_key": "WPDEMO-B", "relationship": "other", "role": "member"}), "also in household"),
+    ("a member count the pipeline household does not have", "expected_results/pipeline_household.json",
+     lambda o: o["expected"].update(member_count=3), "member_count must equal"),
+    ("a pipeline household whose primary is not a persona", "household/households/pipeline_household.json",
+     lambda o: o.update(primary_demo_key="WPDEMO-Z"), "unknown persona"),
+    ("the partner's household income not fitting the members' own incomes", "household/income/pipeline_household.json",
+     lambda o: [r.update(amount=r["amount"] * 10) for r in o["records"]], "not consistent with its members"),
     ("'nothing triggered' for a never-evaluated compliance", "expected_results/persona_d_pending_information.json",
      lambda o: o["expected"].update(triggered_compliance_rules=[]), "not evaluated"),
 ]
@@ -184,16 +256,65 @@ def test_a_planted_defect_is_reported(tmp_path, rel, change, fragment):
     assert any(fragment in e for e in errors), errors
 
 
-def test_an_answer_off_its_personas_rule_is_reported(tmp_path):
+def test_an_answer_that_is_not_an_option_is_reported(tmp_path):
     copy = _copy(tmp_path)
-    question = next(q for s in get_questionnaire_sections() for q in s["questions"] if len(q["options"]) > 2)
-    other = select_option(question["options"], -1)            # a real option, but not persona A's (the first)
 
     def change(obj):
-        next(a for a in obj["answers"] if a["question_number"] == question["number"])["option_key"] = other
+        obj["answers"][0]["option_key"] = "z"
 
     _edit(copy, "questionnaire/persona_a_approved.json", change)
-    assert any("selection rule" in e for e in _errors(copy))
+    assert any("is not an option of question 1" in e for e in _errors(copy))
+
+
+def test_only_the_pending_persona_may_leave_questions_unanswered(tmp_path):
+    copy = _copy(tmp_path)
+
+    def change(obj):
+        obj["answers"].pop()
+        obj.update(complete=False, unanswered_questions=[25])
+
+    _edit(copy, "questionnaire/persona_a_approved.json", change)
+    assert any("only the pending-information persona" in e for e in _errors(copy))
+
+
+def test_a_pending_questionnaire_marked_complete_is_reported(tmp_path):
+    copy = _copy(tmp_path)
+    _edit(copy, "questionnaire/persona_d_pending_information.json", lambda o: o.update(complete=True))
+    assert any("marked complete but questions" in e for e in _errors(copy))
+
+
+PLAUSIBILITY_DEFECTS = [
+    ("an implausibly low income", "profiles/persona_a_approved.json",
+     lambda o: o["profile"].update(income=12000), "outside the plausible range"),
+    ("essential spending beyond the income", "financial_inputs/persona_a_approved.json",
+     lambda o: o["financial_inputs"].update(monthly_essential_expenses=100000), "not a plausible share"),
+    ("a contribution income cannot fund", "financial_inputs/persona_a_approved.json",
+     lambda o: o["financial_inputs"].update(contribution_amount=90000), "exceeds what income leaves"),
+    ("savings that contradict the insufficient fund", "financial_inputs/persona_b_savings_first.json",
+     lambda o: o["financial_inputs"].update(current_liquid_assets=400000), "contradicts its inputs"),
+    ("a Compliance persona whose emergency fund is known", "financial_inputs/persona_c_compliance_rejected.json",
+     lambda o: o["financial_inputs"].update(monthly_essential_expenses=40000, current_liquid_assets=10000),
+     "unknown emergency-fund position"),
+    ("a Compliance rejection by a rule that does not exist", "expected_results/persona_c_compliance_rejected.json",
+     lambda o: o["expected"].update(triggered_compliance_rules=["invented_rule"]), "not an existing compliance rule"),
+    ("a Pending persona with trading history", "profiles/persona_d_pending_information.json",
+     lambda o: o.update(risk_data_link={"external_customer_id": "0" * 20}), "expected pending information"),
+    ("a placeholder goal name", "individual_goals/persona_b_savings_first.json",
+     lambda o: o["goals"][1].update(goal_type="Goal"), "is a placeholder"),
+    ("household spending beyond its income", "household/expenses/demo_family.json",
+     lambda o: o["records"][0].update(amount=300000), "exceeds recurring income"),
+    ("a household with no liquid assets", "household/assets/demo_family.json",
+     lambda o: [r.update(is_liquid=False) for r in o["records"]], "no liquid assets"),
+]
+
+
+@pytest.mark.parametrize(("label", "rel", "change", "fragment"), PLAUSIBILITY_DEFECTS,
+                         ids=[d[0] for d in PLAUSIBILITY_DEFECTS])
+def test_a_plausibility_defect_is_reported(tmp_path, label, rel, change, fragment):
+    copy = _copy(tmp_path)
+    _edit(copy, rel, change)
+    errors = _errors(copy)
+    assert any(fragment in e for e in errors), errors
 
 
 def test_a_persona_in_two_households_is_reported(tmp_path):

@@ -1,0 +1,8 @@
+core exit=0 elapsed=44s :: 1198 passed, 12 skipped, 2 warnings in 40.30s
+security exit=0 elapsed=19s :: 147 passed, 2 warnings in 9.54s
+data exit=1 elapsed=172s :: 1 failed, 1508 passed in 169.29s (0:02:49)
+pipeline exit=0 elapsed=23s :: 31 passed, 2 warnings in 15.36s
+scripts exit=0 elapsed=83s :: 263 passed, 1 skipped in 79.26s (0:01:19)
+agents7 exit=0 elapsed=8s :: 59 passed, 4 skipped, 1 warning in 5.87s
+training exit=0 elapsed=241s :: 796 passed, 2 skipped, 144 warnings in 230.66s (0:03:50)
+SEALED RUNNER EXIT 0

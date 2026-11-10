@@ -6,9 +6,10 @@ import { ErrorState } from "@/components/shell/error-state"
 import { OnboardingSteps } from "@/components/shell/onboarding-steps"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Field, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field"
+import { Field, FieldDescription, FieldError, FieldGroup, FieldLabel } from "@/components/ui/field"
 import { Input } from "@/components/ui/input"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
+import { validateProfileForm, type ProfileFormField } from "@/lib/profile-form"
 import { CAPACITY_OPTIONS } from "@/lib/terminology"
 import { useCreateProfile } from "@/hooks/use-create-profile"
 import { useAuth } from "@/providers/auth-context"
@@ -81,13 +82,27 @@ export function CreateUserPage() {
   const [customerType, setCustomerType] = useState(UNSPECIFIED)
   const [investmentCapacity, setInvestmentCapacity] = useState(UNSPECIFIED)
 
+  // The form is `noValidate` (the browser's own checks never run), so the rules the backend enforces are checked here, in plain words, per field (`@/lib/profile-form`). Errors appear
+  // only after a first attempt to submit, and the first invalid field receives focus.
+  const [attempted, setAttempted] = useState(false)
+  const checked = validateProfileForm({ name, age, employmentStatus, income })
+  const fieldError = (field: ProfileFormField): string | undefined => (attempted && !checked.ok ? checked.errors[field] : undefined)
+  const FIELD_IDS: Record<ProfileFormField, string> = {
+    name: "create-user-name",
+    age: "create-user-age",
+    employmentStatus: "create-user-employment",
+    income: "create-user-income",
+  }
+
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault()
+    if (!checked.ok) {
+      setAttempted(true)
+      document.getElementById(FIELD_IDS[checked.firstInvalid])?.focus()
+      return
+    }
     mutation.mutate({
-      name: name.trim(),
-      age: age.trim() === "" ? undefined : Number(age),
-      income: income.trim() === "" ? undefined : Number(income),
-      employment_status: employmentStatus.trim() === "" ? undefined : employmentStatus.trim(),
+      ...checked.payload,
       customer_type: customerType === UNSPECIFIED ? undefined : customerType,
       investment_capacity: investmentCapacity === UNSPECIFIED ? undefined : investmentCapacity,
     })
@@ -101,7 +116,7 @@ export function CreateUserPage() {
   }
 
   return (
-    <div className="bg-background min-h-svh p-6 md:p-10">
+    <main id="main-content" className="bg-background min-h-svh p-6 md:p-10">
       <div className="mx-auto flex w-full max-w-2xl flex-col gap-6">
         <div className="flex items-center gap-2">
           <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
@@ -151,18 +166,20 @@ export function CreateUserPage() {
                 </CardHeader>
                 <CardContent>
                   <FieldGroup>
-                    <Field>
+                    <Field data-invalid={fieldError("name") ? true : undefined}>
                       <FieldLabel htmlFor="create-user-name">Full name</FieldLabel>
                       <Input
                         id="create-user-name"
                         value={name}
                         onChange={(event) => setName(event.target.value)}
-                        maxLength={200}
                         required
+                        aria-invalid={fieldError("name") ? true : undefined}
+                        aria-describedby={fieldError("name") ? "create-user-name-error" : undefined}
                       />
+                      {fieldError("name") ? <FieldError id="create-user-name-error">{fieldError("name")}</FieldError> : null}
                     </Field>
                     <Field className="@md/field-group:flex-row @md/field-group:*:flex-1" orientation="responsive">
-                      <Field>
+                      <Field data-invalid={fieldError("age") ? true : undefined}>
                         <FieldLabel htmlFor="create-user-age">Age</FieldLabel>
                         <Input
                           id="create-user-age"
@@ -173,19 +190,26 @@ export function CreateUserPage() {
                           step={1}
                           value={age}
                           onChange={(event) => setAge(event.target.value)}
+                          aria-invalid={fieldError("age") ? true : undefined}
+                          aria-describedby={fieldError("age") ? "create-user-age-error" : undefined}
                         />
-                        <FieldDescription>Optional.</FieldDescription>
+                        {fieldError("age") ? <FieldError id="create-user-age-error">{fieldError("age")}</FieldError> : <FieldDescription>Optional.</FieldDescription>}
                       </Field>
-                      <Field>
+                      <Field data-invalid={fieldError("employmentStatus") ? true : undefined}>
                         <FieldLabel htmlFor="create-user-employment">Employment status</FieldLabel>
                         <Input
                           id="create-user-employment"
                           value={employmentStatus}
                           onChange={(event) => setEmploymentStatus(event.target.value)}
-                          maxLength={100}
                           placeholder="e.g. Full-time, Self-employed, Retired"
+                          aria-invalid={fieldError("employmentStatus") ? true : undefined}
+                          aria-describedby={fieldError("employmentStatus") ? "create-user-employment-error" : undefined}
                         />
-                        <FieldDescription>Optional.</FieldDescription>
+                        {fieldError("employmentStatus") ? (
+                          <FieldError id="create-user-employment-error">{fieldError("employmentStatus")}</FieldError>
+                        ) : (
+                          <FieldDescription>Optional.</FieldDescription>
+                        )}
                       </Field>
                     </Field>
                   </FieldGroup>
@@ -202,7 +226,7 @@ export function CreateUserPage() {
                 </CardHeader>
                 <CardContent>
                   <FieldGroup>
-                    <Field>
+                    <Field data-invalid={fieldError("income") ? true : undefined}>
                       <FieldLabel htmlFor="create-user-income">Annual income</FieldLabel>
                       <Input
                         id="create-user-income"
@@ -212,8 +236,10 @@ export function CreateUserPage() {
                         step="0.01"
                         value={income}
                         onChange={(event) => setIncome(event.target.value)}
+                        aria-invalid={fieldError("income") ? true : undefined}
+                        aria-describedby={fieldError("income") ? "create-user-income-error" : undefined}
                       />
-                      <FieldDescription>Optional.</FieldDescription>
+                      {fieldError("income") ? <FieldError id="create-user-income-error">{fieldError("income")}</FieldError> : <FieldDescription>Optional.</FieldDescription>}
                     </Field>
                     <Field>
                       <FieldLabel htmlFor="create-user-customer-type">Customer type</FieldLabel>
@@ -268,6 +294,6 @@ export function CreateUserPage() {
           </Link>
         </p>
       </div>
-    </div>
+    </main>
   )
 }

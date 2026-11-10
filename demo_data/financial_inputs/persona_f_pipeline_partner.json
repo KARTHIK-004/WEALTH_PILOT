@@ -1,0 +1,6 @@
+{
+  "demo_key": "WPDEMO-F",
+  "source": "synthetic_demo",
+  "financial_inputs": null,
+  "financial_inputs_unavailable_reason": "The partner has not provided personal financial inputs; the household's shared income, spending, savings and obligations are recorded in the household records (WPDEMO-HHE), which are never an input to an individual analysis."
+}

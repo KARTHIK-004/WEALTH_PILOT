@@ -220,6 +220,12 @@ def get_financial_summary(
     require_member(session, household_id, acting_customer_id)
 
     summary = engine.summarize_household_finances(*_load_records(session, household_id))
+    return build_summary_response(household_id, summary)
+
+
+def build_summary_response(household_id: int, summary: engine.HouseholdFinancialSummary) -> HouseholdFinancialSummaryResponse:
+    """The public response for an already computed engine summary: pure mapping, no arithmetic, no session. Shared by the stored-records route above and the fictional family demo, so the
+    demo's household totals are the real engine's output over invented records."""
     return HouseholdFinancialSummaryResponse(
         household_id=household_id,
         income=_income_section(summary.income),

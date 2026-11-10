@@ -1,0 +1,37 @@
+{
+  "household_demo_key": "WPDEMO-HHE",
+  "source": "synthetic_demo",
+  "api": "POST /api/households/{household_id}/income",
+  "idempotency_key": "source",
+  "demonstrates": "two net salaries (the primary's equals E's latest reported month), a small yearly interest income (yearly counts as amount / 12 per month), a one-time bonus kept out of the recurring view, and an inactive record that is stored but excluded from every aggregate",
+  "records": [
+    {
+      "amount": 100000,
+      "frequency": "monthly",
+      "source": "Primary salary (net)",
+      "notes": "Equals the primary member's latest reported monthly income (2026-09)."
+    },
+    {
+      "amount": 52000,
+      "frequency": "monthly",
+      "source": "Partner salary (net)"
+    },
+    {
+      "amount": 36000,
+      "frequency": "yearly",
+      "source": "Interest and dividends"
+    },
+    {
+      "amount": 120000,
+      "frequency": "one_time",
+      "source": "Annual bonus"
+    },
+    {
+      "amount": 8000,
+      "frequency": "monthly",
+      "source": "Previous freelance work",
+      "is_active": false,
+      "notes": "Ended; kept on record, excluded from every total."
+    }
+  ]
+}

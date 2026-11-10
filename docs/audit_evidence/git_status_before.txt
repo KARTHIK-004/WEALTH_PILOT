@@ -1,0 +1,300 @@
+ M .env.example
+ M .gitignore
+ M README.md
+ M backend/pyproject.toml
+ M backend/scripts/demo_data_package.py
+ M backend/scripts/seed_demo_data.py
+ M backend/scripts/validate_demo_data.py
+ M backend/wealthpilot/api/dependencies.py
+ M backend/wealthpilot/api/errors.py
+ M backend/wealthpilot/api/main.py
+ M backend/wealthpilot/api/schemas.py
+ M backend/wealthpilot/api/services/household_summary_service.py
+ M backend/wealthpilot/config/settings.py
+ M backend/wealthpilot/db/models.py
+ M demo_data/README.md
+ M demo_data/expected_results/persona_c_compliance_rejected.json
+ M demo_data/financial_inputs/persona_a_approved.json
+ M demo_data/financial_inputs/persona_b_savings_first.json
+ M demo_data/financial_inputs/persona_c_compliance_rejected.json
+ M demo_data/financial_inputs/persona_d_pending_information.json
+ M demo_data/household/assets/demo_family.json
+ M demo_data/household/expenses/demo_family.json
+ M demo_data/household/goals/demo_family.json
+ M demo_data/household/households/demo_family.json
+ M demo_data/household/income/demo_family.json
+ M demo_data/household/liabilities/demo_family.json
+ M demo_data/individual_goals/persona_a_approved.json
+ M demo_data/individual_goals/persona_b_savings_first.json
+ M demo_data/individual_goals/persona_c_compliance_rejected.json
+ M demo_data/individual_goals/persona_d_pending_information.json
+ M demo_data/manifest.json
+ M demo_data/profiles/persona_a_approved.json
+ M demo_data/profiles/persona_b_savings_first.json
+ M demo_data/profiles/persona_c_compliance_rejected.json
+ M demo_data/profiles/persona_d_pending_information.json
+ M demo_data/questionnaire/persona_a_approved.json
+ M demo_data/questionnaire/persona_b_savings_first.json
+ M demo_data/questionnaire/persona_c_compliance_rejected.json
+ M demo_data/questionnaire/persona_d_pending_information.json
+ M demo_data/seed/seed_plan.json
+ M demo_data/wealthpilot_complete_demo_dataset.csv
+ M docs/ARCHITECTURE.md
+ M docs/DECISIONS.md
+ M docs/DESIGN.md
+ M docs/MEMORY.md
+ M docs/RULES.md
+ M docs/SECURITY.md
+ M docs/TEST_PLAN.md
+ M docs/demo_runbook.md
+ M docs/final_demo_script.md
+ M docs/final_viva_talking_points.md
+ M frontend/package.json
+ M frontend/src/App.tsx
+ M frontend/src/components/financial-health/individual-finances.tsx
+ M frontend/src/components/login-form.tsx
+ M frontend/src/components/profile/household-financial-summary.tsx
+ M frontend/src/components/shell/app-sidebar.tsx
+ M frontend/src/components/shell/nav-items.ts
+ M frontend/src/components/shell/no-profile-selected.tsx
+ M frontend/src/components/shell/onboarding-no-profile.tsx
+ M frontend/src/lib/api-client.ts
+ M frontend/src/lib/demo-customer.ts
+ M frontend/src/pages/create-user-page.tsx
+ M frontend/src/pages/dashboard-page.tsx
+ M frontend/src/pages/financial-health-page.tsx
+ M frontend/src/pages/login-page.tsx
+ M frontend/src/pages/not-found-page.tsx
+ M frontend/src/pages/onboarding-goals-page.tsx
+ M frontend/src/pages/onboarding-questionnaire-page.tsx
+ M frontend/src/pages/profile-page.tsx
+ M frontend/src/types/api.ts
+ M frontend/src/vite-env.d.ts
+ M frontend/tsconfig.json
+ M scripts/validate_demo_dataset.py
+ M tests/backend/api/test_seed_demo_data.py
+ M tests/backend/conftest.py
+ M tests/backend/db/test_migration_history.py
+ M tests/backend/scripts/test_validate_demo_data.py
+?? backend/alembic/versions/e5b1c7d93a20_add_monthly_financial_records.py
+?? backend/alembic/versions/f7a2d4b6c810_add_protected_records_and_audit_ledger.py
+?? backend/wealthpilot/api/routers/demo.py
+?? backend/wealthpilot/api/routers/monthly_records.py
+?? backend/wealthpilot/api/routers/personalized_insights.py
+?? backend/wealthpilot/api/routers/protected_records.py
+?? backend/wealthpilot/api/services/demo_behaviour_service.py
+?? backend/wealthpilot/api/services/monthly_records_service.py
+?? backend/wealthpilot/api/services/personalized_insight_service.py
+?? backend/wealthpilot/api/services/protected_record_service.py
+?? backend/wealthpilot/core/behaviour_features.py
+?? backend/wealthpilot/core/behaviour_findings.py
+?? backend/wealthpilot/core/personalized_insight.py
+?? backend/wealthpilot/core/sentiment/
+?? backend/wealthpilot/core/sentiment_model.py
+?? backend/wealthpilot/core/user_text_sentiment.py
+?? backend/wealthpilot/data/gdelt/
+?? backend/wealthpilot/security/
+?? config/gdelt/
+?? datasets/derived/
+?? datasets/rubric_examples/
+?? demo_data/expected_results/persona_e_full_pipeline.json
+?? demo_data/expected_results/persona_f_pipeline_partner.json
+?? demo_data/expected_results/pipeline_household.json
+?? demo_data/financial_inputs/persona_e_full_pipeline.json
+?? demo_data/financial_inputs/persona_f_pipeline_partner.json
+?? demo_data/household/assets/pipeline_household.json
+?? demo_data/household/expenses/pipeline_household.json
+?? demo_data/household/goals/pipeline_household.json
+?? demo_data/household/households/pipeline_household.json
+?? demo_data/household/income/pipeline_household.json
+?? demo_data/household/liabilities/pipeline_household.json
+?? demo_data/household/members/pipeline_household.json
+?? demo_data/individual_goals/persona_e_full_pipeline.json
+?? demo_data/individual_goals/persona_f_pipeline_partner.json
+?? demo_data/monthly_records/
+?? demo_data/profiles/persona_e_full_pipeline.json
+?? demo_data/profiles/persona_f_pipeline_partner.json
+?? demo_data/questionnaire/persona_e_full_pipeline.json
+?? demo_data/questionnaire/persona_f_pipeline_partner.json
+?? docs/RESEARCH_ENHANCEMENT_ARCHITECTURE.md
+?? docs/THREAT_MODEL.md
+?? docs/USER_TEXT_ANNOTATION_RUBRIC.md
+?? docs/USER_TEXT_VALIDATION_DECISION_SHEET.md
+?? docs/audit_evidence/
+?? docs/sentiment/
+?? frontend/src/components/charts/monthly-flows-chart.tsx
+?? frontend/src/components/financial-health/behaviour-insights-panel.tsx
+?? frontend/src/components/financial-health/behaviour-sections.tsx
+?? frontend/src/components/financial-health/behaviour-sentiment-view.tsx
+?? frontend/src/components/financial-health/behaviour-sentiment.tsx
+?? frontend/src/components/financial-health/behaviour-summary-card.tsx
+?? frontend/src/components/financial-health/demo-family-behaviour-card.tsx
+?? frontend/src/components/financial-health/demo-family-behaviour.tsx
+?? frontend/src/components/financial-health/demo-financial-behaviour-card.tsx
+?? frontend/src/components/financial-health/demo-financial-behaviour.tsx
+?? frontend/src/components/financial-health/demo-request-notice.tsx
+?? frontend/src/components/financial-health/financial-behaviour-real.tsx
+?? frontend/src/components/financial-health/risk-assessment-panel.tsx
+?? frontend/src/components/financial-health/sentiment-input-panel.tsx
+?? frontend/src/components/financial-health/sentiment-results-panel.tsx
+?? frontend/src/components/financial-health/spending-from-records.tsx
+?? frontend/src/components/financial-health/transformer-research-panel.tsx
+?? frontend/src/components/profile/monthly-records-card.tsx
+?? frontend/src/components/security/
+?? frontend/src/components/ui/textarea.tsx
+?? frontend/src/hooks/use-demo-financial-behaviour.ts
+?? frontend/src/hooks/use-monthly-records.ts
+?? frontend/src/hooks/use-personalized-insight.ts
+?? frontend/src/hooks/use-security-status.ts
+?? frontend/src/hooks/use-sentiment-model-status.ts
+?? frontend/src/lib/behaviour-insights.ts
+?? frontend/src/lib/behaviour-overview.ts
+?? frontend/src/lib/behaviour-summary.ts
+?? frontend/src/lib/demo-build.ts
+?? frontend/src/lib/demo-mode.ts
+?? frontend/src/lib/investment-behaviour.ts
+?? frontend/src/lib/plain-sentiment.ts
+?? frontend/src/lib/profile-form.ts
+?? frontend/src/lib/security-status-labels.ts
+?? frontend/src/lib/spending-pattern.ts
+?? frontend/src/lib/transformer-research.ts
+?? frontend/src/lib/user-text-input.ts
+?? frontend/src/pages/financial-behaviour-page.tsx
+?? frontend/src/pages/security-status-page.tsx
+?? frontend/tests/
+?? frontend/tsconfig.test.json
+?? reports/full_pipeline_demo_report.md
+?? reports/full_pipeline_household_report.md
+?? reports/integration_requirements_audit_2026-10-22.md
+?? reports/phaseB1V_verification_report.md
+?? reports/phaseB1_financial_behaviour_inputs_report.md
+?? reports/phaseB2F_gdelt_acquisition_feasibility.md
+?? reports/phaseB2G_gdelt_pilot_audit.md
+?? reports/phaseB2H_pre_acquisition_readiness.md
+?? reports/phaseB2I_filter_review_and_acquisition_preparation.md
+?? reports/phaseB2J_development_sample_approval_checklist.md
+?? reports/phaseB2K_gdelt_tool_implementation_report.md
+?? reports/phaseB2L_gdelt_development_sample_and_filter_review.md
+?? reports/phaseB2M_development_sample_acquisition_report.md
+?? reports/phaseB2N_sample_verification_and_annotation_report.md
+?? reports/phaseB2O_annotation_dataset_build_report.md
+?? reports/phaseB2P_annotation_evaluation_report.md
+?? reports/phaseB2Q_annotation_quick_reference.md
+?? reports/phaseB2Q_annotation_workflow_report.md
+?? reports/phaseB2R_annotation_rubric_addendum.md
+?? reports/phaseB2S2_3_contract_correction.md
+?? reports/phaseB2S2_4_integration_audit.md
+?? reports/phaseB2S2_5_adapter_implementation.md
+?? reports/phaseB2S2_6_orchestrator_design.md
+?? reports/phaseB2S2_7_readiness_audit.md
+?? reports/phaseB2S2_8A_policy_decisions.md
+?? reports/phaseB2S2_8B_corrective_report.md
+?? reports/phaseB2S2_8B_policy_decision_record.md
+?? reports/phaseB2S2_8C_F1_late_arrival_report.md
+?? reports/phaseB2S2_8D_shared_completeness_report.md
+?? reports/phaseB2S2_8E_coverage_near_empty_report.md
+?? reports/phaseB2S2_8F_owner_decision_register.md
+?? reports/phaseB2S2_8G_owner_decision_worksheet.md
+?? reports/phaseB2S2_8H_owner_decision_intake.md
+?? reports/phaseB2S2_8I_OD10_part1_report_only_coverage_integration.md
+?? reports/phaseB2S2_8J_OD10_part2_unreconciled_slot_coverage.md
+?? reports/phaseB2S2_OD13_near_empty_count_alignment.md
+?? reports/phaseB2S2_OWNER_APPROVAL_WORKSHEET.md
+?? reports/phaseB2S2_SENTIMENT_COMPLETION_REPORT.md
+?? reports/phaseB2S3_sentiment_design_feasibility.md
+?? reports/phaseB2T_ai_assisted_annotation_methodology_proposal.md
+?? reports/phaseB2U10_completion_plan.md
+?? reports/phaseB2U10_gate_audit.md
+?? reports/phaseB2U10_readiness_report.md
+?? reports/phaseB2U10_retention_design.md
+?? reports/phaseB2U11_bridge_hardening_plan.md
+?? reports/phaseB2U11_execution_report.md
+?? reports/phaseB2U11_methodology_decision_sheet.md
+?? reports/phaseB2U11_statistical_reconciliation.md
+?? reports/phaseB2U12_m2_selection_and_plan.md
+?? reports/phaseB2U3_ai_assisted_annotation_implementation_report.md
+?? reports/phaseB2U4_ai_annotation_approval_package.md
+?? reports/phaseB2U5_annotation_workflow_repairs.md
+?? reports/phaseB2U7_offline_safeguards_report.md
+?? reports/phaseB2U8_end_to_end_evaluation_wiring_report.md
+?? reports/phaseB2U9_label_bridge_and_methodology_readiness.md
+?? reports/phaseB2U_labeller_usability_and_ai_assistance_design.md
+?? reports/phaseB2_completion_and_acquisition_readiness.md
+?? reports/phaseB2_completion_decision_document.md
+?? reports/phaseB2_historical_news_source_evaluation.md
+?? reports/phaseB2_pause_and_research_handoff.md
+?? reports/phaseB2_remaining_work_and_completion_report.md
+?? reports/sentiment_consolidated_approval_form.md
+?? reports/sentiment_horizon_compatibility_report.md
+?? reports/sentiment_model_approval_record.md
+?? reports/sentiment_transformer_dependency_request.md
+?? reports/sentiment_transformer_implementation_report.md
+?? reports/sentiment_transformer_replacement_report.md
+?? reports/sentiment_transformer_stage_a_report.md
+?? scripts/build_dry_run_package.py
+?? scripts/build_sentiment_validation_sample.py
+?? scripts/export_demo_fixtures.py
+?? scripts/export_insight_fixtures.py
+?? scripts/export_security_fixtures.py
+?? scripts/isolated_db/
+?? scripts/load_local_market_data.py
+?? scripts/local_synthetic_backend.py
+?? scripts/local_test_db.ps1
+?? scripts/pilot_disagreements.py
+?? scripts/run_isolated_db_tests.py
+?? scripts/sentiment_preflight.py
+?? scripts/write_pretrained_manifest.py
+?? tests/backend/api/test_demo_family_financial_behaviour.py
+?? tests/backend/api/test_demo_financial_behaviour.py
+?? tests/backend/api/test_monthly_record_rules_offline.py
+?? tests/backend/api/test_monthly_records.py
+?? tests/backend/api/test_personalized_insights.py
+?? tests/backend/api/test_personalized_insights_hardening.py
+?? tests/backend/api/test_personalized_insights_interpretation.py
+?? tests/backend/api/test_personalized_insights_model.py
+?? tests/backend/api/test_protected_records_postgres.py
+?? tests/backend/api/test_sentiment_research_api.py
+?? tests/backend/core/conftest.py
+?? tests/backend/core/test_behaviour_features.py
+?? tests/backend/core/test_behaviour_findings_and_insight.py
+?? tests/backend/core/test_consolidated_approval_form.py
+?? tests/backend/core/test_evaluation_policy_records.py
+?? tests/backend/core/test_horizon_real_weights_smoke.py
+?? tests/backend/core/test_s1_pin_list_records.py
+?? tests/backend/core/test_sentiment_artifact_provenance.py
+?? tests/backend/core/test_sentiment_candidate_reviews.py
+?? tests/backend/core/test_sentiment_final_state.py
+?? tests/backend/core/test_sentiment_ledger_boundary.py
+?? tests/backend/core/test_sentiment_model.py
+?? tests/backend/core/test_sentiment_research_slots.py
+?? tests/backend/core/test_sentiment_tokenizer_integrity.py
+?? tests/backend/core/test_task_cert_1_state.py
+?? tests/backend/core/test_user_text_hypothetical.py
+?? tests/backend/core/test_user_text_interpretation.py
+?? tests/backend/core/test_user_text_model_policy.py
+?? tests/backend/core/test_user_text_pilot_pack.py
+?? tests/backend/core/test_user_text_polite_forms.py
+?? tests/backend/core/test_user_text_robustness.py
+?? tests/backend/core/test_user_text_rubric_examples.py
+?? tests/backend/core/test_user_text_rubric_hypothetical.py
+?? tests/backend/core/test_user_text_rules_regression.py
+?? tests/backend/core/test_user_text_sentiment.py
+?? tests/backend/core/test_user_text_sentiment_edges.py
+?? tests/backend/data/gdelt/
+?? tests/backend/pipeline/
+?? tests/backend/scripts/test_dry_run_package.py
+?? tests/backend/scripts/test_dry_run_package_adversarial.py
+?? tests/backend/scripts/test_dry_run_package_audit.py
+?? tests/backend/scripts/test_full_pipeline_persona.py
+?? tests/backend/scripts/test_isolated_db_runner.py
+?? tests/backend/scripts/test_local_synthetic_backend.py
+?? tests/backend/scripts/test_regression_tests_are_effective.py
+?? tests/backend/scripts/test_rubric_hash_records.py
+?? tests/backend/scripts/test_sentiment_preflight.py
+?? tests/backend/scripts/test_write_pretrained_manifest.py
+?? tests/backend/security/
+?? tests/training/conftest.py
+?? tests/training/nvidia_dll_guard.py
+?? tests/training/sentiment/
+?? tests/training/test_nvidia_dll_guard.py
+?? training/sentiment/

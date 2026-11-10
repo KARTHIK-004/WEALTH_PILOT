@@ -2,6 +2,9 @@ import { GraduationCap } from "lucide-react"
 import { Link, useLocation } from "react-router"
 
 import { NAV_GROUPS } from "@/components/shell/nav-items"
+import { BEHAVIOUR_PAGE_PATH } from "@/lib/behaviour-summary"
+import { DEMO_MODE_ALLOWED } from "@/lib/demo-build"
+import { behaviourLinkTarget } from "@/lib/demo-mode"
 import {
   Sidebar,
   SidebarContent,
@@ -12,6 +15,7 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar"
 
 /**
@@ -30,6 +34,9 @@ import {
  */
 export function AppSidebar() {
   const location = useLocation()
+  // On a phone the sidebar is an off-canvas sheet: choosing a page must close it, or it stays open over the page that was just opened.
+  const { setOpenMobile } = useSidebar()
+  const closeMobileSheet = () => setOpenMobile(false)
 
   return (
     <Sidebar collapsible="icon">
@@ -39,6 +46,7 @@ export function AppSidebar() {
             <SidebarMenuButton
               size="lg"
               render={<Link to="/dashboard" />}
+              onClick={closeMobileSheet}
               className="data-[slot=sidebar-menu-button]:!p-2"
             >
               <div className="bg-primary text-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
@@ -66,8 +74,9 @@ export function AppSidebar() {
                     <SidebarMenuItem key={item.url}>
                       <SidebarMenuButton
                         isActive={isActive}
+                        onClick={closeMobileSheet}
                         tooltip={item.title}
-                        render={<Link to={item.url} aria-current={isActive ? "page" : undefined} />}
+                        render={<Link to={item.url === BEHAVIOUR_PAGE_PATH ? behaviourLinkTarget(location.pathname, location.search, DEMO_MODE_ALLOWED) : item.url} aria-current={isActive ? "page" : undefined} />}
                       >
                         <item.icon />
                         <span>{item.title}</span>

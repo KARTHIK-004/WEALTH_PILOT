@@ -1,0 +1,109 @@
+{
+  "order": "torch_first",
+  "executable": "C:\\Users\\Administrator\\Desktop\\Project\\TEST\\.venv\\Scripts\\python.exe",
+  "errors": [],
+  "stages": {
+    "python_start": {
+      "peak_mb": 15.6,
+      "current_mb": 15.6
+    },
+    "application_imported": {
+      "peak_mb": 216.5,
+      "current_mb": 216.5,
+      "seconds": 3.51,
+      "tensorflow_loaded": false,
+      "torch_loaded": false
+    },
+    "torch_transformers_imported": {
+      "peak_mb": 479.9,
+      "current_mb": 479.9,
+      "seconds": 5.49
+    },
+    "horizon_loaded": {
+      "peak_mb": 1322.0,
+      "current_mb": 1106.5,
+      "seconds": 3.27,
+      "labels": [
+        "negative",
+        "neutral",
+        "positive"
+      ],
+      "parameters": 140642691
+    },
+    "tensorflow_imported": {
+      "peak_mb": 1322.0,
+      "current_mb": 1298.1,
+      "seconds": 3.16
+    },
+    "market_model_loaded": {
+      "peak_mb": 1322.0,
+      "current_mb": 1312.7,
+      "seconds": 0.07,
+      "input_shape": [
+        null,
+        20,
+        1
+      ],
+      "output_shape": [
+        null,
+        1
+      ],
+      "scaler": "StandardScaler"
+    },
+    "after_sequential_inference": {
+      "peak_mb": 1332.1,
+      "current_mb": 1331.9
+    }
+  },
+  "cpu_count": 8,
+  "versions": {
+    "tensorflow": "2.17.0",
+    "torch": "2.15.0+cpu"
+  },
+  "threads_as_found": {
+    "torch_intra_op": 4,
+    "torch_inter_op": 4,
+    "tf_intra_op": 0,
+    "tf_inter_op": 0
+  },
+  "sequential_inference": {
+    "rounds": 31,
+    "wall_seconds": 2.97,
+    "market_forecast_first": 0.000481505790958181,
+    "market_all_bitwise_identical": true,
+    "horizon_logits_first": [
+      4.7015862464904785,
+      0.6210049986839294,
+      -2.895378589630127
+    ],
+    "horizon_all_bitwise_identical": true,
+    "horizon_matches_stage_a_raw_logits_exactly": true,
+    "horizon_max_abs_diff_vs_stage_a": 0.0,
+    "market_ms": {
+      "median": 75.4,
+      "min": 56.9,
+      "max": 209.0
+    },
+    "horizon_ms": {
+      "median": 23.74,
+      "min": 18.8,
+      "max": 34.01
+    },
+    "first_call_vs_after_both_loaded": {
+      "market_unchanged": true,
+      "horizon_unchanged": true
+    }
+  },
+  "outputs_finite": true,
+  "horizon_one_softmax_probabilities": [
+    0.9829,
+    0.0166,
+    0.0005
+  ],
+  "network_attempts": 0,
+  "final_memory": {
+    "peak_mb": 1332.1,
+    "current_mb": 1331.9
+  },
+  "status": "COMPLETED"
+}

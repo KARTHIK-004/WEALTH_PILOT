@@ -3,18 +3,18 @@
   "source": "synthetic_demo",
   "goals": [
     {
-      "current_savings": 60000,
-      "goal_type": "Retirement",
-      "priority": 1,
-      "target_amount": 300000,
-      "target_date": "2038-01-01"
+      "goal_type": "Higher Education",
+      "target_amount": 1000000,
+      "target_date": "2029-07-01",
+      "current_savings": 350000,
+      "priority": 1
     },
     {
-      "current_savings": 10000,
-      "goal_type": "Education",
-      "priority": 2,
-      "target_amount": 40000,
-      "target_date": "2029-01-01"
+      "goal_type": "Retirement Corpus",
+      "target_amount": 12000000,
+      "target_date": "2050-01-01",
+      "current_savings": 1200000,
+      "priority": 2
     }
   ]
 }

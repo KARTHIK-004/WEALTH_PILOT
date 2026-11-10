@@ -29,7 +29,7 @@ import { LoginForm } from "@/components/login-form"
  */
 export function LoginPage() {
   return (
-    <div className="grid min-h-svh lg:grid-cols-2">
+    <main id="main-content" className="grid min-h-svh lg:grid-cols-2">
       <div className="flex flex-col gap-4 p-6 md:p-10">
         <div className="flex justify-center gap-2 md:justify-start">
           <span className="flex items-center gap-2 font-medium">
@@ -66,6 +66,6 @@ export function LoginPage() {
           </div>
         </div>
       </div>
-    </div>
+    </main>
   )
 }

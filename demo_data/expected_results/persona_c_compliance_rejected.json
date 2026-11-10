@@ -6,7 +6,7 @@
     "analysis_status": "rejected",
     "risk_available": true,
     "goal_results_returned": true,
-    "goal_feasibility_available": false,
+    "goal_feasibility_available": true,
     "emergency_fund_sufficient": null,
     "compliance_decision": "REJECT",
     "triggered_compliance_rules": [
@@ -17,5 +17,5 @@
     "portfolio_weights_available": false,
     "explanation_available": false
   },
-  "note": "The rejecting rule fails closed because the emergency-fund status is unknown (no financial inputs); emergency_fund_sufficient is null -- unknown, not false."
+  "note": "The rejecting rule fails closed because the emergency-fund status is unknown (monthly essential spending and easy-access savings were not provided); emergency_fund_sufficient is null -- unknown, not false. The savings plan (contribution, return, inflation) was provided, so goal feasibility is computed before compliance runs."
 }

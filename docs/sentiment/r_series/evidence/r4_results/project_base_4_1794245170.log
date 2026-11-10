@@ -1,0 +1,75 @@
+........................................................................ [  9%]
+.................
+C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pytest_asyncio\plugin.py:208: PytestDeprecationWarning: The configuration option "asyncio_default_fixture_loop_scope" is unset.
+The event loop scope for asynchronous fixtures will default to the fixture caching scope. Future versions of pytest-asyncio will default the loop scope for asynchronous fixtures to function scope. Set the default fixture loop scope explicitly in order to avoid unexpected behavior in the future. Valid fixture loop scopes are: "function", "class", "module", "package", "session"
+
+  warnings.warn(PytestDeprecationWarning(_DEFAULT_FIXTURE_LOOP_SCOPE_UNSET))
+Windows fatal exception: access violation
+
+Thread 0x00004a4c (most recent call first):
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\framework\ops.py", line 1563 in get_attr
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\framework\auto_control_deps_utils.py", line 105 in get_read_write_resource_inputs
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\framework\auto_control_deps.py", line 608 in _get_resource_inputs
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\framework\auto_control_deps.py", line 459 in __exit__
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\framework\func_graph.py", line 987 in func_graph_from_py_func
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\eager\polymorphic_function\tracing_compilation.py", line 310 in _create_concrete_function
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\eager\polymorphic_function\tracing_compilation.py", line 283 in _maybe_define_function
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\eager\polymorphic_function\tracing_compilation.py", line 178 in trace_function
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\eager\polymorphic_function\tracing_compilation.py", line 132 in call_function
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\eager\polymorphic_function\polymorphic_function.py", line 906 in _call
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\eager\polymorphic_function\polymorphic_function.py", line 833 in __call__
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\util\traceback_utils.py", line 150 in error_handler
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\keras\src\backend\tensorflow\trainer.py", line 125 in wrapper
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\keras\src\backend\tensorflow\trainer.py", line 154 in multi_step_on_iterator
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\autograph\impl\api.py", line 643 in wrapper
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\autograph\impl\api.py", line 459 in _call_unconverted
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\autograph\impl\api.py", line 339 in converted_call
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\eager\polymorphic_function\autograph_util.py", line 41 in autograph_handler
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\eager\polymorphic_function\polymorphic_function.py", line 599 in wrapped_fn
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\framework\func_graph.py", line 1059 in func_graph_from_py_func
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\eager\polymorphic_function\tracing_compilation.py", line 310 in _create_concrete_function
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\eager\polymorphic_function\tracing_compilation.py", line 283 in _maybe_define_function
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\eager\polymorphic_function\tracing_compilation.py", line 178 in trace_function
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\eager\polymorphic_function\polymorphic_function.py", line 696 in _initialize
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\eager\polymorphic_function\polymorphic_function.py", line 889 in _call
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\eager\polymorphic_function\polymorphic_function.py", line 833 in __call__
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\tensorflow\python\util\traceback_utils.py", line 150 in error_handler
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\keras\src\backend\tensorflow\trainer.py", line 241 in function
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\keras\src\backend\tensorflow\trainer.py", line 399 in fit
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\keras\src\utils\traceback_utils.py", line 117 in error_handler
+  File "C:\Users\Administrator\Desktop\Project\TEST\training\risk\mlp.py", line 129 in fit
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\sklearn\pipeline.py", line 473 in fit
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\sklearn\base.py", line 1473 in wrapper
+  File "C:\Users\Administrator\Desktop\Project\TEST\tests\training\risk\test_artifact_roundtrip.py", line 85 in test_mlp_keras_native_save_round_trip
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\_pytest\python.py", line 159 in pytest_pyfunc_call
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pluggy\_callers.py", line 121 in _multicall
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pluggy\_manager.py", line 120 in _hookexec
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pluggy\_hooks.py", line 512 in __call__
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\_pytest\python.py", line 1627 in runtest
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\_pytest\runner.py", line 174 in pytest_runtest_call
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pluggy\_callers.py", line 121 in _multicall
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pluggy\_manager.py", line 120 in _hookexec
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pluggy\_hooks.py", line 512 in __call__
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\_pytest\runner.py", line 242 in <lambda>
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\_pytest\runner.py", line 341 in from_call
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\_pytest\runner.py", line 241 in call_and_report
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\_pytest\runner.py", line 132 in runtestprotocol
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\_pytest\runner.py", line 113 in pytest_runtest_protocol
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pluggy\_callers.py", line 121 in _multicall
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pluggy\_manager.py", line 120 in _hookexec
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pluggy\_hooks.py", line 512 in __call__
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\_pytest\main.py", line 362 in pytest_runtestloop
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pluggy\_callers.py", line 121 in _multicall
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pluggy\_manager.py", line 120 in _hookexec
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pluggy\_hooks.py", line 512 in __call__
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\_pytest\main.py", line 337 in _main
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\_pytest\main.py", line 283 in wrap_session
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\_pytest\main.py", line 330 in pytest_cmdline_main
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pluggy\_callers.py", line 121 in _multicall
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pluggy\_manager.py", line 120 in _hookexec
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pluggy\_hooks.py", line 512 in __call__
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\_pytest\config\__init__.py", line 175 in main
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\_pytest\config\__init__.py", line 201 in console_main
+  File "C:\Users\Administrator\Desktop\Project\TEST\.venv\Lib\site-packages\pytest\__main__.py", line 9 in <module>
+  File "<frozen runpy>", line 88 in _run_code
+  File "<frozen runpy>", line 198 in _run_module_as_main

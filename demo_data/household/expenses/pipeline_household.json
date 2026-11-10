@@ -1,0 +1,95 @@
+{
+  "household_demo_key": "WPDEMO-HHE",
+  "source": "synthetic_demo",
+  "api": "POST /api/households/{household_id}/expenses",
+  "idempotency_key": "description",
+  "demonstrates": "essential and non-essential spending across the vocabulary's categories (the essential ones are the emergency-fund basis), yearly premiums and a yearly trip, two EMIs recorded as debt payments (each also a liability with the same monthly payment), and a one-time purchase kept out of the recurring view. Recurring spending excluding EMIs is 80000 a month: the primary member's latest reported living costs (53000) plus the partner's share (27000).",
+  "records": [
+    {
+      "amount": 30000,
+      "category": "housing",
+      "description": "Rent",
+      "frequency": "monthly",
+      "is_essential": true
+    },
+    {
+      "amount": 14000,
+      "category": "food",
+      "description": "Groceries and household supplies",
+      "frequency": "monthly",
+      "is_essential": true
+    },
+    {
+      "amount": 6000,
+      "category": "utilities",
+      "description": "Electricity, water, broadband and mobile",
+      "frequency": "monthly",
+      "is_essential": true
+    },
+    {
+      "amount": 8000,
+      "category": "transportation",
+      "description": "Fuel, metro and cab",
+      "frequency": "monthly",
+      "is_essential": true
+    },
+    {
+      "amount": 2000,
+      "category": "healthcare",
+      "description": "Medical and pharmacy",
+      "frequency": "monthly",
+      "is_essential": true
+    },
+    {
+      "amount": 48000,
+      "category": "insurance",
+      "description": "Health and term insurance premiums",
+      "frequency": "yearly",
+      "is_essential": true
+    },
+    {
+      "amount": 9500,
+      "category": "debt_payment",
+      "description": "Car loan EMI",
+      "frequency": "monthly",
+      "is_essential": true,
+      "notes": "The same payment as the Car loan liability."
+    },
+    {
+      "amount": 6500,
+      "category": "debt_payment",
+      "description": "Education loan EMI",
+      "frequency": "monthly",
+      "is_essential": true,
+      "notes": "The same payment as the Education loan liability."
+    },
+    {
+      "amount": 10000,
+      "category": "entertainment",
+      "description": "Dining and leisure",
+      "frequency": "monthly",
+      "is_essential": false
+    },
+    {
+      "amount": 2000,
+      "category": "other",
+      "description": "Subscriptions and memberships",
+      "frequency": "monthly",
+      "is_essential": false
+    },
+    {
+      "amount": 48000,
+      "category": "entertainment",
+      "description": "Annual trip",
+      "frequency": "yearly",
+      "is_essential": false
+    },
+    {
+      "amount": 85000,
+      "category": "other",
+      "description": "Laptop and furniture",
+      "frequency": "one_time",
+      "is_essential": false
+    }
+  ]
+}

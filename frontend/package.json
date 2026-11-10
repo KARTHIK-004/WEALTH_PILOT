@@ -8,7 +8,10 @@
     "build": "tsc -b && vite build",
     "lint": "oxlint",
     "preview": "vite preview",
-    "generate-types": "openapi-typescript http://localhost:8000/openapi.json -o ./src/types/api.ts"
+    "generate-types": "openapi-typescript http://localhost:8000/openapi.json -o ./src/types/api.ts",
+    "test": "node --test tests/user-text-input.test.ts tests/profile-form.test.ts tests/behaviour-summary.test.ts tests/security-status.test.ts tests/behaviour-redesign.test.ts tests/demo-login.test.ts tests/demo-data-flow.test.ts tests/demo-mode.test.ts tests/behaviour-page-logic.test.ts tests/component.test.mjs",
+    "typecheck:tests": "tsc -p tsconfig.test.json",
+    "test:mutations": "node tests/mutation-check.mjs"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",

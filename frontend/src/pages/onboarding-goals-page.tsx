@@ -114,7 +114,7 @@ export function OnboardingGoalsPage() {
   const savedGoals = profileQuery.data?.goals ?? []
 
   return (
-    <div className="bg-background min-h-svh p-6 md:p-10">
+    <main id="main-content" className="bg-background min-h-svh p-6 md:p-10">
       <div className="mx-auto flex w-full max-w-2xl flex-col gap-6">
         <div className="flex items-center gap-2">
           <div className="bg-primary text-primary-foreground flex size-6 items-center justify-center rounded-md">
@@ -268,7 +268,7 @@ export function OnboardingGoalsPage() {
             )}
 
             <div className="flex flex-wrap items-center justify-between gap-2">
-              <Button variant="outline" render={<Link to="/onboarding/questionnaire" />}>
+              <Button variant="outline" nativeButton={false} render={<Link to="/onboarding/questionnaire" />}>
                 Back
               </Button>
               <Button onClick={() => navigate("/dashboard")}>Continue to Dashboard</Button>
@@ -276,6 +276,6 @@ export function OnboardingGoalsPage() {
           </>
         )}
       </div>
-    </div>
+    </main>
   )
 }

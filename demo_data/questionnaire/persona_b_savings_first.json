@@ -1,20 +1,17 @@
 {
   "demo_key": "WPDEMO-B",
   "source": "synthetic_demo",
-  "definition": "Answers only. The questions and options are the application's own questionnaire (GET /api/questionnaire, read from datasets/raw/FAR-Trans/questionnaires.csv) and are never copied here.",
-  "selection_rule": {
-    "method": "position",
-    "answer_offset": 1,
-    "meaning": "the middle option of every question (index (n - 1) // 2)"
-  },
+  "definition": "Answers only. The questions and options are the application's own questionnaire (GET /api/questionnaire, read from datasets/raw/FAR-Trans/questionnaires.csv) and are never copied here. The questionnaire is the research instrument's own wording (its money bands are stated in euros); these answers use the approximate real-world equivalent of each persona's rupee figures. The application stores the answers but no analysis step reads them.",
+  "complete": true,
+  "answers_basis": "Curated to match the profile: 33, married, salaried, moderate investment experience, under three months of emergency cover, a moderate risk appetite and a five-to-seven-year home goal, in line with the Balanced category the risk model assigns to the linked trading history.",
   "answers": [
     {
       "question_number": 1,
-      "option_key": "c"
+      "option_key": "a"
     },
     {
       "question_number": 2,
-      "option_key": "a"
+      "option_key": "b"
     },
     {
       "question_number": 3,
@@ -38,19 +35,19 @@
     },
     {
       "question_number": 8,
-      "option_key": "b"
+      "option_key": "a"
     },
     {
       "question_number": 9,
-      "option_key": "c"
+      "option_key": "a"
     },
     {
       "question_number": 10,
-      "option_key": "c"
+      "option_key": "b"
     },
     {
       "question_number": 11,
-      "option_key": "c"
+      "option_key": "d"
     },
     {
       "question_number": 12,
@@ -58,15 +55,15 @@
     },
     {
       "question_number": 13,
-      "option_key": "c"
+      "option_key": "e"
     },
     {
       "question_number": 14,
-      "option_key": "c"
+      "option_key": "d"
     },
     {
       "question_number": 15,
-      "option_key": "c"
+      "option_key": "a"
     },
     {
       "question_number": 16,
@@ -86,7 +83,7 @@
     },
     {
       "question_number": 20,
-      "option_key": "b"
+      "option_key": "c"
     },
     {
       "question_number": 21,
@@ -98,7 +95,7 @@
     },
     {
       "question_number": 23,
-      "option_key": "c"
+      "option_key": "b"
     },
     {
       "question_number": 24,
@@ -106,7 +103,7 @@
     },
     {
       "question_number": 25,
-      "option_key": "c"
+      "option_key": "b"
     }
   ]
 }

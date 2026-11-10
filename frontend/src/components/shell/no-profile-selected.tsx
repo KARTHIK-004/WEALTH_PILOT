@@ -31,8 +31,8 @@ export function NoProfileSelected() {
         </CardDescription>
       </CardHeader>
       <CardContent className="flex flex-wrap gap-2">
-        <Button render={<Link to="/create-user" />}>Create Profile</Button>
-        <Button variant="outline" render={<Link to="/login" />}>
+        <Button nativeButton={false} render={<Link to="/create-user" />}>Create Profile</Button>
+        <Button variant="outline" nativeButton={false} render={<Link to="/login" />}>
           Return to Login
         </Button>
       </CardContent>

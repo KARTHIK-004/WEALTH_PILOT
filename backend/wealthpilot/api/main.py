@@ -20,12 +20,16 @@ from wealthpilot.api.errors import register_exception_handlers
 from wealthpilot.api.lifespan import lifespan
 from wealthpilot.api.routers import (
     analysis,
+    demo,
     health,
     household_finances,
     household_goals,
     household_summary,
     households,
+    monthly_records,
+    personalized_insights,
     profiles,
+    protected_records,
     qa,
     scenarios,
 )
@@ -57,10 +61,14 @@ register_exception_handlers(app)
 
 app.include_router(health.router)
 app.include_router(profiles.router)
+app.include_router(monthly_records.router)
+app.include_router(personalized_insights.router)
+app.include_router(demo.router)   # fictional demonstration data; 404 unless DEMO_MODE_ENABLED=true
 app.include_router(households.router)
 app.include_router(household_finances.router)
 app.include_router(household_summary.router)
 app.include_router(household_goals.router)
+app.include_router(protected_records.router)
 # sse.router BEFORE analysis.router: FastAPI matches routes in registration
 # order, and the static path "/api/analysis/stream" must be tried before
 # the dynamic "/api/analysis/{analysis_id}" -- registered the other way

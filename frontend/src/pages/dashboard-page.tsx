@@ -212,12 +212,12 @@ export function DashboardPage() {
               </div>
               <div className="flex flex-wrap gap-2">
                 {nextStep ? (
-                  <Button size="sm" render={<Link to={nextStep.href} />}>
+                  <Button size="sm" nativeButton={false} render={<Link to={nextStep.href} />}>
                     {analysis?.recommendation?.status === "approved" ? "View my plan" : nextStep.linkLabel}{" "}
                     <ArrowRight className="size-4" />
                   </Button>
                 ) : null}
-                <Button variant="outline" size="sm" render={<Link to="/why-this-recommendation" />}>
+                <Button variant="outline" size="sm" nativeButton={false} render={<Link to="/why-this-recommendation" />}>
                   Why am I seeing this?
                 </Button>
               </div>
@@ -315,7 +315,11 @@ export function DashboardPage() {
                       You don't yet have enough set aside to cover an unexpected cost — building this up comes first.
                     </p>
                   ) : (
-                    <SectionUnavailable reason={analysis?.emergency_fund?.unavailable_reason} />
+                    <SectionUnavailable
+                      title="Emergency savings not checked"
+                      message="Your emergency savings could not be checked, because your essential monthly expenses and available savings have not been provided. No amounts are assumed."
+                      reason={analysis?.emergency_fund?.unavailable_reason}
+                    />
                   )}
                   <p className="text-muted-foreground text-sm">
                     Your income, spending and savings together give WealthPilot a clear picture of your financial
@@ -391,7 +395,11 @@ export function DashboardPage() {
                       {getRiskCategoryDescription(analysis.risk.risk_category) ?? ""}
                     </p>
                   ) : (
-                    <SectionUnavailable reason={analysis?.risk?.unavailable_reason} />
+                    <SectionUnavailable
+                      title="Risk profile not available yet"
+                      message="The risk assessment needs investment-history information that is not available for this profile yet. No risk profile is assumed."
+                      reason={analysis?.risk?.unavailable_reason}
+                    />
                   )}
                   <div className="flex flex-wrap items-center gap-2 pt-1">
                     {profileQuery.data?.customer_type ? (

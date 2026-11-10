@@ -577,3 +577,14 @@ no brand token, no hex/rgb/hsl value and no Tailwind palette class
   secondary demo panel uses `secondary-foreground`. Measured across every muted,
   primary and destructive text element on Home and About: minimum 4.58:1 light,
   6.94:1 dark.
+
+## Financial Behaviour & Sentiment page (ADR-048)
+
+A dashboard-style page in the existing black/white/grey system: no new colours, gradients, charts or animation, and only existing shadcn components and lucide icons (plus the CLI-added Textarea).
+
+- **Order**: title and one-sentence description (the page's only heading level 1) -> an intro with two columns, "Observed from your records" and "Expressed in your own words (optional)" -> a 5/7 grid from the large breakpoint (records and stored assessment | text box and reading), stacked in that order on tablet and phone -> backend caveats and collapsed technical details.
+- **Insight cards**: the backend sentence first, then a category chip, a direction chip when the backend gives one, and "Based on:" with the source fields. The icon only repeats the direction and carries no judgement.
+- **Text box**: a labelled text area (5 rows, grows with its content), live counter "n / 1000 characters (m left)", Analyse and Clear buttons (spinner and "Analysing..." while pending, both disabled as before), Ctrl/Cmd+Enter to submit, and one privacy line: read once, not saved on the server or in the browser's storage, not used to change the stored assessment.
+- **Reading**: a headline "Tone of your words: <label>" with an icon; solid and filled when a tone was found, dashed and muted with "Not a confirmed reading." when it was not; then emotion word, topics, confidence ("Not provided" unless the backend gives one), the quoted words it rests on, preferences marked Unconfirmed, a not-a-validated-model note with the backend's limits, and a conflict note that the stored assessment stays the authority.
+- **States**: loading skeleton; a failed request replaces every result (the input stays usable, Try again offered); a stale-results notice when the box differs from what was analysed; an empty-records state that links to Customer Profile, where monthly records are added.
+- **Accessibility**: each panel is a named region with a level-two heading; the text area has a visible label, described by its help, counter and error; the results region is a polite live region; decorative icons are hidden; focus rings come from the primitives.

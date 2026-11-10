@@ -1,0 +1,31 @@
+{
+  "household_demo_key": "WPDEMO-HHE",
+  "source": "synthetic_demo",
+  "api": "POST /api/households/{household_id}/liabilities",
+  "idempotency_key": "name",
+  "demonstrates": "two loans with a recorded monthly payment (EMI) and interest rate, and a credit card recorded at a genuine 0 with no monthly payment recorded -- a known zero beside an unknown, never conflated. Each EMI is also a debt_payment expense of the same amount.",
+  "records": [
+    {
+      "name": "Car loan",
+      "liability_type": "vehicle_loan",
+      "outstanding_amount": 340000,
+      "monthly_payment": 9500,
+      "interest_rate": 0.0925,
+      "notes": "About 3.5 years remaining at this payment (synthetic)."
+    },
+    {
+      "name": "Education loan",
+      "liability_type": "education_loan",
+      "outstanding_amount": 310000,
+      "monthly_payment": 6500,
+      "interest_rate": 0.095,
+      "notes": "About 5 years remaining at this payment (synthetic)."
+    },
+    {
+      "name": "Credit card",
+      "liability_type": "credit_card",
+      "outstanding_amount": 0,
+      "notes": "Paid in full each month"
+    }
+  ]
+}

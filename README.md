@@ -74,8 +74,14 @@ python -m venv ../.venv
 ../.venv/Scripts/activate        # Windows; use `source ../.venv/bin/activate` on macOS/Linux
 pip install -e ".[dev]"
 cp ../.env.example ../.env       # then fill in real values
+# the repo root must be on PYTHONPATH (startup imports the top-level training/ package):
+set PYTHONPATH=..                  # Windows cmd.exe
+$env:PYTHONPATH = ".."             # Windows PowerShell
+export PYTHONPATH=..               # macOS/Linux
 uvicorn wealthpilot.api.main:app --reload --app-dir .
 ```
+
+Without `PYTHONPATH`, startup fails with `ModuleNotFoundError: No module named 'training'`.
 
 Health check: `http://localhost:8000/api/health`
 

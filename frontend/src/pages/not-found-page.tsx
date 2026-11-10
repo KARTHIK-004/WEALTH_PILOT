@@ -15,7 +15,7 @@ export function NotFoundPage() {
           The page you're looking for doesn't exist.
         </p>
       </div>
-      <Button render={<Link to="/dashboard" />}>Return to dashboard</Button>
+      <Button nativeButton={false} render={<Link to="/dashboard" />}>Return to dashboard</Button>
     </div>
   )
 }
